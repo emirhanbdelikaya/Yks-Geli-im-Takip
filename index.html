@@ -4,6 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YKS Takip</title>
+
+<!-- ======================================================================
+  FIREBASE KURULUMU — bu proje "yks-gelisim-takip" Firebase projesine
+  bağlıdır. Kurulumu tamamlamak için:
+  1) Firebase Console > Authentication > Sign-in method: "Google" ve
+     "E-posta/Şifre" sağlayıcılarını etkinleştir.
+  2) Firebase Console > Firestore Database zaten oluşturulmuş durumda.
+  3) Bu dosyayı bir web adresinde barındırman gerekiyor (Firebase Hosting,
+     GitHub Pages vb.) — Google girişi file:// olarak açılan dosyalarda
+     çalışmaz. Barındırdığın adresi Authentication > Settings >
+     Authorized domains kısmına ekle.
+  4) Firestore Rules sekmesine, bu dosyanın sonunda verdiğim güvenlik
+     kurallarını yapıştır (her kullanıcı sadece kendi verisini okur/yazar).
+=========================================================================-->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+  const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyCcNR2kI_tPcPqaZOqqLJYHVVJy3_PkzkM",
+    authDomain: "yks-gelisim-takip.firebaseapp.com",
+    projectId: "yks-gelisim-takip",
+    storageBucket: "yks-gelisim-takip.firebasestorage.app",
+    messagingSenderId: "331525509734",
+    appId: "1:331525509734:web:7cf4489895f9549cf913a7"
+  };
+</script>
+
 <style>
   :root{
     --bg: #0F1B2E;
@@ -470,10 +498,231 @@
   .data-line{ fill:none; stroke-width: 2.5; }
   .data-dot{ stroke: var(--panel); stroke-width: 2; cursor:pointer; }
   .hit-dot{ fill:transparent; cursor:pointer; }
+
+  /* ---------- Auth screen ---------- */
+  .auth-screen{
+    min-height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 24px 18px;
+  }
+  .auth-box{
+    width:100%;
+    max-width: 380px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+  .auth-box h1{
+    font-family: Georgia, serif;
+    font-size: 24px;
+    margin: 0 0 4px;
+    text-align:center;
+  }
+  .auth-box .sub{
+    color: var(--muted);
+    font-size: 13px;
+    text-align:center;
+    margin: 0 0 22px;
+  }
+  .auth-tabs{
+    display:flex;
+    gap:6px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 3px;
+    margin-bottom: 18px;
+  }
+  .auth-tab-btn{
+    flex:1;
+    background:none;
+    border:none;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight:600;
+    padding: 8px 0;
+    border-radius: 6px;
+    cursor:pointer;
+  }
+  .auth-tab-btn.active{ background: var(--blue); color:#0B1626; }
+  .auth-field{ display:flex; flex-direction:column; gap:5px; margin-bottom:12px; }
+  .auth-field label{ font-size: 11.5px; color: var(--muted); }
+  .auth-field input{
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    color: var(--text);
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    width:100%;
+  }
+  .auth-submit-btn{
+    width:100%;
+    background: var(--blue);
+    color:#0B1626;
+    border:none;
+    border-radius: 7px;
+    padding: 11px 0;
+    font-size: 14.5px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top: 4px;
+  }
+  .auth-divider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color: var(--muted);
+    font-size: 11.5px;
+    margin: 18px 0;
+  }
+  .auth-divider::before, .auth-divider::after{
+    content:""; flex:1; height:1px; background: var(--line);
+  }
+  .google-btn{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:#fff;
+    color:#3c4043;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .google-btn svg{ width:18px; height:18px; }
+  .auth-error{
+    color: var(--danger);
+    font-size: 12.5px;
+    text-align:center;
+    margin: 10px 0 0;
+    min-height: 16px;
+  }
+  .auth-switch-hint{
+    text-align:center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 16px;
+  }
+  .auth-switch-hint a{ color: var(--blue); cursor:pointer; text-decoration: underline; }
+
+  /* ---------- Profile card (social-media style) ---------- */
+  .profile-card{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 18px;
+  }
+  .profile-avatar{
+    width: 56px; height:56px;
+    border-radius:50%;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 26px;
+    flex-shrink:0;
+  }
+  .profile-info{ flex:1; min-width:0; }
+  .profile-name-row{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .profile-name{ font-family: Georgia, serif; font-size: 17px; font-weight:600; }
+  .rank-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size: 11.5px;
+    font-weight:700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(76,141,255,0.18);
+    color: var(--blue);
+    white-space:nowrap;
+  }
+  .profile-points{ font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+  .profile-points b{ color: var(--text); }
+  .rank-progress-track{
+    height: 6px;
+    background: var(--panel-2);
+    border-radius: 4px;
+    overflow:hidden;
+    margin-top: 8px;
+  }
+  .rank-progress-fill{
+    height:100%;
+    background: var(--blue);
+    border-radius: 4px;
+  }
+  .rank-progress-note{ font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .avatar-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom: 4px;
+  }
+  .avatar-choice{
+    width: 38px; height:38px;
+    border-radius:50%;
+    background: var(--panel-2);
+    border: 2px solid transparent;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    cursor:pointer;
+  }
+  .avatar-choice.active{ border-color: var(--blue); }
 </style>
 </head>
 <body>
-<div class="app">
+
+<!-- Auth screen (Google / e-posta ile giriş - kayıt) -->
+<div id="authScreen" class="auth-screen">
+  <div class="auth-box">
+    <h1>YKS Takip</h1>
+    <p class="sub">Devam etmek için giriş yap ya da hesap oluştur.</p>
+
+    <button type="button" class="google-btn" id="googleSignInBtn">
+      <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.6 5.1 29.6 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.4-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.3 18.9 12 24 12c3.1 0 5.8 1.1 8 3l6-6C34.6 5.1 29.6 3 24 3 16.3 3 9.7 7.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.5 0 10.4-1.9 14.3-5.1l-6.6-5.6c-2 1.5-4.6 2.5-7.7 2.5-5.2 0-9.6-3.3-11.2-7.9l-6.6 5.1C9.6 40.5 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.2 4.2-4.1 5.6l6.6 5.6C41.5 36.6 45 31 45 24c0-1.4-.1-2.7-.4-3.5z"/></svg>
+      Google ile devam et
+    </button>
+
+    <div class="auth-divider">veya e-posta ile</div>
+
+    <div class="auth-tabs">
+      <button type="button" class="auth-tab-btn active" id="authTabLogin">Giriş Yap</button>
+      <button type="button" class="auth-tab-btn" id="authTabRegister">Kayıt Ol</button>
+    </div>
+
+    <form id="emailAuthForm">
+      <div class="auth-field">
+        <label for="authEmail">E-posta</label>
+        <input type="email" id="authEmail" required autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="authPassword">Şifre</label>
+        <input type="password" id="authPassword" required minlength="6" autocomplete="current-password">
+      </div>
+      <button type="submit" class="auth-submit-btn" id="emailAuthSubmitBtn">Giriş Yap</button>
+    </form>
+
+    <p class="auth-error" id="authErrorLine"></p>
+  </div>
+</div>
+
+<div class="app" id="mainApp" style="display:none">
 
   <header class="top">
     <h1>YKS Takip</h1>
@@ -483,8 +732,8 @@
   <div class="tab-bar" id="tabBar"></div>
 
   <div class="tab-panel" id="tab-ozet">
-    <p class="sub" style="margin: 0 0 14px;">Günlük çalışma saatlerini ve deneme netlerini kaydet, gelişimini grafikte gör. Tüm veriler bu cihazda saklanır — internet gerekmez.</p>
-    <p class="greeting" id="greetingLine" style="margin-bottom: 14px;"></p>
+    <p class="sub" style="margin: 0 0 14px;">Günlük çalışma saatlerini ve deneme netlerini kaydet, gelişimini grafikte gör. Verilerin hesabınla senkronize saklanır.</p>
+    <div id="profileCardWrap"></div>
     <div class="stats" id="statsBar"></div>
   </div>
 
@@ -590,6 +839,10 @@
 
     <div class="onboard-grid">
       <div class="field">
+        <label>Avatarın</label>
+        <div class="avatar-grid" id="avatarGrid"></div>
+      </div>
+      <div class="field">
         <label for="profName">İsmin</label>
         <input type="text" id="profName" placeholder="Adın">
       </div>
@@ -638,6 +891,7 @@
     </div>
 
     <div class="modal-actions">
+      <button id="logoutBtn" type="button" style="color:var(--danger); border-color:var(--danger);">Çıkış Yap</button>
       <button id="settingsCloseBtn" type="button" class="add-btn">Kapat</button>
     </div>
   </div>
@@ -659,15 +913,45 @@
 
 <script>
 (function(){
-  // ---------- Storage keys (existing keys kept as-is so old data still loads) ----------
-  const KEY_STUDY   = 'yks-study-entries';
-  const KEY_EXAM    = 'yks-exam-entries';
-  const KEY_PROFILE = 'yks-profile';
+  // ---------- Firebase ----------
+  firebase.initializeApp(FIREBASE_CONFIG);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  let currentUid = null;
+  let unsubStudy = null, unsubExam = null;
+
+  // ---------- Storage keys (theme stays device-local; everything else lives in Firestore) ----------
   const KEY_THEME   = 'yks-theme';
 
   let studyEntries = []; // {id, date, hours}
   let examEntries  = []; // {id, date, type, net, subjects?}
-  let profile = null;    // {name, studyGoal, tytGoal, aytGoal, aytTrack}
+  let profile = null;    // {name, avatar, studyGoal, tytGoal, aytGoal, aytTrack, points}
+
+  const AVATAR_CHOICES = ['🙂','😎','🦉','🐱','🦊','🐼','🐸','🌟','🚀','📚','🎯','🔥'];
+
+  // ---------- Puan / rütbe sistemi: her 1 dakika çalışma = 1 puan ----------
+  const RANKS = [
+    { min: 0,     name: 'Çaylak',        emoji: '🌱' },
+    { min: 300,   name: 'İstekli',        emoji: '📘' },
+    { min: 1200,  name: 'Azimli',         emoji: '🔥' },
+    { min: 3000,  name: 'Odaklanmış',     emoji: '🎯' },
+    { min: 6000,  name: 'Uzman Adayı',    emoji: '⚡' },
+    { min: 12000, name: 'YKS Savaşçısı',  emoji: '🛡️' },
+    { min: 24000, name: 'Efsane',         emoji: '🏆' }
+  ];
+
+  function computePoints(){
+    const totalMinutes = studyEntries.reduce((s,e)=> s + Number(e.hours) * 60, 0);
+    return Math.round(totalMinutes);
+  }
+
+  function getRankInfo(points){
+    let current = RANKS[0], next = RANKS[1] || null;
+    for(let i=0;i<RANKS.length;i++){
+      if(points >= RANKS[i].min){ current = RANKS[i]; next = RANKS[i+1] || null; }
+    }
+    return { current, next };
+  }
 
   let studyPeriod = 'month';
   let examPeriod = 'month';
@@ -806,26 +1090,57 @@
 
   function round1(v){ return Math.round(v * 10) / 10; }
 
-  // ---------- Local storage (device-only, no account, no internet) ----------
+  // ---------- Firestore-backed storage (data is tied to the signed-in account) ----------
 
-  function loadAll(){
-    try{ studyEntries = JSON.parse(localStorage.getItem(KEY_STUDY) || '[]'); }catch(e){ studyEntries = []; }
-    try{ examEntries = JSON.parse(localStorage.getItem(KEY_EXAM) || '[]'); }catch(e){ examEntries = []; }
-    try{ profile = JSON.parse(localStorage.getItem(KEY_PROFILE) || 'null'); }catch(e){ profile = null; }
+  function userDoc(){ return db.collection('users').doc(currentUid); }
+  function studyCol(){ return userDoc().collection('study'); }
+  function examCol(){ return userDoc().collection('exam'); }
+
+  // Loads profile + study + exam once on login; live listeners keep local arrays
+  // in sync afterwards (handy if the same account is open on two devices).
+  function loadUserData(uid){
+    currentUid = uid;
+    return userDoc().get().then(snap => {
+      profile = snap.exists ? snap.data() : null;
+    }).then(() => new Promise(resolve => {
+      let studyReady = false, examReady = false;
+      const maybeResolve = () => { if(studyReady && examReady) resolve(); };
+
+      if(unsubStudy) unsubStudy();
+      if(unsubExam) unsubExam();
+
+      unsubStudy = studyCol().onSnapshot(qs => {
+        studyEntries = qs.docs.map(d => ({ id: d.id, ...d.data() }))
+          .sort((a,b)=> a.date.localeCompare(b.date));
+        if(!studyReady){ studyReady = true; maybeResolve(); }
+        else { renderStudy(); renderStats(); renderSubjectChart(); renderProfileCard(); }
+      }, () => { studyReady = true; maybeResolve(); });
+
+      unsubExam = examCol().onSnapshot(qs => {
+        examEntries = qs.docs.map(d => ({ id: d.id, ...d.data() }))
+          .sort((a,b)=> a.date.localeCompare(b.date));
+        if(!examReady){ examReady = true; maybeResolve(); }
+        else { renderExam(); renderStats(); renderSubjectChart(); renderTargetResult(); }
+      }, () => { examReady = true; maybeResolve(); });
+    }));
   }
 
-  function saveStudy(){
-    try{ localStorage.setItem(KEY_STUDY, JSON.stringify(studyEntries)); }
-    catch(e){ setStatus('Kaydedilemedi, cihaz depolaması dolu olabilir.', true); }
-  }
-  function saveExam(){
-    try{ localStorage.setItem(KEY_EXAM, JSON.stringify(examEntries)); }
-    catch(e){ setStatus('Kaydedilemedi, cihaz depolaması dolu olabilir.', true); }
-  }
   function saveProfile(){
-    try{ localStorage.setItem(KEY_PROFILE, JSON.stringify(profile)); }
-    catch(e){ setStatus('Kaydedilemedi.', true); }
+    if(!currentUid) return Promise.resolve();
+    return userDoc().set(profile, { merge: true })
+      .catch(() => setStatus('Kaydedilemedi, internet bağlantını kontrol et.', true));
   }
+
+  function syncPointsToProfile(){
+    if(!currentUid || !profile) return;
+    const points = computePoints();
+    const rank = getRankInfo(points).current.name;
+    if(profile.points === points && profile.rank === rank) return;
+    profile.points = points;
+    profile.rank = rank;
+    userDoc().set({ points, rank }, { merge: true }).catch(()=>{});
+  }
+
   function getTheme(){
     return localStorage.getItem(KEY_THEME) || 'navy';
   }
@@ -850,43 +1165,53 @@
   // ---------- Data ops ----------
 
   function addStudyEntry(date, hours){
-    const existingIdx = studyEntries.findIndex(e => e.date === date);
-    if(existingIdx >= 0){
-      studyEntries[existingIdx].hours = hours;
-    } else {
-      studyEntries.push({ id: uid(), date, hours });
-    }
+    const existing = studyEntries.find(e => e.date === date);
+    const entryId = existing ? existing.id : uid();
+    if(existing){ existing.hours = hours; } else { studyEntries.push({ id: entryId, date, hours }); }
     studyEntries.sort((a,b)=> a.date.localeCompare(b.date));
-    saveStudy();
+
     renderStudy();
     renderStats();
     renderSubjectChart();
+    syncPointsToProfile();
+    renderProfileCard();
+
+    if(currentUid){
+      studyCol().doc(entryId).set({ date, hours })
+        .catch(()=> setStatus('Kaydedilemedi, internet bağlantını kontrol et.', true));
+    }
   }
 
   function deleteStudyEntry(id){
     studyEntries = studyEntries.filter(e => e.id !== id);
-    saveStudy();
     renderStudy();
     renderStats();
+    syncPointsToProfile();
+    renderProfileCard();
+    if(currentUid){ studyCol().doc(id).delete().catch(()=>{}); }
   }
 
   function addExamEntry(date, type, net, subjects){
-    examEntries.push({ id: uid(), date, type, net, subjects: subjects || null });
+    const entryId = uid();
+    examEntries.push({ id: entryId, date, type, net, subjects: subjects || null });
     examEntries.sort((a,b)=> a.date.localeCompare(b.date));
-    saveExam();
     renderExam();
     renderStats();
     renderSubjectChart();
     renderTargetResult();
+    if(currentUid){
+      examCol().doc(entryId).set({ date, type, net, subjects: subjects || null })
+        .catch(()=> setStatus('Kaydedilemedi, internet bağlantını kontrol et.', true));
+    }
   }
 
   function deleteExamEntry(id){
     examEntries = examEntries.filter(e => e.id !== id);
-    saveExam();
     renderExam();
     renderStats();
     renderSubjectChart();
     renderTargetResult();
+    if(currentUid){ examCol().doc(id).delete().catch(()=>{}); }
   }
 
   function getLatestSubjectNet(type, subjectName){
@@ -1362,6 +1687,20 @@
   // ---------- Profile / onboarding modal ----------
 
   const profileModal = document.getElementById('profileModal');
+  let selectedAvatar = AVATAR_CHOICES[0];
+
+  function renderAvatarGrid(){
+    const grid = document.getElementById('avatarGrid');
+    grid.innerHTML = AVATAR_CHOICES.map(a =>
+      `<div class="avatar-choice ${a===selectedAvatar?'active':''}" data-avatar="${a}">${a}</div>`
+    ).join('');
+    grid.querySelectorAll('.avatar-choice').forEach(el => {
+      el.addEventListener('click', () => {
+        selectedAvatar = el.getAttribute('data-avatar');
+        renderAvatarGrid();
+      });
+    });
+  }
 
   function openProfileModal(isOnboarding){
     document.getElementById('profileModalTitle').textContent = isOnboarding
@@ -1371,12 +1710,17 @@
       : 'Bilgilerini istediğin zaman güncelleyebilirsin.';
     document.getElementById('profileCloseBtn').style.display = isOnboarding ? 'none' : '';
 
+    selectedAvatar = (profile && profile.avatar) || AVATAR_CHOICES[0];
+    renderAvatarGrid();
+
     if(profile){
       document.getElementById('profName').value = profile.name || '';
       document.getElementById('profStudyGoal').value = profile.studyGoal || '';
       document.getElementById('profTytGoal').value = profile.tytGoal || '';
       document.getElementById('profAytGoal').value = profile.aytGoal || '';
       document.getElementById('profAytTrack').value = profile.aytTrack || 'say';
+    } else if(auth.currentUser && auth.currentUser.displayName){
+      document.getElementById('profName').value = auth.currentUser.displayName;
     }
     profileModal.style.display = 'flex';
   }
@@ -1387,12 +1731,14 @@
     const tytGoal = num(document.getElementById('profTytGoal').value);
     const aytGoal = num(document.getElementById('profAytGoal').value);
     const aytTrack = document.getElementById('profAytTrack').value;
+    const points = computePoints();
+    const rank = getRankInfo(points).current.name;
 
-    profile = { name, studyGoal, tytGoal, aytGoal, aytTrack };
+    profile = { name, avatar: selectedAvatar, studyGoal, tytGoal, aytGoal, aytTrack, points, rank };
     saveProfile();
     profileModal.style.display = 'none';
 
-    renderGreeting();
+    renderProfileCard();
     renderStats();
     populateSubjectSelect();
     renderSubjectChart();
@@ -1406,9 +1752,29 @@
     profileModal.style.display = 'none';
   });
 
-  function renderGreeting(){
-    const el = document.getElementById('greetingLine');
-    el.textContent = (profile && profile.name) ? ('Merhaba, ' + profile.name + '! İyi çalışmalar.') : '';
+  function renderProfileCard(){
+    const wrap = document.getElementById('profileCardWrap');
+    if(!wrap) return;
+    const points = computePoints();
+    const { current, next } = getRankInfo(points);
+    const pct = next ? Math.max(4, Math.min(100, Math.round((points - current.min) / (next.min - current.min) * 100))) : 100;
+    const avatar = (profile && profile.avatar) || '🙂';
+    const name = (profile && profile.name) || (auth.currentUser && (auth.currentUser.displayName || auth.currentUser.email)) || 'Kullanıcı';
+
+    wrap.innerHTML = `
+      <div class="profile-card">
+        <div class="profile-avatar">${avatar}</div>
+        <div class="profile-info">
+          <div class="profile-name-row">
+            <span class="profile-name">${name}</span>
+            <span class="rank-badge">${current.emoji} ${current.name}</span>
+          </div>
+          <div class="profile-points"><b>${points}</b> puan</div>
+          <div class="rank-progress-track"><div class="rank-progress-fill" style="width:${pct}%"></div></div>
+          <div class="rank-progress-note">${next ? (next.min - points) + ' puan sonra ' + next.emoji + ' ' + next.name : 'En yüksek rütbedesin!'}</div>
+        </div>
+      </div>
+    `;
   }
 
   // ---------- Settings modal ----------
@@ -1495,18 +1861,27 @@
     setTimeout(() => backupText.focus(), 50);
   });
 
-  modalRestoreBtn.addEventListener('click', () => {
+  modalRestoreBtn.addEventListener('click', async () => {
+    if(!currentUid){ setStatus('Önce giriş yapmalısın.', true); return; }
     try{
       const payload = JSON.parse(backupText.value);
-      studyEntries = Array.isArray(payload.study) ? payload.study : [];
-      examEntries = Array.isArray(payload.exam) ? payload.exam : [];
-      if(payload.profile){ profile = payload.profile; saveProfile(); }
-      saveStudy();
-      saveExam();
-      renderGreeting();
-      renderStats();
-      renderStudy();
-      renderExam();
+      const newStudy = Array.isArray(payload.study) ? payload.study : [];
+      const newExam = Array.isArray(payload.exam) ? payload.exam : [];
+
+      const [oldStudy, oldExam] = await Promise.all([studyCol().get(), examCol().get()]);
+      const batch = db.batch();
+      oldStudy.docs.forEach(d => batch.delete(d.ref));
+      oldExam.docs.forEach(d => batch.delete(d.ref));
+      newStudy.forEach(e => batch.set(studyCol().doc(e.id || uid()), { date: e.date, hours: e.hours }));
+      newExam.forEach(e => batch.set(examCol().doc(e.id || uid()), { date: e.date, type: e.type, net: e.net, subjects: e.subjects || null }));
+      await batch.commit();
+
+      if(payload.profile){
+        profile = payload.profile;
+        await saveProfile();
+      }
+
+      renderProfileCard();
       populateSubjectSelect();
       renderSubjectChart();
       closeBackupModal();
@@ -1518,22 +1893,86 @@
 
   modalCloseBtn.addEventListener('click', closeBackupModal);
 
-  // ---------- Init ----------
+  // ---------- Auth screen wiring ----------
 
-  (function init(){
+  const authScreen = document.getElementById('authScreen');
+  const mainApp = document.getElementById('mainApp');
+  const authErrorLine = document.getElementById('authErrorLine');
+  const emailAuthForm = document.getElementById('emailAuthForm');
+  const emailAuthSubmitBtn = document.getElementById('emailAuthSubmitBtn');
+  let authMode = 'login';
+
+  const AUTH_ERROR_MESSAGES = {
+    'auth/invalid-email': 'Geçersiz e-posta adresi.',
+    'auth/user-disabled': 'Bu hesap devre dışı bırakılmış.',
+    'auth/user-not-found': 'Bu e-posta ile bir hesap bulunamadı.',
+    'auth/wrong-password': 'E-posta veya şifre hatalı.',
+    'auth/invalid-credential': 'E-posta veya şifre hatalı.',
+    'auth/email-already-in-use': 'Bu e-posta zaten kayıtlı, giriş yapmayı dene.',
+    'auth/weak-password': 'Şifre en az 6 karakter olmalı.',
+    'auth/popup-closed-by-user': 'Google penceresi kapatıldı.',
+    'auth/network-request-failed': 'İnternet bağlantısı yok gibi görünüyor.',
+    'auth/unauthorized-domain': 'Bu adres Firebase\'de yetkili alan adı olarak eklenmemiş.'
+  };
+
+  function showAuthError(err){
+    authErrorLine.textContent = AUTH_ERROR_MESSAGES[err && err.code] || 'Bir şeyler ters gitti, tekrar dene.';
+  }
+
+  function setAuthMode(mode){
+    authMode = mode;
+    document.getElementById('authTabLogin').classList.toggle('active', mode === 'login');
+    document.getElementById('authTabRegister').classList.toggle('active', mode === 'register');
+    document.getElementById('authPassword').autocomplete = mode === 'login' ? 'current-password' : 'new-password';
+    emailAuthSubmitBtn.textContent = mode === 'login' ? 'Giriş Yap' : 'Kayıt Ol';
+    authErrorLine.textContent = '';
+  }
+
+  document.getElementById('authTabLogin').addEventListener('click', () => setAuthMode('login'));
+  document.getElementById('authTabRegister').addEventListener('click', () => setAuthMode('register'));
+
+  document.getElementById('googleSignInBtn').addEventListener('click', () => {
+    authErrorLine.textContent = '';
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider).catch(showAuthError);
+  });
+
+  emailAuthForm.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    authErrorLine.textContent = '';
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+    const action = authMode === 'login'
+      ? auth.signInWithEmailAndPassword(email, password)
+      : auth.createUserWithEmailAndPassword(email, password);
+    action.catch(showAuthError);
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    settingsModal.style.display = 'none';
+    auth.signOut();
+  });
+
+  // ---------- App init (runs once per login, after data is loaded) ----------
+
+  let appInitialized = false;
+
+  function initAppUI(){
     const today = todayStr();
     document.getElementById('studyDate').value = today;
     document.getElementById('studyDate').max = today;
     document.getElementById('examDate').value = today;
     document.getElementById('examDate').max = today;
 
-    loadAll();
     applyTheme(getTheme());
 
-    renderTabBar();
-    showActiveTab();
+    if(!appInitialized){
+      renderTabBar();
+      showActiveTab();
+      appInitialized = true;
+    }
 
-    renderGreeting();
+    renderProfileCard();
     renderStats();
     renderStudy();
     renderSubjectFields();
@@ -1542,11 +1981,39 @@
     renderSubjectChart();
     populateTargetSelect();
     renderTargetResult();
+    syncPointsToProfile();
 
     if(!profile){
       openProfileModal(true);
     }
-  })();
+  }
+
+  auth.onAuthStateChanged(async (user) => {
+    authErrorLine.textContent = '';
+    if(user){
+      authScreen.style.display = 'none';
+      mainApp.style.display = 'block';
+      setStatus('Yükleniyor…');
+      try{
+        await loadUserData(user.uid);
+        setStatus('');
+        initAppUI();
+      }catch(e){
+        setStatus('Veriler yüklenemedi, internet bağlantını kontrol et.', true);
+      }
+    } else {
+      currentUid = null;
+      if(unsubStudy){ unsubStudy(); unsubStudy = null; }
+      if(unsubExam){ unsubExam(); unsubExam = null; }
+      studyEntries = [];
+      examEntries = [];
+      profile = null;
+      appInitialized = false;
+      mainApp.style.display = 'none';
+      authScreen.style.display = 'flex';
+      emailAuthForm.reset();
+    }
+  });
 
 })();
 </script>
