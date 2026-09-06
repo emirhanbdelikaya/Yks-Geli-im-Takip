@@ -684,6 +684,158 @@
     cursor:pointer;
   }
   .avatar-choice.active{ border-color: var(--blue); }
+
+  /* ---------- Leaderboard ---------- */
+  .lb-row{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .lb-row:last-child{ border-bottom:none; }
+  .lb-row.me{
+    background: rgba(76,141,255,0.10);
+    border-radius: 8px;
+  }
+  .lb-rank-num{
+    width: 26px;
+    text-align:center;
+    font-family: Georgia, serif;
+    font-weight:700;
+    color: var(--muted);
+    flex-shrink:0;
+  }
+  .lb-row:nth-child(1) .lb-rank-num{ color: #F2C14E; }
+  .lb-row:nth-child(2) .lb-rank-num{ color: #C8CDD6; }
+  .lb-row:nth-child(3) .lb-rank-num{ color: #CD8A5A; }
+  .lb-avatar{
+    width: 34px; height:34px;
+    border-radius:50%;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 17px;
+    flex-shrink:0;
+  }
+  .lb-info{ flex:1; min-width:0; }
+  .lb-name{
+    font-size: 14px;
+    font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .lb-rank-label{
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .lb-points{
+    font-family: Georgia, serif;
+    font-weight:700;
+    font-size: 15px;
+    flex-shrink:0;
+  }
+
+  /* ---------- Chat ---------- */
+  .chat-wrap{
+    display:flex;
+    flex-direction:column;
+    height: 60vh;
+    max-height: 560px;
+  }
+  .chat-messages{
+    flex:1;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+    padding: 4px 2px 10px;
+  }
+  .chat-msg{
+    display:flex;
+    gap: 8px;
+    align-items:flex-start;
+  }
+  .chat-msg.own{ flex-direction: row-reverse; }
+  .chat-avatar{
+    width: 30px; height:30px;
+    border-radius:50%;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 15px;
+    flex-shrink:0;
+  }
+  .chat-bubble{
+    max-width: 74%;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 7px 11px;
+  }
+  .chat-msg.own .chat-bubble{
+    background: rgba(76,141,255,0.18);
+    border-color: rgba(76,141,255,0.35);
+  }
+  .chat-meta{
+    display:flex;
+    gap:6px;
+    align-items:baseline;
+    margin-bottom: 2px;
+  }
+  .chat-msg.own .chat-meta{ flex-direction: row-reverse; }
+  .chat-name{
+    font-size: 11.5px;
+    font-weight:700;
+    color: var(--blue);
+  }
+  .chat-time{
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .chat-text{
+    font-size: 14px;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+  .chat-input-row{
+    display:flex;
+    gap: 8px;
+    margin-top: 12px;
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+  }
+  .chat-input-row input{
+    flex:1;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    color: var(--text);
+    padding: 10px 16px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  .chat-send-btn{
+    background: var(--blue);
+    color: #0B1626;
+    border: none;
+    border-radius: 20px;
+    padding: 0 18px;
+    font-size: 14px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .chat-empty{
+    color: var(--muted);
+    font-size: 13px;
+    text-align:center;
+    margin: auto;
+  }
 </style>
 </head>
 <body>
@@ -827,6 +979,28 @@
   </section>
   </div>
 
+  <div class="tab-panel" id="tab-siralama" style="display:none">
+  <section class="card">
+    <h2>Liderlik Tablosu</h2>
+    <p class="sub">Tüm kullanıcılar toplam puanına göre sıralanır. Sadece isim, avatar ve puanın herkese açık — çalışma/net kayıtların gizli kalır.</p>
+    <div id="leaderboardWrap"></div>
+  </section>
+  </div>
+
+  <div class="tab-panel" id="tab-sohbet" style="display:none">
+  <section class="card">
+    <h2>Genel Sohbet</h2>
+    <p class="sub">Tüm kullanıcıların görebildiği canlı sohbet. Lütfen saygılı ol.</p>
+    <div class="chat-wrap">
+      <div class="chat-messages" id="chatMessages"></div>
+      <form class="chat-input-row" id="chatForm">
+        <input type="text" id="chatInput" placeholder="Bir mesaj yaz…" maxlength="500" autocomplete="off">
+        <button type="submit" class="chat-send-btn">Gönder</button>
+      </form>
+    </div>
+  </section>
+  </div>
+
   <p class="status-line" id="statusLine"></p>
 
 </div>
@@ -918,7 +1092,7 @@
   const auth = firebase.auth();
   const db = firebase.firestore();
   let currentUid = null;
-  let unsubStudy = null, unsubExam = null;
+  let unsubStudy = null, unsubExam = null, unsubLeaderboard = null, unsubChat = null;
 
   // ---------- Storage keys (theme stays device-local; everything else lives in Firestore) ----------
   const KEY_THEME   = 'yks-theme';
@@ -1010,7 +1184,9 @@
     ['calisma', 'Çalışma'],
     ['netler', 'Netler'],
     ['dersler', 'Dersler'],
-    ['hedef', 'Hedef']
+    ['hedef', 'Hedef'],
+    ['siralama', 'Sıralama'],
+    ['sohbet', 'Sohbet']
   ];
   let activeTab = 'ozet';
 
@@ -1033,6 +1209,10 @@
       const panel = document.getElementById('tab-' + id);
       if(panel) panel.style.display = (id === activeTab) ? 'block' : 'none';
     });
+    if(activeTab === 'sohbet'){
+      const wrap = document.getElementById('chatMessages');
+      if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 30);
+    }
   }
 
   // ---------- Small helpers ----------
@@ -1095,6 +1275,11 @@
   function userDoc(){ return db.collection('users').doc(currentUid); }
   function studyCol(){ return userDoc().collection('study'); }
   function examCol(){ return userDoc().collection('exam'); }
+  function leaderboardCol(){ return db.collection('leaderboard'); }
+  function chatCol(){ return db.collection('chat'); }
+
+  let leaderboardEntries = []; // {id, name, avatar, points, rank}
+  let chatMessages = []; // {id, uid, name, avatar, text, createdAt}
 
   // Loads profile + study + exam once on login; live listeners keep local arrays
   // in sync afterwards (handy if the same account is open on two devices).
@@ -1108,6 +1293,18 @@
 
       if(unsubStudy) unsubStudy();
       if(unsubExam) unsubExam();
+      if(unsubLeaderboard) unsubLeaderboard();
+      if(unsubChat) unsubChat();
+
+      unsubLeaderboard = leaderboardCol().orderBy('points','desc').limit(200).onSnapshot(qs => {
+        leaderboardEntries = qs.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderLeaderboard();
+      }, () => {});
+
+      unsubChat = chatCol().orderBy('createdAt','desc').limit(150).onSnapshot(qs => {
+        chatMessages = qs.docs.map(d => ({ id: d.id, ...d.data() })).reverse();
+        renderChat();
+      }, () => {});
 
       unsubStudy = studyCol().onSnapshot(qs => {
         studyEntries = qs.docs.map(d => ({ id: d.id, ...d.data() }))
@@ -1135,10 +1332,25 @@
     if(!currentUid || !profile) return;
     const points = computePoints();
     const rank = getRankInfo(points).current.name;
-    if(profile.points === points && profile.rank === rank) return;
+    const changed = profile.points !== points || profile.rank !== rank;
     profile.points = points;
     profile.rank = rank;
-    userDoc().set({ points, rank }, { merge: true }).catch(()=>{});
+    if(changed){
+      userDoc().set({ points, rank }, { merge: true }).catch(()=>{});
+    }
+    syncLeaderboardEntry();
+  }
+
+  // Public leaderboard doc: only name, avatar, points, rank are exposed —
+  // never study/exam records, which stay in the private user subcollections.
+  function syncLeaderboardEntry(){
+    if(!currentUid || !profile) return;
+    leaderboardCol().doc(currentUid).set({
+      name: profile.name || 'Kullanıcı',
+      avatar: profile.avatar || '🙂',
+      points: profile.points || 0,
+      rank: profile.rank || RANKS[0].name
+    }, { merge: true }).catch(()=>{});
   }
 
   function getTheme(){
@@ -1736,6 +1948,7 @@
 
     profile = { name, avatar: selectedAvatar, studyGoal, tytGoal, aytGoal, aytTrack, points, rank };
     saveProfile();
+    syncLeaderboardEntry();
     profileModal.style.display = 'none';
 
     renderProfileCard();
@@ -1776,6 +1989,89 @@
       </div>
     `;
   }
+
+  // ---------- Leaderboard ----------
+
+  function renderLeaderboard(){
+    const wrap = document.getElementById('leaderboardWrap');
+    if(!wrap) return;
+    if(leaderboardEntries.length === 0){
+      wrap.innerHTML = '<div class="empty">Henüz kimse sıralamada yok.</div>';
+      return;
+    }
+    wrap.innerHTML = leaderboardEntries.map((e, i) => `
+      <div class="lb-row ${e.id === currentUid ? 'me' : ''}">
+        <div class="lb-rank-num">${i+1}</div>
+        <div class="lb-avatar">${e.avatar || '🙂'}</div>
+        <div class="lb-info">
+          <div class="lb-name">${e.name || 'Kullanıcı'}${e.id === currentUid ? ' (sen)' : ''}</div>
+          <div class="lb-rank-label">${e.rank || ''}</div>
+        </div>
+        <div class="lb-points">${e.points || 0}</div>
+      </div>
+    `).join('');
+  }
+
+  // ---------- Chat ----------
+
+  function fmtChatTime(ts){
+    if(!ts || !ts.toDate) return '';
+    const d = ts.toDate();
+    return pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+  }
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderChat(){
+    const wrap = document.getElementById('chatMessages');
+    if(!wrap) return;
+    const wasNearBottom = (wrap.scrollTop + wrap.clientHeight) >= (wrap.scrollHeight - 60);
+
+    if(chatMessages.length === 0){
+      wrap.innerHTML = '<div class="chat-empty">Henüz mesaj yok. İlk mesajı sen yaz!</div>';
+      return;
+    }
+
+    wrap.innerHTML = chatMessages.map(m => {
+      const own = m.uid === currentUid;
+      return `
+        <div class="chat-msg ${own ? 'own' : ''}">
+          <div class="chat-avatar">${m.avatar || '🙂'}</div>
+          <div class="chat-bubble">
+            <div class="chat-meta">
+              <span class="chat-name">${escapeHtml(m.name || 'Kullanıcı')}</span>
+              <span class="chat-time">${fmtChatTime(m.createdAt)}</span>
+            </div>
+            <div class="chat-text">${escapeHtml(m.text || '')}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    if(wasNearBottom){
+      wrap.scrollTop = wrap.scrollHeight;
+    }
+  }
+
+  document.getElementById('chatForm').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    if(!currentUid) return;
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if(!text) return;
+    input.value = '';
+    chatCol().add({
+      uid: currentUid,
+      name: (profile && profile.name) || 'Kullanıcı',
+      avatar: (profile && profile.avatar) || '🙂',
+      text: text,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(()=> setStatus('Mesaj gönderilemedi, internet bağlantını kontrol et.', true));
+  });
 
   // ---------- Settings modal ----------
 
@@ -1981,6 +2277,8 @@
     renderSubjectChart();
     populateTargetSelect();
     renderTargetResult();
+    renderLeaderboard();
+    renderChat();
     syncPointsToProfile();
 
     if(!profile){
@@ -2005,8 +2303,12 @@
       currentUid = null;
       if(unsubStudy){ unsubStudy(); unsubStudy = null; }
       if(unsubExam){ unsubExam(); unsubExam = null; }
+      if(unsubLeaderboard){ unsubLeaderboard(); unsubLeaderboard = null; }
+      if(unsubChat){ unsubChat(); unsubChat = null; }
       studyEntries = [];
       examEntries = [];
+      leaderboardEntries = [];
+      chatMessages = [];
       profile = null;
       appInitialized = false;
       mainApp.style.display = 'none';
