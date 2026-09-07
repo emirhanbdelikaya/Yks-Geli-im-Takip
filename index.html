@@ -730,6 +730,89 @@
   }
   .avatar-or-note{ font-size:11px; color:var(--muted); margin-top:8px; }
 
+  /* ---------- Kronometre ---------- */
+  .stopwatch-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 10px;
+    padding: 8px 0 4px;
+  }
+  .stopwatch-status{
+    font-size: 13px;
+    font-weight:600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--panel-2);
+    color: var(--muted);
+    border: 1px solid var(--line);
+  }
+  .stopwatch-status.is-running{ color:#8FE24A; border-color: rgba(143,226,74,0.4); }
+  .stopwatch-status.is-paused{ color:#F2C14E; border-color: rgba(242,193,78,0.4); }
+  .stopwatch-time{
+    font-family: Georgia, serif;
+    font-size: 44px;
+    font-weight:700;
+    letter-spacing: 1px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stopwatch-btns{
+    display:flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin-top: 4px;
+  }
+  button.stopwatch-btn-secondary{ background: var(--panel-2); color: var(--text); border: 1px solid var(--line); }
+  button.stopwatch-btn-danger{ background: var(--danger, #E5555A); color:#fff; }
+
+  /* ---------- Canlı çalışma durumu ---------- */
+  .live-row{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .live-row:last-child{ border-bottom:none; }
+  .live-row.me{
+    background: rgba(76,141,255,0.10);
+    border-radius: 8px;
+  }
+  .live-avatar{
+    width: 34px; height:34px;
+    border-radius:50%;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 17px;
+    flex-shrink:0;
+    overflow:hidden;
+  }
+  .live-info{ flex:1; min-width:0; }
+  .live-name{
+    font-size: 14px;
+    font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .live-status{
+    font-size: 11.5px;
+    font-weight:600;
+  }
+  .live-status.is-running{ color:#8FE24A; }
+  .live-status.is-paused{ color:#F2C14E; }
+  .live-duration{
+    font-family: Georgia, serif;
+    font-weight:700;
+    font-size: 14px;
+    flex-shrink:0;
+    font-variant-numeric: tabular-nums;
+  }
+
   /* ---------- Leaderboard ---------- */
   .lb-row{
     display:flex;
@@ -1022,6 +1105,27 @@
 
   <div class="tab-panel" id="tab-calisma" style="display:none">
   <section class="card">
+    <h2>Kronometre</h2>
+    <p class="sub">Başlat'a bastığında durumun herkese "Çalışıyor" olarak görünür. Mola verdiğinde "Molada" olursun. Bitirdiğinde oturum kapanır ve çalıştığın süre otomatik olarak bugünün kaydına eklenir.</p>
+    <div class="stopwatch-box">
+      <div class="stopwatch-status" id="stopwatchStatusLabel">Hazır</div>
+      <div class="stopwatch-time" id="stopwatchTimeDisplay">00:00:00</div>
+      <div class="stopwatch-btns">
+        <button type="button" class="add-btn" id="stopwatchStartBtn">Başlat</button>
+        <button type="button" class="add-btn stopwatch-btn-secondary" id="stopwatchPauseBtn" style="display:none">Mola Ver</button>
+        <button type="button" class="add-btn stopwatch-btn-secondary" id="stopwatchResumeBtn" style="display:none">Devam Et</button>
+        <button type="button" class="add-btn stopwatch-btn-danger" id="stopwatchFinishBtn" style="display:none">Bitir</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Şu An Çalışanlar</h2>
+    <p class="sub">Kronometresi açık olan tüm kullanıcılar burada görünür.</p>
+    <div id="liveSessionsWrap"></div>
+  </section>
+
+  <section class="card">
     <h2>Çalışma Saatleri</h2>
     <p class="sub">Bir tarihe ait çalışma saatini tekrar girersen, o günün değeri güncellenir. İleri bir tarihe kayıt eklenemez.</p>
 
@@ -1268,7 +1372,15 @@
   const auth = firebase.auth();
   const db = firebase.firestore();
   let currentUid = null;
-  let unsubStudy = null, unsubExam = null, unsubLeaderboard = null, unsubChat = null;
+  let unsubStudy = null, unsubExam = null, unsubLeaderboard = null, unsubChat = null, unsubLiveSessions = null;
+
+  // ---------- Kronometre state ----------
+  let liveSessions = []; // {id, name, avatar, photo, status:'running'|'paused', segmentStartMs, accumulatedMs}
+  let stopwatchStatus = null;      // null | 'running' | 'paused'
+  let stopwatchSegmentStartMs = 0; // client epoch ms — mevcut durumun (çalışma/mola) başladığı an
+  let stopwatchAccumulatedMs = 0;  // önceki çalışma bloklarından biriken toplam çalışma süresi (mola hariç)
+  let stopwatchTickHandle = null;
+  let stopwatchRestored = false;   // login sonrası kendi oturumumuzu Firestore'dan bir kez geri yükledik mi
 
   // ---------- Storage keys (theme stays device-local; everything else lives in Firestore) ----------
   const KEY_THEME   = 'yks-theme';
@@ -1584,6 +1696,14 @@
       if(unsubExam) unsubExam();
       if(unsubLeaderboard) unsubLeaderboard();
       if(unsubChat) unsubChat();
+      if(unsubLiveSessions) unsubLiveSessions();
+
+      stopwatchRestored = false;
+      unsubLiveSessions = liveSessionsCol().onSnapshot(qs => {
+        liveSessions = qs.docs.map(d => ({ id: d.id, ...d.data() }));
+        if(!stopwatchRestored){ restoreStopwatchFromDoc(); stopwatchRestored = true; }
+        renderLiveSessions();
+      }, () => {});
 
       unsubLeaderboard = leaderboardCol().orderBy('points','desc').limit(200).onSnapshot(qs => {
         leaderboardEntries = qs.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -1642,6 +1762,169 @@
       rank: profile.rank || RANKS[0].name
     }, { merge: true }).catch(()=>{});
   }
+
+  // ---------- Kronometre ----------
+  // Herkese açık canlı durum dokümanı: sadece isim, avatar, foto, durum ve
+  // zaman damgaları paylaşılır — çalışma/net kayıtları burada yer almaz.
+  function liveSessionsCol(){ return db.collection('liveSessions'); }
+  function stopwatchDoc(){ return liveSessionsCol().doc(currentUid); }
+
+  function fmtHMS(ms){
+    const totalSec = Math.max(0, Math.floor(ms / 1000));
+    const h = Math.floor(totalSec / 3600);
+    const m = Math.floor((totalSec % 3600) / 60);
+    const s = totalSec % 60;
+    return pad2(h) + ':' + pad2(m) + ':' + pad2(s);
+  }
+
+  function writeStopwatchDoc(){
+    if(!currentUid || !stopwatchStatus) return;
+    stopwatchDoc().set({
+      name: (profile && profile.name) || (auth.currentUser && (auth.currentUser.displayName || auth.currentUser.email)) || 'Kullanıcı',
+      avatar: (profile && profile.avatar) || '🙂',
+      photo: (profile && profile.photo) || null,
+      status: stopwatchStatus,
+      segmentStartMs: stopwatchSegmentStartMs,
+      accumulatedMs: stopwatchAccumulatedMs,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true }).catch(()=>{});
+  }
+
+  function currentStopwatchElapsedMs(){
+    if(!stopwatchStatus) return 0;
+    return stopwatchAccumulatedMs + (stopwatchStatus === 'running' ? (Date.now() - stopwatchSegmentStartMs) : 0);
+  }
+
+  function updateStopwatchUI(){
+    const statusLabel = document.getElementById('stopwatchStatusLabel');
+    const timeDisplay = document.getElementById('stopwatchTimeDisplay');
+    const startBtn = document.getElementById('stopwatchStartBtn');
+    const pauseBtn = document.getElementById('stopwatchPauseBtn');
+    const resumeBtn = document.getElementById('stopwatchResumeBtn');
+    const finishBtn = document.getElementById('stopwatchFinishBtn');
+    if(!statusLabel) return;
+
+    statusLabel.classList.remove('is-running', 'is-paused');
+    if(stopwatchStatus === 'running'){
+      statusLabel.textContent = 'Çalışıyor';
+      statusLabel.classList.add('is-running');
+    } else if(stopwatchStatus === 'paused'){
+      statusLabel.textContent = 'Molada';
+      statusLabel.classList.add('is-paused');
+    } else {
+      statusLabel.textContent = 'Hazır';
+    }
+
+    timeDisplay.textContent = fmtHMS(currentStopwatchElapsedMs());
+
+    startBtn.style.display = stopwatchStatus ? 'none' : '';
+    pauseBtn.style.display = stopwatchStatus === 'running' ? '' : 'none';
+    resumeBtn.style.display = stopwatchStatus === 'paused' ? '' : 'none';
+    finishBtn.style.display = stopwatchStatus ? '' : 'none';
+  }
+
+  function ensureStopwatchTick(){
+    if(stopwatchTickHandle) return;
+    stopwatchTickHandle = setInterval(() => {
+      if(stopwatchStatus === 'running'){
+        const timeDisplay = document.getElementById('stopwatchTimeDisplay');
+        if(timeDisplay) timeDisplay.textContent = fmtHMS(currentStopwatchElapsedMs());
+      }
+    }, 1000);
+  }
+
+  function addWorkedTimeToToday(ms){
+    if(ms < 1000) return; // 1 saniyeden kısa oturumları göz ardı et
+    const date = todayStr();
+    const existing = studyEntries.find(e => e.date === date);
+    const newHours = round2((existing ? Number(existing.hours) : 0) + ms / 3600000);
+    addStudyEntry(date, newHours);
+  }
+
+  function startStopwatch(){
+    if(!currentUid || stopwatchStatus) return;
+    stopwatchStatus = 'running';
+    stopwatchSegmentStartMs = Date.now();
+    stopwatchAccumulatedMs = 0;
+    writeStopwatchDoc();
+    updateStopwatchUI();
+  }
+
+  function pauseStopwatch(){
+    if(stopwatchStatus !== 'running') return;
+    stopwatchAccumulatedMs += Date.now() - stopwatchSegmentStartMs;
+    stopwatchStatus = 'paused';
+    stopwatchSegmentStartMs = Date.now();
+    writeStopwatchDoc();
+    updateStopwatchUI();
+  }
+
+  function resumeStopwatch(){
+    if(stopwatchStatus !== 'paused') return;
+    stopwatchStatus = 'running';
+    stopwatchSegmentStartMs = Date.now();
+    writeStopwatchDoc();
+    updateStopwatchUI();
+  }
+
+  function finishStopwatch(){
+    if(!stopwatchStatus) return;
+    const totalWorkedMs = currentStopwatchElapsedMs();
+    stopwatchStatus = null;
+    stopwatchSegmentStartMs = 0;
+    stopwatchAccumulatedMs = 0;
+    updateStopwatchUI();
+    if(currentUid){ stopwatchDoc().delete().catch(()=>{}); }
+    addWorkedTimeToToday(totalWorkedMs);
+  }
+
+  function restoreStopwatchFromDoc(){
+    const mine = liveSessions.find(s => s.id === currentUid);
+    if(mine && (mine.status === 'running' || mine.status === 'paused')){
+      stopwatchStatus = mine.status;
+      stopwatchSegmentStartMs = mine.segmentStartMs || Date.now();
+      stopwatchAccumulatedMs = mine.accumulatedMs || 0;
+    } else {
+      stopwatchStatus = null;
+      stopwatchSegmentStartMs = 0;
+      stopwatchAccumulatedMs = 0;
+    }
+    updateStopwatchUI();
+  }
+
+  function renderLiveSessions(){
+    const wrap = document.getElementById('liveSessionsWrap');
+    if(!wrap) return;
+    if(liveSessions.length === 0){
+      wrap.innerHTML = emptyStateHtml('Şu anda kimsenin kronometresi açık değil.');
+      return;
+    }
+    const sorted = liveSessions.slice().sort((a, b) => {
+      if(a.status === b.status) return (a.name || '').localeCompare(b.name || '');
+      return a.status === 'running' ? -1 : 1;
+    });
+    wrap.innerHTML = sorted.map(s => {
+      const elapsedMs = Math.max(0, Date.now() - (s.segmentStartMs || Date.now()));
+      const isRunning = s.status === 'running';
+      return `
+        <div class="live-row ${s.id === currentUid ? 'me' : ''}">
+          <div class="live-avatar">${avatarInnerHtml(s.photo, s.avatar || '🙂')}</div>
+          <div class="live-info">
+            <div class="live-name">${escapeHtml(s.name || 'Kullanıcı')}${s.id === currentUid ? ' (sen)' : ''}</div>
+            <div class="live-status ${isRunning ? 'is-running' : 'is-paused'}">${isRunning ? '🟢 Çalışıyor' : '🟡 Molada'}</div>
+          </div>
+          <div class="live-duration">${fmtHMS(elapsedMs)}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function ensureLiveSessionsTick(){
+    setInterval(() => {
+      if(liveSessions.length > 0) renderLiveSessions();
+    }, 1000);
+  }
+  ensureLiveSessionsTick();
 
   function getTheme(){
     return localStorage.getItem(KEY_THEME) || 'navy';
@@ -2677,8 +2960,16 @@
 
   document.getElementById('logoutBtn').addEventListener('click', () => {
     settingsModal.style.display = 'none';
+    if(stopwatchStatus && currentUid){ stopwatchDoc().delete().catch(()=>{}); }
     auth.signOut();
   });
+
+  // ---------- Kronometre buton olayları ----------
+  document.getElementById('stopwatchStartBtn').addEventListener('click', startStopwatch);
+  document.getElementById('stopwatchPauseBtn').addEventListener('click', pauseStopwatch);
+  document.getElementById('stopwatchResumeBtn').addEventListener('click', resumeStopwatch);
+  document.getElementById('stopwatchFinishBtn').addEventListener('click', finishStopwatch);
+  ensureStopwatchTick();
 
   // ---------- App init (runs once per login, after data is loaded) ----------
 
@@ -2712,6 +3003,8 @@
     initWizardDefaults();
     renderLeaderboard();
     renderChat();
+    renderLiveSessions();
+    updateStopwatchUI();
     syncPointsToProfile();
     renderProfileCard();
 
@@ -2739,10 +3032,16 @@
       if(unsubExam){ unsubExam(); unsubExam = null; }
       if(unsubLeaderboard){ unsubLeaderboard(); unsubLeaderboard = null; }
       if(unsubChat){ unsubChat(); unsubChat = null; }
+      if(unsubLiveSessions){ unsubLiveSessions(); unsubLiveSessions = null; }
       studyEntries = [];
       examEntries = [];
       leaderboardEntries = [];
       chatMessages = [];
+      liveSessions = [];
+      stopwatchStatus = null;
+      stopwatchSegmentStartMs = 0;
+      stopwatchAccumulatedMs = 0;
+      stopwatchRestored = false;
       profile = null;
       appInitialized = false;
       mainApp.style.display = 'none';
