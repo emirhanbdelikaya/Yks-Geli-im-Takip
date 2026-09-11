@@ -1354,6 +1354,324 @@
     .bottom-social-btn{ padding:8px 8px 7px; }
   }
 
+
+  /* ---------- 2026 sosyal / rütbe / gizlilik güncellemesi ---------- */
+  .stopwatch-pause-time{
+    display:none;
+    font-size:12px;
+    font-weight:700;
+    color:#F2C14E;
+    background:rgba(242,193,78,.10);
+    border:1px solid rgba(242,193,78,.28);
+    border-radius:999px;
+    padding:5px 10px;
+    margin-top:-3px;
+    font-variant-numeric:tabular-nums;
+  }
+  .mini-rank-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:3px;
+    margin-left:5px;
+    padding:1px 6px;
+    border-radius:999px;
+    font-size:9.5px;
+    line-height:1.45;
+    font-weight:800;
+    vertical-align:1px;
+    color:var(--rank-color, var(--blue));
+    background:color-mix(in srgb, var(--rank-color, var(--blue)) 14%, transparent);
+    border:1px solid color-mix(in srgb, var(--rank-color, var(--blue)) 34%, transparent);
+    white-space:nowrap;
+  }
+  .rank-avatar-frame{
+    border:2px solid var(--rank-color, var(--line)) !important;
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--rank-color, var(--blue)) 17%, transparent),
+      0 0 13px color-mix(in srgb, var(--rank-color, var(--blue)) 28%, transparent);
+  }
+  .profile-avatar.rank-avatar-frame{
+    border-width:2px !important;
+  }
+  .streak-freeze-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:10px 0 14px;
+  }
+  .streak-freeze-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:5px 9px;
+    border-radius:999px;
+    font-size:10.5px;
+    font-weight:800;
+    color:#75BFFF;
+    background:rgba(72,150,255,.10);
+    border:1px solid rgba(72,150,255,.24);
+  }
+  .streak-badge-art{
+    width:58px;
+    height:58px;
+    overflow:hidden;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:6px;
+  }
+  .streak-badge-art img{
+    width:70px !important;
+    height:70px !important;
+    max-width:none !important;
+    margin:0 !important;
+    object-fit:cover;
+    object-position:center;
+    transform:scale(1.13);
+    transform-origin:center;
+  }
+  .rank-xp-explainer{
+    margin:10px 0 4px;
+    padding:9px 11px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    color:var(--muted);
+    background:color-mix(in srgb, var(--panel-2) 68%, transparent);
+    font-size:11.5px;
+    line-height:1.5;
+  }
+
+  /* iOS 26 / Liquid Glass esintili sosyal alt bar */
+  .bottom-social-nav{
+    overflow:hidden;
+    border:1px solid color-mix(in srgb, #fff 22%, var(--line));
+    background:
+      linear-gradient(135deg,
+        color-mix(in srgb, var(--panel) 52%, transparent),
+        color-mix(in srgb, var(--panel-2) 34%, transparent));
+    box-shadow:
+      0 16px 45px rgba(0,0,0,.28),
+      inset 0 1px 0 rgba(255,255,255,.16),
+      inset 0 -1px 0 rgba(255,255,255,.04);
+    backdrop-filter:blur(30px) saturate(195%) contrast(106%);
+    -webkit-backdrop-filter:blur(30px) saturate(195%) contrast(106%);
+  }
+  .bottom-social-nav::before{
+    content:"";
+    position:absolute;
+    inset:-45% 28% 40% -15%;
+    border-radius:50%;
+    background:rgba(255,255,255,.13);
+    filter:blur(16px);
+    pointer-events:none;
+  }
+  .bottom-social-nav::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background:linear-gradient(110deg, rgba(255,255,255,.08), transparent 36%, rgba(255,255,255,.025) 66%, transparent);
+    pointer-events:none;
+  }
+  .bottom-social-btn{
+    z-index:1;
+    background:rgba(255,255,255,.015);
+    border:1px solid transparent;
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
+    transition:background .18s ease, transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .bottom-social-btn:hover{
+    background:rgba(255,255,255,.065);
+    border-color:rgba(255,255,255,.08);
+  }
+  .bottom-social-btn.active{
+    background:color-mix(in srgb, #fff 10%, transparent);
+    border-color:color-mix(in srgb, #fff 18%, var(--line));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.13), 0 5px 18px rgba(0,0,0,.10);
+  }
+
+  /* Genel sohbet çevrimiçi göstergesi */
+  .chat-heading-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin:0 0 4px;
+  }
+  .presence-anchor{ position:relative; flex:0 0 auto; }
+  .online-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    border:1px solid color-mix(in srgb, var(--good) 30%, var(--line));
+    border-radius:999px;
+    padding:6px 10px;
+    color:var(--text);
+    background:color-mix(in srgb, var(--panel-2) 62%, transparent);
+    backdrop-filter:blur(18px) saturate(155%);
+    -webkit-backdrop-filter:blur(18px) saturate(155%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 7px 22px rgba(0,0,0,.13);
+    font:inherit;
+    font-size:11.5px;
+    font-weight:800;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:transform .16s ease, background .16s ease, border-color .16s ease;
+  }
+  .online-pill:hover{ transform:translateY(-1px); background:color-mix(in srgb, var(--panel-2) 76%, transparent); }
+  .online-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--good);
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--good) 14%, transparent), 0 0 12px color-mix(in srgb, var(--good) 65%, transparent);
+    flex:0 0 auto;
+  }
+  .presence-popover{
+    position:absolute;
+    z-index:120;
+    top:calc(100% + 8px);
+    right:0;
+    width:min(330px, calc(100vw - 32px));
+    padding:12px;
+    border-radius:16px;
+    border:1px solid color-mix(in srgb, #fff 18%, var(--line));
+    background:
+      linear-gradient(145deg,
+        color-mix(in srgb, var(--panel) 78%, transparent),
+        color-mix(in srgb, var(--panel-2) 68%, transparent));
+    backdrop-filter:blur(28px) saturate(185%);
+    -webkit-backdrop-filter:blur(28px) saturate(185%);
+    box-shadow:0 18px 55px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.11);
+  }
+  .presence-popover-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    margin-bottom:9px;
+  }
+  .presence-popover-title b{ font-size:13px; }
+  .presence-popover-title span{ color:var(--muted); font-size:10.5px; }
+  .presence-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+    margin-bottom:10px;
+  }
+  .presence-stat{
+    min-width:0;
+    padding:8px 5px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    background:color-mix(in srgb, var(--panel-2) 64%, transparent);
+    text-align:center;
+  }
+  .presence-stat strong{ display:block; font-size:16px; line-height:1.1; }
+  .presence-stat small{ display:block; margin-top:3px; color:var(--muted); font-size:9.5px; }
+  .presence-list{
+    max-height:230px;
+    overflow:auto;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    padding-right:2px;
+  }
+  .presence-user-row{
+    width:100%;
+    border:0;
+    color:var(--text);
+    background:transparent;
+    border-radius:10px;
+    padding:6px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-align:left;
+    cursor:pointer;
+    font:inherit;
+  }
+  .presence-user-row:hover{ background:rgba(255,255,255,.055); }
+  .presence-user-avatar{
+    width:31px;
+    height:31px;
+    border-radius:50%;
+    overflow:hidden;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--panel-2);
+  }
+  .presence-user-main{ min-width:0; flex:1; }
+  .presence-user-name{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    min-width:0;
+    font-size:11.5px;
+    font-weight:800;
+  }
+  .presence-user-name > span:first-child{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .presence-user-status{ color:var(--muted); font-size:9.5px; margin-top:1px; }
+  .presence-empty{ padding:8px 4px; color:var(--muted); font-size:11px; text-align:center; }
+  @media (max-width:620px){
+    .chat-heading-row{ align-items:flex-start; }
+    .online-pill{ padding:6px 9px; font-size:10.5px; }
+    .presence-popover{ right:-4px; }
+  }
+
+  /* Ayarlar > Gizlilik */
+  .settings-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:5px;
+    padding:4px;
+    margin:10px 0 14px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--panel-2);
+  }
+  .settings-tab-btn{
+    border:0;
+    border-radius:9px;
+    padding:8px 10px;
+    color:var(--muted);
+    background:transparent;
+    font:inherit;
+    font-size:12px;
+    font-weight:800;
+    cursor:pointer;
+  }
+  .settings-tab-btn.active{
+    color:var(--text);
+    background:var(--panel);
+    box-shadow:0 2px 8px rgba(0,0,0,.12), inset 0 0 0 1px var(--line);
+  }
+  .privacy-list{ display:grid; gap:8px; margin-top:10px; }
+  .privacy-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:10px 11px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:var(--panel-2);
+  }
+  .privacy-row-text{ min-width:0; }
+  .privacy-row-title{ font-size:12.5px; font-weight:800; }
+  .privacy-row-note{ font-size:10.5px; color:var(--muted); margin-top:2px; line-height:1.35; }
+  .privacy-row input[type="checkbox"]{ width:18px; height:18px; accent-color:var(--blue); flex:0 0 auto; }
+  .privacy-hidden{ color:var(--muted) !important; font-style:italic; font-weight:600 !important; }
+
 </style>
 </head>
 <body>
@@ -1419,6 +1737,7 @@
     <div class="stopwatch-box">
       <div class="stopwatch-status" id="stopwatchStatusLabel">Hazır</div>
       <div class="stopwatch-time" id="stopwatchTimeDisplay">00:00:00</div>
+      <div class="stopwatch-pause-time" id="stopwatchPauseDuration">☕ Mola: 00:00:00</div>
       <div class="stopwatch-btns">
         <button type="button" class="add-btn" id="stopwatchStartBtn">Başlat</button>
         <button type="button" class="add-btn stopwatch-btn-secondary" id="stopwatchPauseBtn" style="display:none">Mola Ver</button>
@@ -1563,7 +1882,7 @@
   <div class="tab-panel" id="tab-siralama" style="display:none">
   <section class="card">
     <h2><img src="data:image/webp;base64,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" alt="" style="width:22px;height:22px;vertical-align:-5px;margin-right:6px;border-radius:6px;">Liderlik Tablosu</h2>
-    <p class="sub">Tüm kullanıcılar toplam puanına göre sıralanır. Sadece isim, avatar ve puanın herkese açık — çalışma/net kayıtların gizli kalır.</p>
+    <p class="sub">Tüm kullanıcılar toplam XP’ye göre sıralanır. Profil ayrıntılarının görünürlüğünü Ayarlar → Gizlilik bölümünden seçebilirsin.</p>
     <div id="leaderboardWrap"></div>
   </section>
   </div>
@@ -1622,7 +1941,23 @@
 
     <hr style="border:none; border-top:1px solid var(--line); margin:20px 0;">
 
-    <h2 style="margin:0 0 4px;">Genel Sohbet</h2>
+    <div class="chat-heading-row">
+      <h2 style="margin:0;">Genel Sohbet</h2>
+      <div class="presence-anchor">
+        <button type="button" class="online-pill" id="onlineUsersBtn" aria-expanded="false" aria-controls="onlineUsersPopover">
+          <span class="online-dot"></span><span id="onlineUsersCount">0 çevrimiçi</span>
+        </button>
+        <div class="presence-popover" id="onlineUsersPopover" style="display:none;">
+          <div class="presence-popover-title"><b>Şu anda</b><span>Canlı durum</span></div>
+          <div class="presence-stats">
+            <div class="presence-stat"><strong id="presenceOnlineStat">0</strong><small>çevrimiçi</small></div>
+            <div class="presence-stat"><strong id="presenceWorkingStat">0</strong><small>çalışıyor</small></div>
+            <div class="presence-stat"><strong id="presenceIdleStat">0</strong><small>boşta</small></div>
+          </div>
+          <div class="presence-list" id="presenceOnlineList"></div>
+        </div>
+      </div>
+    </div>
     <p class="sub">Tüm kullanıcıların katılabildiği genel mesajlaşma alanı.</p>
     <div class="chat-wrap">
       <div class="chat-messages" id="chatMessages"></div>
@@ -1702,6 +2037,8 @@
       </div>
     </div>
 
+    <div id="uprofLegacyNote" style="display:none; background:var(--panel-2); border:1px solid var(--line); color:var(--muted); border-radius:8px; padding:8px 10px; margin:-2px 0 10px; font-size:11.5px; line-height:1.45;"></div>
+
     <div class="inspect-grid">
       <div class="stat"><div class="num" id="uprofTodayHours">0 sa</div><div class="label">Bugün Çalışma</div></div>
       <div class="stat"><div class="num" id="uprofWeekHours">0 sa</div><div class="label">Bu Hafta</div></div>
@@ -1731,10 +2068,11 @@
     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
       <div>
         <h3 style="margin:0 0 4px;">Rütbe Yolculuğun</h3>
-        <p class="sub" style="margin:0;">Kazandığın XP ile geçmiş ve gelecekteki tüm rütbelerini gör.</p>
+        <p class="sub" style="margin:0;">Çalışma süren ve günlük serin sana XP kazandırır; ilerledikçe yeni rütbeler açılır.</p>
       </div>
       <button type="button" id="closeRankJourneyBtn" class="del-btn" aria-label="Kapat">✕</button>
     </div>
+    <div class="rank-xp-explainer">⏱️ Her 1 dakika çalışma = 1 XP. 🔥 Seri bonusu = aktif seri günü × 20 XP. Örneğin 1. gün +20 XP, 5. gün +100 XP, 10. gün +200 XP kazandırır. Dondurulan off günleri seriyi korur ama XP kazandırmaz.</div>
     <div id="rankJourneySummary" class="rank-journey-summary"></div>
     <div id="rankJourneyWrap"></div>
     <div class="modal-actions" style="margin-top:8px;">
@@ -1842,14 +2180,36 @@
 <div id="settingsModal" class="modal-overlay" style="display:none">
   <div class="modal-box">
     <h3>Ayarlar</h3>
-    <p class="sub">Arayüz rengini değiştir veya bilgilerini güncelle.</p>
+    <div class="settings-tabs">
+      <button type="button" class="settings-tab-btn active" data-settings-tab="general">Görünüm & Hesap</button>
+      <button type="button" class="settings-tab-btn" data-settings-tab="privacy">🔒 Gizlilik</button>
+    </div>
 
-    <div class="theme-grid" id="themeGrid"></div>
+    <div id="settingsPanelGeneral">
+      <p class="sub">Arayüz rengini değiştir veya bilgilerini güncelle.</p>
+      <div class="theme-grid" id="themeGrid"></div>
 
-    <div class="modal-actions">
-      <button id="editProfileBtn" type="button">Bilgilerimi Düzenle</button>
-      <button id="exportBtn" type="button">Yedeği göster / kopyala</button>
-      <button id="importBtn" type="button">Yedekten geri yükle</button>
+      <div class="modal-actions">
+        <button id="editProfileBtn" type="button">Bilgilerimi Düzenle</button>
+        <button id="exportBtn" type="button">Yedeği göster / kopyala</button>
+        <button id="importBtn" type="button">Yedekten geri yükle</button>
+      </div>
+    </div>
+
+    <div id="settingsPanelPrivacy" style="display:none;">
+      <p class="sub">Profiline bakan diğer kullanıcıların hangi çalışma ve net bilgilerini görebileceğini seç. Varsayılan olarak hepsi açıktır. Kullanıcı adın, avatarın, rütben ve liderlik puanın sosyal özellikler için görünür kalır.</p>
+      <div class="privacy-list">
+        <label class="privacy-row"><span class="privacy-row-text"><span class="privacy-row-title">Bugünkü çalışma sürem</span><span class="privacy-row-note">Profilinde bugün kaç saat çalıştığın görünür.</span></span><input type="checkbox" id="privacyTodayHours" checked></label>
+        <label class="privacy-row"><span class="privacy-row-text"><span class="privacy-row-title">Bu haftaki çalışma sürem</span><span class="privacy-row-note">Haftalık toplam çalışma süren görünür.</span></span><input type="checkbox" id="privacyWeekHours" checked></label>
+        <label class="privacy-row"><span class="privacy-row-text"><span class="privacy-row-title">Toplam çalışma sürem</span><span class="privacy-row-note">Tüm zamanlardaki toplam çalışma süren görünür.</span></span><input type="checkbox" id="privacyTotalHours" checked></label>
+        <label class="privacy-row"><span class="privacy-row-text"><span class="privacy-row-title">Aktif serim</span><span class="privacy-row-note">Kaç günlük aktif seride olduğun görünür.</span></span><input type="checkbox" id="privacyStreak" checked></label>
+        <label class="privacy-row"><span class="privacy-row-text"><span class="privacy-row-title">Son TYT netim</span><span class="privacy-row-note">En son TYT toplam netin görünür.</span></span><input type="checkbox" id="privacyTyt" checked></label>
+        <label class="privacy-row"><span class="privacy-row-text"><span class="privacy-row-title">Son AYT netim</span><span class="privacy-row-note">En son AYT toplam netin görünür.</span></span><input type="checkbox" id="privacyAyt" checked></label>
+        <label class="privacy-row"><span class="privacy-row-text"><span class="privacy-row-title">Ders bazlı net dökümüm</span><span class="privacy-row-note">Son denemendeki ders ders net dağılımı görünür.</span></span><input type="checkbox" id="privacySubjects" checked></label>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="add-btn" id="savePrivacyBtn">Gizlilik Ayarlarını Kaydet</button>
+      </div>
     </div>
 
     <div class="modal-actions">
@@ -1883,6 +2243,7 @@
   let unsubStudy = null, unsubExam = null, unsubLeaderboard = null, unsubChat = null, unsubLiveSessions = null;
   let unsubRooms = null, unsubActiveRoom = null, unsubActiveRoomChat = null;
   let unsubFriends = null, unsubFriendReqs = null, unsubDmChat = null;
+  let unsubPresence = null;
 
   let currentRoomId = null;
   let currentRoomData = null;
@@ -1895,7 +2256,18 @@
   let friendRequests = [];
   let activeDmFriend = null;
   let allRooms = [];
+  let activeRoomMembers = [];
   let pendingJoinRoom = null;
+
+  // ---------- Presence / çevrimiçi state ----------
+  let presenceEntries = [];
+  let presenceHeartbeatHandle = null;
+  let presenceUiTickHandle = null;
+  let lastLocalActivityMs = Date.now();
+  let presenceEventsBound = false;
+  const PRESENCE_HEARTBEAT_MS = 25000;
+  const PRESENCE_ONLINE_WINDOW_MS = 120000;
+  const PRESENCE_IDLE_AFTER_MS = 5 * 60 * 1000;
 
   // ---------- Kronometre state ----------
   let liveSessions = []; // {id, name, avatar, photo, status:'running'|'paused', segmentStartMs, accumulatedMs}
@@ -1929,27 +2301,45 @@
     return '<div class="empty"><img class="empty-icon" src="' + IMG_ICON_URL + '" alt="">' + msg + '</div>';
   }
 
-  // ---------- Puan / rütbe sistemi: her 1 dakika çalışma = 1 puan ----------
+  // ---------- Puan / rütbe sistemi ----------
+  // 1 dakika çalışma = 1 XP. Rütbe eşikleri önceki sürüme göre 2 katına çıkarıldı.
   const RANKS = [
-    { min: 0,     name: 'Çaylak',        emoji: '🌱' },
-    { min: 300,   name: 'İstekli',        emoji: '📘' },
-    { min: 1200,  name: 'Azimli',         emoji: '🔥' },
-    { min: 3000,  name: 'Odaklanmış',     emoji: '🎯' },
-    { min: 6000,  name: 'Uzman Adayı',    emoji: '⚡' },
-    { min: 12000, name: 'YKS Savaşçısı',  emoji: '🛡️' },
-    { min: 24000, name: 'Efsane',         emoji: '🏆' }
+    { min: 0,     name: 'Çaylak',        emoji: '🌱', color:'#70D47B' },
+    { min: 600,   name: 'İstekli',       emoji: '📘', color:'#5A9CFF' },
+    { min: 2400,  name: 'Azimli',        emoji: '🔥', color:'#FF7A45' },
+    { min: 6000,  name: 'Odaklanmış',    emoji: '🎯', color:'#FF5D78' },
+    { min: 12000, name: 'Uzman Adayı',   emoji: '⚡', color:'#F2C94C' },
+    { min: 24000, name: 'YKS Savaşçısı', emoji: '🛡️', color:'#8C9EFF' },
+    { min: 48000, name: 'Efsane',        emoji: '🏆', color:'#F6C453' }
   ];
 
-  function computePoints(){
-    const totalMinutes = studyEntries.reduce((s,e)=> s + Number(e.hours) * 60, 0);
-    const streakBonus = computeStreak().current * 100;
-    return Math.round(totalMinutes) + streakBonus;
+  function rankMetaByName(rankName){
+    return RANKS.find(r => r.name === rankName) || RANKS[0];
+  }
+  function rankColor(rankName){ return rankMetaByName(rankName).color; }
+  function publicRankForUid(uidValue, explicitRank){
+    // Mümkün olduğunda kullanıcının güncel rütbesini göster; mesaj/oda gibi
+    // eski belgelerde saklanan rütbe yalnızca güncel liderlik kaydı yoksa fallback olur.
+    if(uidValue === currentUid && profile){
+      return profile.rank || getRankInfo(computePoints()).current.name;
+    }
+    const lb = leaderboardEntries.find(e => e.id === uidValue);
+    if(lb && lb.rank) return lb.rank;
+    return explicitRank || '';
+  }
+  function miniRankBadge(rankName){
+    if(!rankName) return '';
+    const meta = rankMetaByName(rankName);
+    return `<span class="mini-rank-badge" style="--rank-color:${meta.color}">${meta.emoji} ${escapeHtml(meta.name)}</span>`;
+  }
+  function rankFrameVar(rankName){
+    return `--rank-color:${rankColor(rankName || RANKS[0].name)}`;
   }
 
-  // ---------- Seri (streak) sistemi: Duolingo mantığı ----------
-  // Bir gün "aktif" sayılır eğer o gün en az 1 saat çalışma kaydı VEYA en az
-  // 1 deneme (TYT/AYT) kaydı girilmişse. Bugünü henüz kaydetmediysen ama dün
-  // aktifsen seri hâlâ devam ediyor sayılır (gece yarısına kadar süre var).
+  // ---------- Seri (streak) sistemi ----------
+  // Aktif gün: en az 1 saat çalışma VEYA en az 1 deneme. Aktif bir seri sürerken
+  // haftada en fazla 2 geçmiş boş gün otomatik "dondurma" sayılır; XP vermez ama
+  // seriyi bozmaz. Aynı haftadaki 3. boş gün seriyi sıfırlar. Her aktif gün = seri günü × 20 XP.
   const STREAK_MILESTONES = [
     { days: 7,   label: '7 gün',  img: IMG_B_7D },
     { days: 15,  label: '15 gün', img: IMG_B_15D },
@@ -1966,40 +2356,83 @@
     return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate());
   }
 
+  function weekKeyFor(dateStr){
+    const d = new Date(dateStr + 'T00:00:00');
+    const mondayOffset = (d.getDay() + 6) % 7;
+    d.setDate(d.getDate() - mondayOffset);
+    return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate());
+  }
+
   function activeStudyDaySet(){
-    const s = new Set();
-    studyEntries.forEach(e => { if(Number(e.hours) >= 1) s.add(e.date); });
-    examEntries.forEach(e => { s.add(e.date); });
-    return s;
+    const set = new Set();
+    studyEntries.forEach(e => { if(Number(e.hours) >= 1) set.add(e.date); });
+    examEntries.forEach(e => { set.add(e.date); });
+    return set;
+  }
+
+  function computeStreakMetrics(){
+    const active = activeStudyDaySet();
+    const today = todayStr();
+    if(active.size === 0){
+      return { current:0, longest:0, totalXp:0, freezeUsedThisWeek:0, freezeRemaining:2, freezeDates:[] };
+    }
+
+    const sorted = Array.from(active).sort();
+    let cursor = sorted[0];
+    let streak = 0;
+    let longest = 0;
+    let totalXp = 0;
+    const freezeByWeek = {};
+    const freezeDates = [];
+
+    while(cursor <= today){
+      const isActive = active.has(cursor);
+      const isToday = cursor === today;
+      const weekKey = weekKeyFor(cursor);
+
+      if(isActive){
+        streak += 1;
+        totalXp += streak * 20; // 1. gün +20, 2. gün +40, ...
+        longest = Math.max(longest, streak);
+      } else if(!isToday && streak > 0){
+        const used = freezeByWeek[weekKey] || 0;
+        if(used < 2){
+          freezeByWeek[weekKey] = used + 1;
+          freezeDates.push(cursor);
+        } else {
+          streak = 0;
+        }
+      }
+      cursor = addDaysISO(cursor, 1);
+    }
+
+    const thisWeekUsed = freezeByWeek[weekKeyFor(today)] || 0;
+    return {
+      current: streak,
+      longest,
+      totalXp,
+      freezeUsedThisWeek: thisWeekUsed,
+      freezeRemaining: Math.max(0, 2 - thisWeekUsed),
+      freezeDates
+    };
   }
 
   function computeStreak(){
-    const active = activeStudyDaySet();
-    if(active.size === 0) return { current: 0, longest: 0 };
-    const today = todayStr();
-    const yesterday = addDaysISO(today, -1);
-    let current = 0;
-    if(active.has(today) || active.has(yesterday)){
-      let cursor = active.has(today) ? today : yesterday;
-      while(active.has(cursor)){
-        current++;
-        cursor = addDaysISO(cursor, -1);
-      }
-    }
-    const sortedDates = Array.from(active).sort();
-    let longest = 0, run = 0, prevDate = null;
-    sortedDates.forEach(d => {
-      run = (prevDate && addDaysISO(prevDate, 1) === d) ? run + 1 : 1;
-      longest = Math.max(longest, run);
-      prevDate = d;
-    });
-    return { current, longest };
+    const m = computeStreakMetrics();
+    return { current:m.current, longest:m.longest };
+  }
+
+  function computePoints(){
+    const totalMinutes = studyEntries.reduce((sum,e)=> sum + Number(e.hours) * 60, 0);
+    const streakXp = computeStreakMetrics().totalXp;
+    return Math.round(totalMinutes) + streakXp;
   }
 
   function renderStreakCard(){
     const wrap = document.getElementById('streakCardWrap');
     if(!wrap) return;
-    const { current, longest } = computeStreak();
+    const metrics = computeStreakMetrics();
+    const { current, longest, freezeUsedThisWeek, freezeRemaining } = metrics;
 
     const badgesHtml = STREAK_MILESTONES.map((m, idx) => {
       const reached = current >= m.days;
@@ -2008,17 +2441,14 @@
       const pct = reached ? 100 : Math.max(0, Math.min(100, Math.round(((current - prevDays) / span) * 100)));
       return `
         <div class="streak-badge ${reached ? 'reached' : ''}">
-          <img src="${m.img}" alt="${m.label}">
+          <div class="streak-badge-art"><img src="${m.img}" alt="${m.label}"></div>
           <div class="b-label">🔥 ${m.label}</div>
           <div class="streak-badge-track"><div class="streak-badge-fill" style="width:${pct}%"></div></div>
         </div>
       `;
     }).join('');
 
-    const headline = current > 0
-      ? `${current} gündür çalışıyorsun`
-      : 'Serini bugün başlat';
-
+    const headline = current > 0 ? `${current} aktif günlük serin var` : 'Serini bugün başlat';
     wrap.innerHTML = `
       <div class="streak-card">
         <img class="streak-card-deco" src="${IMG_ICON_URL}" alt="">
@@ -2026,7 +2456,13 @@
           <span class="flame">🔥</span>
           <span class="count">${headline}</span>
         </div>
-        <p class="streak-sub">Her gün en az 1 saat çalışma veya 1 deneme kaydı girerek serini sürdür — bir günü atlarsan seri sıfırlanır. Serinin her günü toplam puanına 100 puan ekler.${longest > current ? ' En uzun serin: ' + longest + ' gün.' : ''}</p>
+        <p class="streak-sub">Her gün en az 1 saat çalışma veya 1 deneme ile serini sürdür. <b>Seri bonusu = aktif seri günü × 20 XP.</b> Örneğin 5. gün +100 XP, 10. gün +200 XP kazandırır.${longest > current ? ' En uzun serin: ' + longest + ' aktif gün.' : ''}</p>
+        <div class="rank-xp-explainer" style="margin:0 0 12px;">${activeStudyDaySet().has(todayStr()) ? `🔥 Bugünkü seri bonusun: <b>+${current * 20} XP</b>` : `🎯 Bugün serini sürdürürsen: <b>+${(current + 1) * 20} XP</b>`}</div>
+        <div class="streak-freeze-row">
+          <span class="streak-freeze-chip">❄️ Haftalık dondurma: ${freezeUsedThisWeek}/2 kullanıldı</span>
+          <span class="streak-freeze-chip">🛡️ ${freezeRemaining} off-day hakkın kaldı</span>
+        </div>
+        <p class="streak-sub" style="margin-top:-7px;">Aktif bir serin varken haftada 2 boş gün otomatik dondurulur. Bu günler XP kazandırmaz ama serini bozmaz; aynı haftadaki 3. boş gün seriyi sıfırlar.</p>
         <div class="streak-badges">${badgesHtml}</div>
       </div>
     `;
@@ -2064,14 +2500,14 @@
 
     summary.innerHTML = `
       <div><div style="font-size:11px;color:var(--muted);">Şu anki rütben</div><b>${current.emoji} ${current.name}</b></div>
-      <div style="text-align:right;"><div style="font-size:11px;color:var(--muted);">Toplam XP</div><b>${points} puan</b></div>
-      <div style="text-align:right;"><div style="font-size:11px;color:var(--muted);">Sıradaki</div><b>${next ? (next.min - points) + ' puan' : 'Tamamlandı'}</b></div>
+      <div style="text-align:right;"><div style="font-size:11px;color:var(--muted);">Toplam XP</div><b>${points} XP</b></div>
+      <div style="text-align:right;"><div style="font-size:11px;color:var(--muted);">Sıradaki</div><b>${next ? (next.min - points) + ' XP' : 'Tamamlandı'}</b></div>
     `;
 
     const steps = RANKS.map((r,i) => {
       const reached = points >= r.min;
       const isCurrent = i === progress.currentIndex;
-      const state = reached ? (isCurrent ? 'Şu an buradasın' : '✓ Ulaşıldı') : `${r.min - points} puan kaldı`;
+      const state = reached ? (isCurrent ? 'Şu an buradasın' : '✓ Ulaşıldı') : `${r.min - points} XP kaldı`;
       return `<div class="rank-step ${reached?'reached':''} ${isCurrent?'current':''}">
         <div class="rank-step-emoji">${r.emoji}</div>
         <div class="rank-step-name">${r.name}</div>
@@ -2158,7 +2594,7 @@
     ['netler', 'Netler'],
     ['hedef', 'Hedef'],
     ['sihirbaz', 'Sihirbaz'],
-    ['siralama', 'Sıralama'],
+    ['siralama', 'Liderlik'],
     ['sohbet', 'Sohbet/Odalar'],
     ['arkadaslar', 'Arkadaşlar'],
     ['dm', 'DM']
@@ -2289,9 +2725,162 @@
   function examCol(){ return userDoc().collection('exam'); }
   function leaderboardCol(){ return db.collection('leaderboard'); }
   function chatCol(){ return db.collection('chat'); }
+  function presenceCol(){ return db.collection('presence'); }
+  function presenceDoc(){ return presenceCol().doc(currentUid); }
 
   let leaderboardEntries = []; // {id, name, avatar, points, rank}
   let chatMessages = []; // {id, uid, name, avatar, text, createdAt}
+
+  function timestampMs(value){
+    if(!value) return 0;
+    if(typeof value.toMillis === 'function') return value.toMillis();
+    if(typeof value.seconds === 'number') return value.seconds * 1000 + Math.floor((value.nanoseconds || 0) / 1000000);
+    return 0;
+  }
+
+  function presenceSeenMs(entry){
+    const serverMs = timestampMs(entry && entry.lastSeen);
+    return serverMs || (Number(entry && entry.lastSeenMs) || 0);
+  }
+
+  function currentOnlinePresence(){
+    const now = Date.now();
+    return presenceEntries
+      .filter(p => p && p.id && (now - presenceSeenMs(p)) <= PRESENCE_ONLINE_WINDOW_MS)
+      .sort((a,b) => presenceSeenMs(b) - presenceSeenMs(a));
+  }
+
+  function presenceStatusFor(entry, now = Date.now()){
+    if(entry.stopwatchStatus === 'running') return { label:'⏱ Çalışıyor', kind:'working' };
+    if(entry.stopwatchStatus === 'paused') return { label:'☕ Molada', kind:'paused' };
+    const activeAt = Number(entry.lastActiveAtMs) || presenceSeenMs(entry);
+    if(now - activeAt >= PRESENCE_IDLE_AFTER_MS) return { label:'🌙 Boşta', kind:'idle' };
+    return { label:'🟢 Aktif', kind:'active' };
+  }
+
+  function renderPresenceIndicator(){
+    const countEl = document.getElementById('onlineUsersCount');
+    if(!countEl) return;
+    const now = Date.now();
+    const online = currentOnlinePresence();
+    const working = online.filter(p => p.stopwatchStatus === 'running');
+    const idle = online.filter(p => presenceStatusFor(p, now).kind === 'idle');
+
+    countEl.textContent = `${online.length} çevrimiçi`;
+    const onlineStat = document.getElementById('presenceOnlineStat');
+    const workingStat = document.getElementById('presenceWorkingStat');
+    const idleStat = document.getElementById('presenceIdleStat');
+    if(onlineStat) onlineStat.textContent = online.length;
+    if(workingStat) workingStat.textContent = working.length;
+    if(idleStat) idleStat.textContent = idle.length;
+
+    const list = document.getElementById('presenceOnlineList');
+    if(!list) return;
+    if(online.length === 0){
+      list.innerHTML = '<div class="presence-empty">Şu anda çevrimiçi kimse görünmüyor.</div>';
+      return;
+    }
+    list.innerHTML = online.slice(0, 12).map(p => {
+      const rankName = publicRankForUid(p.id, p.rank);
+      const state = presenceStatusFor(p, now);
+      return `
+        <button type="button" class="presence-user-row" onclick="inspectUserProfile('${p.id}')">
+          <span class="presence-user-avatar rank-avatar-frame" style="${rankFrameVar(rankName)}">${avatarInnerHtml(p.photo, p.avatar || '🙂')}</span>
+          <span class="presence-user-main">
+            <span class="presence-user-name"><span>${escapeHtml(p.name || 'Kullanıcı')}${p.id === currentUid ? ' (sen)' : ''}</span>${miniRankBadge(rankName)}</span>
+            <span class="presence-user-status">${state.label}</span>
+          </span>
+        </button>`;
+    }).join('') + (online.length > 12 ? `<div class="presence-empty">+${online.length - 12} kullanıcı daha çevrimiçi</div>` : '');
+  }
+
+  function writePresence(){
+    if(!currentUid) return Promise.resolve();
+    const fallbackName = (auth.currentUser && (auth.currentUser.displayName || auth.currentUser.email)) || 'Kullanıcı';
+    return presenceDoc().set({
+      uid: currentUid,
+      name: (profile && profile.name) || fallbackName,
+      avatar: (profile && profile.avatar) || '🙂',
+      photo: (profile && profile.photo) || null,
+      rank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
+      stopwatchStatus: stopwatchStatus || null,
+      visibility: document.visibilityState || 'visible',
+      lastActiveAtMs: lastLocalActivityMs,
+      lastSeenMs: Date.now(),
+      lastSeen: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge:true }).catch(()=>{});
+  }
+
+  function markLocalActivity(){
+    lastLocalActivityMs = Date.now();
+  }
+
+  function bindPresenceEvents(){
+    if(presenceEventsBound) return;
+    presenceEventsBound = true;
+    ['pointerdown','keydown','touchstart','scroll'].forEach(evt => {
+      window.addEventListener(evt, markLocalActivity, { passive:true });
+    });
+    document.addEventListener('visibilitychange', () => {
+      if(document.visibilityState === 'visible') lastLocalActivityMs = Date.now();
+      writePresence();
+      renderPresenceIndicator();
+    });
+    window.addEventListener('focus', () => { lastLocalActivityMs = Date.now(); writePresence(); });
+    window.addEventListener('online', () => writePresence());
+    window.addEventListener('pagehide', () => { writePresence(); });
+  }
+
+  function stopPresenceSystem(deleteOwnDoc = false){
+    if(presenceHeartbeatHandle){ clearInterval(presenceHeartbeatHandle); presenceHeartbeatHandle = null; }
+    if(presenceUiTickHandle){ clearInterval(presenceUiTickHandle); presenceUiTickHandle = null; }
+    if(unsubPresence){ unsubPresence(); unsubPresence = null; }
+    if(deleteOwnDoc && currentUid){ presenceDoc().delete().catch(()=>{}); }
+    presenceEntries = [];
+    renderPresenceIndicator();
+  }
+
+  function startPresenceSystem(){
+    if(!currentUid) return;
+    stopPresenceSystem(false);
+    bindPresenceEvents();
+    lastLocalActivityMs = Date.now();
+    unsubPresence = presenceCol().orderBy('lastSeen', 'desc').limit(300).onSnapshot(qs => {
+      presenceEntries = qs.docs.map(d => ({ id:d.id, ...d.data() }));
+      renderPresenceIndicator();
+    }, () => {
+      presenceEntries = [];
+      renderPresenceIndicator();
+    });
+    writePresence();
+    presenceHeartbeatHandle = setInterval(writePresence, PRESENCE_HEARTBEAT_MS);
+    presenceUiTickHandle = setInterval(renderPresenceIndicator, 10000);
+  }
+
+  function initPresencePopover(){
+    const btn = document.getElementById('onlineUsersBtn');
+    const pop = document.getElementById('onlineUsersPopover');
+    if(!btn || !pop || btn.dataset.bound === '1') return;
+    btn.dataset.bound = '1';
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const open = pop.style.display !== 'none';
+      pop.style.display = open ? 'none' : 'block';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      if(!open) renderPresenceIndicator();
+    });
+    pop.addEventListener('click', ev => ev.stopPropagation());
+    document.addEventListener('click', () => {
+      pop.style.display = 'none';
+      btn.setAttribute('aria-expanded','false');
+    });
+    document.addEventListener('keydown', ev => {
+      if(ev.key === 'Escape'){
+        pop.style.display = 'none';
+        btn.setAttribute('aria-expanded','false');
+      }
+    });
+  }
 
   // Loads profile + study + exam once on login; live listeners keep local arrays
   // in sync afterwards (handy if the same account is open on two devices).
@@ -2308,6 +2897,7 @@
       if(unsubLeaderboard) unsubLeaderboard();
       if(unsubChat) unsubChat();
       if(unsubLiveSessions) unsubLiveSessions();
+      if(unsubPresence) unsubPresence();
 
       stopwatchRestored = false;
       unsubLiveSessions = liveSessionsCol().onSnapshot(qs => {
@@ -2330,14 +2920,14 @@
         studyEntries = qs.docs.map(d => ({ id: d.id, ...d.data() }))
           .sort((a,b)=> a.date.localeCompare(b.date));
         if(!studyReady){ studyReady = true; maybeResolve(); }
-        else { renderStudy(); renderStats(); renderStreakCard(); renderSubjectChart(); renderProfileCard(); }
+        else { renderStudy(); renderStats(); renderStreakCard(); renderSubjectChart(); syncPointsToProfile(); syncPublicProfile(); renderProfileCard(); }
       }, () => { studyReady = true; maybeResolve(); });
 
       unsubExam = examCol().onSnapshot(qs => {
         examEntries = qs.docs.map(d => ({ id: d.id, ...d.data() }))
           .sort((a,b)=> a.date.localeCompare(b.date));
         if(!examReady){ examReady = true; maybeResolve(); }
-        else { renderExam(); renderStats(); renderStreakCard(); renderSubjectChart(); renderTargetResult(); }
+        else { renderExam(); renderStats(); renderStreakCard(); renderSubjectChart(); renderTargetResult(); syncPointsToProfile(); syncPublicProfile(); renderProfileCard(); }
       }, () => { examReady = true; maybeResolve(); });
     }));
   }
@@ -2345,6 +2935,7 @@
   function saveProfile(){
     if(!currentUid) return Promise.resolve();
     return userDoc().set(profile, { merge: true })
+      .then(() => { writePresence(); })
       .catch(() => setStatus('Kaydedilemedi, internet bağlantını kontrol et.', true));
   }
 
@@ -2357,6 +2948,14 @@
     profile.rank = rank;
     if(changed){
       userDoc().set({ points, rank }, { merge: true }).catch(()=>{});
+      writePresence();
+      if(stopwatchStatus) writeStopwatchDoc();
+      if(currentRoomId){
+        db.collection('rooms').doc(currentRoomId).collection('members').doc(currentUid).set({ rank }, { merge:true }).catch(()=>{});
+        if(isRoomOwner){
+          db.collection('rooms').doc(currentRoomId).set({ ownerRank: rank }, { merge:true }).catch(()=>{});
+        }
+      }
     }
     syncLeaderboardEntry();
   }
@@ -2394,6 +2993,7 @@
       name: (profile && profile.name) || (auth.currentUser && (auth.currentUser.displayName || auth.currentUser.email)) || 'Kullanıcı',
       avatar: (profile && profile.avatar) || '🙂',
       photo: (profile && profile.photo) || null,
+      rank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
       status: stopwatchStatus,
       segmentStartMs: stopwatchSegmentStartMs,
       accumulatedMs: stopwatchAccumulatedMs,
@@ -2404,6 +3004,11 @@
 
     if(currentRoomId){
       db.collection('rooms').doc(currentRoomId).collection('members').doc(currentUid).set({
+        name: (profile && profile.name) || 'Kullanıcı',
+        avatar: (profile && profile.avatar) || '🙂',
+        photo: (profile && profile.photo) || null,
+        rank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
+        isMuted: isMicMuted,
         stopwatch: {
           status: stopwatchStatus,
           segmentStartMs: stopwatchSegmentStartMs,
@@ -2439,6 +3044,16 @@
     }
 
     timeDisplay.textContent = fmtHMS(currentStopwatchElapsedMs());
+    const pauseDisplay = document.getElementById('stopwatchPauseDuration');
+    if(pauseDisplay){
+      if(stopwatchStatus === 'paused'){
+        const pauseMs = Math.max(0, Date.now() - (Number(stopwatchSegmentStartMs) || Date.now()));
+        pauseDisplay.textContent = '☕ Molada: ' + fmtHMS(pauseMs);
+        pauseDisplay.style.display = '';
+      } else {
+        pauseDisplay.style.display = 'none';
+      }
+    }
 
     startBtn.style.display = stopwatchStatus ? 'none' : '';
     pauseBtn.style.display = stopwatchStatus === 'running' ? '' : 'none';
@@ -2452,6 +3067,12 @@
       if(stopwatchStatus === 'running'){
         const timeDisplay = document.getElementById('stopwatchTimeDisplay');
         if(timeDisplay) timeDisplay.textContent = fmtHMS(currentStopwatchElapsedMs());
+      } else if(stopwatchStatus === 'paused'){
+        const pauseDisplay = document.getElementById('stopwatchPauseDuration');
+        if(pauseDisplay){
+          const pauseMs = Math.max(0, Date.now() - (Number(stopwatchSegmentStartMs) || Date.now()));
+          pauseDisplay.textContent = '☕ Molada: ' + fmtHMS(pauseMs);
+        }
       }
     }, 1000);
   }
@@ -2470,6 +3091,7 @@
     stopwatchSegmentStartMs = Date.now();
     stopwatchAccumulatedMs = 0;
     writeStopwatchDoc();
+    writePresence();
     updateStopwatchUI();
   }
 
@@ -2479,6 +3101,7 @@
     stopwatchStatus = 'paused';
     stopwatchSegmentStartMs = Date.now();
     writeStopwatchDoc();
+    writePresence();
     updateStopwatchUI();
   }
 
@@ -2487,6 +3110,7 @@
     stopwatchStatus = 'running';
     stopwatchSegmentStartMs = Date.now();
     writeStopwatchDoc();
+    writePresence();
     updateStopwatchUI();
   }
 
@@ -2498,6 +3122,7 @@
     stopwatchAccumulatedMs = 0;
     updateStopwatchUI();
     if(currentUid){ stopwatchDoc().delete().catch(()=>{}); }
+    writePresence();
     addWorkedTimeToToday(totalWorkedMs);
   }
 
@@ -2526,20 +3151,23 @@
       if(a.status === b.status) return (a.name || '').localeCompare(b.name || '');
       return a.status === 'running' ? -1 : 1;
     });
-    wrap.innerHTML = sorted.map(s => {
-      const isRunning = s.status === 'running';
-      const baseMs = Math.max(0, Number(s.accumulatedMs) || 0);
-      const activeSegmentMs = isRunning ? Math.max(0, Date.now() - (Number(s.segmentStartMs) || Date.now())) : 0;
+    wrap.innerHTML = sorted.map(ses => {
+      const isRunning = ses.status === 'running';
+      const baseMs = Math.max(0, Number(ses.accumulatedMs) || 0);
+      const segmentStart = Number(ses.segmentStartMs) || Date.now();
+      const activeSegmentMs = isRunning ? Math.max(0, Date.now() - segmentStart) : 0;
       const elapsedMs = baseMs + activeSegmentMs;
-      const roomBadge = s.roomName ? `<span style="background:rgba(76,141,255,0.18); color:var(--blue); font-size:10.5px; padding:1px 6px; border-radius:10px; margin-left:6px;">📍 ${escapeHtml(s.roomName)}</span>` : '';
+      const pauseMs = !isRunning ? Math.max(0, Date.now() - segmentStart) : 0;
+      const roomBadge = ses.roomName ? `<span style="background:rgba(76,141,255,0.18); color:var(--blue); font-size:10.5px; padding:1px 6px; border-radius:10px; margin-left:6px;">📍 ${escapeHtml(ses.roomName)}</span>` : '';
+      const rankName = publicRankForUid(ses.id, ses.rank);
       return `
-        <div class="live-row ${s.id === currentUid ? 'me' : ''}">
-          <div class="live-avatar user-click" onclick="inspectUserProfile('${s.id}')">${avatarInnerHtml(s.photo, s.avatar || '🙂')}</div>
+        <div class="live-row ${ses.id === currentUid ? 'me' : ''}">
+          <div class="live-avatar rank-avatar-frame user-click" style="${rankFrameVar(rankName)}" onclick="inspectUserProfile('${ses.id}')">${avatarInnerHtml(ses.photo, ses.avatar || '🙂')}</div>
           <div class="live-info">
-            <div class="live-name user-click" onclick="inspectUserProfile('${s.id}')">${escapeHtml(s.name || 'Kullanıcı')}${s.id === currentUid ? ' (sen)' : ''}${roomBadge}</div>
-            <div class="live-status ${isRunning ? 'is-running' : 'is-paused'}">${isRunning ? '🟢 Çalışıyor' : '🟡 Molada'}</div>
+            <div class="live-name user-click" onclick="inspectUserProfile('${ses.id}')">${escapeHtml(ses.name || 'Kullanıcı')}${ses.id === currentUid ? ' (sen)' : ''}${miniRankBadge(rankName)}${roomBadge}</div>
+            <div class="live-status ${isRunning ? 'is-running' : 'is-paused'}">${isRunning ? '🟢 Çalışıyor' : '🟡 Molada · ' + fmtHMS(pauseMs)}</div>
           </div>
-          <div class="live-duration">${fmtHMS(elapsedMs)}</div>
+          <div class="live-duration" title="Toplam çalışma süresi">${fmtHMS(elapsedMs)}</div>
         </div>
       `;
     }).join('');
@@ -2548,6 +3176,7 @@
   function ensureLiveSessionsTick(){
     setInterval(() => {
       if(liveSessions.length > 0) renderLiveSessions();
+      if(currentRoomId && activeRoomMembers.length > 0) renderActiveRoomMembers(activeRoomMembers);
     }, 1000);
   }
   ensureLiveSessionsTick();
@@ -2586,6 +3215,7 @@
     renderStreakCard();
     renderSubjectChart();
     syncPointsToProfile();
+    syncPublicProfile();
     renderProfileCard();
 
     if(currentUid){
@@ -2600,6 +3230,7 @@
     renderStats();
     renderStreakCard();
     syncPointsToProfile();
+    syncPublicProfile();
     renderProfileCard();
     if(currentUid){ studyCol().doc(id).delete().catch(()=>{}); }
   }
@@ -2612,6 +3243,7 @@
     renderStats();
     renderStreakCard();
     syncPointsToProfile();
+    syncPublicProfile();
     renderProfileCard();
     renderSubjectChart();
     renderTargetResult();
@@ -2627,6 +3259,7 @@
     renderStats();
     renderStreakCard();
     syncPointsToProfile();
+    syncPublicProfile();
     renderProfileCard();
     renderSubjectChart();
     renderTargetResult();
@@ -3285,9 +3918,11 @@
     const points = computePoints();
     const rank = getRankInfo(points).current.name;
 
-    profile = { name, avatar: selectedAvatar, photo: selectedPhoto || null, studyGoal, tytGoal, aytGoal, aytTrack, points, rank };
+    profile = { name, avatar: selectedAvatar, photo: selectedPhoto || null, studyGoal, tytGoal, aytGoal, aytTrack, points, rank, privacy: (profile && profile.privacy) || { ...DEFAULT_PRIVACY } };
     saveProfile();
     syncLeaderboardEntry();
+    syncPublicProfile();
+    if(stopwatchStatus) writeStopwatchDoc();
     profileModal.style.display = 'none';
 
     renderProfileCard();
@@ -3315,7 +3950,7 @@
 
     wrap.innerHTML = `
       <div class="profile-card">
-        <div class="profile-avatar">${avatarInnerHtml(profile && profile.photo, avatar)}</div>
+        <div class="profile-avatar rank-avatar-frame" style="${rankFrameVar(current.name)}">${avatarInnerHtml(profile && profile.photo, avatar)}</div>
         <div class="profile-info">
           <div class="profile-name-row">
             <span class="profile-name">${name}</span>
@@ -3335,20 +3970,21 @@
     const wrap = document.getElementById('leaderboardWrap');
     if(!wrap) return;
     if(leaderboardEntries.length === 0){
-      wrap.innerHTML = emptyStateHtml('Henüz kimse sıralamada yok.');
+      wrap.innerHTML = emptyStateHtml('Henüz kimse liderlik tablosunda yok.');
       return;
     }
-    wrap.innerHTML = leaderboardEntries.map((e, i) => `
+    wrap.innerHTML = leaderboardEntries.map((e, i) => {
+      const rankName = e.rank || getRankInfo(Number(e.points)||0).current.name;
+      return `
       <div class="lb-row ${e.id === currentUid ? 'me' : ''}">
         <div class="lb-rank-num">${i+1}</div>
-        <div class="lb-avatar user-click" onclick="inspectUserProfile('${e.id}')">${avatarInnerHtml(e.photo, e.avatar || '🙂')}</div>
+        <div class="lb-avatar rank-avatar-frame user-click" style="${rankFrameVar(rankName)}" onclick="inspectUserProfile('${e.id}')">${avatarInnerHtml(e.photo, e.avatar || '🙂')}</div>
         <div class="lb-info user-click" onclick="inspectUserProfile('${e.id}')">
-          <div class="lb-name">${escapeHtml(e.name || 'Kullanıcı')}${e.id === currentUid ? ' (sen)' : ''}</div>
-          <div class="lb-rank-label">${escapeHtml(e.rank || '')}</div>
+          <div class="lb-name">${escapeHtml(e.name || 'Kullanıcı')}${e.id === currentUid ? ' (sen)' : ''}${miniRankBadge(rankName)}</div>
         </div>
         <div class="lb-points">${e.points || 0}</div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
   }
 
   // ---------- Chat ----------
@@ -3377,12 +4013,13 @@
 
     wrap.innerHTML = chatMessages.map(m => {
       const own = m.uid === currentUid;
+      const rankName = publicRankForUid(m.uid, m.rank);
       return `
         <div class="chat-msg ${own ? 'own' : ''}">
-          <div class="chat-avatar user-click" onclick="inspectUserProfile('${m.uid}')">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
+          <div class="chat-avatar rank-avatar-frame user-click" style="${rankFrameVar(rankName)}" onclick="inspectUserProfile('${m.uid}')">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
           <div class="chat-bubble">
             <div class="chat-meta">
-              <span class="chat-name user-click" onclick="inspectUserProfile('${m.uid}')">${escapeHtml(m.name || 'Kullanıcı')}</span>
+              <span class="chat-name user-click" onclick="inspectUserProfile('${m.uid}')">${escapeHtml(m.name || 'Kullanıcı')}${miniRankBadge(rankName)}</span>
               <span class="chat-time">${fmtChatTime(m.createdAt)}</span>
             </div>
             <div class="chat-text">${escapeHtml(m.text || '')}</div>
@@ -3391,9 +4028,7 @@
       `;
     }).join('');
 
-    if(wasNearBottom){
-      wrap.scrollTop = wrap.scrollHeight;
-    }
+    if(wasNearBottom) wrap.scrollTop = wrap.scrollHeight;
   }
 
   document.getElementById('chatForm').addEventListener('submit', (ev) => {
@@ -3408,6 +4043,7 @@
       name: (profile && profile.name) || 'Kullanıcı',
       avatar: (profile && profile.avatar) || '🙂',
       photo: (profile && profile.photo) || null,
+      rank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
       text: text,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).catch(()=> setStatus('Mesaj gönderilemedi, internet bağlantını kontrol et.', true));
@@ -3415,33 +4051,50 @@
 
   // ---------- Herkese açık profil (oda/arkadaş/liderlik incelemesi için) ----------
 
+  const DEFAULT_PRIVACY = {
+    showTodayHours:true,
+    showWeekHours:true,
+    showTotalHours:true,
+    showStreak:true,
+    showTyt:true,
+    showAyt:true,
+    showSubjects:true
+  };
+
+  function getPrivacySettings(){
+    return { ...DEFAULT_PRIVACY, ...((profile && profile.privacy) || {}) };
+  }
+
   function syncPublicProfile(){
     if(!currentUid || !profile) return;
     const t = todayStr();
-    const todayHrs = studyEntries.filter(e => e.date === t).reduce((s,e)=> s + Number(e.hours), 0);
-    const weekHrs = filterByPeriod(studyEntries, 'week').reduce((s,e)=> s + Number(e.hours), 0);
-    const totalHrs = studyEntries.reduce((s,e)=> s + Number(e.hours), 0);
-    const streakObj = computeStreak();
+    const privacy = getPrivacySettings();
+    const todayHrs = studyEntries.filter(e => e.date === t).reduce((sum,e)=> sum + Number(e.hours), 0);
+    const weekHrs = filterByPeriod(studyEntries, 'week').reduce((sum,e)=> sum + Number(e.hours), 0);
+    const totalHrs = studyEntries.reduce((sum,e)=> sum + Number(e.hours), 0);
+    const streakObj = computeStreakMetrics();
 
     const tytEntries = examEntries.filter(e=>e.type==='TYT');
     const aytEntries = examEntries.filter(e=>e.type==='AYT');
     const lastTytEntry = tytEntries.length ? tytEntries[tytEntries.length-1] : null;
     const lastAytEntry = aytEntries.length ? aytEntries[aytEntries.length-1] : null;
+    const currentRank = getRankInfo(computePoints()).current.name;
 
     db.collection('publicProfiles').doc(currentUid).set({
       name: profile.name || 'Kullanıcı',
       avatar: profile.avatar || '🙂',
       photo: profile.photo || null,
       points: computePoints(),
-      rank: getRankInfo(computePoints()).current.name,
-      streak: streakObj.current,
-      todayHours: round1(todayHrs),
-      weekHours: round1(weekHrs),
-      totalHours: round1(totalHrs),
-      lastTyt: lastTytEntry ? lastTytEntry.net : null,
-      lastAyt: lastAytEntry ? lastAytEntry.net : null,
-      lastTytSubjects: lastTytEntry ? lastTytEntry.subjects : null,
-      lastAytSubjects: lastAytEntry ? lastAytEntry.subjects : null,
+      rank: currentRank,
+      privacy,
+      streak: privacy.showStreak ? streakObj.current : null,
+      todayHours: privacy.showTodayHours ? round1(todayHrs) : null,
+      weekHours: privacy.showWeekHours ? round1(weekHrs) : null,
+      totalHours: privacy.showTotalHours ? round1(totalHrs) : null,
+      lastTyt: privacy.showTyt && lastTytEntry ? lastTytEntry.net : null,
+      lastAyt: privacy.showAyt && lastAytEntry ? lastAytEntry.net : null,
+      lastTytSubjects: privacy.showSubjects && privacy.showTyt && lastTytEntry ? lastTytEntry.subjects : null,
+      lastAytSubjects: privacy.showSubjects && privacy.showAyt && lastAytEntry ? lastAytEntry.subjects : null,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     }, { merge: true }).catch(()=>{});
   }
@@ -3453,6 +4106,8 @@
 
     document.getElementById('uprofName').textContent = 'Yükleniyor...';
     document.getElementById('uprofAvatar').innerHTML = '⌛';
+    document.getElementById('uprofAvatar').classList.remove('rank-avatar-frame');
+    ['uprofTodayHours','uprofWeekHours','uprofTotalHours','uprofStreak','uprofTytNet','uprofAytNet'].forEach(id => document.getElementById(id).classList.remove('privacy-hidden'));
     document.getElementById('uprofRankBadge').textContent = '—';
     document.getElementById('uprofTodayHours').textContent = '—';
     document.getElementById('uprofWeekHours').textContent = '—';
@@ -3462,45 +4117,112 @@
     document.getElementById('uprofAytNet').textContent = '—';
     document.getElementById('uprofSubjectBreakdown').innerHTML = '';
 
+    const legacyNote = document.getElementById('uprofLegacyNote');
+    legacyNote.style.display = 'none';
+    legacyNote.textContent = '';
+
     const addBtn = document.getElementById('uprofAddFriendBtn');
     const dmBtn = document.getElementById('uprofSendDmBtn');
     addBtn.style.display = 'none';
     dmBtn.style.display = 'none';
 
     try {
-      const doc = await db.collection('publicProfiles').doc(targetUid).get();
-      if(!doc.exists){
-        document.getElementById('uprofName').textContent = 'Kullanıcı profili bulunamadı';
-        return;
-      }
-      const data = doc.data();
-      document.getElementById('uprofName').textContent = data.name || 'Kullanıcı';
-      document.getElementById('uprofAvatar').innerHTML = avatarInnerHtml(data.photo, data.avatar || '🙂');
-      const rankMeta = RANKS.find(r => r.name === data.rank) || RANKS[0];
-      document.getElementById('uprofRankBadge').textContent = `${rankMeta.emoji} ${data.rank || rankMeta.name}`;
-      document.getElementById('uprofTodayHours').textContent = (data.todayHours || 0) + ' sa';
-      document.getElementById('uprofWeekHours').textContent = (data.weekHours || 0) + ' sa';
-      document.getElementById('uprofTotalHours').textContent = (data.totalHours || 0) + ' sa';
-      document.getElementById('uprofStreak').textContent = (data.streak || 0) + ' gün';
-      document.getElementById('uprofTytNet').textContent = data.lastTyt !== null && data.lastTyt !== undefined ? data.lastTyt : '—';
-      document.getElementById('uprofAytNet').textContent = data.lastAyt !== null && data.lastAyt !== undefined ? data.lastAyt : '—';
+      const publicDoc = await db.collection('publicProfiles').doc(targetUid).get();
+      let data = publicDoc.exists ? publicDoc.data() : null;
+      let isLegacyFallback = false;
 
-      let parts = [];
-      if(data.lastTytSubjects){
-        parts.push('<b>TYT:</b> ' + Object.entries(data.lastTytSubjects).map(([k,v])=> `${k}: ${v}`).join(' · '));
-      }
-      if(data.lastAytSubjects){
-        parts.push('<b>AYT:</b> ' + Object.entries(data.lastAytSubjects).map(([k,v])=> `${k}: ${v}`).join(' · '));
-      }
-      document.getElementById('uprofSubjectBreakdown').innerHTML = parts.join('<br>') || 'Henüz ders dökümlü net girilmemiş.';
+      // Eski kullanıcıların publicProfiles belgesi henüz oluşmamış olabilir.
+      // Bu durumda önce zaten canlı tuttuğumuz leaderboard/chat verisini,
+      // gerekirse de doğrudan leaderboard belgesini temel profil olarak kullan.
+      if(!data){
+        isLegacyFallback = true;
+        const cachedLeaderboard = leaderboardEntries.find(e => e.id === targetUid);
+        const cachedChat = [...chatMessages].reverse().find(m => m.uid === targetUid);
 
+        if(cachedLeaderboard){
+          data = { ...cachedLeaderboard };
+        } else if(cachedChat){
+          data = {
+            name: cachedChat.name,
+            avatar: cachedChat.avatar,
+            photo: cachedChat.photo || null
+          };
+        }
+
+        if(!data || !data.name){
+          const leaderboardDoc = await leaderboardCol().doc(targetUid).get().catch(()=>null);
+          if(leaderboardDoc && leaderboardDoc.exists){
+            data = { ...leaderboardDoc.data() };
+          }
+        }
+      }
+
+      if(!data){
+        document.getElementById('uprofName').textContent = 'Kullanıcı bilgileri bulunamadı';
+        document.getElementById('uprofAvatar').innerHTML = '👤';
+        document.getElementById('uprofSubjectBreakdown').textContent = 'Bu kullanıcıya ait herkese açık profil bilgisi henüz bulunmuyor.';
+      } else {
+        document.getElementById('uprofName').textContent = data.name || 'Kullanıcı';
+        document.getElementById('uprofAvatar').innerHTML = avatarInnerHtml(data.photo, data.avatar || '🙂');
+        const rankMeta = rankMetaByName(data.rank);
+        document.getElementById('uprofRankBadge').textContent = `${rankMeta.emoji} ${data.rank || rankMeta.name}`;
+        document.getElementById('uprofRankBadge').style.color = rankMeta.color;
+        document.getElementById('uprofAvatar').classList.add('rank-avatar-frame');
+        document.getElementById('uprofAvatar').style.setProperty('--rank-color', rankMeta.color);
+
+        if(isLegacyFallback){
+          legacyNote.style.display = 'block';
+          legacyNote.textContent = 'Bu kullanıcı henüz yeni profil sistemine giriş yapmadı. İsim, avatar ve rütbe mevcut kayıtlardan gösteriliyor; çalışma ve net istatistikleri ilk girişinden sonra otomatik tamamlanacak.';
+          document.getElementById('uprofTodayHours').textContent = '—';
+          document.getElementById('uprofWeekHours').textContent = '—';
+          document.getElementById('uprofTotalHours').textContent = '—';
+          document.getElementById('uprofStreak').textContent = '—';
+          document.getElementById('uprofTytNet').textContent = '—';
+          document.getElementById('uprofAytNet').textContent = '—';
+          document.getElementById('uprofSubjectBreakdown').textContent = 'Ayrıntılı istatistikler, bu kullanıcı yeni sürümle giriş yaptığında burada görünecek.';
+        } else {
+          const privacy = { ...DEFAULT_PRIVACY, ...(data.privacy || {}) };
+          const setPrivateStat = (id, allowed, value) => {
+            const el = document.getElementById(id);
+            el.textContent = allowed ? value : '🔒 Gizli';
+            el.classList.toggle('privacy-hidden', !allowed);
+          };
+          setPrivateStat('uprofTodayHours', privacy.showTodayHours, ((data.todayHours ?? 0) + ' sa'));
+          setPrivateStat('uprofWeekHours', privacy.showWeekHours, ((data.weekHours ?? 0) + ' sa'));
+          setPrivateStat('uprofTotalHours', privacy.showTotalHours, ((data.totalHours ?? 0) + ' sa'));
+          setPrivateStat('uprofStreak', privacy.showStreak, ((data.streak ?? 0) + ' gün'));
+          setPrivateStat('uprofTytNet', privacy.showTyt, data.lastTyt !== null && data.lastTyt !== undefined ? String(data.lastTyt) : '—');
+          setPrivateStat('uprofAytNet', privacy.showAyt, data.lastAyt !== null && data.lastAyt !== undefined ? String(data.lastAyt) : '—');
+
+          let parts = [];
+          if(!privacy.showSubjects){
+            document.getElementById('uprofSubjectBreakdown').innerHTML = '<span class="privacy-hidden">🔒 Ders bazlı net dökümü gizli.</span>';
+          } else {
+            if(privacy.showTyt && data.lastTytSubjects){
+              parts.push('<b>TYT:</b> ' + Object.entries(data.lastTytSubjects).map(([k,v])=> `${k}: ${v}`).join(' · '));
+            }
+            if(privacy.showAyt && data.lastAytSubjects){
+              parts.push('<b>AYT:</b> ' + Object.entries(data.lastAytSubjects).map(([k,v])=> `${k}: ${v}`).join(' · '));
+            }
+            document.getElementById('uprofSubjectBreakdown').innerHTML = parts.join('<br>') || 'Henüz paylaşılabilir ders dökümü yok.';
+          }
+        }
+      }
+
+      // Arkadaş/DM aksiyonları publicProfiles olmasa da UID üzerinden çalışabilsin.
       if(targetUid !== currentUid){
         const isFriend = friendsList.some(f => f.uid === targetUid);
         if(isFriend){
           dmBtn.style.display = '';
           dmBtn.onclick = () => {
             modal.style.display = 'none';
-            openDirectMessageWith(targetUid, data.name, data.avatar, data.photo);
+            openDirectMessageWith(
+              targetUid,
+              (data && data.name) || 'Kullanıcı',
+              (data && data.avatar) || '🙂',
+              (data && data.photo) || null,
+              (data && data.rank) || publicRankForUid(targetUid)
+            );
           };
         } else {
           addBtn.style.display = '';
@@ -3510,7 +4232,10 @@
         }
       }
     } catch(err){
+      console.error('Profil yüklenemedi:', err);
       document.getElementById('uprofName').textContent = 'Hata oluştu';
+      document.getElementById('uprofAvatar').innerHTML = '⚠️';
+      document.getElementById('uprofSubjectBreakdown').textContent = 'Profil bilgileri yüklenirken bir hata oluştu.';
     }
   };
 
@@ -3555,12 +4280,13 @@
         password: pass || null,
         ownerUid: currentUid,
         ownerName: profile ? profile.name : 'Kurucu',
+        ownerRank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
         voiceEnabled: voiceOn,
         textEnabled: textOn,
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
       createRoomModal.style.display = 'none';
-      joinRoom(roomRef.id, { name, password: pass, ownerUid: currentUid, ownerName: profile ? profile.name : 'Kurucu', voiceEnabled: voiceOn, textEnabled: textOn });
+      joinRoom(roomRef.id, { name, password: pass, ownerUid: currentUid, ownerName: profile ? profile.name : 'Kurucu', ownerRank: (profile && profile.rank) || getRankInfo(computePoints()).current.name, voiceEnabled: voiceOn, textEnabled: textOn });
     } catch(e){
       setStatus('Oda oluşturulamadı.', true);
     }
@@ -3583,7 +4309,7 @@
           <span class="tag ${r.voiceEnabled ? 'ayt' : ''}">🎙️ ${r.voiceEnabled ? 'Sesli Açık' : 'Ses Kapalı'}</span>
           <span class="tag ${r.textEnabled ? 'tyt' : ''}">💬 ${r.textEnabled ? 'Yazılı Açık' : 'Yazı Kapalı'}</span>
         </div>
-        <div style="font-size:11.5px; color:var(--muted);">Sahip: <span class="user-click" onclick="inspectUserProfile('${r.ownerUid}')"><b>${escapeHtml(r.ownerName || 'Bilinmiyor')}</b></span></div>
+        <div style="font-size:11.5px; color:var(--muted);">Sahip: <span class="user-click" onclick="inspectUserProfile('${r.ownerUid}')"><b>${escapeHtml(r.ownerName || 'Bilinmiyor')}</b>${miniRankBadge(publicRankForUid(r.ownerUid, r.ownerRank))}</span></div>
         <button type="button" class="add-btn" style="margin-top:4px;" onclick="attemptJoinRoom('${r.id}')">${currentRoomId === r.id ? 'Odadasın' : 'Odaya Katıl'}</button>
       </div>
     `).join('');
@@ -3626,7 +4352,7 @@
     if(isRoomOwner){
       ownerNote.textContent = '👑 Bu odanın sahibisin';
     } else if(roomData.ownerUid){
-      ownerNote.innerHTML = `Sahip: <span class="user-click" onclick="inspectUserProfile('${roomData.ownerUid}')"><b>${escapeHtml(roomData.ownerName || 'Kullanıcı')}</b></span>`;
+      ownerNote.innerHTML = `Sahip: <span class="user-click" onclick="inspectUserProfile('${roomData.ownerUid}')"><b>${escapeHtml(roomData.ownerName || 'Kullanıcı')}</b>${miniRankBadge(publicRankForUid(roomData.ownerUid, roomData.ownerRank))}</span>`;
     } else {
       ownerNote.textContent = 'Oda sahibi belirleniyor…';
     }
@@ -3698,6 +4424,7 @@
         await roomRef.update({
           ownerUid: successor.id,
           ownerName: successorData.name || 'Kullanıcı',
+          ownerRank: successorData.rank || publicRankForUid(successor.id),
           ownerTransferredAt: firebase.firestore.FieldValue.serverTimestamp()
         });
       }
@@ -3735,6 +4462,7 @@
       name: profile ? profile.name : 'Kullanıcı',
       avatar: profile ? profile.avatar : '🙂',
       photo: profile ? profile.photo : null,
+      rank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
       isMuted: isMicMuted,
       stopwatch: {
         status: stopwatchStatus,
@@ -3750,7 +4478,8 @@
     if(unsubActiveRoom) unsubActiveRoom();
     unsubActiveRoom = db.collection('rooms').doc(roomId).collection('members').onSnapshot(qs => {
       const members = qs.docs.map(d => ({ id: d.id, ...d.data() }));
-      renderActiveRoomMembers(members);
+      activeRoomMembers = members;
+      renderActiveRoomMembers(activeRoomMembers);
       if(!isLeavingRoom && !members.some(m => m.id === currentUid)){
         leaveCurrentRoom(true);
       }
@@ -3779,6 +4508,7 @@
     } finally {
       currentRoomId = null;
       currentRoomData = null;
+      activeRoomMembers = [];
       isRoomOwner = false;
       if(localMediaStream){
         localMediaStream.getTracks().forEach(t => t.stop());
@@ -3801,18 +4531,21 @@
       let swBadge = '';
       if(m.stopwatch && (m.stopwatch.status === 'running' || m.stopwatch.status === 'paused')){
         const isRun = m.stopwatch.status === 'running';
-        const ms = (m.stopwatch.accumulatedMs || 0) + (isRun ? Math.max(0, Date.now() - (m.stopwatch.segmentStartMs || Date.now())) : 0);
-        swBadge = `<span style="font-size:11px; font-weight:700; color:${isRun?'var(--good)':'var(--amber)'};">⏱ ${fmtHMS(ms)}</span>`;
+        const segmentStart = Number(m.stopwatch.segmentStartMs) || Date.now();
+        const ms = (Number(m.stopwatch.accumulatedMs) || 0) + (isRun ? Math.max(0, Date.now() - segmentStart) : 0);
+        const pauseMs = !isRun ? Math.max(0, Date.now() - segmentStart) : 0;
+        swBadge = `<span style="font-size:11px; font-weight:700; color:${isRun?'var(--good)':'var(--amber)'};">${isRun ? '⏱ ' + fmtHMS(ms) : '☕ Molada ' + fmtHMS(pauseMs)}</span>`;
       }
       const kickBtn = (isRoomOwner && m.id !== currentUid)
         ? `<button type="button" class="del-btn" style="color:var(--danger); font-size:12px;" onclick="kickMemberFromRoom('${m.id}')" title="Odadan At">❌</button>`
         : '';
       const voiceDot = !m.isMuted ? `<span class="voice-indicator" title="Konuşuyor"></span>` : '';
+      const rankName = publicRankForUid(m.id, m.rank);
       return `
         <div class="room-member-pill">
           <div class="user-click" onclick="inspectUserProfile('${m.id}')" style="display:flex; align-items:center; gap:5px;">
-            <div style="width:22px; height:22px; border-radius:50%; overflow:hidden;">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
-            <b>${escapeHtml(m.name || 'Kullanıcı')}</b>
+            <div class="rank-avatar-frame" style="width:22px; height:22px; border-radius:50%; overflow:hidden; ${rankFrameVar(rankName)}">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
+            <b>${escapeHtml(m.name || 'Kullanıcı')}</b>${miniRankBadge(rankName)}
           </div>
           ${voiceDot}
           ${swBadge}
@@ -3866,18 +4599,20 @@
   function renderRoomChat(messages){
     const wrap = document.getElementById('roomChatMessages');
     if(!wrap) return;
-    wrap.innerHTML = messages.map(m => `
+    wrap.innerHTML = messages.map(m => {
+      const rankName = publicRankForUid(m.uid, m.rank);
+      return `
       <div class="chat-msg ${m.uid === currentUid ? 'own' : ''}">
-        <div class="chat-avatar user-click" onclick="inspectUserProfile('${m.uid}')">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
+        <div class="chat-avatar rank-avatar-frame user-click" style="${rankFrameVar(rankName)}" onclick="inspectUserProfile('${m.uid}')">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
         <div class="chat-bubble">
           <div class="chat-meta">
-            <span class="chat-name user-click" onclick="inspectUserProfile('${m.uid}')">${escapeHtml(m.name || 'Kullanıcı')}</span>
+            <span class="chat-name user-click" onclick="inspectUserProfile('${m.uid}')">${escapeHtml(m.name || 'Kullanıcı')}${miniRankBadge(rankName)}</span>
             <span class="chat-time">${fmtChatTime(m.createdAt)}</span>
           </div>
           <div class="chat-text">${escapeHtml(m.text || '')}</div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
     wrap.scrollTop = wrap.scrollHeight;
   }
 
@@ -3893,6 +4628,7 @@
       name: profile ? profile.name : 'Kullanıcı',
       avatar: profile ? profile.avatar : '🙂',
       photo: profile ? profile.photo : null,
+      rank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
       text,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).catch(()=>{});
@@ -3923,12 +4659,14 @@
       wrap.innerHTML = '<span style="font-size:12px;color:var(--muted);padding:8px 2px;">DM için önce bir arkadaş ekle.</span>';
       return;
     }
-    wrap.innerHTML = friendsList.map(f => `
+    wrap.innerHTML = friendsList.map(f => {
+      const rankName = publicRankForUid(f.uid, f.rank);
+      return `
       <button type="button" class="dm-friend-chip ${activeDmFriend && activeDmFriend.uid===f.uid?'active':''}" onclick="openDirectMessageByUid('${f.uid}')" title="${escapeHtml(f.name || 'Arkadaş')}">
-        <span class="dm-friend-chip-avatar">${avatarInnerHtml(f.photo, f.avatar || '🙂')}</span>
+        <span class="dm-friend-chip-avatar rank-avatar-frame" style="${rankFrameVar(rankName)}">${avatarInnerHtml(f.photo, f.avatar || '🙂')}</span>
         <span class="dm-friend-chip-name">${escapeHtml(f.name || 'Arkadaş')}</span>
-      </button>
-    `).join('');
+      </button>`;
+    }).join('');
   }
 
   function renderFriendsList(){
@@ -3939,20 +4677,22 @@
       wrap.innerHTML = emptyStateHtml('Henüz hiç arkadaşın yok. Yukarıdan kullanıcı adıyla arayabilirsin.');
       return;
     }
-    wrap.innerHTML = friendsList.map(f => `
+    wrap.innerHTML = friendsList.map(f => {
+      const rankName = publicRankForUid(f.uid, f.rank);
+      return `
       <div class="friend-req-card">
         <div style="display:flex; align-items:center; gap:8px;" class="user-click" onclick="inspectUserProfile('${f.uid}')">
-          <div style="width:36px; height:36px; border-radius:50%; overflow:hidden;">${avatarInnerHtml(f.photo, f.avatar || '🙂')}</div>
+          <div class="rank-avatar-frame" style="width:36px; height:36px; border-radius:50%; overflow:hidden; ${rankFrameVar(rankName)}">${avatarInnerHtml(f.photo, f.avatar || '🙂')}</div>
           <div>
-            <b>${escapeHtml(f.name || 'Arkadaş')}</b>
+            <div><b>${escapeHtml(f.name || 'Arkadaş')}</b>${miniRankBadge(rankName)}</div>
             <div style="font-size:11px; color:var(--muted);">Profili görmek için dokun</div>
           </div>
         </div>
         <div style="display:flex; gap:6px;">
           <button type="button" class="add-btn" style="padding:6px 12px; font-size:12px;" onclick="openDirectMessageByUid('${f.uid}')">✉️ DM</button>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
   }
 
   function renderFriendRequests(){
@@ -3962,18 +4702,20 @@
       wrap.innerHTML = '<p style="font-size:12.5px; color:var(--muted); margin:0;">Bekleyen istek yok.</p>';
       return;
     }
-    wrap.innerHTML = friendRequests.map(r => `
+    wrap.innerHTML = friendRequests.map(r => {
+      const rankName = publicRankForUid(r.fromUid, r.fromRank);
+      return `
       <div class="friend-req-card">
         <div style="display:flex; align-items:center; gap:8px;" class="user-click" onclick="inspectUserProfile('${r.fromUid}')">
-          <div style="width:34px; height:34px; border-radius:50%; overflow:hidden;">${avatarInnerHtml(r.fromPhoto, r.fromAvatar || '🙂')}</div>
-          <div><b>${escapeHtml(r.fromName || 'Kullanıcı')}</b><div style="font-size:10.5px;color:var(--muted);">Profili gör</div></div>
+          <div class="rank-avatar-frame" style="width:34px; height:34px; border-radius:50%; overflow:hidden; ${rankFrameVar(rankName)}">${avatarInnerHtml(r.fromPhoto, r.fromAvatar || '🙂')}</div>
+          <div><div><b>${escapeHtml(r.fromName || 'Kullanıcı')}</b>${miniRankBadge(rankName)}</div><div style="font-size:10.5px;color:var(--muted);">Profili gör</div></div>
         </div>
         <div style="display:flex; gap:6px;">
           <button type="button" class="add-btn" style="padding:5px 10px; font-size:12px;" onclick="acceptFriendRequest('${r.id}', '${r.fromUid}')">Kabul Et</button>
           <button type="button" class="del-btn" style="color:var(--danger); font-size:12px;" onclick="rejectFriendRequest('${r.id}')">Reddet</button>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
   }
 
   function renderFriendSearchResults(results){
@@ -3989,10 +4731,11 @@
       let action = `<button type="button" class="add-btn" style="padding:6px 10px;font-size:11.5px;" onclick="sendFriendRequestDirect('${r.id}')">+ Ekle</button>`;
       if(isFriend) action = `<button type="button" class="add-btn" style="padding:6px 10px;font-size:11.5px;" onclick="openDirectMessageByUid('${r.id}')">✉️ DM</button>`;
       if(incoming) action = `<button type="button" class="add-btn" style="padding:6px 10px;font-size:11.5px;" onclick="acceptFriendRequest('${incoming.id}','${r.id}')">Kabul Et</button>`;
+      const rankName = publicRankForUid(r.id, r.rank);
       return `<div class="friend-search-result">
         <div class="user-click" onclick="inspectUserProfile('${r.id}')" style="display:flex;align-items:center;gap:9px;min-width:0;">
-          <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;flex:0 0 auto;">${avatarInnerHtml(r.photo, r.avatar || '🙂')}</div>
-          <div style="min-width:0;"><b style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(r.name || 'Kullanıcı')}</b><span style="font-size:10.5px;color:var(--muted);">${escapeHtml(r.rank || 'Çaylak')} · ${r.points || 0} puan</span></div>
+          <div class="rank-avatar-frame" style="width:38px;height:38px;border-radius:50%;overflow:hidden;flex:0 0 auto;${rankFrameVar(rankName)}">${avatarInnerHtml(r.photo, r.avatar || '🙂')}</div>
+          <div style="min-width:0;"><div style="display:flex;align-items:center;gap:4px;min-width:0;"><b style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(r.name || 'Kullanıcı')}</b>${miniRankBadge(rankName)}</div><span style="font-size:10.5px;color:var(--muted);">${r.points || 0} puan</span></div>
         </div>${action}
       </div>`;
     }).join('');
@@ -4060,6 +4803,7 @@
         fromName: profile ? profile.name : 'Kullanıcı',
         fromAvatar: profile ? profile.avatar : '🙂',
         fromPhoto: profile ? profile.photo : null,
+        fromRank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
         toUid: targetUid,
         status: 'pending',
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
@@ -4079,12 +4823,14 @@
         name: reqDoc.fromName,
         avatar: reqDoc.fromAvatar,
         photo: reqDoc.fromPhoto || null,
+        rank: reqDoc.fromRank || publicRankForUid(fromUid),
         since: firebase.firestore.FieldValue.serverTimestamp()
       });
       await db.collection('users').doc(fromUid).collection('friends').doc(currentUid).set({
         name: profile ? profile.name : 'Kullanıcı',
         avatar: profile ? profile.avatar : '🙂',
         photo: profile ? profile.photo : null,
+        rank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
         since: firebase.firestore.FieldValue.serverTimestamp()
       });
       setStatus('Arkadaş kabul edildi!');
@@ -4112,18 +4858,21 @@
       } catch(e){}
     }
     if(!f) return;
-    openDirectMessageWith(friendUid, f.name || 'Arkadaş', f.avatar || '🙂', f.photo || null);
+    openDirectMessageWith(friendUid, f.name || 'Arkadaş', f.avatar || '🙂', f.photo || null, publicRankForUid(friendUid, f.rank));
   };
 
-  window.openDirectMessageWith = function(friendUid, friendName, friendAvatar, friendPhoto){
-    activeDmFriend = { uid: friendUid, name: friendName, avatar: friendAvatar, photo: friendPhoto };
+  window.openDirectMessageWith = function(friendUid, friendName, friendAvatar, friendPhoto, friendRank){
+    activeDmFriend = { uid: friendUid, name: friendName, avatar: friendAvatar, photo: friendPhoto, rank: friendRank || publicRankForUid(friendUid) };
     activeTab = 'dm';
     renderTabBar();
     renderDmFriendsPicker();
     showActiveTab();
 
-    document.getElementById('activeDmName').textContent = friendName;
-    document.getElementById('activeDmAvatar').innerHTML = avatarInnerHtml(friendPhoto, friendAvatar || '🙂');
+    document.getElementById('activeDmName').innerHTML = escapeHtml(friendName) + miniRankBadge(activeDmFriend.rank);
+    const dmAvatar = document.getElementById('activeDmAvatar');
+    dmAvatar.innerHTML = avatarInnerHtml(friendPhoto, friendAvatar || '🙂');
+    dmAvatar.classList.add('rank-avatar-frame');
+    dmAvatar.style.setProperty('--rank-color', rankColor(activeDmFriend.rank || RANKS[0].name));
     document.getElementById('activeDmStatus').textContent = 'Sohbet açık';
     document.getElementById('inspectDmUserBtn').onclick = () => inspectUserProfile(friendUid);
     document.getElementById('activeDmIdentity').onclick = () => inspectUserProfile(friendUid);
@@ -4194,8 +4943,51 @@
     });
   }
 
+  function renderSettingsTab(tab){
+    const general = document.getElementById('settingsPanelGeneral');
+    const privacyPanel = document.getElementById('settingsPanelPrivacy');
+    general.style.display = tab === 'general' ? '' : 'none';
+    privacyPanel.style.display = tab === 'privacy' ? '' : 'none';
+    document.querySelectorAll('[data-settings-tab]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-settings-tab') === tab);
+    });
+  }
+
+  function renderPrivacySettings(){
+    const privacy = getPrivacySettings();
+    document.getElementById('privacyTodayHours').checked = privacy.showTodayHours;
+    document.getElementById('privacyWeekHours').checked = privacy.showWeekHours;
+    document.getElementById('privacyTotalHours').checked = privacy.showTotalHours;
+    document.getElementById('privacyStreak').checked = privacy.showStreak;
+    document.getElementById('privacyTyt').checked = privacy.showTyt;
+    document.getElementById('privacyAyt').checked = privacy.showAyt;
+    document.getElementById('privacySubjects').checked = privacy.showSubjects;
+  }
+
+  document.querySelectorAll('[data-settings-tab]').forEach(btn => {
+    btn.addEventListener('click', () => renderSettingsTab(btn.getAttribute('data-settings-tab')));
+  });
+
+  document.getElementById('savePrivacyBtn').addEventListener('click', async () => {
+    if(!profile) return;
+    profile.privacy = {
+      showTodayHours: document.getElementById('privacyTodayHours').checked,
+      showWeekHours: document.getElementById('privacyWeekHours').checked,
+      showTotalHours: document.getElementById('privacyTotalHours').checked,
+      showStreak: document.getElementById('privacyStreak').checked,
+      showTyt: document.getElementById('privacyTyt').checked,
+      showAyt: document.getElementById('privacyAyt').checked,
+      showSubjects: document.getElementById('privacySubjects').checked
+    };
+    await saveProfile();
+    syncPublicProfile();
+    setStatus('Gizlilik ayarların kaydedildi.');
+  });
+
   document.getElementById('openSettingsBtn').addEventListener('click', () => {
     renderThemeGrid();
+    renderPrivacySettings();
+    renderSettingsTab('general');
     settingsModal.style.display = 'flex';
   });
   document.getElementById('settingsCloseBtn').addEventListener('click', () => {
@@ -4345,6 +5137,8 @@
     settingsModal.style.display = 'none';
     if(currentRoomId){ await leaveCurrentRoom(); }
     if(stopwatchStatus && currentUid){ await stopwatchDoc().delete().catch(()=>{}); }
+    if(currentUid){ await presenceDoc().delete().catch(()=>{}); }
+    stopPresenceSystem(false);
     auth.signOut();
   });
 
@@ -4390,6 +5184,8 @@
     renderLiveSessions();
     renderBottomSocialNav();
     renderDmFriendsPicker();
+    initPresencePopover();
+    startPresenceSystem();
     updateStopwatchUI();
     syncPointsToProfile();
     syncPublicProfile();
@@ -4428,6 +5224,10 @@
       if(unsubLeaderboard){ unsubLeaderboard(); unsubLeaderboard = null; }
       if(unsubChat){ unsubChat(); unsubChat = null; }
       if(unsubLiveSessions){ unsubLiveSessions(); unsubLiveSessions = null; }
+      if(unsubPresence){ unsubPresence(); unsubPresence = null; }
+      if(presenceHeartbeatHandle){ clearInterval(presenceHeartbeatHandle); presenceHeartbeatHandle = null; }
+      if(presenceUiTickHandle){ clearInterval(presenceUiTickHandle); presenceUiTickHandle = null; }
+      presenceEntries = [];
       if(unsubRooms){ unsubRooms(); unsubRooms = null; }
       if(unsubActiveRoom){ unsubActiveRoom(); unsubActiveRoom = null; }
       if(unsubActiveRoomChat){ unsubActiveRoomChat(); unsubActiveRoomChat = null; }
