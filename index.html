@@ -435,57 +435,294 @@
   }
 
   .tab-bar{
+    position:relative;
     display:flex;
-    gap: 6px;
-    overflow-x: auto;
-    margin-bottom: 20px;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:20px;
+    padding:4px;
+    border-radius:18px;
+    background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+    border:1px solid rgba(255,255,255,.075);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07), 0 12px 30px rgba(0,0,0,.10);
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
   }
   .tab-bar::-webkit-scrollbar{ display:none; }
+  .tab-glider{
+    position:absolute; left:0; top:4px; height:calc(100% - 8px); width:0;
+    border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.10));
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.20), 0 9px 24px rgba(0,0,0,.13);
+    transform:translate3d(0,0,0);
+    transition:transform .42s cubic-bezier(.22,1,.36,1), width .34s cubic-bezier(.22,1,.36,1), opacity .18s ease;
+    pointer-events:none; opacity:0; z-index:0; will-change:transform,width;
+  }
+  .tab-bar.has-active .tab-glider{ opacity:1; }
   .tab-btn{
     flex: 0 0 auto;
-    background: var(--panel);
-    border: 1px solid var(--line);
+    position:relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.11);
     color: var(--muted);
     padding: 10px 16px;
-    border-radius: 10px;
+    border-radius: 14px;
     font-size: 13.5px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 12px 26px rgba(0,0,0,0.16);
+    transition: transform .18s ease, color .18s ease, border-color .18s ease, box-shadow .22s ease, background .22s ease;
   }
+  .tab-btn:active{ transform: scale(.985); }
+  .tab-btn{ z-index:1; }
   .tab-btn.active{
-    background: var(--blue);
-    color: #0B1626;
-    border-color: var(--blue);
+    background:transparent;
+    color:var(--text);
+    border-color:transparent;
+    box-shadow:none;
   }
 
   .seg-control{
-    display:flex;
-    gap: 4px;
-    background: var(--panel-2);
-    border: 1px solid var(--line);
-    border-radius: 8px;
+    --seg-count: 4;
+    --seg-index: 0;
+    position:relative;
+    display:grid;
+    grid-template-columns: repeat(var(--seg-count), minmax(0,1fr));
+    background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+    border: 1px solid rgba(255,255,255,0.11);
+    border-radius: 16px;
     padding: 3px;
     margin-bottom: 12px;
-    width: fit-content;
-    flex-wrap: wrap;
+    width: min(100%, 430px);
+    overflow:hidden;
+    backdrop-filter: blur(22px) saturate(165%);
+    -webkit-backdrop-filter: blur(22px) saturate(165%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 14px 28px rgba(0,0,0,0.14);
+  }
+  .seg-glider{
+    position:absolute;
+    top:3px;
+    bottom:3px;
+    left: calc(3px + (100% - 6px) * var(--seg-index) / var(--seg-count));
+    width: calc((100% - 6px) / var(--seg-count));
+    border-radius: 13px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.30), rgba(255,255,255,0.14));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.26), 0 8px 20px rgba(0,0,0,0.14);
+    transition: left .42s cubic-bezier(.22,1,.36,1), width .32s ease, box-shadow .22s ease;
+    pointer-events:none;
   }
   .seg-btn{
+    position:relative;
+    z-index:1;
     background: none;
     border: none;
     color: var(--muted);
     font-size: 12.5px;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 6px;
+    font-weight: 700;
+    padding: 10px 8px;
+    border-radius: 13px;
     cursor: pointer;
+    transition: color .2s ease, transform .18s ease;
   }
+  .seg-btn:active{ transform: scale(.985); }
   .seg-btn.active{
-    background: var(--blue);
-    color: #0B1626;
+    color: var(--text);
   }
+
+  .hero-profile-card{
+    position:relative;
+    overflow:hidden;
+    flex-wrap:wrap;
+    align-items:stretch;
+    justify-content:space-between;
+    gap:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px;
+    padding: 18px;
+    backdrop-filter: blur(24px) saturate(165%);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 18px 42px rgba(0,0,0,0.18);
+  }
+  .hero-profile-card::before{
+    content:"";
+    position:absolute;
+    inset:auto -40px -55px auto;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(76,141,255,0.18) 0%, rgba(76,141,255,0.02) 68%, transparent 74%);
+    pointer-events:none;
+  }
+  .hero-profile-main{ flex:1; min-width:0; }
+  .hero-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:8px;
+  }
+  .hero-greeting{
+    font-family: Georgia, serif;
+    font-size: clamp(28px, 5vw, 34px);
+    line-height:1.06;
+    margin:0 0 7px;
+  }
+  .hero-greeting-sub{
+    max-width:620px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.5;
+    margin:0 0 14px;
+  }
+  .hero-chip-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .hero-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:7px 11px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.08);
+    color:var(--text);
+    font-size:12px;
+    font-weight:700;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .hero-profile-side{
+    width:min(100%, 250px);
+    position:relative;
+    z-index:1;
+    align-self:stretch;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px;
+    border-radius:20px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+    border:1px solid rgba(255,255,255,0.10);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+  }
+  .hero-user-row{ display:flex; align-items:center; gap:12px; }
+  .hero-user-meta{ min-width:0; flex:1; }
+  .hero-user-name{ font-size:15px; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .hero-user-points{ color:var(--muted); font-size:12px; margin-top:3px; }
+  .hero-side-note{ color:var(--muted); font-size:11.5px; line-height:1.45; }
+
+  .overview-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:14px;
+    margin-bottom:18px;
+  }
+  .overview-card{
+    position:relative;
+    overflow:hidden;
+    padding:16px;
+    border-radius:20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+    border:1px solid rgba(255,255,255,0.10);
+    backdrop-filter: blur(22px) saturate(155%);
+    -webkit-backdrop-filter: blur(22px) saturate(155%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 14px 36px rgba(0,0,0,0.14);
+  }
+  .overview-card::after{
+    content:"";
+    position:absolute;
+    inset:auto -35px -45px auto;
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.10), rgba(255,255,255,0.01) 70%, transparent 74%);
+    pointer-events:none;
+  }
+  .overview-label{
+    color:var(--muted);
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+  }
+  .overview-value{
+    font-family: Georgia, serif;
+    font-size:29px;
+    line-height:1.1;
+    margin:0 0 6px;
+  }
+  .overview-sub{ color:var(--muted); font-size:12.5px; line-height:1.5; margin:0; }
+  .overview-inline-row{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:12px; }
+  .overview-micro-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 9px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.08);
+    font-size:11px;
+    font-weight:700;
+  }
+  .overview-action-btn{
+    margin-top:14px;
+    border:0;
+    border-radius:14px;
+    padding:10px 13px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.12));
+    color:var(--text);
+    font:inherit;
+    font-size:12.5px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 10px 18px rgba(0,0,0,0.12);
+  }
+  .overview-rank-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .overview-rank-note{ margin-top:8px; color:var(--muted); font-size:12px; }
+  .overview-duo{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:4px; }
+  .overview-duo-item{
+    padding:10px 10px 11px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.07);
+  }
+  .overview-duo-item .k{ color:var(--muted); font-size:11px; margin-bottom:4px; }
+  .overview-duo-item .v{ font-family: Georgia, serif; font-size:20px; }
+  .overview-trend{ font-size:11.5px; font-weight:700; margin-top:4px; }
+  .overview-trend.up{ color:#69D391; }
+  .overview-trend.down{ color:#FF8D8D; }
+  .overview-trend.flat{ color:var(--muted); }
+  .mini-bars{ display:flex; align-items:flex-end; gap:8px; height:112px; margin-top:10px; }
+  .mini-bar-item{ flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; gap:7px; }
+  .mini-bar-track{
+    width:100%;
+    height:82px;
+    display:flex;
+    align-items:flex-end;
+    padding:0 2px;
+  }
+  .mini-bar{
+    width:100%;
+    border-radius:10px 10px 4px 4px;
+    background: linear-gradient(180deg, rgba(76,141,255,0.95), rgba(76,141,255,0.38));
+    box-shadow: 0 6px 16px rgba(76,141,255,0.18);
+    min-height:8px;
+  }
+  .mini-bar-label{ color:var(--muted); font-size:10.5px; }
+  .mini-bar-value{ color:var(--text); font-size:10px; font-weight:700; }
 
   .chart-tooltip{
     position: fixed;
@@ -1352,6 +1589,16 @@
     .tab-btn{ padding:9px 12px; font-size:12.5px; }
     .bottom-social-nav{ bottom:8px; width:calc(100% - 16px); border-radius:16px; }
     .bottom-social-btn{ padding:8px 8px 7px; }
+    .hero-profile-card{ padding:16px; border-radius:20px; }
+    .hero-profile-side{ width:100%; }
+    .hero-greeting{ font-size:28px; }
+    .overview-grid{ grid-template-columns:1fr; gap:12px; }
+    .overview-card{ border-radius:18px; padding:14px; }
+    .overview-value{ font-size:25px; }
+    .seg-control{ border-radius:14px; }
+    .seg-btn{ font-size:11.5px; padding:9px 4px; }
+    .mini-bars{ gap:6px; }
+    .mini-bar-label{ font-size:10px; }
   }
 
 
@@ -1487,10 +1734,22 @@
     background:rgba(255,255,255,.065);
     border-color:rgba(255,255,255,.08);
   }
+  .bottom-social-glider{
+    position:absolute; top:7px; bottom:7px; left:7px;
+    width:calc((100% - 20px) / 2);
+    border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.075));
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22), 0 8px 24px rgba(0,0,0,.13);
+    transform:translate3d(calc(var(--bottom-index, 0) * (100% + 6px)),0,0);
+    transition:transform .46s cubic-bezier(.22,1,.36,1), opacity .2s ease;
+    pointer-events:none; opacity:0; z-index:0; will-change:transform;
+  }
+  .bottom-social-nav.has-active .bottom-social-glider{ opacity:1; }
   .bottom-social-btn.active{
-    background:color-mix(in srgb, #fff 10%, transparent);
-    border-color:color-mix(in srgb, #fff 18%, var(--line));
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.13), 0 5px 18px rgba(0,0,0,.10);
+    background:transparent;
+    border-color:transparent;
+    box-shadow:none;
   }
 
   /* Genel sohbet çevrimiçi göstergesi */
@@ -1672,6 +1931,31 @@
   .privacy-row input[type="checkbox"]{ width:18px; height:18px; accent-color:var(--blue); flex:0 0 auto; }
   .privacy-hidden{ color:var(--muted) !important; font-style:italic; font-weight:600 !important; }
 
+
+  /* ---------- Liquid Glass UI reform: strategic surfaces only ---------- */
+  section.card{
+    background:linear-gradient(180deg, color-mix(in srgb, var(--panel) 94%, rgba(255,255,255,.045)), color-mix(in srgb, var(--panel) 98%, transparent));
+    border-color:rgba(255,255,255,.085);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.055), 0 12px 34px rgba(0,0,0,.10);
+  }
+  .room-card, .dm-container, .stopwatch-box{
+    border-color:rgba(255,255,255,.09);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.045);
+  }
+  .overview-card, .hero-profile-card, .streak-card{ isolation:isolate; }
+  .overview-card::before, .streak-card::before{
+    content:""; position:absolute; inset:0; border-radius:inherit;
+    background:linear-gradient(115deg, rgba(255,255,255,.055), transparent 34%, rgba(255,255,255,.016) 70%, transparent);
+    pointer-events:none; z-index:-1;
+  }
+  @media (hover:hover){
+    .overview-card{ transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+    .overview-card:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,.145); box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 18px 42px rgba(0,0,0,.16); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .seg-glider, .tab-glider, .bottom-social-glider, .tab-btn, .seg-btn, .bottom-social-btn, .overview-card{ transition:none !important; }
+    .voice-indicator{ animation:none !important; }
+  }
 </style>
 </head>
 <body>
@@ -1724,10 +2008,9 @@
   <div class="tab-bar" id="tabBar"></div>
 
   <div class="tab-panel" id="tab-ozet">
-    <p class="sub" style="margin: 0 0 14px;">Günlük çalışma saatlerini ve deneme netlerini kaydet, gelişimini grafikte gör. Verilerin hesabınla senkronize saklanır.</p>
     <div id="profileCardWrap"></div>
-    <div id="streakCardWrap"></div>
     <div class="stats" id="statsBar"></div>
+    <div id="streakCardWrap"></div>
   </div>
 
   <div class="tab-panel" id="tab-calisma" style="display:none">
@@ -2428,6 +2711,61 @@
     return Math.round(totalMinutes) + streakXp;
   }
 
+  function getGreetingLabel(){
+    const hour = new Date().getHours();
+    if(hour < 12) return 'Günaydın';
+    if(hour < 18) return 'Tünaydın';
+    return 'İyi akşamlar';
+  }
+
+  function firstNameOf(name){
+    const raw = String(name || '').trim();
+    if(!raw) return 'Kullanıcı';
+    return raw.split(/\s+/)[0];
+  }
+
+  function getStudyHoursForDate(dateStr){
+    return studyEntries
+      .filter(e => e.date === dateStr)
+      .reduce((sum,e)=> sum + Number(e.hours || 0), 0);
+  }
+
+  function getLast7StudyBars(){
+    const data = [];
+    const dayLabels = ['Paz','Pzt','Sal','Çar','Per','Cum','Cts'];
+    for(let i=6;i>=0;i--){
+      const iso = addDaysISO(todayStr(), -i);
+      const dt = new Date(iso + 'T00:00:00');
+      data.push({
+        date: iso,
+        label: dayLabels[dt.getDay()],
+        hours: getStudyHoursForDate(iso)
+      });
+    }
+    return data;
+  }
+
+  function getExamSnapshot(type){
+    const arr = examEntries.filter(e => e.type === type);
+    if(arr.length === 0) return { last:null, diff:null };
+    const last = Number(arr[arr.length - 1].net);
+    const prev = arr.length > 1 ? Number(arr[arr.length - 2].net) : null;
+    return { last, diff: prev === null ? null : round2(last - prev) };
+  }
+
+  function getStopwatchNowMs(){
+    const acc = Number(stopwatchAccumulatedMs) || 0;
+    const start = Number(stopwatchSegmentStartMs) || Date.now();
+    if(stopwatchStatus === 'running') return acc + Math.max(0, Date.now() - start);
+    return acc;
+  }
+
+  function getOverviewActionLabel(){
+    if(stopwatchStatus === 'running') return 'Kronometreye dön';
+    if(stopwatchStatus === 'paused') return 'Moladan dön';
+    return 'Çalışmaya başla';
+  }
+
   function renderStreakCard(){
     const wrap = document.getElementById('streakCardWrap');
     if(!wrap) return;
@@ -2602,11 +2940,28 @@
   const TOP_TAB_IDS = new Set(['ozet','calisma','netler','hedef','sihirbaz','siralama','sohbet']);
   let activeTab = 'ozet';
 
+  window.switchTab = function(tabId){
+    if(!TABS.some(([id]) => id === tabId)) return;
+    activeTab = tabId;
+    if(tabId === 'ozet'){
+      renderProfileCard();
+      renderStats();
+      renderStreakCard();
+    }
+    renderTabBar();
+    showActiveTab();
+    try{ window.scrollTo({ top: 0, behavior: 'smooth' }); }catch(_){ window.scrollTo(0,0); }
+  };
+
   function renderBottomSocialNav(){
     const wrap = document.getElementById('bottomSocialNav');
     if(!wrap) return;
     const reqBadge = friendRequests.length ? `<span class="bottom-social-badge">${friendRequests.length}</span>` : '';
+    const socialActive = activeTab === 'arkadaslar' || activeTab === 'dm';
+    wrap.classList.toggle('has-active', socialActive);
+    wrap.style.setProperty('--bottom-index', activeTab === 'dm' ? 1 : 0);
     wrap.innerHTML = `
+      <div class="bottom-social-glider" aria-hidden="true"></div>
       <button type="button" class="bottom-social-btn ${activeTab==='arkadaslar'?'active':''}" data-bottom-tab="arkadaslar">
         <span class="nav-icon">👥</span><span>Arkadaşlar</span>${reqBadge}
       </button>
@@ -2616,25 +2971,34 @@
     `;
     wrap.querySelectorAll('[data-bottom-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
-        activeTab = btn.getAttribute('data-bottom-tab');
-        renderTabBar();
-        showActiveTab();
+        switchTab(btn.getAttribute('data-bottom-tab'));
       });
     });
   }
 
+  function updateTopTabGlider(){
+    const wrap = document.getElementById('tabBar');
+    if(!wrap) return;
+    const glider = wrap.querySelector('.tab-glider');
+    const active = wrap.querySelector('.tab-btn.active');
+    const hasActive = !!active && TOP_TAB_IDS.has(activeTab);
+    wrap.classList.toggle('has-active', hasActive);
+    if(!glider || !hasActive) return;
+    glider.style.width = active.offsetWidth + 'px';
+    glider.style.transform = `translate3d(${active.offsetLeft}px,0,0)`;
+  }
+
   function renderTabBar(){
     const wrap = document.getElementById('tabBar');
-    wrap.innerHTML = TABS.filter(([id]) => TOP_TAB_IDS.has(id)).map(([id,label]) =>
+    wrap.innerHTML = '<div class="tab-glider" aria-hidden="true"></div>' + TABS.filter(([id]) => TOP_TAB_IDS.has(id)).map(([id,label]) =>
       `<button type="button" class="tab-btn ${id===activeTab?'active':''}" data-tab="${id}">${label}</button>`
     ).join('');
     wrap.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        activeTab = btn.getAttribute('data-tab');
-        renderTabBar();
-        showActiveTab();
+        switchTab(btn.getAttribute('data-tab'));
       });
     });
+    requestAnimationFrame(updateTopTabGlider);
     renderBottomSocialNav();
   }
 
@@ -2652,6 +3016,14 @@
       if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 30);
     }
   }
+
+  window.addEventListener('resize', () => requestAnimationFrame(updateTopTabGlider), { passive:true });
+  setInterval(() => {
+    if(activeTab === 'ozet'){
+      renderProfileCard();
+      renderStats();
+    }
+  }, 60000);
 
   // ---------- Small helpers ----------
 
@@ -3063,6 +3435,7 @@
 
   function ensureStopwatchTick(){
     if(stopwatchTickHandle) return;
+    let ozetRefreshTick = 0;
     stopwatchTickHandle = setInterval(() => {
       if(stopwatchStatus === 'running'){
         const timeDisplay = document.getElementById('stopwatchTimeDisplay');
@@ -3073,6 +3446,11 @@
           const pauseMs = Math.max(0, Date.now() - (Number(stopwatchSegmentStartMs) || Date.now()));
           pauseDisplay.textContent = '☕ Molada: ' + fmtHMS(pauseMs);
         }
+      }
+      ozetRefreshTick += 1;
+      if(activeTab === 'ozet' && (stopwatchStatus === 'running' || stopwatchStatus === 'paused') && ozetRefreshTick % 10 === 0){
+        renderProfileCard();
+        renderStats();
       }
     }, 1000);
   }
@@ -3278,39 +3656,90 @@
 
   function renderStats(){
     const wrap = document.getElementById('statsBar');
-    const totalHours = studyEntries.reduce((s,e)=> s + Number(e.hours), 0);
-    const avgHours = studyEntries.length ? (totalHours / studyEntries.length) : 0;
+    if(!wrap) return;
+    wrap.className = 'overview-grid';
 
-    const tytEntries = examEntries.filter(e=>e.type==='TYT');
-    const aytEntries = examEntries.filter(e=>e.type==='AYT');
-    const lastTyt = tytEntries.length ? tytEntries[tytEntries.length-1].net : null;
-    const lastAyt = aytEntries.length ? aytEntries[aytEntries.length-1].net : null;
-
+    const todayIso = todayStr();
+    const todayHours = getStudyHoursForDate(todayIso);
     const weekHours = filterByPeriod(studyEntries, 'week').reduce((s,e)=> s + Number(e.hours), 0);
-    const goalText = profile && profile.studyGoal
-      ? round1(weekHours) + ' / ' + profile.studyGoal + 's'
-      : round1(weekHours) + 's';
+    const metrics = computeStreakMetrics();
+    const points = computePoints();
+    const { current, next } = getRankInfo(points);
+    const rankPct = next ? Math.max(5, Math.min(100, Math.round((points - current.min) / Math.max(1, next.min - current.min) * 100))) : 100;
+    const weeklyGoal = Number(profile && profile.studyGoal) || 0;
+    const weeklyGoalPct = weeklyGoal > 0 ? Math.max(0, Math.min(100, Math.round((weekHours / weeklyGoal) * 100))) : 0;
+    const focusText = stopwatchStatus === 'running'
+      ? `⏱ Aktif oturumun açık · ${fmtHMS(getStopwatchNowMs())}`
+      : (stopwatchStatus === 'paused' ? '☕ Şu an moladasın' : 'Bugün odak seansına hazır görünüyorsun.');
+
+    const tyt = getExamSnapshot('TYT');
+    const ayt = getExamSnapshot('AYT');
+    function trendHtml(diff){
+      if(diff === null) return '<div class="overview-trend flat">İlk kayıt</div>';
+      if(diff > 0) return `<div class="overview-trend up">↑ +${Math.abs(diff)}</div>`;
+      if(diff < 0) return `<div class="overview-trend down">↓ -${Math.abs(diff)}</div>`;
+      return '<div class="overview-trend flat">→ Değişim yok</div>';
+    }
+
+    const bars = getLast7StudyBars();
+    const maxHours = Math.max(1, ...bars.map(d => d.hours));
+    const barsHtml = bars.map(d => {
+      const h = Math.max(8, Math.round((d.hours / maxHours) * 82));
+      return `<div class="mini-bar-item">
+        <div class="mini-bar-track"><div class="mini-bar" style="height:${h}px;"></div></div>
+        <div class="mini-bar-value">${d.hours > 0 ? round1(d.hours) + 's' : '0'}</div>
+        <div class="mini-bar-label">${d.label}</div>
+      </div>`;
+    }).join('');
 
     wrap.innerHTML = `
-      <div class="stat">
-        <div class="num">${round1(totalHours)}</div>
-        <div class="label">Toplam saat</div>
+      <div class="overview-card">
+        <div class="overview-label">Bugün</div>
+        <div class="overview-value">${fmtHours(todayHours)}</div>
+        <p class="overview-sub">${focusText}</p>
+        <div class="overview-inline-row">
+          <span class="overview-micro-pill">🔥 ${metrics.current} aktif gün</span>
+          <span class="overview-micro-pill">❄️ ${metrics.freezeRemaining}/2 off-day</span>
+          ${weeklyGoal > 0 ? `<span class="overview-micro-pill">🎯 %${weeklyGoalPct} hedef</span>` : ''}
+        </div>
+        <button type="button" class="overview-action-btn" onclick="switchTab('calisma')">${getOverviewActionLabel()}</button>
       </div>
-      <div class="stat">
-        <div class="num">${round1(avgHours)}</div>
-        <div class="label">Günlük ortalama</div>
+
+      <div class="overview-card">
+        <div class="overview-label">Rütbe / XP</div>
+        <div class="overview-rank-row">
+          <div>
+            <div class="overview-value" style="font-size:24px; margin-bottom:4px;">${current.emoji} ${current.name}</div>
+            <p class="overview-sub">${points} XP topladın.</p>
+          </div>
+          <button type="button" class="rank-badge rank-badge-clickable" onclick="openRankJourneyModal()" title="Rütbe yolculuğunu aç" style="border:0; align-self:flex-start;">Detay</button>
+        </div>
+        <div class="rank-progress-track"><div class="rank-progress-fill" style="width:${rankPct}%"></div></div>
+        <div class="overview-rank-note">${next ? `${next.emoji} ${next.name} rütbesine ${next.min - points} XP kaldı.` : 'En yüksek rütbedesin; devam et.'}</div>
       </div>
-      <div class="stat">
-        <div class="num">${lastTyt !== null ? lastTyt : '—'}</div>
-        <div class="label">Son TYT net</div>
+
+      <div class="overview-card">
+        <div class="overview-label">Son Denemeler</div>
+        <div class="overview-duo">
+          <div class="overview-duo-item">
+            <div class="k">TYT</div>
+            <div class="v">${tyt.last !== null ? round1(tyt.last) : '—'}</div>
+            ${trendHtml(tyt.diff)}
+          </div>
+          <div class="overview-duo-item">
+            <div class="k">AYT</div>
+            <div class="v">${ayt.last !== null ? round1(ayt.last) : '—'}</div>
+            ${trendHtml(ayt.diff)}
+          </div>
+        </div>
+        <p class="overview-sub" style="margin-top:12px;">Netlerini detaylı görmek veya yeni kayıt eklemek için Netler ekranına geçebilirsin.</p>
       </div>
-      <div class="stat">
-        <div class="num">${lastAyt !== null ? lastAyt : '—'}</div>
-        <div class="label">Son AYT net</div>
-      </div>
-      <div class="stat">
-        <div class="num" style="font-size:17px;">${goalText}</div>
-        <div class="label">Haftalık Hedef</div>
+
+      <div class="overview-card">
+        <div class="overview-label">Bu Hafta</div>
+        <div class="overview-value">${fmtHours(weekHours)}</div>
+        <p class="overview-sub">Son 7 günün çalışma ritmi. ${weeklyGoal > 0 ? `Haftalık hedefinin %${weeklyGoalPct}'indesin.` : 'Henüz haftalık hedef belirlemedin.'}</p>
+        <div class="mini-bars">${barsHtml}</div>
       </div>
     `;
   }
@@ -3320,7 +3749,9 @@
   const PERIODS = [['week','Bu Hafta'],['month','Bu Ay'],['year','Bu Yıl'],['all','Tümü']];
 
   function segControlHtml(current){
-    return '<div class="seg-control">' +
+    const currentIndex = Math.max(0, PERIODS.findIndex(([val]) => val === current));
+    return `<div class="seg-control" style="--seg-count:${PERIODS.length}; --seg-index:${currentIndex};">` +
+      '<div class="seg-glider"></div>' +
       PERIODS.map(([val,label]) =>
         `<button type="button" class="seg-btn ${val===current?'active':''}" data-period="${val}">${label}</button>`
       ).join('') +
@@ -3328,9 +3759,19 @@
   }
 
   function wireSegControl(wrapEl, getCurrent, onChange){
-    wrapEl.querySelectorAll('.seg-btn').forEach(btn => {
+    const control = wrapEl.querySelector('.seg-control');
+    wrapEl.querySelectorAll('.seg-btn').forEach((btn, index) => {
       btn.addEventListener('click', () => {
-        onChange(btn.getAttribute('data-period'));
+        const value = btn.getAttribute('data-period');
+        if(value === getCurrent()) return;
+        if(control){
+          control.style.setProperty('--seg-index', index);
+          control.querySelectorAll('.seg-btn').forEach(b => b.classList.toggle('active', b === btn));
+          clearTimeout(control._liquidChangeTimer);
+          control._liquidChangeTimer = setTimeout(() => onChange(value), 210);
+        } else {
+          onChange(value);
+        }
       });
     });
   }
@@ -3944,21 +4385,46 @@
     if(!wrap) return;
     const points = computePoints();
     const { current, next } = getRankInfo(points);
-    const pct = next ? Math.max(4, Math.min(100, Math.round((points - current.min) / (next.min - current.min) * 100))) : 100;
+    const pct = next ? Math.max(4, Math.min(100, Math.round((points - current.min) / Math.max(1, next.min - current.min) * 100))) : 100;
     const avatar = (profile && profile.avatar) || '🙂';
     const name = (profile && profile.name) || (auth.currentUser && (auth.currentUser.displayName || auth.currentUser.email)) || 'Kullanıcı';
+    const firstName = firstNameOf(name);
+    const greeting = getGreetingLabel();
+    const todayHours = getStudyHoursForDate(todayStr());
+    const streak = computeStreakMetrics();
+    const nextRankText = next ? `${next.min - points} XP sonra ${next.emoji} ${next.name}` : 'Maksimum rütbedesin';
+    const weekHours = filterByPeriod(studyEntries, 'week').reduce((s,e)=> s + Number(e.hours), 0);
+    const goalHours = Number(profile && profile.studyGoal) || 0;
+    const weekGoalText = goalHours > 0 ? `${fmtHours(weekHours)} · hedefin %${Math.max(0, Math.min(100, Math.round((weekHours / goalHours) * 100)))}'i` : `${fmtHours(weekHours)} bu hafta`;
 
     wrap.innerHTML = `
-      <div class="profile-card">
-        <div class="profile-avatar rank-avatar-frame" style="${rankFrameVar(current.name)}">${avatarInnerHtml(profile && profile.photo, avatar)}</div>
-        <div class="profile-info">
-          <div class="profile-name-row">
-            <span class="profile-name">${name}</span>
-            <button type="button" class="rank-badge rank-badge-clickable" onclick="openRankJourneyModal()" title="Tüm rütbeleri ve XP ilerlemeni gör" style="border:0;">${current.emoji} ${current.name}</button>
+      <div class="profile-card hero-profile-card">
+        <div class="hero-profile-main">
+          <div class="hero-kicker">Özet paneli</div>
+          <h2 class="hero-greeting">${greeting}, ${escapeHtml(firstName)} 👋</h2>
+          <p class="hero-greeting-sub">Bugünün ritmini, rütbeni ve son gelişimini tek bakışta gör. Çalışma ekranın ayrı, burası ise senin kısa kontrol merkezi.</p>
+          <div class="hero-chip-row">
+            <span class="hero-chip">⏱ Bugün ${fmtHours(todayHours)}</span>
+            <span class="hero-chip">🔥 ${streak.current} aktif gün</span>
+            <span class="hero-chip">📈 ${points} XP</span>
+            <span class="hero-chip">🎯 ${weekGoalText}</span>
           </div>
-          <div class="profile-points"><b>${points}</b> puan</div>
-          <div class="rank-progress-track"><div class="rank-progress-fill" style="width:${pct}%"></div></div>
-          <div class="rank-progress-note">${next ? (next.min - points) + ' puan sonra ' + next.emoji + ' ' + next.name : 'En yüksek rütbedesin!'}</div>
+        </div>
+
+        <div class="hero-profile-side">
+          <div class="hero-user-row">
+            <div class="profile-avatar rank-avatar-frame" style="${rankFrameVar(current.name)}">${avatarInnerHtml(profile && profile.photo, avatar)}</div>
+            <div class="hero-user-meta">
+              <div class="hero-user-name">${escapeHtml(name)}</div>
+              <button type="button" class="rank-badge rank-badge-clickable" onclick="openRankJourneyModal()" title="Tüm rütbeleri ve XP ilerlemeni gör" style="border:0; margin-top:6px;">${current.emoji} ${current.name}</button>
+            </div>
+          </div>
+          <div>
+            <div class="profile-points"><b>${points}</b> puan</div>
+            <div class="rank-progress-track"><div class="rank-progress-fill" style="width:${pct}%"></div></div>
+            <div class="rank-progress-note">${nextRankText}</div>
+          </div>
+          <div class="hero-side-note">Rütbe, çalışma süren ve seri bonusunun birleşimiyle yükselir. Gün içinde hızlıca durumuna bakmak için ideal yer burası.</div>
         </div>
       </div>
     `;
