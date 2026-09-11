@@ -1956,6 +1956,152 @@
     .seg-glider, .tab-glider, .bottom-social-glider, .tab-btn, .seg-btn, .bottom-social-btn, .overview-card{ transition:none !important; }
     .voice-indicator{ animation:none !important; }
   }
+
+
+  /* ===== Liquid Glass v2 overrides ===== */
+  .tab-bar{
+    gap:6px;
+    padding:5px;
+    border-radius:22px;
+    background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.025));
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.09),inset 0 -1px 0 rgba(255,255,255,.03),0 14px 34px rgba(0,0,0,.12);
+  }
+  .tab-glider{
+    left:0; top:5px; height:calc(100% - 10px);
+    border-radius:18px;
+    background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.105));
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 -8px 18px rgba(255,255,255,.045),0 15px 30px rgba(0,0,0,.14);
+    transition:transform .46s cubic-bezier(.22,.88,.22,1),width .36s cubic-bezier(.22,.88,.22,1),opacity .18s ease;
+    overflow:hidden;
+  }
+  .tab-glider::before{
+    content:"";
+    position:absolute; inset:1px;
+    border-radius:inherit;
+    background:linear-gradient(140deg,rgba(255,255,255,.17),transparent 35%,rgba(255,255,255,.055) 72%,transparent);
+    pointer-events:none;
+  }
+  .tab-glider::after{
+    content:"";
+    position:absolute; left:10px; right:10px; top:3px; height:35%;
+    border-radius:999px;
+    background:linear-gradient(180deg,rgba(255,255,255,.25),transparent);
+    opacity:.55;
+    pointer-events:none;
+  }
+  .tab-btn{
+    border-radius:17px;
+    padding:11px 17px;
+    font-weight:800;
+    letter-spacing:-.01em;
+    background:linear-gradient(180deg,rgba(255,255,255,.115),rgba(255,255,255,.035));
+    border-color:rgba(255,255,255,.10);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 10px 24px rgba(0,0,0,.14);
+    transition:transform .22s ease,color .22s ease,border-color .22s ease,box-shadow .24s ease,background .24s ease;
+  }
+  .tab-btn:active{ transform:scale(.985); }
+  .tab-btn.active{ background:transparent; border-color:transparent; box-shadow:none; }
+
+  .seg-control{
+    border-radius:18px;
+    padding:4px;
+    background:linear-gradient(180deg,rgba(255,255,255,.115),rgba(255,255,255,.03));
+    border-color:rgba(255,255,255,.11);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.11),0 14px 28px rgba(0,0,0,.13);
+  }
+  .seg-glider{
+    top:4px; bottom:4px;
+    left:calc(4px + (100% - 8px) * var(--seg-index) / var(--seg-count));
+    width:calc((100% - 8px) / var(--seg-count));
+    border-radius:14px;
+    background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.12));
+    border:1px solid rgba(255,255,255,.13);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 8px 20px rgba(0,0,0,.13);
+    transition:left .44s cubic-bezier(.22,.88,.22,1),width .34s cubic-bezier(.22,.88,.22,1),transform .28s ease;
+  }
+  .seg-control.liquid-moving .seg-glider{ transform:scaleX(1.045) scaleY(.985); }
+  .seg-btn{ transition:color .22s ease,transform .2s ease,opacity .2s ease; }
+  .seg-btn:active{ transform:scale(.985); }
+
+  .overview-grid{ gap:14px; }
+  .overview-card{
+    border-radius:22px;
+    background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.04));
+    border-color:rgba(255,255,255,.11);
+    backdrop-filter:blur(24px) saturate(165%);
+    -webkit-backdrop-filter:blur(24px) saturate(165%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 16px 38px rgba(0,0,0,.15);
+  }
+  .overview-card.feature{
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:minmax(0,1.25fr) minmax(250px,.85fr);
+    gap:16px;
+    padding:18px;
+    background:linear-gradient(135deg,rgba(255,255,255,.125),rgba(255,255,255,.045));
+  }
+  .overview-card.feature::before{
+    content:"";
+    position:absolute; inset:-20% auto auto -5%;
+    width:220px; height:220px; border-radius:50%;
+    background:radial-gradient(circle,rgba(76,141,255,.17),rgba(76,141,255,.02) 68%,transparent 74%);
+    pointer-events:none;
+  }
+  .overview-feature-main,.overview-feature-side{position:relative;z-index:1}
+  .overview-feature-kicker{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:5px 10px;border-radius:999px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.09);
+    color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.04em;margin-bottom:10px;
+  }
+  .overview-feature-value{font-family:Georgia,serif;font-size:clamp(33px,5vw,42px);line-height:1.02;margin:0 0 7px;letter-spacing:-.03em}
+  .overview-feature-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+  .overview-feature-stat{padding:12px;border-radius:18px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.07);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+  .overview-feature-stat .k{color:var(--muted);font-size:11px;margin-bottom:5px}
+  .overview-feature-stat .v{font-family:Georgia,serif;font-size:21px}
+  .overview-feature-side{display:grid;gap:10px;align-content:stretch}
+  .overview-side-card{padding:13px 14px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.09)}
+  .overview-side-card .t{color:var(--muted);font-size:11px;font-weight:700;margin-bottom:4px}
+  .overview-side-card .v{font-family:Georgia,serif;font-size:20px;line-height:1.2}
+  .overview-side-card .s{color:var(--muted);font-size:12px;line-height:1.45;margin-top:5px}
+
+  .streak-card{
+    border-radius:22px;
+    background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.04));
+    border-color:rgba(255,255,255,.10);
+    backdrop-filter:blur(22px) saturate(160%);
+    -webkit-backdrop-filter:blur(22px) saturate(160%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 16px 36px rgba(0,0,0,.14);
+  }
+  .streak-card::before{content:"";position:absolute;inset:-14% auto auto -8%;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,rgba(132,255,112,.14),rgba(132,255,112,.02) 68%,transparent 74%);pointer-events:none}
+  .streak-headline,.streak-sub,.streak-badges,.streak-callout,.streak-highlight-row{position:relative;z-index:1}
+  .streak-headline .count{font-size:clamp(22px,4vw,30px);line-height:1.1}
+  .streak-sub{font-size:12.5px;line-height:1.5;max-width:96%}
+  .streak-callout{display:flex;align-items:center;gap:8px;padding:14px 15px;margin-bottom:14px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:13px}
+  .streak-callout b{font-size:17px}
+  .streak-highlight-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+  .streak-highlight{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);font-size:12px;font-weight:800}
+  .streak-badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:12px;overflow:visible;margin-top:14px;padding-bottom:0}
+  .streak-badge{width:auto;min-width:0;padding:11px 8px 9px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.065)}
+  .streak-badge-mark{position:relative;width:62px;height:62px;margin-bottom:8px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+  .streak-badge img.streak-badge-cat{width:46px;height:46px;object-fit:contain;filter:grayscale(1);opacity:.28;transform:none!important;margin:0!important}
+  .streak-badge-tag{position:absolute;right:-5px;bottom:-5px;min-width:25px;height:25px;padding:0 6px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(10,24,20,.92);border:1px solid rgba(255,255,255,.14);font-size:10px;font-weight:900;color:rgba(255,255,255,.65);box-shadow:0 6px 14px rgba(0,0,0,.20)}
+  .streak-badge.reached .streak-badge-mark{background:linear-gradient(180deg,rgba(159,255,96,.25),rgba(159,255,96,.08));border-color:rgba(159,255,96,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 26px rgba(113,206,61,.16)}
+  .streak-badge.reached img.streak-badge-cat{filter:none;opacity:1}
+  .streak-badge.reached .streak-badge-tag{color:#E9FFDB;border-color:rgba(159,255,96,.25)}
+  .streak-badge-track{height:5px;border-radius:999px;background:rgba(255,255,255,.05)}
+  .streak-badge-fill{border-radius:inherit}
+
+  @media (max-width:760px){
+    .overview-card.feature{grid-template-columns:1fr}
+    .overview-feature-stats{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .tab-glider,.seg-glider,.tab-btn,.seg-btn{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  }
+
 </style>
 </head>
 <body>
@@ -2771,39 +2917,40 @@
     if(!wrap) return;
     const metrics = computeStreakMetrics();
     const { current, longest, freezeUsedThisWeek, freezeRemaining } = metrics;
+    const activeToday = activeStudyDaySet().has(todayStr());
+    const nextXp = activeToday ? current * 20 : (current + 1) * 20;
 
     const badgesHtml = STREAK_MILESTONES.map((m, idx) => {
       const reached = current >= m.days;
       const prevDays = idx > 0 ? STREAK_MILESTONES[idx-1].days : 0;
       const span = m.days - prevDays;
-      const pct = reached ? 100 : Math.max(0, Math.min(100, Math.round(((current - prevDays) / span) * 100)));
+      const pct = reached ? 100 : Math.max(0, Math.min(100, Math.round(((current - prevDays) / Math.max(1, span)) * 100)));
+      const tag = m.days < 30 ? String(m.days) : (m.days === 30 ? '1A' : m.days === 60 ? '2A' : m.days === 90 ? '3A' : m.days === 180 ? '6A' : '12A');
       return `
         <div class="streak-badge ${reached ? 'reached' : ''}">
-          <div class="streak-badge-art"><img src="${m.img}" alt="${m.label}"></div>
+          <div class="streak-badge-mark">
+            <img class="streak-badge-cat" src="${IMG_ICON_URL}" alt="">
+            <span class="streak-badge-tag">${tag}</span>
+          </div>
           <div class="b-label">🔥 ${m.label}</div>
           <div class="streak-badge-track"><div class="streak-badge-fill" style="width:${pct}%"></div></div>
-        </div>
-      `;
+        </div>`;
     }).join('');
 
     const headline = current > 0 ? `${current} aktif günlük serin var` : 'Serini bugün başlat';
     wrap.innerHTML = `
       <div class="streak-card">
         <img class="streak-card-deco" src="${IMG_ICON_URL}" alt="">
-        <div class="streak-headline">
-          <span class="flame">🔥</span>
-          <span class="count">${headline}</span>
-        </div>
+        <div class="streak-headline"><span class="flame">🔥</span><span class="count">${headline}</span></div>
         <p class="streak-sub">Her gün en az 1 saat çalışma veya 1 deneme ile serini sürdür. <b>Seri bonusu = aktif seri günü × 20 XP.</b> Örneğin 5. gün +100 XP, 10. gün +200 XP kazandırır.${longest > current ? ' En uzun serin: ' + longest + ' aktif gün.' : ''}</p>
-        <div class="rank-xp-explainer" style="margin:0 0 12px;">${activeStudyDaySet().has(todayStr()) ? `🔥 Bugünkü seri bonusun: <b>+${current * 20} XP</b>` : `🎯 Bugün serini sürdürürsen: <b>+${(current + 1) * 20} XP</b>`}</div>
-        <div class="streak-freeze-row">
-          <span class="streak-freeze-chip">❄️ Haftalık dondurma: ${freezeUsedThisWeek}/2 kullanıldı</span>
-          <span class="streak-freeze-chip">🛡️ ${freezeRemaining} off-day hakkın kaldı</span>
+        <div class="streak-callout">${activeToday ? `🔥 Bugünkü seri bonusun: <b>+${nextXp} XP</b>` : `🎯 Bugün serini sürdürürsen: <b>+${nextXp} XP</b>`}</div>
+        <div class="streak-highlight-row">
+          <span class="streak-highlight">❄️ Haftalık dondurma: ${freezeUsedThisWeek}/2</span>
+          <span class="streak-highlight">🛡️ ${freezeRemaining} off-day hakkın kaldı</span>
         </div>
-        <p class="streak-sub" style="margin-top:-7px;">Aktif bir serin varken haftada 2 boş gün otomatik dondurulur. Bu günler XP kazandırmaz ama serini bozmaz; aynı haftadaki 3. boş gün seriyi sıfırlar.</p>
+        <p class="streak-sub">Aktif bir serin varken haftada 2 boş gün otomatik dondurulur. Bu günler XP kazandırmaz ama serini bozmaz; aynı haftadaki 3. boş gün seriyi sıfırlar.</p>
         <div class="streak-badges">${badgesHtml}</div>
-      </div>
-    `;
+      </div>`;
   }
 
   function getRankInfo(points){
@@ -2948,7 +3095,8 @@
       renderStats();
       renderStreakCard();
     }
-    renderTabBar();
+    syncTopTabBarState();
+    renderBottomSocialNav();
     showActiveTab();
     try{ window.scrollTo({ top: 0, behavior: 'smooth' }); }catch(_){ window.scrollTo(0,0); }
   };
@@ -2976,7 +3124,7 @@
     });
   }
 
-  function updateTopTabGlider(){
+  function updateTopTabGlider(useMotion = true){
     const wrap = document.getElementById('tabBar');
     if(!wrap) return;
     const glider = wrap.querySelector('.tab-glider');
@@ -2984,21 +3132,50 @@
     const hasActive = !!active && TOP_TAB_IDS.has(activeTab);
     wrap.classList.toggle('has-active', hasActive);
     if(!glider || !hasActive) return;
-    glider.style.width = active.offsetWidth + 'px';
-    glider.style.transform = `translate3d(${active.offsetLeft}px,0,0)`;
+
+    const nextX = active.offsetLeft;
+    const nextW = active.offsetWidth;
+    const prevX = Number(glider.dataset.x || nextX);
+    const prevW = Number(glider.dataset.w || nextW);
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if(useMotion && !reduced && glider.animate && (Math.abs(prevX-nextX)>1 || Math.abs(prevW-nextW)>1)){
+      try{
+        glider.animate([
+          {transform:`translate3d(${prevX}px,0,0) scale(1)`,width:prevW+'px'},
+          {transform:`translate3d(${(prevX+nextX)/2}px,0,0) scale(1.035,.985)`,width:(Math.max(prevW,nextW)+14)+'px',offset:.52},
+          {transform:`translate3d(${nextX}px,0,0) scale(1)`,width:nextW+'px'}
+        ],{duration:420,easing:'cubic-bezier(.24,.86,.22,1)'});
+      }catch(_){ }
+    }
+
+    glider.style.width = nextW + 'px';
+    glider.style.transform = `translate3d(${nextX}px,0,0)`;
+    glider.dataset.x = String(nextX);
+    glider.dataset.w = String(nextW);
+    try{ active.scrollIntoView({inline:'center',block:'nearest',behavior:reduced?'auto':'smooth'}); }catch(_){ }
+  }
+
+  function syncTopTabBarState(){
+    const wrap = document.getElementById('tabBar');
+    if(!wrap) return;
+    wrap.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-tab') === activeTab);
+    });
+    requestAnimationFrame(() => updateTopTabGlider(true));
   }
 
   function renderTabBar(){
     const wrap = document.getElementById('tabBar');
-    wrap.innerHTML = '<div class="tab-glider" aria-hidden="true"></div>' + TABS.filter(([id]) => TOP_TAB_IDS.has(id)).map(([id,label]) =>
-      `<button type="button" class="tab-btn ${id===activeTab?'active':''}" data-tab="${id}">${label}</button>`
-    ).join('');
-    wrap.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        switchTab(btn.getAttribute('data-tab'));
+    if(!wrap.querySelector('.tab-btn')){
+      wrap.innerHTML = '<div class="tab-glider" aria-hidden="true"></div>' + TABS.filter(([id]) => TOP_TAB_IDS.has(id)).map(([id,label]) =>
+        `<button type="button" class="tab-btn" data-tab="${id}">${label}</button>`
+      ).join('');
+      wrap.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
       });
-    });
-    requestAnimationFrame(updateTopTabGlider);
+    }
+    syncTopTabBarState();
     renderBottomSocialNav();
   }
 
@@ -3661,16 +3838,19 @@
 
     const todayIso = todayStr();
     const todayHours = getStudyHoursForDate(todayIso);
-    const weekHours = filterByPeriod(studyEntries, 'week').reduce((s,e)=> s + Number(e.hours), 0);
+    const weekHours = filterByPeriod(studyEntries, 'week').reduce((sum,e)=> sum + Number(e.hours), 0);
+    const monthHours = filterByPeriod(studyEntries, 'month').reduce((sum,e)=> sum + Number(e.hours), 0);
     const metrics = computeStreakMetrics();
     const points = computePoints();
     const { current, next } = getRankInfo(points);
-    const rankPct = next ? Math.max(5, Math.min(100, Math.round((points - current.min) / Math.max(1, next.min - current.min) * 100))) : 100;
+    const rankPct = next ? Math.max(5, Math.min(100, Math.round((points-current.min)/Math.max(1,next.min-current.min)*100))) : 100;
     const weeklyGoal = Number(profile && profile.studyGoal) || 0;
-    const weeklyGoalPct = weeklyGoal > 0 ? Math.max(0, Math.min(100, Math.round((weekHours / weeklyGoal) * 100))) : 0;
+    const weeklyGoalPct = weeklyGoal > 0 ? Math.max(0,Math.min(100,Math.round((weekHours/weeklyGoal)*100))) : 0;
+    const activeToday = activeStudyDaySet().has(todayIso);
+    const streakXp = activeToday ? metrics.current * 20 : (metrics.current + 1) * 20;
     const focusText = stopwatchStatus === 'running'
       ? `⏱ Aktif oturumun açık · ${fmtHMS(getStopwatchNowMs())}`
-      : (stopwatchStatus === 'paused' ? '☕ Şu an moladasın' : 'Bugün odak seansına hazır görünüyorsun.');
+      : (stopwatchStatus === 'paused' ? '☕ Şu an moladasın; mola süren çalışma ekranında akıyor.' : 'Bugün odak seansına hazır görünüyorsun.');
 
     const tyt = getExamSnapshot('TYT');
     const ayt = getExamSnapshot('AYT');
@@ -3682,66 +3862,69 @@
     }
 
     const bars = getLast7StudyBars();
-    const maxHours = Math.max(1, ...bars.map(d => d.hours));
+    const maxHours = Math.max(1,...bars.map(d=>d.hours));
     const barsHtml = bars.map(d => {
-      const h = Math.max(8, Math.round((d.hours / maxHours) * 82));
-      return `<div class="mini-bar-item">
-        <div class="mini-bar-track"><div class="mini-bar" style="height:${h}px;"></div></div>
-        <div class="mini-bar-value">${d.hours > 0 ? round1(d.hours) + 's' : '0'}</div>
-        <div class="mini-bar-label">${d.label}</div>
-      </div>`;
+      const h = Math.max(8,Math.round((d.hours/maxHours)*82));
+      return `<div class="mini-bar-item"><div class="mini-bar-track"><div class="mini-bar" style="height:${h}px"></div></div><div class="mini-bar-value">${d.hours>0?round1(d.hours)+'s':'0'}</div><div class="mini-bar-label">${d.label}</div></div>`;
     }).join('');
 
     wrap.innerHTML = `
-      <div class="overview-card">
-        <div class="overview-label">Bugün</div>
-        <div class="overview-value">${fmtHours(todayHours)}</div>
-        <p class="overview-sub">${focusText}</p>
-        <div class="overview-inline-row">
-          <span class="overview-micro-pill">🔥 ${metrics.current} aktif gün</span>
-          <span class="overview-micro-pill">❄️ ${metrics.freezeRemaining}/2 off-day</span>
-          ${weeklyGoal > 0 ? `<span class="overview-micro-pill">🎯 %${weeklyGoalPct} hedef</span>` : ''}
+      <div class="overview-card feature">
+        <div class="overview-feature-main">
+          <div class="overview-feature-kicker">Bugünün özeti</div>
+          <div class="overview-feature-value">${fmtHours(todayHours)}</div>
+          <p class="overview-sub">${focusText}</p>
+          <div class="overview-inline-row">
+            <span class="overview-micro-pill">🔥 ${metrics.current} aktif gün</span>
+            <span class="overview-micro-pill">❄️ ${metrics.freezeRemaining}/2 off-day</span>
+            ${weeklyGoal>0?`<span class="overview-micro-pill">🎯 Haftalık hedef %${weeklyGoalPct}</span>`:'<span class="overview-micro-pill">🎯 Hedef ekleyebilirsin</span>'}
+          </div>
+          <div class="overview-feature-stats">
+            <div class="overview-feature-stat"><div class="k">Seri bonusu</div><div class="v">+${streakXp} XP</div></div>
+            <div class="overview-feature-stat"><div class="k">Bu hafta</div><div class="v">${fmtHours(weekHours)}</div></div>
+            <div class="overview-feature-stat"><div class="k">Bu ay</div><div class="v">${fmtHours(monthHours)}</div></div>
+          </div>
         </div>
-        <button type="button" class="overview-action-btn" onclick="switchTab('calisma')">${getOverviewActionLabel()}</button>
+        <div class="overview-feature-side">
+          <div class="overview-side-card">
+            <div class="t">Hızlı eylem</div>
+            <div class="v">${getOverviewActionLabel()}</div>
+            <div class="s">Kronometreni açmak veya devam etmek için çalışma ekranına geç.</div>
+            <button type="button" class="overview-action-btn" onclick="switchTab('calisma')">Çalışmaya Git</button>
+          </div>
+          <div class="overview-side-card">
+            <div class="t">Rütbe hedefi</div>
+            <div class="v">${current.emoji} ${current.name}</div>
+            <div class="s">${next?`${next.emoji} ${next.name} için ${next.min-points} XP kaldı.`:'En yüksek rütbedesin; ritmini koru.'}</div>
+          </div>
+        </div>
       </div>
 
       <div class="overview-card">
         <div class="overview-label">Rütbe / XP</div>
         <div class="overview-rank-row">
-          <div>
-            <div class="overview-value" style="font-size:24px; margin-bottom:4px;">${current.emoji} ${current.name}</div>
-            <p class="overview-sub">${points} XP topladın.</p>
-          </div>
-          <button type="button" class="rank-badge rank-badge-clickable" onclick="openRankJourneyModal()" title="Rütbe yolculuğunu aç" style="border:0; align-self:flex-start;">Detay</button>
+          <div><div class="overview-value" style="font-size:24px;margin-bottom:4px">${current.emoji} ${current.name}</div><p class="overview-sub">${points} XP topladın.</p></div>
+          <button type="button" class="rank-badge rank-badge-clickable" onclick="openRankJourneyModal()" style="border:0;align-self:flex-start">Detay</button>
         </div>
         <div class="rank-progress-track"><div class="rank-progress-fill" style="width:${rankPct}%"></div></div>
-        <div class="overview-rank-note">${next ? `${next.emoji} ${next.name} rütbesine ${next.min - points} XP kaldı.` : 'En yüksek rütbedesin; devam et.'}</div>
+        <div class="overview-rank-note">${next?`${next.emoji} ${next.name} rütbesine ${next.min-points} XP kaldı.`:'En yüksek rütbedesin; devam et.'}</div>
       </div>
 
       <div class="overview-card">
         <div class="overview-label">Son Denemeler</div>
         <div class="overview-duo">
-          <div class="overview-duo-item">
-            <div class="k">TYT</div>
-            <div class="v">${tyt.last !== null ? round1(tyt.last) : '—'}</div>
-            ${trendHtml(tyt.diff)}
-          </div>
-          <div class="overview-duo-item">
-            <div class="k">AYT</div>
-            <div class="v">${ayt.last !== null ? round1(ayt.last) : '—'}</div>
-            ${trendHtml(ayt.diff)}
-          </div>
+          <div class="overview-duo-item"><div class="k">TYT</div><div class="v">${tyt.last!==null?round1(tyt.last):'—'}</div>${trendHtml(tyt.diff)}</div>
+          <div class="overview-duo-item"><div class="k">AYT</div><div class="v">${ayt.last!==null?round1(ayt.last):'—'}</div>${trendHtml(ayt.diff)}</div>
         </div>
-        <p class="overview-sub" style="margin-top:12px;">Netlerini detaylı görmek veya yeni kayıt eklemek için Netler ekranına geçebilirsin.</p>
+        <p class="overview-sub" style="margin-top:12px">Netlerini detaylı görmek veya yeni kayıt eklemek için Netler ekranına geçebilirsin.</p>
       </div>
 
       <div class="overview-card">
         <div class="overview-label">Bu Hafta</div>
         <div class="overview-value">${fmtHours(weekHours)}</div>
-        <p class="overview-sub">Son 7 günün çalışma ritmi. ${weeklyGoal > 0 ? `Haftalık hedefinin %${weeklyGoalPct}'indesin.` : 'Henüz haftalık hedef belirlemedin.'}</p>
+        <p class="overview-sub">Son 7 günün çalışma ritmi. ${weeklyGoal>0?`Haftalık hedefinin %${weeklyGoalPct}'indesin.`:'Henüz haftalık hedef belirlemedin.'}</p>
         <div class="mini-bars">${barsHtml}</div>
-      </div>
-    `;
+      </div>`;
   }
 
   // ---------- Segmented period control ----------
@@ -3765,10 +3948,14 @@
         const value = btn.getAttribute('data-period');
         if(value === getCurrent()) return;
         if(control){
+          control.classList.add('liquid-moving');
           control.style.setProperty('--seg-index', index);
           control.querySelectorAll('.seg-btn').forEach(b => b.classList.toggle('active', b === btn));
           clearTimeout(control._liquidChangeTimer);
-          control._liquidChangeTimer = setTimeout(() => onChange(value), 210);
+          control._liquidChangeTimer = setTimeout(() => {
+            control.classList.remove('liquid-moving');
+            onChange(value);
+          }, 180);
         } else {
           onChange(value);
         }
