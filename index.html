@@ -1045,6 +1045,315 @@
     text-align:center;
     margin: auto;
   }
+
+  /* ---------- Kullanıcı Profil Kartı İnceleme Modalı ---------- */
+  .inspect-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .user-click {
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .user-click:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+
+  /* ---------- Odalar (Rooms) Tasarımı ---------- */
+  .rooms-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .room-card {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .room-card-title {
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .room-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .room-active-view {
+    border: 1px solid var(--blue);
+    border-radius: 12px;
+    padding: 16px;
+    background: var(--panel-2);
+    margin-bottom: 18px;
+  }
+  .room-members-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .room-member-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12.5px;
+  }
+  .voice-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--good);
+    animation: pulse 1.2s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+  }
+
+  /* ---------- DM & Arkadaşlar ---------- */
+  .dm-container {
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--panel-2);
+  }
+  .dm-header {
+    padding: 12px 16px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .friend-req-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+
+  /* ---------- Sosyal alt navigasyon / Instagram esintili mobil UI ---------- */
+  .app{ padding-bottom: 112px; }
+  .user-click{ cursor:pointer; }
+  .user-click:hover{ opacity:.88; }
+  .bottom-social-nav{
+    position:fixed;
+    left:50%;
+    bottom:14px;
+    transform:translateX(-50%);
+    width:min(calc(100% - 24px), 680px);
+    z-index:80;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    padding:7px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:color-mix(in srgb, var(--panel) 88%, transparent);
+    box-shadow:0 14px 40px rgba(0,0,0,.24);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+  }
+  .bottom-social-btn{
+    position:relative;
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    border-radius:13px;
+    padding:9px 12px 8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font:inherit;
+    font-size:12.5px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .bottom-social-btn .nav-icon{ font-size:20px; line-height:1; }
+  .bottom-social-btn.active{
+    background:var(--panel-2);
+    color:var(--text);
+    box-shadow:inset 0 0 0 1px var(--line);
+  }
+  .bottom-social-badge{
+    min-width:18px;
+    height:18px;
+    padding:0 5px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--danger);
+    color:#fff;
+    font-size:10px;
+    line-height:1;
+  }
+
+  /* ---------- Rütbe yolculuğu ---------- */
+  .rank-badge-clickable{ cursor:pointer; transition:transform .15s ease, filter .15s ease; }
+  .rank-badge-clickable:hover{ transform:translateY(-1px); filter:brightness(1.1); }
+  .rank-journey-modal{ max-width:760px !important; }
+  .rank-journey-summary{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    background:var(--panel-2);
+    border-radius:12px;
+    margin:12px 0 16px;
+  }
+  .rank-journey-scroll{ overflow-x:auto; padding:4px 4px 14px; -webkit-overflow-scrolling:touch; }
+  .rank-journey-inner{ min-width:760px; }
+  .rank-journey-steps{
+    display:grid;
+    grid-template-columns:repeat(7, minmax(92px, 1fr));
+    gap:8px;
+    align-items:stretch;
+  }
+  .rank-step{
+    text-align:center;
+    padding:9px 5px;
+    border:1px solid var(--line);
+    background:var(--panel-2);
+    border-radius:10px;
+    opacity:.55;
+  }
+  .rank-step.reached{ opacity:1; }
+  .rank-step.current{ border-color:var(--blue); box-shadow:0 0 0 1px var(--blue); }
+  .rank-step-emoji{ font-size:24px; line-height:1.1; }
+  .rank-step-name{ font-size:11.5px; font-weight:800; margin-top:4px; }
+  .rank-step-min{ font-size:10px; color:var(--muted); margin-top:2px; }
+  .rank-step-state{ font-size:9.5px; color:var(--muted); margin-top:4px; min-height:24px; }
+  .rank-step.current .rank-step-state{ color:var(--blue); font-weight:700; }
+  .rank-journey-track-wrap{ position:relative; height:34px; margin:14px 46px 0; }
+  .rank-journey-track{
+    position:absolute;
+    left:0; right:0; top:13px;
+    height:8px;
+    border:1px solid var(--line);
+    background:var(--panel-2);
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .rank-journey-fill{ height:100%; background:var(--blue); border-radius:999px; }
+  .rank-track-node{
+    position:absolute;
+    top:8px;
+    width:18px; height:18px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    border:2px solid var(--line);
+    background:var(--panel);
+  }
+  .rank-track-node.reached{ border-color:var(--blue); background:var(--blue); }
+  .rank-track-node.current{ box-shadow:0 0 0 4px rgba(76,141,255,.18); }
+
+  /* ---------- Arkadaş arama / DM seçici ---------- */
+  .friend-search-results{ display:grid; gap:8px; margin:-8px 0 18px; }
+  .friend-search-result{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:10px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:var(--panel-2);
+  }
+  .dm-friends-picker{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding:2px 2px 12px;
+    margin-bottom:4px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .dm-friend-chip{
+    flex:0 0 auto;
+    width:72px;
+    border:0;
+    background:transparent;
+    color:var(--text);
+    padding:5px 3px;
+    border-radius:10px;
+    cursor:pointer;
+  }
+  .dm-friend-chip.active{ background:var(--panel-2); }
+  .dm-friend-chip-avatar{
+    width:44px; height:44px;
+    margin:0 auto 5px;
+    border-radius:50%;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+  }
+  .dm-friend-chip-name{
+    font-size:10.5px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .net-subsection-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:8px 0 12px;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .net-subsection-label::before,.net-subsection-label::after{ content:""; height:1px; flex:1; background:var(--line); }
+
+  @media (max-width:560px){
+    .app{ padding:18px 12px 104px; }
+    header.top{ margin-bottom:16px; }
+    header.top h1{ font-size:23px; }
+    .tab-bar{ margin-bottom:14px; }
+    .tab-btn{ padding:9px 12px; font-size:12.5px; }
+    .bottom-social-nav{ bottom:8px; width:calc(100% - 16px); border-radius:16px; }
+    .bottom-social-btn{ padding:8px 8px 7px; }
+  }
+
 </style>
 </head>
 <body>
@@ -1183,10 +1492,9 @@
     <div id="examChartWrap"></div>
     <div id="examTableWrap"></div>
   </section>
-  </div>
 
-  <div class="tab-panel" id="tab-dersler" style="display:none">
-  <section class="card">
+  <div class="net-subsection-label">Ders Bazında Analiz</div>
+  <section class="card" id="derslerSection">
     <h2>Ders Bazında Net Takibi</h2>
     <p class="sub">Tek bir dersteki gelişimini ayrı grafikte izle.</p>
 
@@ -1262,8 +1570,60 @@
 
   <div class="tab-panel" id="tab-sohbet" style="display:none">
   <section class="card">
-    <h2>Genel Sohbet</h2>
-    <p class="sub">Tüm kullanıcıların görebildiği canlı sohbet. Lütfen saygılı ol.</p>
+    <div class="rooms-header">
+      <div>
+        <h2 style="margin:0 0 2px;">Sohbet / Çalışma Odaları</h2>
+        <p class="sub" style="margin:0;">Birlikte çalışabileceğin, sesli ve yazılı çalışma odaları.</p>
+      </div>
+      <button type="button" class="add-btn" id="openCreateRoomBtn">+ Oda Kur</button>
+    </div>
+
+    <!-- Aktif girilen oda görünümü -->
+    <div id="activeRoomContainer" style="display:none;" class="room-active-view">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px;">
+        <div>
+          <h3 id="activeRoomTitle" style="margin:0; font-size:18px;"></h3>
+          <p id="activeRoomOwnerNote" class="sub" style="margin:2px 0 6px; font-size:12px;"></p>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button type="button" class="add-btn stopwatch-btn-secondary" id="roomMicToggleBtn">🎤 Mikrofon</button>
+          <button type="button" class="add-btn stopwatch-btn-danger" id="leaveRoomBtn">Odadan Ayrıl</button>
+        </div>
+      </div>
+
+      <!-- Oda Kurucu Kontrolleri -->
+      <div id="ownerControlsBar" style="display:none; background:var(--panel); padding:8px 12px; border-radius:8px; margin:10px 0; border:1px solid var(--line); font-size:12.5px;">
+        <b>Oda Sahibi Ayarları:</b>
+        <label style="margin-left:12px; cursor:pointer;"><input type="checkbox" id="toggleRoomTextChat"> Yazılı Sohbet Açık</label>
+        <label style="margin-left:12px; cursor:pointer;"><input type="checkbox" id="toggleRoomVoiceChat"> Sesli Sohbet Açık</label>
+      </div>
+
+      <!-- Odadaki Kullanıcılar & Canlı Kronometreleri -->
+      <div style="margin-top:10px;">
+        <span style="font-size:12px; color:var(--muted); font-weight:600;">Odadakiler (Profilini görmek için tıkla):</span>
+        <div class="room-members-list" id="activeRoomMembersList"></div>
+      </div>
+
+      <!-- Oda Sohbeti -->
+      <div id="roomChatSection" style="margin-top:12px; border-top:1px solid var(--line); padding-top:10px;">
+        <div class="chat-messages" id="roomChatMessages" style="height:200px; max-height:200px;"></div>
+        <form class="chat-input-row" id="roomChatForm">
+          <input type="text" id="roomChatInput" placeholder="Oda mesajı yaz..." maxlength="400" autocomplete="off">
+          <button type="submit" class="chat-send-btn">Gönder</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Mevcut Odalar Listesi -->
+    <div style="margin-top:8px;">
+      <h3 style="font-size:15px; margin:0 0 10px;">Açık Odalar</h3>
+      <div class="rooms-grid" id="roomsListContainer"></div>
+    </div>
+
+    <hr style="border:none; border-top:1px solid var(--line); margin:20px 0;">
+
+    <h2 style="margin:0 0 4px;">Genel Sohbet</h2>
+    <p class="sub">Tüm kullanıcıların katılabildiği genel mesajlaşma alanı.</p>
     <div class="chat-wrap">
       <div class="chat-messages" id="chatMessages"></div>
       <form class="chat-input-row" id="chatForm">
@@ -1274,8 +1634,156 @@
   </section>
   </div>
 
+  <div class="tab-panel" id="tab-arkadaslar" style="display:none">
+    <section class="card">
+      <h2>Arkadaş Ekle & İstekler</h2>
+      <p class="sub">Arkadaş ekleyerek çalışma durumlarını görebilir ve 1'e 1 mesajlaşabilirsin.</p>
+
+      <div style="background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:12px; margin-bottom:16px;">
+        <span style="font-size:12px; color:var(--muted);">Senin Kullanıcı Kodun (Arkadaşlarınla paylaş):</span>
+        <div style="font-size:15px; font-weight:700; color:var(--blue); margin-top:2px;" id="myUserCodeDisplay"></div>
+      </div>
+
+      <form id="sendFriendReqForm" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;">
+        <input type="text" id="friendSearchInput" placeholder="Arkadaşının Adı veya Kodu..." style="flex:1; min-width:200px; background:var(--panel-2); border:1px solid var(--line); border-radius:8px; color:var(--text); padding:9px 12px;">
+        <button type="submit" class="add-btn">Ara</button>
+      </form>
+      <div id="friendSearchResults" class="friend-search-results"></div>
+
+      <div style="margin-bottom:20px;">
+        <h3 style="font-size:14px; margin:0 0 8px;">Gelen Arkadaşlık İstekleri</h3>
+        <div id="incomingFriendRequests"></div>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px; margin:0 0 8px;">Arkadaşlarım</h3>
+        <div id="friendsListContainer"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-panel" id="tab-dm" style="display:none">
+    <section class="card" style="padding:14px;">
+      <div id="dmFriendsPicker" class="dm-friends-picker"></div>
+      <div class="dm-container">
+        <div class="dm-header">
+          <div id="activeDmIdentity" class="user-click" style="display:flex; align-items:center; gap:8px;">
+            <div id="activeDmAvatar" style="width:32px; height:32px; border-radius:50%; background:var(--panel); display:flex; align-items:center; justify-content:center; overflow:hidden;">💬</div>
+            <div>
+              <b id="activeDmName" style="font-size:14px;">Bir arkadaşını seç</b>
+              <div id="activeDmStatus" style="font-size:11px; color:var(--muted);">Çevrim dışı</div>
+            </div>
+          </div>
+          <button type="button" class="del-btn" id="inspectDmUserBtn" title="Profili İncele">👤 Profil</button>
+        </div>
+
+        <div class="chat-messages" id="dmChatMessages" style="flex:1; padding:10px;"></div>
+
+        <form class="chat-input-row" id="dmChatForm" style="padding:10px; margin-top:0;">
+          <input type="text" id="dmChatInput" placeholder="Mesaj yaz..." maxlength="400" autocomplete="off">
+          <button type="submit" class="chat-send-btn">Gönder</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
   <p class="status-line" id="statusLine"></p>
 
+  <nav class="bottom-social-nav" id="bottomSocialNav" aria-label="Sosyal menü"></nav>
+</div>
+
+<div id="userProfileModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box" style="max-width:500px;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+      <div id="uprofAvatar" style="width:58px; height:58px; border-radius:50%; background:var(--panel-2); display:flex; align-items:center; justify-content:center; font-size:26px; overflow:hidden; border:2px solid var(--blue);"></div>
+      <div>
+        <h3 id="uprofName" style="margin:0 0 2px;"></h3>
+        <span id="uprofRankBadge" class="rank-badge"></span>
+      </div>
+    </div>
+
+    <div class="inspect-grid">
+      <div class="stat"><div class="num" id="uprofTodayHours">0 sa</div><div class="label">Bugün Çalışma</div></div>
+      <div class="stat"><div class="num" id="uprofWeekHours">0 sa</div><div class="label">Bu Hafta</div></div>
+      <div class="stat"><div class="num" id="uprofTotalHours">0 sa</div><div class="label">Toplam Saat</div></div>
+      <div class="stat"><div class="num" id="uprofStreak">0 gün</div><div class="label">Aktif Seri 🔥</div></div>
+    </div>
+
+    <div style="background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:10px; margin-top:8px;">
+      <b>Deneme Netleri:</b>
+      <div style="display:flex; justify-content:space-around; margin:8px 0; font-size:13px;">
+        <div>TYT Neti: <b id="uprofTytNet" style="color:var(--amber);">—</b></div>
+        <div>AYT Neti: <b id="uprofAytNet" style="color:var(--blue);">—</b></div>
+      </div>
+      <div id="uprofSubjectBreakdown" style="font-size:11.5px; color:var(--muted); line-height:1.5;"></div>
+    </div>
+
+    <div class="modal-actions" style="margin-top:16px;">
+      <button type="button" id="uprofAddFriendBtn" class="add-btn" style="display:none;">+ Arkadaş Ekle</button>
+      <button type="button" id="uprofSendDmBtn" class="add-btn" style="display:none;">✉️ Mesaj Gönder</button>
+      <button type="button" id="closeUserProfileBtn">Kapat</button>
+    </div>
+  </div>
+</div>
+
+<div id="rankJourneyModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box rank-journey-modal">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+      <div>
+        <h3 style="margin:0 0 4px;">Rütbe Yolculuğun</h3>
+        <p class="sub" style="margin:0;">Kazandığın XP ile geçmiş ve gelecekteki tüm rütbelerini gör.</p>
+      </div>
+      <button type="button" id="closeRankJourneyBtn" class="del-btn" aria-label="Kapat">✕</button>
+    </div>
+    <div id="rankJourneySummary" class="rank-journey-summary"></div>
+    <div id="rankJourneyWrap"></div>
+    <div class="modal-actions" style="margin-top:8px;">
+      <button type="button" id="closeRankJourneyBtnBottom">Kapat</button>
+    </div>
+  </div>
+</div>
+
+<div id="createRoomModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box" style="max-width:420px;">
+    <h3>Yeni Çalışma Odası Kur</h3>
+    <p class="sub">Arkadaşlarınla birlikte kronometre açıp çalışabileceğin bir oda oluştur.</p>
+
+    <div class="onboard-grid">
+      <div class="field">
+        <label for="newRoomName">Oda Adı</label>
+        <input type="text" id="newRoomName" placeholder="örn: Sabahçılar Tıp Kampı" required maxlength="40">
+      </div>
+      <div class="field">
+        <label for="newRoomPass">Şifre (İsteğe bağlı - boş bırakırsan herkese açık olur)</label>
+        <input type="text" id="newRoomPass" placeholder="Boş bırakılabilir" maxlength="20">
+      </div>
+      <div class="field" style="margin-top:6px;">
+        <label><input type="checkbox" id="newRoomVoiceCheck" checked> 🎙️ Sesli Sohbet Aktif Olsun</label>
+      </div>
+      <div class="field">
+        <label><input type="checkbox" id="newRoomTextCheck" checked> 💬 Yazılı Sohbet Aktif Olsun</label>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button type="button" id="cancelCreateRoomBtn">Vazgeç</button>
+      <button type="button" class="add-btn" id="confirmCreateRoomBtn">Odayı Oluştur</button>
+    </div>
+  </div>
+</div>
+
+<div id="roomPassModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box" style="max-width:340px;">
+    <h3>Kilitli Oda</h3>
+    <p class="sub">Bu odaya girmek için kurucusunun belirlediği şifreyi girmen gerekir.</p>
+    <div class="field">
+      <input type="password" id="roomPassInput" placeholder="Oda Şifresi">
+    </div>
+    <div class="modal-actions">
+      <button type="button" id="cancelRoomPassBtn">İptal</button>
+      <button type="button" class="add-btn" id="submitRoomPassBtn">Giriş Yap</button>
+    </div>
+  </div>
 </div>
 
 <!-- Onboarding / profile edit modal -->
@@ -1373,6 +1881,21 @@
   const db = firebase.firestore();
   let currentUid = null;
   let unsubStudy = null, unsubExam = null, unsubLeaderboard = null, unsubChat = null, unsubLiveSessions = null;
+  let unsubRooms = null, unsubActiveRoom = null, unsubActiveRoomChat = null;
+  let unsubFriends = null, unsubFriendReqs = null, unsubDmChat = null;
+
+  let currentRoomId = null;
+  let currentRoomData = null;
+  let isRoomOwner = false;
+  let isLeavingRoom = false;
+  let isMicMuted = true;
+  let localMediaStream = null;
+
+  let friendsList = [];
+  let friendRequests = [];
+  let activeDmFriend = null;
+  let allRooms = [];
+  let pendingJoinRoom = null;
 
   // ---------- Kronometre state ----------
   let liveSessions = []; // {id, name, avatar, photo, status:'running'|'paused', segmentStartMs, accumulatedMs}
@@ -1517,6 +2040,66 @@
     return { current, next };
   }
 
+  function rankJourneyProgress(points){
+    const currentIndex = Math.max(0, RANKS.findLastIndex ? RANKS.findLastIndex(r => points >= r.min) : (() => {
+      let idx = 0;
+      RANKS.forEach((r,i) => { if(points >= r.min) idx = i; });
+      return idx;
+    })());
+    if(currentIndex >= RANKS.length - 1) return { currentIndex, pct: 100 };
+    const cur = RANKS[currentIndex];
+    const next = RANKS[currentIndex + 1];
+    const within = Math.max(0, Math.min(1, (points - cur.min) / Math.max(1, next.min - cur.min)));
+    const pct = ((currentIndex + within) / (RANKS.length - 1)) * 100;
+    return { currentIndex, pct };
+  }
+
+  function renderRankJourney(){
+    const wrap = document.getElementById('rankJourneyWrap');
+    const summary = document.getElementById('rankJourneySummary');
+    if(!wrap || !summary) return;
+    const points = computePoints();
+    const { current, next } = getRankInfo(points);
+    const progress = rankJourneyProgress(points);
+
+    summary.innerHTML = `
+      <div><div style="font-size:11px;color:var(--muted);">Şu anki rütben</div><b>${current.emoji} ${current.name}</b></div>
+      <div style="text-align:right;"><div style="font-size:11px;color:var(--muted);">Toplam XP</div><b>${points} puan</b></div>
+      <div style="text-align:right;"><div style="font-size:11px;color:var(--muted);">Sıradaki</div><b>${next ? (next.min - points) + ' puan' : 'Tamamlandı'}</b></div>
+    `;
+
+    const steps = RANKS.map((r,i) => {
+      const reached = points >= r.min;
+      const isCurrent = i === progress.currentIndex;
+      const state = reached ? (isCurrent ? 'Şu an buradasın' : '✓ Ulaşıldı') : `${r.min - points} puan kaldı`;
+      return `<div class="rank-step ${reached?'reached':''} ${isCurrent?'current':''}">
+        <div class="rank-step-emoji">${r.emoji}</div>
+        <div class="rank-step-name">${r.name}</div>
+        <div class="rank-step-min">${r.min} XP</div>
+        <div class="rank-step-state">${state}</div>
+      </div>`;
+    }).join('');
+
+    const nodes = RANKS.map((r,i) => {
+      const pos = (i / (RANKS.length - 1)) * 100;
+      const reached = points >= r.min;
+      return `<span class="rank-track-node ${reached?'reached':''} ${i===progress.currentIndex?'current':''}" style="left:${pos}%" title="${r.name}"></span>`;
+    }).join('');
+
+    wrap.innerHTML = `<div class="rank-journey-scroll"><div class="rank-journey-inner">
+      <div class="rank-journey-steps">${steps}</div>
+      <div class="rank-journey-track-wrap">
+        <div class="rank-journey-track"><div class="rank-journey-fill" style="width:${progress.pct}%"></div></div>
+        ${nodes}
+      </div>
+    </div></div>`;
+  }
+
+  window.openRankJourneyModal = function(){
+    renderRankJourney();
+    document.getElementById('rankJourneyModal').style.display = 'flex';
+  };
+
   let studyPeriod = 'month';
   let examPeriod = 'month';
   let subjectPeriod = 'month';
@@ -1573,17 +2156,40 @@
     ['ozet', 'Özet'],
     ['calisma', 'Çalışma'],
     ['netler', 'Netler'],
-    ['dersler', 'Dersler'],
     ['hedef', 'Hedef'],
     ['sihirbaz', 'Sihirbaz'],
     ['siralama', 'Sıralama'],
-    ['sohbet', 'Sohbet']
+    ['sohbet', 'Sohbet/Odalar'],
+    ['arkadaslar', 'Arkadaşlar'],
+    ['dm', 'DM']
   ];
+  const TOP_TAB_IDS = new Set(['ozet','calisma','netler','hedef','sihirbaz','siralama','sohbet']);
   let activeTab = 'ozet';
+
+  function renderBottomSocialNav(){
+    const wrap = document.getElementById('bottomSocialNav');
+    if(!wrap) return;
+    const reqBadge = friendRequests.length ? `<span class="bottom-social-badge">${friendRequests.length}</span>` : '';
+    wrap.innerHTML = `
+      <button type="button" class="bottom-social-btn ${activeTab==='arkadaslar'?'active':''}" data-bottom-tab="arkadaslar">
+        <span class="nav-icon">👥</span><span>Arkadaşlar</span>${reqBadge}
+      </button>
+      <button type="button" class="bottom-social-btn ${activeTab==='dm'?'active':''}" data-bottom-tab="dm">
+        <span class="nav-icon">✉️</span><span>Mesajlar</span>
+      </button>
+    `;
+    wrap.querySelectorAll('[data-bottom-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.getAttribute('data-bottom-tab');
+        renderTabBar();
+        showActiveTab();
+      });
+    });
+  }
 
   function renderTabBar(){
     const wrap = document.getElementById('tabBar');
-    wrap.innerHTML = TABS.map(([id,label]) =>
+    wrap.innerHTML = TABS.filter(([id]) => TOP_TAB_IDS.has(id)).map(([id,label]) =>
       `<button type="button" class="tab-btn ${id===activeTab?'active':''}" data-tab="${id}">${label}</button>`
     ).join('');
     wrap.querySelectorAll('.tab-btn').forEach(btn => {
@@ -1593,6 +2199,7 @@
         showActiveTab();
       });
     });
+    renderBottomSocialNav();
   }
 
   function showActiveTab(){
@@ -1602,6 +2209,10 @@
     });
     if(activeTab === 'sohbet'){
       const wrap = document.getElementById('chatMessages');
+      if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 30);
+    }
+    if(activeTab === 'dm'){
+      const wrap = document.getElementById('dmChatMessages');
       if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 30);
     }
   }
@@ -1786,8 +2397,20 @@
       status: stopwatchStatus,
       segmentStartMs: stopwatchSegmentStartMs,
       accumulatedMs: stopwatchAccumulatedMs,
+      roomId: currentRoomId || null,
+      roomName: currentRoomData ? currentRoomData.name : null,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     }, { merge: true }).catch(()=>{});
+
+    if(currentRoomId){
+      db.collection('rooms').doc(currentRoomId).collection('members').doc(currentUid).set({
+        stopwatch: {
+          status: stopwatchStatus,
+          segmentStartMs: stopwatchSegmentStartMs,
+          accumulatedMs: stopwatchAccumulatedMs
+        }
+      }, { merge: true }).catch(()=>{});
+    }
   }
 
   function currentStopwatchElapsedMs(){
@@ -1904,13 +2527,16 @@
       return a.status === 'running' ? -1 : 1;
     });
     wrap.innerHTML = sorted.map(s => {
-      const elapsedMs = Math.max(0, Date.now() - (s.segmentStartMs || Date.now()));
       const isRunning = s.status === 'running';
+      const baseMs = Math.max(0, Number(s.accumulatedMs) || 0);
+      const activeSegmentMs = isRunning ? Math.max(0, Date.now() - (Number(s.segmentStartMs) || Date.now())) : 0;
+      const elapsedMs = baseMs + activeSegmentMs;
+      const roomBadge = s.roomName ? `<span style="background:rgba(76,141,255,0.18); color:var(--blue); font-size:10.5px; padding:1px 6px; border-radius:10px; margin-left:6px;">📍 ${escapeHtml(s.roomName)}</span>` : '';
       return `
         <div class="live-row ${s.id === currentUid ? 'me' : ''}">
-          <div class="live-avatar">${avatarInnerHtml(s.photo, s.avatar || '🙂')}</div>
+          <div class="live-avatar user-click" onclick="inspectUserProfile('${s.id}')">${avatarInnerHtml(s.photo, s.avatar || '🙂')}</div>
           <div class="live-info">
-            <div class="live-name">${escapeHtml(s.name || 'Kullanıcı')}${s.id === currentUid ? ' (sen)' : ''}</div>
+            <div class="live-name user-click" onclick="inspectUserProfile('${s.id}')">${escapeHtml(s.name || 'Kullanıcı')}${s.id === currentUid ? ' (sen)' : ''}${roomBadge}</div>
             <div class="live-status ${isRunning ? 'is-running' : 'is-paused'}">${isRunning ? '🟢 Çalışıyor' : '🟡 Molada'}</div>
           </div>
           <div class="live-duration">${fmtHMS(elapsedMs)}</div>
@@ -2693,7 +3319,7 @@
         <div class="profile-info">
           <div class="profile-name-row">
             <span class="profile-name">${name}</span>
-            <span class="rank-badge">${current.emoji} ${current.name}</span>
+            <button type="button" class="rank-badge rank-badge-clickable" onclick="openRankJourneyModal()" title="Tüm rütbeleri ve XP ilerlemeni gör" style="border:0;">${current.emoji} ${current.name}</button>
           </div>
           <div class="profile-points"><b>${points}</b> puan</div>
           <div class="rank-progress-track"><div class="rank-progress-fill" style="width:${pct}%"></div></div>
@@ -2715,10 +3341,10 @@
     wrap.innerHTML = leaderboardEntries.map((e, i) => `
       <div class="lb-row ${e.id === currentUid ? 'me' : ''}">
         <div class="lb-rank-num">${i+1}</div>
-        <div class="lb-avatar">${avatarInnerHtml(e.photo, e.avatar || '🙂')}</div>
-        <div class="lb-info">
-          <div class="lb-name">${e.name || 'Kullanıcı'}${e.id === currentUid ? ' (sen)' : ''}</div>
-          <div class="lb-rank-label">${e.rank || ''}</div>
+        <div class="lb-avatar user-click" onclick="inspectUserProfile('${e.id}')">${avatarInnerHtml(e.photo, e.avatar || '🙂')}</div>
+        <div class="lb-info user-click" onclick="inspectUserProfile('${e.id}')">
+          <div class="lb-name">${escapeHtml(e.name || 'Kullanıcı')}${e.id === currentUid ? ' (sen)' : ''}</div>
+          <div class="lb-rank-label">${escapeHtml(e.rank || '')}</div>
         </div>
         <div class="lb-points">${e.points || 0}</div>
       </div>
@@ -2753,10 +3379,10 @@
       const own = m.uid === currentUid;
       return `
         <div class="chat-msg ${own ? 'own' : ''}">
-          <div class="chat-avatar">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
+          <div class="chat-avatar user-click" onclick="inspectUserProfile('${m.uid}')">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
           <div class="chat-bubble">
             <div class="chat-meta">
-              <span class="chat-name">${escapeHtml(m.name || 'Kullanıcı')}</span>
+              <span class="chat-name user-click" onclick="inspectUserProfile('${m.uid}')">${escapeHtml(m.name || 'Kullanıcı')}</span>
               <span class="chat-time">${fmtChatTime(m.createdAt)}</span>
             </div>
             <div class="chat-text">${escapeHtml(m.text || '')}</div>
@@ -2785,6 +3411,763 @@
       text: text,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).catch(()=> setStatus('Mesaj gönderilemedi, internet bağlantını kontrol et.', true));
+  });
+
+  // ---------- Herkese açık profil (oda/arkadaş/liderlik incelemesi için) ----------
+
+  function syncPublicProfile(){
+    if(!currentUid || !profile) return;
+    const t = todayStr();
+    const todayHrs = studyEntries.filter(e => e.date === t).reduce((s,e)=> s + Number(e.hours), 0);
+    const weekHrs = filterByPeriod(studyEntries, 'week').reduce((s,e)=> s + Number(e.hours), 0);
+    const totalHrs = studyEntries.reduce((s,e)=> s + Number(e.hours), 0);
+    const streakObj = computeStreak();
+
+    const tytEntries = examEntries.filter(e=>e.type==='TYT');
+    const aytEntries = examEntries.filter(e=>e.type==='AYT');
+    const lastTytEntry = tytEntries.length ? tytEntries[tytEntries.length-1] : null;
+    const lastAytEntry = aytEntries.length ? aytEntries[aytEntries.length-1] : null;
+
+    db.collection('publicProfiles').doc(currentUid).set({
+      name: profile.name || 'Kullanıcı',
+      avatar: profile.avatar || '🙂',
+      photo: profile.photo || null,
+      points: computePoints(),
+      rank: getRankInfo(computePoints()).current.name,
+      streak: streakObj.current,
+      todayHours: round1(todayHrs),
+      weekHours: round1(weekHrs),
+      totalHours: round1(totalHrs),
+      lastTyt: lastTytEntry ? lastTytEntry.net : null,
+      lastAyt: lastAytEntry ? lastAytEntry.net : null,
+      lastTytSubjects: lastTytEntry ? lastTytEntry.subjects : null,
+      lastAytSubjects: lastAytEntry ? lastAytEntry.subjects : null,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true }).catch(()=>{});
+  }
+
+  window.inspectUserProfile = async function(targetUid){
+    if(!targetUid) return;
+    const modal = document.getElementById('userProfileModal');
+    modal.style.display = 'flex';
+
+    document.getElementById('uprofName').textContent = 'Yükleniyor...';
+    document.getElementById('uprofAvatar').innerHTML = '⌛';
+    document.getElementById('uprofRankBadge').textContent = '—';
+    document.getElementById('uprofTodayHours').textContent = '—';
+    document.getElementById('uprofWeekHours').textContent = '—';
+    document.getElementById('uprofTotalHours').textContent = '—';
+    document.getElementById('uprofStreak').textContent = '—';
+    document.getElementById('uprofTytNet').textContent = '—';
+    document.getElementById('uprofAytNet').textContent = '—';
+    document.getElementById('uprofSubjectBreakdown').innerHTML = '';
+
+    const addBtn = document.getElementById('uprofAddFriendBtn');
+    const dmBtn = document.getElementById('uprofSendDmBtn');
+    addBtn.style.display = 'none';
+    dmBtn.style.display = 'none';
+
+    try {
+      const doc = await db.collection('publicProfiles').doc(targetUid).get();
+      if(!doc.exists){
+        document.getElementById('uprofName').textContent = 'Kullanıcı profili bulunamadı';
+        return;
+      }
+      const data = doc.data();
+      document.getElementById('uprofName').textContent = data.name || 'Kullanıcı';
+      document.getElementById('uprofAvatar').innerHTML = avatarInnerHtml(data.photo, data.avatar || '🙂');
+      const rankMeta = RANKS.find(r => r.name === data.rank) || RANKS[0];
+      document.getElementById('uprofRankBadge').textContent = `${rankMeta.emoji} ${data.rank || rankMeta.name}`;
+      document.getElementById('uprofTodayHours').textContent = (data.todayHours || 0) + ' sa';
+      document.getElementById('uprofWeekHours').textContent = (data.weekHours || 0) + ' sa';
+      document.getElementById('uprofTotalHours').textContent = (data.totalHours || 0) + ' sa';
+      document.getElementById('uprofStreak').textContent = (data.streak || 0) + ' gün';
+      document.getElementById('uprofTytNet').textContent = data.lastTyt !== null && data.lastTyt !== undefined ? data.lastTyt : '—';
+      document.getElementById('uprofAytNet').textContent = data.lastAyt !== null && data.lastAyt !== undefined ? data.lastAyt : '—';
+
+      let parts = [];
+      if(data.lastTytSubjects){
+        parts.push('<b>TYT:</b> ' + Object.entries(data.lastTytSubjects).map(([k,v])=> `${k}: ${v}`).join(' · '));
+      }
+      if(data.lastAytSubjects){
+        parts.push('<b>AYT:</b> ' + Object.entries(data.lastAytSubjects).map(([k,v])=> `${k}: ${v}`).join(' · '));
+      }
+      document.getElementById('uprofSubjectBreakdown').innerHTML = parts.join('<br>') || 'Henüz ders dökümlü net girilmemiş.';
+
+      if(targetUid !== currentUid){
+        const isFriend = friendsList.some(f => f.uid === targetUid);
+        if(isFriend){
+          dmBtn.style.display = '';
+          dmBtn.onclick = () => {
+            modal.style.display = 'none';
+            openDirectMessageWith(targetUid, data.name, data.avatar, data.photo);
+          };
+        } else {
+          addBtn.style.display = '';
+          addBtn.onclick = () => {
+            sendFriendRequestDirect(targetUid);
+          };
+        }
+      }
+    } catch(err){
+      document.getElementById('uprofName').textContent = 'Hata oluştu';
+    }
+  };
+
+  document.getElementById('closeUserProfileBtn').addEventListener('click', () => {
+    document.getElementById('userProfileModal').style.display = 'none';
+  });
+
+  function closeRankJourneyModal(){
+    document.getElementById('rankJourneyModal').style.display = 'none';
+  }
+  document.getElementById('closeRankJourneyBtn').addEventListener('click', closeRankJourneyModal);
+  document.getElementById('closeRankJourneyBtnBottom').addEventListener('click', closeRankJourneyModal);
+  document.getElementById('rankJourneyModal').addEventListener('click', (e) => {
+    if(e.target.id === 'rankJourneyModal') closeRankJourneyModal();
+  });
+
+  // ---------- Çalışma Odaları ----------
+
+  const createRoomModal = document.getElementById('createRoomModal');
+  const roomPassModal = document.getElementById('roomPassModal');
+
+  document.getElementById('openCreateRoomBtn').addEventListener('click', () => {
+    createRoomModal.style.display = 'flex';
+    document.getElementById('newRoomName').value = '';
+    document.getElementById('newRoomPass').value = '';
+  });
+  document.getElementById('cancelCreateRoomBtn').addEventListener('click', () => {
+    createRoomModal.style.display = 'none';
+  });
+
+  document.getElementById('confirmCreateRoomBtn').addEventListener('click', async () => {
+    const name = document.getElementById('newRoomName').value.trim();
+    const pass = document.getElementById('newRoomPass').value.trim();
+    const voiceOn = document.getElementById('newRoomVoiceCheck').checked;
+    const textOn = document.getElementById('newRoomTextCheck').checked;
+
+    if(!name){ setStatus('Lütfen bir oda adı girin.', true); return; }
+
+    try {
+      const roomRef = await db.collection('rooms').add({
+        name,
+        password: pass || null,
+        ownerUid: currentUid,
+        ownerName: profile ? profile.name : 'Kurucu',
+        voiceEnabled: voiceOn,
+        textEnabled: textOn,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      createRoomModal.style.display = 'none';
+      joinRoom(roomRef.id, { name, password: pass, ownerUid: currentUid, ownerName: profile ? profile.name : 'Kurucu', voiceEnabled: voiceOn, textEnabled: textOn });
+    } catch(e){
+      setStatus('Oda oluşturulamadı.', true);
+    }
+  });
+
+  function renderRoomsList(rooms){
+    const wrap = document.getElementById('roomsListContainer');
+    if(!wrap) return;
+    if(rooms.length === 0){
+      wrap.innerHTML = emptyStateHtml('Henüz açık bir çalışma odası yok. İlk odayı sen kur!');
+      return;
+    }
+    wrap.innerHTML = rooms.map(r => `
+      <div class="room-card">
+        <div class="room-card-title">
+          <span>${escapeHtml(r.name)}</span>
+          <span>${r.password ? '🔒' : '🌐'}</span>
+        </div>
+        <div class="room-tags">
+          <span class="tag ${r.voiceEnabled ? 'ayt' : ''}">🎙️ ${r.voiceEnabled ? 'Sesli Açık' : 'Ses Kapalı'}</span>
+          <span class="tag ${r.textEnabled ? 'tyt' : ''}">💬 ${r.textEnabled ? 'Yazılı Açık' : 'Yazı Kapalı'}</span>
+        </div>
+        <div style="font-size:11.5px; color:var(--muted);">Sahip: <span class="user-click" onclick="inspectUserProfile('${r.ownerUid}')"><b>${escapeHtml(r.ownerName || 'Bilinmiyor')}</b></span></div>
+        <button type="button" class="add-btn" style="margin-top:4px;" onclick="attemptJoinRoom('${r.id}')">${currentRoomId === r.id ? 'Odadasın' : 'Odaya Katıl'}</button>
+      </div>
+    `).join('');
+  }
+
+  window.attemptJoinRoom = function(roomId){
+    const room = allRooms.find(r => r.id === roomId);
+    if(!room) return;
+    if(room.password && room.ownerUid !== currentUid){
+      pendingJoinRoom = room;
+      document.getElementById('roomPassInput').value = '';
+      roomPassModal.style.display = 'flex';
+    } else {
+      joinRoom(roomId, room);
+    }
+  };
+
+  document.getElementById('cancelRoomPassBtn').addEventListener('click', () => {
+    roomPassModal.style.display = 'none';
+    pendingJoinRoom = null;
+  });
+  document.getElementById('submitRoomPassBtn').addEventListener('click', () => {
+    const entered = document.getElementById('roomPassInput').value;
+    if(pendingJoinRoom && entered === pendingJoinRoom.password){
+      roomPassModal.style.display = 'none';
+      joinRoom(pendingJoinRoom.id, pendingJoinRoom);
+      pendingJoinRoom = null;
+    } else {
+      setStatus('Şifre hatalı!', true);
+    }
+  });
+
+  function syncActiveRoomUi(roomData){
+    if(!roomData || !currentRoomId) return;
+    currentRoomData = roomData;
+    isRoomOwner = roomData.ownerUid === currentUid;
+
+    document.getElementById('activeRoomTitle').textContent = roomData.name || 'Çalışma Odası';
+    const ownerNote = document.getElementById('activeRoomOwnerNote');
+    if(isRoomOwner){
+      ownerNote.textContent = '👑 Bu odanın sahibisin';
+    } else if(roomData.ownerUid){
+      ownerNote.innerHTML = `Sahip: <span class="user-click" onclick="inspectUserProfile('${roomData.ownerUid}')"><b>${escapeHtml(roomData.ownerName || 'Kullanıcı')}</b></span>`;
+    } else {
+      ownerNote.textContent = 'Oda sahibi belirleniyor…';
+    }
+    document.getElementById('ownerControlsBar').style.display = isRoomOwner ? 'block' : 'none';
+    document.getElementById('toggleRoomTextChat').checked = !!roomData.textEnabled;
+    document.getElementById('toggleRoomVoiceChat').checked = !!roomData.voiceEnabled;
+    document.getElementById('roomChatSection').style.display = roomData.textEnabled ? 'block' : 'none';
+    document.getElementById('roomMicToggleBtn').style.display = roomData.voiceEnabled ? 'inline-block' : 'none';
+
+    if(!roomData.voiceEnabled && !isMicMuted){
+      isMicMuted = true;
+      if(localMediaStream){
+        localMediaStream.getTracks().forEach(t => t.stop());
+        localMediaStream = null;
+      }
+      const micBtn = document.getElementById('roomMicToggleBtn');
+      micBtn.textContent = '🎤 Mikrofon';
+      micBtn.classList.add('stopwatch-btn-secondary');
+    }
+  }
+
+  function clearLocalRoomState(message, isError = false){
+    currentRoomId = null;
+    currentRoomData = null;
+    isRoomOwner = false;
+    if(localMediaStream){
+      localMediaStream.getTracks().forEach(t => t.stop());
+      localMediaStream = null;
+    }
+    isMicMuted = true;
+    if(unsubActiveRoom){ unsubActiveRoom(); unsubActiveRoom = null; }
+    if(unsubActiveRoomChat){ unsubActiveRoomChat(); unsubActiveRoomChat = null; }
+    const active = document.getElementById('activeRoomContainer');
+    if(active) active.style.display = 'none';
+    writeStopwatchDoc();
+    if(message) setStatus(message, isError);
+  }
+
+  function memberJoinSortValue(memberDoc){
+    const d = memberDoc.data() || {};
+    if(Number.isFinite(Number(d.joinedAtMs))) return Number(d.joinedAtMs);
+    if(d.joinedAt && typeof d.joinedAt.toMillis === 'function') return d.joinedAt.toMillis();
+    return Number.MAX_SAFE_INTEGER;
+  }
+
+  async function handoffOrCloseRoom(roomId, leavingUid){
+    if(!roomId || !leavingUid) return;
+    const roomRef = db.collection('rooms').doc(roomId);
+    const membersRef = roomRef.collection('members');
+    try {
+      const [roomSnap, membersSnap] = await Promise.all([roomRef.get(), membersRef.get()]);
+      const remaining = membersSnap.docs
+        .filter(d => d.id !== leavingUid)
+        .sort((a,b) => memberJoinSortValue(a) - memberJoinSortValue(b));
+
+      await membersRef.doc(leavingUid).delete().catch(()=>{});
+      if(!roomSnap.exists) return;
+
+      if(remaining.length === 0){
+        await roomRef.delete().catch(()=>{});
+        return;
+      }
+
+      const roomData = roomSnap.data() || {};
+      const ownerStillInside = remaining.some(d => d.id === roomData.ownerUid);
+      if(roomData.ownerUid === leavingUid || !ownerStillInside){
+        const successor = remaining[0];
+        const successorData = successor.data() || {};
+        await roomRef.update({
+          ownerUid: successor.id,
+          ownerName: successorData.name || 'Kullanıcı',
+          ownerTransferredAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      }
+    } catch(err){
+      membersRef.doc(leavingUid).delete().catch(()=>{});
+    }
+  }
+
+  function startRoomsListener(){
+    if(unsubRooms) unsubRooms();
+    unsubRooms = db.collection('rooms').orderBy('createdAt', 'desc').limit(50).onSnapshot(qs => {
+      allRooms = qs.docs.map(d => ({ id: d.id, ...d.data() }));
+      renderRoomsList(allRooms);
+      if(currentRoomId){
+        const updated = allRooms.find(r => r.id === currentRoomId);
+        if(updated){
+          syncActiveRoomUi(updated);
+        } else if(!isLeavingRoom){
+          clearLocalRoomState('Oda kapandı.');
+        }
+      }
+    }, ()=>{});
+  }
+
+  async function joinRoom(roomId, roomData){
+    if(currentRoomId && currentRoomId !== roomId){
+      await leaveCurrentRoom();
+    }
+    currentRoomId = roomId;
+    currentRoomData = roomData;
+    document.getElementById('activeRoomContainer').style.display = 'block';
+    syncActiveRoomUi(roomData);
+
+    await db.collection('rooms').doc(roomId).collection('members').doc(currentUid).set({
+      name: profile ? profile.name : 'Kullanıcı',
+      avatar: profile ? profile.avatar : '🙂',
+      photo: profile ? profile.photo : null,
+      isMuted: isMicMuted,
+      stopwatch: {
+        status: stopwatchStatus,
+        segmentStartMs: stopwatchSegmentStartMs,
+        accumulatedMs: stopwatchAccumulatedMs
+      },
+      joinedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      joinedAtMs: Date.now()
+    });
+
+    writeStopwatchDoc();
+
+    if(unsubActiveRoom) unsubActiveRoom();
+    unsubActiveRoom = db.collection('rooms').doc(roomId).collection('members').onSnapshot(qs => {
+      const members = qs.docs.map(d => ({ id: d.id, ...d.data() }));
+      renderActiveRoomMembers(members);
+      if(!isLeavingRoom && !members.some(m => m.id === currentUid)){
+        leaveCurrentRoom(true);
+      }
+    }, ()=>{});
+
+    if(unsubActiveRoomChat) unsubActiveRoomChat();
+    unsubActiveRoomChat = db.collection('rooms').doc(roomId).collection('messages').orderBy('createdAt','desc').limit(100).onSnapshot(qs => {
+      const msgs = qs.docs.map(d => ({ id: d.id, ...d.data() })).reverse();
+      renderRoomChat(msgs);
+    }, ()=>{});
+  }
+
+  async function leaveCurrentRoom(kicked = false){
+    if(!currentRoomId || isLeavingRoom) return;
+    isLeavingRoom = true;
+    const oldId = currentRoomId;
+    const leavingUid = currentUid;
+
+    if(unsubActiveRoom){ unsubActiveRoom(); unsubActiveRoom = null; }
+    if(unsubActiveRoomChat){ unsubActiveRoomChat(); unsubActiveRoomChat = null; }
+
+    try {
+      if(leavingUid && oldId){
+        await handoffOrCloseRoom(oldId, leavingUid);
+      }
+    } finally {
+      currentRoomId = null;
+      currentRoomData = null;
+      isRoomOwner = false;
+      if(localMediaStream){
+        localMediaStream.getTracks().forEach(t => t.stop());
+        localMediaStream = null;
+      }
+      isMicMuted = true;
+      document.getElementById('activeRoomContainer').style.display = 'none';
+      writeStopwatchDoc();
+      isLeavingRoom = false;
+      if(kicked){ setStatus('Odadan çıkarıldınız.', true); }
+    }
+  }
+
+  document.getElementById('leaveRoomBtn').addEventListener('click', () => leaveCurrentRoom());
+
+  function renderActiveRoomMembers(members){
+    const wrap = document.getElementById('activeRoomMembersList');
+    if(!wrap) return;
+    wrap.innerHTML = members.map(m => {
+      let swBadge = '';
+      if(m.stopwatch && (m.stopwatch.status === 'running' || m.stopwatch.status === 'paused')){
+        const isRun = m.stopwatch.status === 'running';
+        const ms = (m.stopwatch.accumulatedMs || 0) + (isRun ? Math.max(0, Date.now() - (m.stopwatch.segmentStartMs || Date.now())) : 0);
+        swBadge = `<span style="font-size:11px; font-weight:700; color:${isRun?'var(--good)':'var(--amber)'};">⏱ ${fmtHMS(ms)}</span>`;
+      }
+      const kickBtn = (isRoomOwner && m.id !== currentUid)
+        ? `<button type="button" class="del-btn" style="color:var(--danger); font-size:12px;" onclick="kickMemberFromRoom('${m.id}')" title="Odadan At">❌</button>`
+        : '';
+      const voiceDot = !m.isMuted ? `<span class="voice-indicator" title="Konuşuyor"></span>` : '';
+      return `
+        <div class="room-member-pill">
+          <div class="user-click" onclick="inspectUserProfile('${m.id}')" style="display:flex; align-items:center; gap:5px;">
+            <div style="width:22px; height:22px; border-radius:50%; overflow:hidden;">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
+            <b>${escapeHtml(m.name || 'Kullanıcı')}</b>
+          </div>
+          ${voiceDot}
+          ${swBadge}
+          ${kickBtn}
+        </div>
+      `;
+    }).join('');
+  }
+
+  window.kickMemberFromRoom = function(targetUid){
+    if(!isRoomOwner || !currentRoomId) return;
+    db.collection('rooms').doc(currentRoomId).collection('members').doc(targetUid).delete().catch(()=>{});
+  };
+
+  document.getElementById('toggleRoomTextChat').addEventListener('change', (e) => {
+    if(!isRoomOwner || !currentRoomId) return;
+    db.collection('rooms').doc(currentRoomId).update({ textEnabled: e.target.checked }).catch(()=>{});
+  });
+  document.getElementById('toggleRoomVoiceChat').addEventListener('change', (e) => {
+    if(!isRoomOwner || !currentRoomId) return;
+    db.collection('rooms').doc(currentRoomId).update({ voiceEnabled: e.target.checked }).catch(()=>{});
+  });
+
+  document.getElementById('roomMicToggleBtn').addEventListener('click', async () => {
+    if(!currentRoomId) return;
+    const btn = document.getElementById('roomMicToggleBtn');
+    if(isMicMuted){
+      try {
+        if(!localMediaStream && navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+          localMediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        }
+        isMicMuted = false;
+        btn.textContent = '🔊 Mikrofon Açık';
+        btn.classList.remove('stopwatch-btn-secondary');
+      } catch(err){
+        isMicMuted = true;
+        btn.textContent = '🎤 Mikrofon';
+        btn.classList.add('stopwatch-btn-secondary');
+        setStatus('Mikrofon izni alınamadı.', true);
+      }
+    } else {
+      isMicMuted = true;
+      btn.textContent = '🎤 Mikrofon';
+      btn.classList.add('stopwatch-btn-secondary');
+    }
+    db.collection('rooms').doc(currentRoomId).collection('members').doc(currentUid).update({
+      isMuted: isMicMuted
+    }).catch(()=>{});
+  });
+
+  function renderRoomChat(messages){
+    const wrap = document.getElementById('roomChatMessages');
+    if(!wrap) return;
+    wrap.innerHTML = messages.map(m => `
+      <div class="chat-msg ${m.uid === currentUid ? 'own' : ''}">
+        <div class="chat-avatar user-click" onclick="inspectUserProfile('${m.uid}')">${avatarInnerHtml(m.photo, m.avatar || '🙂')}</div>
+        <div class="chat-bubble">
+          <div class="chat-meta">
+            <span class="chat-name user-click" onclick="inspectUserProfile('${m.uid}')">${escapeHtml(m.name || 'Kullanıcı')}</span>
+            <span class="chat-time">${fmtChatTime(m.createdAt)}</span>
+          </div>
+          <div class="chat-text">${escapeHtml(m.text || '')}</div>
+        </div>
+      </div>
+    `).join('');
+    wrap.scrollTop = wrap.scrollHeight;
+  }
+
+  document.getElementById('roomChatForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(!currentRoomId) return;
+    const inp = document.getElementById('roomChatInput');
+    const text = inp.value.trim();
+    if(!text) return;
+    inp.value = '';
+    db.collection('rooms').doc(currentRoomId).collection('messages').add({
+      uid: currentUid,
+      name: profile ? profile.name : 'Kullanıcı',
+      avatar: profile ? profile.avatar : '🙂',
+      photo: profile ? profile.photo : null,
+      text,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(()=>{});
+  });
+
+  // ---------- Arkadaşlar ----------
+
+  function startFriendsListener(){
+    if(unsubFriends) unsubFriends();
+    unsubFriends = db.collection('users').doc(currentUid).collection('friends').onSnapshot(qs => {
+      friendsList = qs.docs.map(d => ({ uid: d.id, ...d.data() }));
+      renderFriendsList();
+    }, ()=>{});
+
+    if(unsubFriendReqs) unsubFriendReqs();
+    unsubFriendReqs = db.collection('friendRequests').where('toUid', '==', currentUid).onSnapshot(qs => {
+      friendRequests = qs.docs.map(d => ({ id: d.id, ...d.data() })).filter(r => r.status === 'pending');
+      renderFriendRequests();
+      renderTabBar();
+      renderBottomSocialNav();
+    }, ()=>{});
+  }
+
+  function renderDmFriendsPicker(){
+    const wrap = document.getElementById('dmFriendsPicker');
+    if(!wrap) return;
+    if(friendsList.length === 0){
+      wrap.innerHTML = '<span style="font-size:12px;color:var(--muted);padding:8px 2px;">DM için önce bir arkadaş ekle.</span>';
+      return;
+    }
+    wrap.innerHTML = friendsList.map(f => `
+      <button type="button" class="dm-friend-chip ${activeDmFriend && activeDmFriend.uid===f.uid?'active':''}" onclick="openDirectMessageByUid('${f.uid}')" title="${escapeHtml(f.name || 'Arkadaş')}">
+        <span class="dm-friend-chip-avatar">${avatarInnerHtml(f.photo, f.avatar || '🙂')}</span>
+        <span class="dm-friend-chip-name">${escapeHtml(f.name || 'Arkadaş')}</span>
+      </button>
+    `).join('');
+  }
+
+  function renderFriendsList(){
+    const wrap = document.getElementById('friendsListContainer');
+    renderDmFriendsPicker();
+    if(!wrap) return;
+    if(friendsList.length === 0){
+      wrap.innerHTML = emptyStateHtml('Henüz hiç arkadaşın yok. Yukarıdan kullanıcı adıyla arayabilirsin.');
+      return;
+    }
+    wrap.innerHTML = friendsList.map(f => `
+      <div class="friend-req-card">
+        <div style="display:flex; align-items:center; gap:8px;" class="user-click" onclick="inspectUserProfile('${f.uid}')">
+          <div style="width:36px; height:36px; border-radius:50%; overflow:hidden;">${avatarInnerHtml(f.photo, f.avatar || '🙂')}</div>
+          <div>
+            <b>${escapeHtml(f.name || 'Arkadaş')}</b>
+            <div style="font-size:11px; color:var(--muted);">Profili görmek için dokun</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <button type="button" class="add-btn" style="padding:6px 12px; font-size:12px;" onclick="openDirectMessageByUid('${f.uid}')">✉️ DM</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderFriendRequests(){
+    const wrap = document.getElementById('incomingFriendRequests');
+    if(!wrap) return;
+    if(friendRequests.length === 0){
+      wrap.innerHTML = '<p style="font-size:12.5px; color:var(--muted); margin:0;">Bekleyen istek yok.</p>';
+      return;
+    }
+    wrap.innerHTML = friendRequests.map(r => `
+      <div class="friend-req-card">
+        <div style="display:flex; align-items:center; gap:8px;" class="user-click" onclick="inspectUserProfile('${r.fromUid}')">
+          <div style="width:34px; height:34px; border-radius:50%; overflow:hidden;">${avatarInnerHtml(r.fromPhoto, r.fromAvatar || '🙂')}</div>
+          <div><b>${escapeHtml(r.fromName || 'Kullanıcı')}</b><div style="font-size:10.5px;color:var(--muted);">Profili gör</div></div>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <button type="button" class="add-btn" style="padding:5px 10px; font-size:12px;" onclick="acceptFriendRequest('${r.id}', '${r.fromUid}')">Kabul Et</button>
+          <button type="button" class="del-btn" style="color:var(--danger); font-size:12px;" onclick="rejectFriendRequest('${r.id}')">Reddet</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderFriendSearchResults(results){
+    const wrap = document.getElementById('friendSearchResults');
+    if(!wrap) return;
+    if(results.length === 0){
+      wrap.innerHTML = '<p style="font-size:12px;color:var(--muted);margin:0;">Eşleşen kullanıcı bulunamadı.</p>';
+      return;
+    }
+    wrap.innerHTML = results.map(r => {
+      const isFriend = friendsList.some(f => f.uid === r.id);
+      const incoming = friendRequests.find(fr => fr.fromUid === r.id);
+      let action = `<button type="button" class="add-btn" style="padding:6px 10px;font-size:11.5px;" onclick="sendFriendRequestDirect('${r.id}')">+ Ekle</button>`;
+      if(isFriend) action = `<button type="button" class="add-btn" style="padding:6px 10px;font-size:11.5px;" onclick="openDirectMessageByUid('${r.id}')">✉️ DM</button>`;
+      if(incoming) action = `<button type="button" class="add-btn" style="padding:6px 10px;font-size:11.5px;" onclick="acceptFriendRequest('${incoming.id}','${r.id}')">Kabul Et</button>`;
+      return `<div class="friend-search-result">
+        <div class="user-click" onclick="inspectUserProfile('${r.id}')" style="display:flex;align-items:center;gap:9px;min-width:0;">
+          <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;flex:0 0 auto;">${avatarInnerHtml(r.photo, r.avatar || '🙂')}</div>
+          <div style="min-width:0;"><b style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(r.name || 'Kullanıcı')}</b><span style="font-size:10.5px;color:var(--muted);">${escapeHtml(r.rank || 'Çaylak')} · ${r.points || 0} puan</span></div>
+        </div>${action}
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('sendFriendReqForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const query = document.getElementById('friendSearchInput').value.trim();
+    if(!query) return;
+    const resultsWrap = document.getElementById('friendSearchResults');
+    resultsWrap.innerHTML = '<p style="font-size:12px;color:var(--muted);margin:0;">Aranıyor…</p>';
+
+    try {
+      let results = [];
+      let directDoc = null;
+      if(query.length >= 15 && !/[\/\s]/.test(query)){
+        directDoc = await db.collection('publicProfiles').doc(query).get().catch(()=>null);
+      }
+      if(directDoc && directDoc.exists && directDoc.id !== currentUid){
+        results = [{ id: directDoc.id, ...directDoc.data() }];
+      } else {
+        const snap = await db.collection('publicProfiles').get();
+        const q = query.toLocaleLowerCase('tr-TR');
+        results = snap.docs
+          .map(d => ({ id:d.id, ...d.data() }))
+          .filter(d => d.id !== currentUid && (d.name || '').toLocaleLowerCase('tr-TR').includes(q))
+          .sort((a,b) => {
+            const an = (a.name || '').toLocaleLowerCase('tr-TR');
+            const bn = (b.name || '').toLocaleLowerCase('tr-TR');
+            const as = an.startsWith(q) ? 0 : 1;
+            const bs = bn.startsWith(q) ? 0 : 1;
+            return as - bs || an.localeCompare(bn, 'tr');
+          })
+          .slice(0,12);
+      }
+      renderFriendSearchResults(results);
+    } catch(err){
+      resultsWrap.innerHTML = '<p style="font-size:12px;color:var(--danger);margin:0;">Arama yapılamadı.</p>';
+    }
+  });
+
+  window.sendFriendRequestDirect = async function(targetUid){
+    if(!targetUid || targetUid === currentUid) return;
+    if(friendsList.some(f => f.uid === targetUid)){
+      setStatus('Bu kullanıcı zaten arkadaşın.');
+      return;
+    }
+    const incoming = friendRequests.find(r => r.fromUid === targetUid);
+    if(incoming){
+      setStatus('Bu kullanıcı sana zaten istek göndermiş. İsteklerden kabul edebilirsin.');
+      return;
+    }
+    try {
+      const outgoingSnap = await db.collection('friendRequests').where('fromUid','==',currentUid).get();
+      const alreadyPending = outgoingSnap.docs.some(d => {
+        const x = d.data() || {};
+        return x.toUid === targetUid && x.status === 'pending';
+      });
+      if(alreadyPending){
+        setStatus('Bu kullanıcıya zaten istek gönderdin.');
+        return;
+      }
+      await db.collection('friendRequests').add({
+        fromUid: currentUid,
+        fromName: profile ? profile.name : 'Kullanıcı',
+        fromAvatar: profile ? profile.avatar : '🙂',
+        fromPhoto: profile ? profile.photo : null,
+        toUid: targetUid,
+        status: 'pending',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      setStatus('Arkadaşlık isteği gönderildi!');
+    } catch(e){
+      setStatus('İstek gönderilemedi.', true);
+    }
+  };
+
+  window.acceptFriendRequest = async function(reqId, fromUid){
+    try {
+      const reqDoc = friendRequests.find(r => r.id === reqId);
+      if(!reqDoc) return;
+      await db.collection('friendRequests').doc(reqId).update({ status: 'accepted' });
+      await db.collection('users').doc(currentUid).collection('friends').doc(fromUid).set({
+        name: reqDoc.fromName,
+        avatar: reqDoc.fromAvatar,
+        photo: reqDoc.fromPhoto || null,
+        since: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      await db.collection('users').doc(fromUid).collection('friends').doc(currentUid).set({
+        name: profile ? profile.name : 'Kullanıcı',
+        avatar: profile ? profile.avatar : '🙂',
+        photo: profile ? profile.photo : null,
+        since: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      setStatus('Arkadaş kabul edildi!');
+    } catch(e){
+      setStatus('İşlem başarısız.', true);
+    }
+  };
+
+  window.rejectFriendRequest = function(reqId){
+    db.collection('friendRequests').doc(reqId).update({ status: 'rejected' }).catch(()=>{});
+  };
+
+  // ---------- DM (Direkt Mesajlar) ----------
+
+  function getDmChannelId(uidA, uidB){
+    return [uidA, uidB].sort().join('___');
+  }
+
+  window.openDirectMessageByUid = async function(friendUid){
+    let f = friendsList.find(x => x.uid === friendUid);
+    if(!f){
+      try {
+        const snap = await db.collection('publicProfiles').doc(friendUid).get();
+        if(snap.exists) f = { uid:friendUid, ...snap.data() };
+      } catch(e){}
+    }
+    if(!f) return;
+    openDirectMessageWith(friendUid, f.name || 'Arkadaş', f.avatar || '🙂', f.photo || null);
+  };
+
+  window.openDirectMessageWith = function(friendUid, friendName, friendAvatar, friendPhoto){
+    activeDmFriend = { uid: friendUid, name: friendName, avatar: friendAvatar, photo: friendPhoto };
+    activeTab = 'dm';
+    renderTabBar();
+    renderDmFriendsPicker();
+    showActiveTab();
+
+    document.getElementById('activeDmName').textContent = friendName;
+    document.getElementById('activeDmAvatar').innerHTML = avatarInnerHtml(friendPhoto, friendAvatar || '🙂');
+    document.getElementById('activeDmStatus').textContent = 'Sohbet açık';
+    document.getElementById('inspectDmUserBtn').onclick = () => inspectUserProfile(friendUid);
+    document.getElementById('activeDmIdentity').onclick = () => inspectUserProfile(friendUid);
+
+    const channelId = getDmChannelId(currentUid, friendUid);
+    if(unsubDmChat) unsubDmChat();
+    unsubDmChat = db.collection('directMessages').doc(channelId).collection('messages').orderBy('createdAt', 'desc').limit(80).onSnapshot(qs => {
+      const msgs = qs.docs.map(d => ({ id: d.id, ...d.data() })).reverse();
+      renderDmMessages(msgs);
+    }, ()=>{});
+  };
+
+  function renderDmMessages(msgs){
+    const wrap = document.getElementById('dmChatMessages');
+    if(!wrap) return;
+    if(msgs.length === 0){
+      wrap.innerHTML = '<div class="chat-empty">İlk mesajı göndererek sohbeti başlat!</div>';
+      return;
+    }
+    wrap.innerHTML = msgs.map(m => `
+      <div class="chat-msg ${m.fromUid === currentUid ? 'own' : ''}">
+        <div class="chat-bubble">
+          <div class="chat-text">${escapeHtml(m.text || '')}</div>
+          <div class="chat-time" style="margin-top:2px; font-size:9px; text-align:right;">${fmtChatTime(m.createdAt)}</div>
+        </div>
+      </div>
+    `).join('');
+    wrap.scrollTop = wrap.scrollHeight;
+  }
+
+  document.getElementById('dmChatForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(!activeDmFriend || !currentUid) return;
+    const inp = document.getElementById('dmChatInput');
+    const text = inp.value.trim();
+    if(!text) return;
+    inp.value = '';
+
+    const channelId = getDmChannelId(currentUid, activeDmFriend.uid);
+    db.collection('directMessages').doc(channelId).collection('messages').add({
+      fromUid: currentUid,
+      text,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(()=> setStatus('Mesaj iletilemedi.', true));
   });
 
   // ---------- Settings modal ----------
@@ -2958,9 +4341,10 @@
     action.catch(showAuthError);
   });
 
-  document.getElementById('logoutBtn').addEventListener('click', () => {
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
     settingsModal.style.display = 'none';
-    if(stopwatchStatus && currentUid){ stopwatchDoc().delete().catch(()=>{}); }
+    if(currentRoomId){ await leaveCurrentRoom(); }
+    if(stopwatchStatus && currentUid){ await stopwatchDoc().delete().catch(()=>{}); }
     auth.signOut();
   });
 
@@ -3004,9 +4388,17 @@
     renderLeaderboard();
     renderChat();
     renderLiveSessions();
+    renderBottomSocialNav();
+    renderDmFriendsPicker();
     updateStopwatchUI();
     syncPointsToProfile();
+    syncPublicProfile();
     renderProfileCard();
+
+    startRoomsListener();
+    startFriendsListener();
+    const codeDisplay = document.getElementById('myUserCodeDisplay');
+    if(codeDisplay) codeDisplay.textContent = currentUid;
 
     if(!profile){
       openProfileModal(true);
@@ -3027,17 +4419,33 @@
         setStatus('Veriler yüklenemedi, internet bağlantını kontrol et.', true);
       }
     } else {
+      if(currentRoomId && currentUid){
+        await leaveCurrentRoom().catch(()=>{});
+      }
       currentUid = null;
       if(unsubStudy){ unsubStudy(); unsubStudy = null; }
       if(unsubExam){ unsubExam(); unsubExam = null; }
       if(unsubLeaderboard){ unsubLeaderboard(); unsubLeaderboard = null; }
       if(unsubChat){ unsubChat(); unsubChat = null; }
       if(unsubLiveSessions){ unsubLiveSessions(); unsubLiveSessions = null; }
+      if(unsubRooms){ unsubRooms(); unsubRooms = null; }
+      if(unsubActiveRoom){ unsubActiveRoom(); unsubActiveRoom = null; }
+      if(unsubActiveRoomChat){ unsubActiveRoomChat(); unsubActiveRoomChat = null; }
+      if(unsubFriends){ unsubFriends(); unsubFriends = null; }
+      if(unsubFriendReqs){ unsubFriendReqs(); unsubFriendReqs = null; }
+      if(unsubDmChat){ unsubDmChat(); unsubDmChat = null; }
       studyEntries = [];
       examEntries = [];
       leaderboardEntries = [];
       chatMessages = [];
       liveSessions = [];
+      friendsList = [];
+      friendRequests = [];
+      currentRoomId = null;
+      currentRoomData = null;
+      isRoomOwner = false;
+      isLeavingRoom = false;
+      activeDmFriend = null;
       stopwatchStatus = null;
       stopwatchSegmentStartMs = 0;
       stopwatchAccumulatedMs = 0;
