@@ -3658,7 +3658,7 @@
     });
   }
 
-  function updateTopTabGlider(useMotion = true){
+  function updateTopTabGlider(useMotion = true, alsoScrollIntoView = true){
     const wrap = document.getElementById('tabBar');
     if(!wrap) return;
     const glider = wrap.querySelector('.tab-glider');
@@ -3687,7 +3687,12 @@
     glider.style.transform = `translate3d(${nextX}px,0,0)`;
     glider.dataset.x = String(nextX);
     glider.dataset.w = String(nextW);
-    try{ active.scrollIntoView({inline:'center',block:'nearest',behavior:reduced?'auto':'smooth'}); }catch(_){ }
+    // Not: sadece sekme gerçekten değiştiğinde yatay olarak görünüme kaydır.
+    // resize event'inde (mobilde adres çubuğu gizlenip/gösterilince tetiklenir)
+    // bunu çağırmak sayfayı dikey olarak yukarı fırlatıyordu.
+    if(alsoScrollIntoView){
+      try{ active.scrollIntoView({inline:'center',block:'nearest',behavior:reduced?'auto':'smooth'}); }catch(_){ }
+    }
   }
 
   function syncTopTabBarState(){
@@ -3847,7 +3852,7 @@
     settingsModal.style.display = 'flex';
   };
 
-  window.addEventListener('resize', () => requestAnimationFrame(updateTopTabGlider), { passive:true });
+  window.addEventListener('resize', () => requestAnimationFrame(() => updateTopTabGlider(false, false)), { passive:true });
   setInterval(() => {
     if(activeTab === 'ozet'){
       renderProfileCard();
@@ -5994,8 +5999,21 @@
           };
         } else {
           addBtn.style.display = '';
-          addBtn.onclick = () => {
-            sendFriendRequestDirect(targetUid);
+          addBtn.disabled = false;
+          addBtn.textContent = '+ Arkadaş Ekle';
+          addBtn.onclick = async () => {
+            addBtn.disabled = true;
+            addBtn.textContent = 'Gönderiliyor…';
+            const result = await sendFriendRequestDirect(targetUid);
+            if(result && result.ok){
+              addBtn.textContent = '✓ İstek Gönderildi';
+            } else {
+              addBtn.textContent = (result && result.msg) || 'Gönderilemedi';
+              setTimeout(() => {
+                addBtn.disabled = false;
+                addBtn.textContent = '+ Arkadaş Ekle';
+              }, 2200);
+            }
           };
         }
       }
@@ -6560,15 +6578,15 @@
   });
 
   window.sendFriendRequestDirect = async function(targetUid){
-    if(!targetUid || targetUid === currentUid) return;
+    if(!targetUid || targetUid === currentUid) return { ok:false, msg:'' };
     if(friendsList.some(f => f.uid === targetUid)){
       setStatus('Bu kullanıcı zaten arkadaşın.');
-      return;
+      return { ok:false, msg:'Bu kullanıcı zaten arkadaşın.' };
     }
     const incoming = friendRequests.find(r => r.fromUid === targetUid);
     if(incoming){
       setStatus('Bu kullanıcı sana zaten istek göndermiş. İsteklerden kabul edebilirsin.');
-      return;
+      return { ok:false, msg:'Zaten sana istek göndermiş, İsteklerden kabul et.' };
     }
     try {
       const outgoingSnap = await db.collection('friendRequests').where('fromUid','==',currentUid).get();
@@ -6578,7 +6596,7 @@
       });
       if(alreadyPending){
         setStatus('Bu kullanıcıya zaten istek gönderdin.');
-        return;
+        return { ok:false, msg:'Zaten istek gönderdin.' };
       }
       await db.collection('friendRequests').add({
         fromUid: currentUid,
@@ -6591,8 +6609,10 @@
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
       setStatus('Arkadaşlık isteği gönderildi!');
+      return { ok:true, msg:'İstek gönderildi!' };
     } catch(e){
       setStatus('İstek gönderilemedi.', true);
+      return { ok:false, msg:'Gönderilemedi, tekrar dene.' };
     }
   };
 
