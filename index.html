@@ -2459,6 +2459,51 @@
     .net2-chart-switch{ width:100%; }
   }
 
+
+
+  /* =========================================================
+     SOSYAL MERKEZ + PROFİL 2.0
+     ========================================================= */
+  .social2-shell,.profile2-self-shell{display:grid;gap:16px}
+  .social2-head{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:18px;
+    padding:20px 22px;border-radius:24px;
+    background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.035));
+    border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 18px 42px rgba(0,0,0,.14);
+    backdrop-filter:blur(24px) saturate(165%);-webkit-backdrop-filter:blur(24px) saturate(165%);
+  }
+  .social2-head h2{margin:2px 0 5px;font-size:clamp(22px,4vw,32px);letter-spacing:-.025em}
+  .social2-head p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.55;max-width:560px}
+  .social2-eyebrow,.social2-section-kicker{font-size:9.5px;font-weight:900;letter-spacing:.14em;color:var(--blue)}
+  .social2-code{flex:0 0 auto;max-width:260px;padding:10px 12px;border-radius:15px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07)}
+  .social2-code span{display:block;color:var(--muted);font-size:9.5px;font-weight:800;margin-bottom:3px}.social2-code b{display:block;color:var(--text);font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .social-view-nav{--social-index:0;position:relative;display:grid;grid-template-columns:1fr 1fr;width:min(100%,430px);padding:4px;margin:0 auto;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);overflow:hidden}
+  .social-view-glider{position:absolute;left:4px;top:4px;bottom:4px;width:calc((100% - 8px)/2);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,.085));border:1px solid rgba(255,255,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.21),0 8px 22px rgba(0,0,0,.13);transform:translate3d(calc(var(--social-index)*100%),0,0);transition:transform .44s cubic-bezier(.22,1,.36,1);pointer-events:none}
+  .social-view-nav.no-motion .social-view-glider{transition:none}.social-view-btn{position:relative;z-index:1;border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;font-weight:850;padding:10px 12px;border-radius:14px;cursor:pointer}.social-view-btn.active{color:var(--text)}
+  .social-view-count{min-width:17px;height:17px;padding:0 5px;border-radius:999px;align-items:center;justify-content:center;background:var(--danger);color:#fff;font-size:9px;margin-left:4px}
+  .social2-panel{display:none}.social2-panel.active{display:block;animation:social2In .24s ease both}@keyframes social2In{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .social2-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:14px;margin-top:14px}
+  .social2-card{padding:16px;border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.085);box-shadow:inset 0 1px 0 rgba(255,255,255,.075),0 14px 34px rgba(0,0,0,.12);backdrop-filter:blur(22px) saturate(155%);-webkit-backdrop-filter:blur(22px) saturate(155%)}
+  .social2-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.social2-section-head h3{margin:2px 0 0;font-size:15px}.social2-soft-chip{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.065);color:var(--muted);font-size:9.5px;font-weight:750;white-space:nowrap}
+  .social2-search-row{display:flex;gap:8px}.social2-search-row input{flex:1;min-width:0;border-radius:14px;background:rgba(0,0,0,.12);border:1px solid rgba(255,255,255,.075);color:var(--text);padding:10px 12px;outline:none}.social2-search-row input:focus{border-color:rgba(76,141,255,.5);box-shadow:0 0 0 3px rgba(76,141,255,.09)}
+  .social2-search-results{margin:10px 0 0}.social2-card .friend-search-result,.social2-card .friend-req-card{border-radius:15px;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.065);margin-bottom:8px}.social2-card .friend-req-card:last-child{margin-bottom:0}
+  .social2-messages-card{padding:14px}.social2-dm-picker{padding:2px 0 12px;margin:0}.social2-dm-container{min-height:480px;border-radius:20px;overflow:hidden;background:rgba(0,0,0,.10);border:1px solid rgba(255,255,255,.07)}
+  .social2-dm-header{background:rgba(255,255,255,.035);border-bottom:1px solid rgba(255,255,255,.065);padding:12px 14px}.social2-dm-header #activeDmName{font-size:14px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.social2-dm-header #activeDmStatus{font-size:10.5px;color:var(--muted);margin-top:2px}.social2-dm-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(255,255,255,.05);flex:0 0 auto}.social2-dm-container #dmChatMessages{flex:1;padding:12px;min-height:330px}.social2-dm-input{padding:10px;margin:0;border-top:1px solid rgba(255,255,255,.055)}
+
+  .profile2-self-shell{max-width:980px;margin:0 auto}.profile2-cover{position:relative;overflow:hidden;padding:24px;border-radius:28px;background:linear-gradient(135deg,rgba(76,141,255,.12),rgba(255,255,255,.065) 46%,rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.105);box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 22px 55px rgba(0,0,0,.17);backdrop-filter:blur(27px) saturate(170%);-webkit-backdrop-filter:blur(27px) saturate(170%)}
+  .profile2-cover-orb{position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}.profile2-cover-orb.one{width:260px;height:260px;right:-90px;top:-135px;background:radial-gradient(circle,rgba(76,141,255,.24),transparent 68%)}.profile2-cover-orb.two{width:190px;height:190px;left:-80px;bottom:-110px;background:radial-gradient(circle,rgba(242,193,78,.14),transparent 70%)}
+  .profile2-self-main{position:relative;z-index:1;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:18px}.profile2-self-avatar{width:94px;height:94px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:40px;background:rgba(255,255,255,.055);border-width:3px!important}.profile2-self-copy h1{margin:4px 0 3px;font-size:clamp(25px,5vw,36px);letter-spacing:-.035em}.profile2-self-copy p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.5}.profile2-live-pill{display:inline-flex;align-items:center;width:max-content;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);color:var(--muted);font-size:9.5px;font-weight:800}.profile2-self-actions{display:flex;flex-direction:column;gap:7px}
+  .profile2-count-row{position:relative;z-index:1;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.075)}.profile2-count-row>div,.profile2-count-row>button{border:0;background:transparent;color:var(--text);font:inherit;text-align:center;padding:7px 4px;border-radius:12px}.profile2-count-row>button{cursor:pointer}.profile2-count-row>button:hover{background:rgba(255,255,255,.04)}.profile2-count-row b{display:block;font-family:Georgia,serif;font-size:20px}.profile2-count-row span{display:block;color:var(--muted);font-size:9.5px;margin-top:3px}
+  .profile2-self-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.profile2-glass-card{padding:17px;border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 34px rgba(0,0,0,.11)}.profile2-glass-card p{margin:9px 0 0;color:var(--muted);font-size:11px}.profile2-progress{height:8px;border-radius:999px;background:rgba(255,255,255,.055);overflow:hidden}.profile2-progress span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--blue),color-mix(in srgb,var(--blue) 68%,#fff))}.profile2-link-btn{border:0;background:transparent;color:var(--blue);font:inherit;font-size:10.5px;font-weight:850;cursor:pointer;padding:0}.profile2-mini-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.profile2-mini-metrics>div{padding:10px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055)}.profile2-mini-metrics span{display:block;color:var(--muted);font-size:9px;margin-bottom:5px}.profile2-mini-metrics b{font-size:13px}.profile2-exam-pair{display:grid;grid-template-columns:1fr 1fr;gap:9px}.profile2-exam-pair>div{padding:12px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055)}.profile2-exam-pair span{display:block;color:var(--muted);font-size:9.5px;font-weight:800}.profile2-exam-pair b{display:block;font-family:Georgia,serif;font-size:25px;margin:3px 0}.profile2-exam-pair small{color:var(--muted);font-size:9px}.profile2-friend-faces{display:flex;align-items:center;min-height:48px}.profile2-friend-face{width:43px;height:43px;border-radius:50%;overflow:hidden;padding:0;margin-right:-7px;background:var(--panel-2);cursor:pointer;box-shadow:0 0 0 3px var(--panel)}.profile2-friend-face:hover{transform:translateY(-2px)}.profile2-empty-inline{font-size:11px;color:var(--muted)}
+
+  .profile2-public-overlay{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.profile2-public-modal{position:relative;max-width:620px!important;border-radius:28px!important;padding:20px!important;background:linear-gradient(145deg,color-mix(in srgb,var(--panel) 88%,transparent),color-mix(in srgb,var(--panel-2) 76%,transparent))!important;border:1px solid rgba(255,255,255,.11)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 28px 80px rgba(0,0,0,.34)!important;backdrop-filter:blur(30px) saturate(170%);-webkit-backdrop-filter:blur(30px) saturate(170%)}
+  .profile2-public-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center}.profile2-public-avatar{width:78px;height:78px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:34px;background:rgba(255,255,255,.05);border:3px solid var(--blue)}.profile2-public-identity h3{margin:4px 0 3px;font-size:24px;letter-spacing:-.025em}.profile2-bio{margin:7px 0 0;color:var(--muted);font-size:11.5px;line-height:1.45}.profile2-close{align-self:start;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--text);width:32px;height:32px;border-radius:50%;cursor:pointer}.profile2-legacy-note{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);color:var(--muted);border-radius:14px;padding:9px 11px;margin-top:13px;font-size:10.5px;line-height:1.45}
+  .profile2-public-counts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.profile2-public-counts>div{text-align:center;padding:9px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055)}.profile2-public-counts b{display:block;font-family:Georgia,serif;font-size:18px}.profile2-public-counts span{display:block;color:var(--muted);font-size:9px;margin-top:3px}.profile2-public-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.profile2-stat{padding:10px 8px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055);text-align:center}.profile2-stat span{display:block;color:var(--muted);font-size:8.8px;margin-bottom:5px}.profile2-stat b{font-size:12.5px}.profile2-stat.accent-amber b{color:var(--amber)}.profile2-stat.accent-blue b{color:var(--blue)}.profile2-public-detail{margin-top:12px;padding:13px;border-radius:17px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.055)}.profile2-public-detail #uprofSubjectBreakdown{font-size:10.5px;color:var(--muted);line-height:1.6}.profile2-public-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}.privacy-hidden{color:var(--muted)!important;font-size:10.5px!important}
+
+  @media(max-width:720px){.social2-head{align-items:flex-start;flex-direction:column;padding:17px}.social2-code{width:100%;max-width:none;box-sizing:border-box}.social2-grid,.profile2-self-grid{grid-template-columns:1fr}.profile2-self-main{grid-template-columns:auto 1fr}.profile2-self-actions{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}.profile2-count-row{grid-template-columns:repeat(3,1fr)}.profile2-count-row>div:nth-child(4),.profile2-count-row>div:nth-child(5){grid-column:auto}.profile2-public-stats{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:480px){.profile2-cover{padding:17px;border-radius:23px}.profile2-self-avatar{width:74px;height:74px}.profile2-self-copy h1{font-size:25px}.profile2-count-row{grid-template-columns:repeat(2,1fr)}.profile2-self-actions .glass-icon-btn{flex:1}.profile2-public-modal{padding:15px!important;border-radius:23px!important}.profile2-public-avatar{width:64px;height:64px}.profile2-public-identity h3{font-size:20px}.profile2-public-counts{grid-template-columns:repeat(3,1fr)}.profile2-public-stats{grid-template-columns:repeat(2,1fr)}.social2-dm-container{min-height:430px}.social2-search-row{flex-direction:column}}
+  @media(prefers-reduced-motion:reduce){.social-view-glider,.social2-panel{transition:none!important;animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -2844,57 +2889,86 @@
   </section>
   </div>
 
-  <div class="tab-panel" id="tab-arkadaslar" style="display:none">
-    <section class="card">
-      <h2>Arkadaş Ekle & İstekler</h2>
-      <p class="sub">Arkadaş ekleyerek çalışma durumlarını görebilir ve 1'e 1 mesajlaşabilirsin.</p>
-
-      <div style="background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:12px; margin-bottom:16px;">
-        <span style="font-size:12px; color:var(--muted);">Senin Kullanıcı Kodun (Arkadaşlarınla paylaş):</span>
-        <div style="font-size:15px; font-weight:700; color:var(--blue); margin-top:2px;" id="myUserCodeDisplay"></div>
+  <div class="tab-panel" id="tab-sosyal" style="display:none">
+    <div class="social2-shell">
+      <div class="social2-head">
+        <div>
+          <div class="social2-eyebrow">SOSYAL MERKEZ</div>
+          <h2>Arkadaşların ve mesajların</h2>
+          <p>Arkadaşlarını bul, profillerini incele ve konuşmalarına tek yerden devam et.</p>
+        </div>
+        <div class="social2-code" title="Arkadaşların kullanıcı kodunla seni bulabilir">
+          <span>Kullanıcı kodun</span><b id="myUserCodeDisplay"></b>
+        </div>
       </div>
 
-      <form id="sendFriendReqForm" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;">
-        <input type="text" id="friendSearchInput" placeholder="Arkadaşının Adı veya Kodu..." style="flex:1; min-width:200px; background:var(--panel-2); border:1px solid var(--line); border-radius:8px; color:var(--text); padding:9px 12px;">
-        <button type="submit" class="add-btn">Ara</button>
-      </form>
-      <div id="friendSearchResults" class="friend-search-results"></div>
-
-      <div style="margin-bottom:20px;">
-        <h3 style="font-size:14px; margin:0 0 8px;">Gelen Arkadaşlık İstekleri</h3>
-        <div id="incomingFriendRequests"></div>
+      <div class="social-view-nav" id="socialViewNav" style="--social-index:0">
+        <div class="social-view-glider" aria-hidden="true"></div>
+        <button type="button" class="social-view-btn active" data-social-view="friends" onclick="setSocialView('friends')">👥 Arkadaşlar <span id="socialFriendReqBadge" class="social-view-count" style="display:none"></span></button>
+        <button type="button" class="social-view-btn" data-social-view="messages" onclick="setSocialView('messages')">✉️ Mesajlar</button>
       </div>
 
-      <div>
-        <h3 style="font-size:14px; margin:0 0 8px;">Arkadaşlarım</h3>
-        <div id="friendsListContainer"></div>
+      <div id="socialFriendsPanel" class="social2-panel active">
+        <section class="social2-card social2-search-card">
+          <div class="social2-section-head">
+            <div><span class="social2-section-kicker">KEŞFET</span><h3>Arkadaşını bul</h3></div>
+            <span class="social2-soft-chip">İstek profilden gönderilir</span>
+          </div>
+          <form id="sendFriendReqForm" class="social2-search-row">
+            <input type="text" id="friendSearchInput" placeholder="İsim veya kullanıcı kodu ara…" autocomplete="off">
+            <button type="submit" class="add-btn">Ara</button>
+          </form>
+          <div id="friendSearchResults" class="friend-search-results social2-search-results"></div>
+        </section>
+
+        <div class="social2-grid">
+          <section class="social2-card">
+            <div class="social2-section-head">
+              <div><span class="social2-section-kicker">BEKLEYENLER</span><h3>Arkadaşlık istekleri</h3></div>
+            </div>
+            <div id="incomingFriendRequests"></div>
+          </section>
+          <section class="social2-card">
+            <div class="social2-section-head">
+              <div><span class="social2-section-kicker">ÇEVREN</span><h3>Arkadaşların</h3></div>
+              <span class="social2-soft-chip"><b id="socialFriendsCount">0</b> kişi</span>
+            </div>
+            <div id="friendsListContainer"></div>
+          </section>
+        </div>
       </div>
-    </section>
+
+      <div id="socialDmPanel" class="social2-panel">
+        <section class="social2-card social2-messages-card">
+          <div class="social2-section-head">
+            <div><span class="social2-section-kicker">MESAJLAR</span><h3>Konuşmalar</h3></div>
+            <span class="social2-soft-chip">Arkadaşlarınla özel</span>
+          </div>
+          <div id="dmFriendsPicker" class="dm-friends-picker social2-dm-picker"></div>
+          <div class="dm-container social2-dm-container">
+            <div class="dm-header social2-dm-header">
+              <div id="activeDmIdentity" class="user-click" style="display:flex; align-items:center; gap:10px; min-width:0;">
+                <div id="activeDmAvatar" class="social2-dm-avatar">💬</div>
+                <div style="min-width:0;">
+                  <b id="activeDmName">Bir arkadaşını seç</b>
+                  <div id="activeDmStatus">Sohbet başlatmak için yukarıdan bir arkadaş seç.</div>
+                </div>
+              </div>
+              <button type="button" class="glass-icon-btn" id="inspectDmUserBtn" title="Profili İncele">👤 Profil</button>
+            </div>
+            <div class="chat-messages" id="dmChatMessages"></div>
+            <form class="chat-input-row social2-dm-input" id="dmChatForm">
+              <input type="text" id="dmChatInput" placeholder="Mesaj yaz…" maxlength="400" autocomplete="off">
+              <button type="submit" class="chat-send-btn">Gönder</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
 
-  <div class="tab-panel" id="tab-dm" style="display:none">
-    <section class="card" style="padding:14px;">
-      <div id="dmFriendsPicker" class="dm-friends-picker"></div>
-      <div class="dm-container">
-        <div class="dm-header">
-          <div id="activeDmIdentity" class="user-click" style="display:flex; align-items:center; gap:8px;">
-            <div id="activeDmAvatar" style="width:32px; height:32px; border-radius:50%; background:var(--panel); display:flex; align-items:center; justify-content:center; overflow:hidden;">💬</div>
-            <div>
-              <b id="activeDmName" style="font-size:14px;">Bir arkadaşını seç</b>
-              <div id="activeDmStatus" style="font-size:11px; color:var(--muted);">Çevrim dışı</div>
-            </div>
-          </div>
-          <button type="button" class="del-btn" id="inspectDmUserBtn" title="Profili İncele">👤 Profil</button>
-        </div>
-
-        <div class="chat-messages" id="dmChatMessages" style="flex:1; padding:10px;"></div>
-
-        <form class="chat-input-row" id="dmChatForm" style="padding:10px; margin-top:0;">
-          <input type="text" id="dmChatInput" placeholder="Mesaj yaz..." maxlength="400" autocomplete="off">
-          <button type="submit" class="chat-send-btn">Gönder</button>
-        </form>
-      </div>
-    </section>
+  <div class="tab-panel" id="tab-profil" style="display:none">
+    <div id="selfProfile2Wrap"></div>
   </div>
 
   <p class="status-line" id="statusLine"></p>
@@ -2902,38 +2976,43 @@
   <nav class="bottom-social-nav" id="bottomSocialNav" aria-label="Sosyal menü"></nav>
 </div>
 
-<div id="userProfileModal" class="modal-overlay" style="display:none;">
-  <div class="modal-box" style="max-width:500px;">
-    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-      <div id="uprofAvatar" style="width:58px; height:58px; border-radius:50%; background:var(--panel-2); display:flex; align-items:center; justify-content:center; font-size:26px; overflow:hidden; border:2px solid var(--blue);"></div>
-      <div>
-        <h3 id="uprofName" style="margin:0 0 2px;"></h3>
+<div id="userProfileModal" class="modal-overlay profile2-public-overlay" style="display:none;">
+  <div class="modal-box profile2-public-modal">
+    <div class="profile2-public-top">
+      <div id="uprofAvatar" class="profile2-public-avatar"></div>
+      <div class="profile2-public-identity">
+        <div id="uprofLiveStatus" class="profile2-live-pill">⚫ Çevrim dışı</div>
+        <h3 id="uprofName">Kullanıcı</h3>
         <span id="uprofRankBadge" class="rank-badge"></span>
+        <p id="uprofBio" class="profile2-bio">YKS yolculuğu devam ediyor.</p>
       </div>
+      <button type="button" id="closeUserProfileBtn" class="profile2-close" aria-label="Kapat">✕</button>
     </div>
 
-    <div id="uprofLegacyNote" style="display:none; background:var(--panel-2); border:1px solid var(--line); color:var(--muted); border-radius:8px; padding:8px 10px; margin:-2px 0 10px; font-size:11.5px; line-height:1.45;"></div>
+    <div id="uprofLegacyNote" class="profile2-legacy-note" style="display:none;"></div>
 
-    <div class="inspect-grid">
-      <div class="stat"><div class="num" id="uprofTodayHours">0 sa</div><div class="label">Bugün Çalışma</div></div>
-      <div class="stat"><div class="num" id="uprofWeekHours">0 sa</div><div class="label">Bu Hafta</div></div>
-      <div class="stat"><div class="num" id="uprofTotalHours">0 sa</div><div class="label">Toplam Saat</div></div>
-      <div class="stat"><div class="num" id="uprofStreak">0 gün</div><div class="label">Aktif Seri 🔥</div></div>
+    <div class="profile2-public-counts">
+      <div><b id="uprofPoints">—</b><span>XP</span></div>
+      <div><b id="uprofFriendsCount">—</b><span>Arkadaş</span></div>
+      <div><b id="uprofStreak">—</b><span>Seri 🔥</span></div>
     </div>
 
-    <div style="background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:10px; margin-top:8px;">
-      <b>Deneme Netleri:</b>
-      <div style="display:flex; justify-content:space-around; margin:8px 0; font-size:13px;">
-        <div>TYT Neti: <b id="uprofTytNet" style="color:var(--amber);">—</b></div>
-        <div>AYT Neti: <b id="uprofAytNet" style="color:var(--blue);">—</b></div>
-      </div>
-      <div id="uprofSubjectBreakdown" style="font-size:11.5px; color:var(--muted); line-height:1.5;"></div>
+    <div class="profile2-public-stats">
+      <div class="profile2-stat"><span>Bugün</span><b id="uprofTodayHours">—</b></div>
+      <div class="profile2-stat"><span>Bu hafta</span><b id="uprofWeekHours">—</b></div>
+      <div class="profile2-stat"><span>Toplam</span><b id="uprofTotalHours">—</b></div>
+      <div class="profile2-stat accent-amber"><span>Son TYT</span><b id="uprofTytNet">—</b></div>
+      <div class="profile2-stat accent-blue"><span>Son AYT</span><b id="uprofAytNet">—</b></div>
     </div>
 
-    <div class="modal-actions" style="margin-top:16px;">
+    <div class="profile2-public-detail">
+      <div class="social2-section-head"><div><span class="social2-section-kicker">SON DENEME</span><h3>Ders dağılımı</h3></div></div>
+      <div id="uprofSubjectBreakdown">—</div>
+    </div>
+
+    <div class="profile2-public-actions">
       <button type="button" id="uprofAddFriendBtn" class="add-btn" style="display:none;">+ Arkadaş Ekle</button>
       <button type="button" id="uprofSendDmBtn" class="add-btn" style="display:none;">✉️ Mesaj Gönder</button>
-      <button type="button" id="closeUserProfileBtn">Kapat</button>
     </div>
   </div>
 </div>
@@ -3020,6 +3099,10 @@
       <div class="field">
         <label for="profName">İsmin</label>
         <input type="text" id="profName" placeholder="Adın">
+      </div>
+      <div class="field">
+        <label for="profBio">Kısa profil yazın</label>
+        <input type="text" id="profBio" maxlength="90" placeholder="örn. YKS 2027 · EA · hedefe devam 🚀">
       </div>
       <div class="field">
         <label for="profStudyGoal">Haftalık çalışma hedefin (saat)</label>
@@ -3532,11 +3615,12 @@
     ['sihirbaz', 'Sihirbaz'],
     ['siralama', 'Liderlik'],
     ['sohbet', 'Sohbet/Odalar'],
-    ['arkadaslar', 'Arkadaşlar'],
-    ['dm', 'DM']
+    ['sosyal', 'Sosyal'],
+    ['profil', 'Profil']
   ];
   const TOP_TAB_IDS = new Set(['ozet','calisma','netler','hedef','sihirbaz','siralama','sohbet']);
   let activeTab = 'ozet';
+  let socialView = 'friends';
 
   window.switchTab = function(tabId){
     if(!TABS.some(([id]) => id === tabId)) return;
@@ -3546,6 +3630,7 @@
       renderStats();
       renderStreakCard();
     }
+    if(tabId === 'profil') renderSelfProfile2();
     syncTopTabBarState();
     renderBottomSocialNav();
     showActiveTab();
@@ -3556,22 +3641,20 @@
     const wrap = document.getElementById('bottomSocialNav');
     if(!wrap) return;
     const reqBadge = friendRequests.length ? `<span class="bottom-social-badge">${friendRequests.length}</span>` : '';
-    const socialActive = activeTab === 'arkadaslar' || activeTab === 'dm';
+    const socialActive = activeTab === 'sosyal' || activeTab === 'profil';
     wrap.classList.toggle('has-active', socialActive);
-    wrap.style.setProperty('--bottom-index', activeTab === 'dm' ? 1 : 0);
+    wrap.style.setProperty('--bottom-index', activeTab === 'profil' ? 1 : 0);
     wrap.innerHTML = `
       <div class="bottom-social-glider" aria-hidden="true"></div>
-      <button type="button" class="bottom-social-btn ${activeTab==='arkadaslar'?'active':''}" data-bottom-tab="arkadaslar">
-        <span class="nav-icon">👥</span><span>Arkadaşlar</span>${reqBadge}
+      <button type="button" class="bottom-social-btn ${activeTab==='sosyal'?'active':''}" data-bottom-tab="sosyal">
+        <span class="nav-icon">👥</span><span>Sosyal</span>${reqBadge}
       </button>
-      <button type="button" class="bottom-social-btn ${activeTab==='dm'?'active':''}" data-bottom-tab="dm">
-        <span class="nav-icon">✉️</span><span>Mesajlar</span>
+      <button type="button" class="bottom-social-btn ${activeTab==='profil'?'active':''}" data-bottom-tab="profil">
+        <span class="nav-icon">👤</span><span>Profil</span>
       </button>
     `;
     wrap.querySelectorAll('[data-bottom-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        switchTab(btn.getAttribute('data-bottom-tab'));
-      });
+      btn.addEventListener('click', () => switchTab(btn.getAttribute('data-bottom-tab')));
     });
   }
 
@@ -3639,11 +3722,130 @@
       const wrap = document.getElementById('chatMessages');
       if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 30);
     }
-    if(activeTab === 'dm'){
-      const wrap = document.getElementById('dmChatMessages');
-      if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 30);
+    if(activeTab === 'sosyal'){
+      setSocialView(socialView, false);
+      if(socialView === 'messages'){
+        const wrap = document.getElementById('dmChatMessages');
+        if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 30);
+      }
     }
+    if(activeTab === 'profil') renderSelfProfile2();
   }
+
+  window.setSocialView = function(view, animate = true){
+    socialView = view === 'messages' ? 'messages' : 'friends';
+    const nav = document.getElementById('socialViewNav');
+    if(nav){
+      nav.style.setProperty('--social-index', socialView === 'messages' ? 1 : 0);
+      nav.querySelectorAll('[data-social-view]').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-social-view') === socialView));
+      if(!animate) nav.classList.add('no-motion'); else nav.classList.remove('no-motion');
+    }
+    const friendsPanel = document.getElementById('socialFriendsPanel');
+    const dmPanel = document.getElementById('socialDmPanel');
+    if(friendsPanel) friendsPanel.classList.toggle('active', socialView === 'friends');
+    if(dmPanel) dmPanel.classList.toggle('active', socialView === 'messages');
+    if(socialView === 'messages'){
+      renderDmFriendsPicker();
+      const wrap = document.getElementById('dmChatMessages');
+      if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 40);
+    }
+  };
+
+  function profile2NetValue(v){
+    if(v === null || v === undefined || v === '') return '—';
+    const n = Number(v);
+    return Number.isFinite(n) ? n.toLocaleString('tr-TR',{maximumFractionDigits:2}) : '—';
+  }
+
+  function profile2Presence(uid){
+    const entry = currentOnlinePresence().find(p => p.id === uid);
+    return entry ? presenceStatusFor(entry).label : '⚫ Çevrim dışı';
+  }
+
+  function renderSelfProfile2(){
+    const wrap = document.getElementById('selfProfile2Wrap');
+    if(!wrap || !profile) return;
+    const points = computePoints();
+    const { current, next } = getRankInfo(points);
+    const progress = next ? Math.max(0,Math.min(100,Math.round((points-current.min)/Math.max(1,next.min-current.min)*100))) : 100;
+    const streak = computeStreakMetrics();
+    const weekHours = filterByPeriod(studyEntries,'week').reduce((s,e)=>s+Number(e.hours||0),0);
+    const totalHours = studyEntries.reduce((s,e)=>s+Number(e.hours||0),0);
+    const tyt = examEntries.filter(e=>e.type==='TYT');
+    const ayt = examEntries.filter(e=>e.type==='AYT');
+    const lastTyt = tyt.length ? tyt[tyt.length-1] : null;
+    const lastAyt = ayt.length ? ayt[ayt.length-1] : null;
+    const goal = Number(profile.studyGoal)||0;
+    const goalPct = goal>0 ? Math.max(0,Math.min(100,Math.round(weekHours/goal*100))) : 0;
+    const friendAvatars = friendsList.slice(0,6).map(f => `<button type="button" class="profile2-friend-face rank-avatar-frame" style="${rankFrameVar(publicRankForUid(f.uid,f.rank))}" onclick="inspectUserProfile('${f.uid}')" title="${escapeHtml(f.name||'Arkadaş')}">${avatarInnerHtml(f.photo,f.avatar||'🙂')}</button>`).join('');
+    const bio = (profile.bio||'').trim() || 'YKS yolculuğu devam ediyor.';
+    const nextText = next ? `${next.min-points} XP sonra ${next.emoji} ${next.name}` : 'Maksimum rütbedesin';
+
+    wrap.innerHTML = `
+      <div class="profile2-self-shell">
+        <section class="profile2-cover">
+          <div class="profile2-cover-orb one"></div><div class="profile2-cover-orb two"></div>
+          <div class="profile2-self-main">
+            <div class="profile2-self-avatar rank-avatar-frame" style="${rankFrameVar(current.name)}">${avatarInnerHtml(profile.photo,profile.avatar||'🙂')}</div>
+            <div class="profile2-self-copy">
+              <div class="profile2-live-pill">${profile2Presence(currentUid)}</div>
+              <h1>${escapeHtml(profile.name||'Kullanıcı')}</h1>
+              <button type="button" class="rank-badge rank-badge-clickable" onclick="openRankJourneyModal()" style="border:0;color:${current.color||rankColor(current.name)}">${current.emoji} ${current.name}</button>
+              <p>${escapeHtml(bio)}</p>
+            </div>
+            <div class="profile2-self-actions">
+              <button type="button" class="glass-icon-btn" onclick="openProfileModal(false)">✏️ Profili Düzenle</button>
+              <button type="button" class="glass-icon-btn" onclick="openPrivacySettingsFromProfile()">🔒 Gizlilik</button>
+            </div>
+          </div>
+          <div class="profile2-count-row">
+            <button type="button" onclick="switchTab('sosyal');setSocialView('friends')"><b>${friendsList.length}</b><span>Arkadaş</span></button>
+            <button type="button" onclick="openRankJourneyModal()"><b>${points}</b><span>XP</span></button>
+            <div><b>${streak.current}</b><span>Aktif seri 🔥</span></div>
+            <div><b>${profile2NetValue(lastTyt&&lastTyt.net)}</b><span>Son TYT</span></div>
+            <div><b>${profile2NetValue(lastAyt&&lastAyt.net)}</b><span>Son AYT</span></div>
+          </div>
+        </section>
+
+        <div class="profile2-self-grid">
+          <section class="profile2-glass-card profile2-rank-card">
+            <div class="social2-section-head"><div><span class="social2-section-kicker">RÜTBE</span><h3>${current.emoji} ${current.name}</h3></div><span class="social2-soft-chip">${points} XP</span></div>
+            <div class="profile2-progress"><span style="width:${progress}%"></span></div>
+            <p>${escapeHtml(nextText)}</p>
+            <button type="button" class="profile2-link-btn" onclick="openRankJourneyModal()">Rütbe yolculuğunu gör →</button>
+          </section>
+
+          <section class="profile2-glass-card">
+            <div class="social2-section-head"><div><span class="social2-section-kicker">BU HAFTA</span><h3>${fmtHours(weekHours)} çalışma</h3></div><span class="social2-soft-chip">${goal>0?'%'+goalPct:'Hedef yok'}</span></div>
+            <div class="profile2-mini-metrics">
+              <div><span>Toplam çalışma</span><b>${fmtHours(totalHours)}</b></div>
+              <div><span>Haftalık hedef</span><b>${goal>0?fmtHours(goal):'—'}</b></div>
+              <div><span>Seri dondurma</span><b>${streak.freezeRemaining}/2</b></div>
+            </div>
+          </section>
+
+          <section class="profile2-glass-card profile2-exam-card">
+            <div class="social2-section-head"><div><span class="social2-section-kicker">NETLER</span><h3>Son denemelerin</h3></div><button type="button" class="profile2-link-btn" onclick="switchTab('netler')">Netlere git →</button></div>
+            <div class="profile2-exam-pair">
+              <div><span>TYT</span><b>${profile2NetValue(lastTyt&&lastTyt.net)}</b><small>${lastTyt?fmtDate(lastTyt.date):'Henüz kayıt yok'}</small></div>
+              <div><span>AYT</span><b>${profile2NetValue(lastAyt&&lastAyt.net)}</b><small>${lastAyt?fmtDate(lastAyt.date):'Henüz kayıt yok'}</small></div>
+            </div>
+          </section>
+
+          <section class="profile2-glass-card profile2-friends-card">
+            <div class="social2-section-head"><div><span class="social2-section-kicker">SOSYAL</span><h3>Arkadaşların</h3></div><button type="button" class="profile2-link-btn" onclick="switchTab('sosyal');setSocialView('friends')">Tümünü gör →</button></div>
+            <div class="profile2-friend-faces">${friendAvatars || '<span class="profile2-empty-inline">Henüz arkadaşın yok.</span>'}</div>
+          </section>
+        </div>
+      </div>`;
+  }
+
+  window.openPrivacySettingsFromProfile = function(){
+    renderThemeGrid();
+    renderPrivacySettings();
+    renderSettingsTab('privacy');
+    settingsModal.style.display = 'flex';
+  };
 
   window.addEventListener('resize', () => requestAnimationFrame(updateTopTabGlider), { passive:true });
   setInterval(() => {
@@ -5426,6 +5628,7 @@
 
     if(profile){
       document.getElementById('profName').value = profile.name || '';
+      document.getElementById('profBio').value = profile.bio || '';
       document.getElementById('profStudyGoal').value = profile.studyGoal || '';
       document.getElementById('profTytGoal').value = profile.tytGoal || '';
       document.getElementById('profAytGoal').value = profile.aytGoal || '';
@@ -5438,6 +5641,7 @@
 
   document.getElementById('profileSaveBtn').addEventListener('click', () => {
     const name = document.getElementById('profName').value.trim();
+    const bio = document.getElementById('profBio').value.trim();
     const studyGoal = num(document.getElementById('profStudyGoal').value);
     const tytGoal = num(document.getElementById('profTytGoal').value);
     const aytGoal = num(document.getElementById('profAytGoal').value);
@@ -5445,7 +5649,7 @@
     const points = computePoints();
     const rank = getRankInfo(points).current.name;
 
-    profile = { name, avatar: selectedAvatar, photo: selectedPhoto || null, studyGoal, tytGoal, aytGoal, aytTrack, points, rank, privacy: (profile && profile.privacy) || { ...DEFAULT_PRIVACY } };
+    profile = { ...(profile || {}), name, bio, avatar: selectedAvatar, photo: selectedPhoto || null, studyGoal, tytGoal, aytGoal, aytTrack, points, rank, privacy: (profile && profile.privacy) || { ...DEFAULT_PRIVACY } };
     saveProfile();
     syncLeaderboardEntry();
     syncPublicProfile();
@@ -5454,6 +5658,7 @@
 
     renderProfileCard();
     renderStats();
+    renderSelfProfile2();
     populateSubjectSelect();
     renderSubjectChart();
     // Track change affects which AYT subjects show in the exam form
@@ -5638,6 +5843,8 @@
       photo: profile.photo || null,
       points: computePoints(),
       rank: currentRank,
+      bio: profile.bio || '',
+      friendsCount: friendsList.length,
       privacy,
       streak: privacy.showStreak ? streakObj.current : null,
       todayHours: privacy.showTodayHours ? round1(todayHrs) : null,
@@ -5653,6 +5860,7 @@
 
   window.inspectUserProfile = async function(targetUid){
     if(!targetUid) return;
+    if(targetUid === currentUid){ switchTab('profil'); return; }
     const modal = document.getElementById('userProfileModal');
     modal.style.display = 'flex';
 
@@ -5661,6 +5869,10 @@
     document.getElementById('uprofAvatar').classList.remove('rank-avatar-frame');
     ['uprofTodayHours','uprofWeekHours','uprofTotalHours','uprofStreak','uprofTytNet','uprofAytNet'].forEach(id => document.getElementById(id).classList.remove('privacy-hidden'));
     document.getElementById('uprofRankBadge').textContent = '—';
+    document.getElementById('uprofPoints').textContent = '—';
+    document.getElementById('uprofFriendsCount').textContent = '—';
+    document.getElementById('uprofBio').textContent = 'YKS yolculuğu devam ediyor.';
+    document.getElementById('uprofLiveStatus').textContent = profile2Presence(targetUid);
     document.getElementById('uprofTodayHours').textContent = '—';
     document.getElementById('uprofWeekHours').textContent = '—';
     document.getElementById('uprofTotalHours').textContent = '—';
@@ -5715,6 +5927,10 @@
         document.getElementById('uprofSubjectBreakdown').textContent = 'Bu kullanıcıya ait herkese açık profil bilgisi henüz bulunmuyor.';
       } else {
         document.getElementById('uprofName').textContent = data.name || 'Kullanıcı';
+        document.getElementById('uprofBio').textContent = (data.bio || '').trim() || 'YKS yolculuğu devam ediyor.';
+        document.getElementById('uprofPoints').textContent = Number.isFinite(Number(data.points)) ? String(Math.round(Number(data.points))) : '—';
+        document.getElementById('uprofFriendsCount').textContent = data.friendsCount !== undefined && data.friendsCount !== null ? String(data.friendsCount) : '—';
+        document.getElementById('uprofLiveStatus').textContent = profile2Presence(targetUid);
         document.getElementById('uprofAvatar').innerHTML = avatarInnerHtml(data.photo, data.avatar || '🙂');
         const rankMeta = rankMetaByName(data.rank);
         document.getElementById('uprofRankBadge').textContent = `${rankMeta.emoji} ${data.rank || rankMeta.name}`;
@@ -6193,15 +6409,29 @@
     unsubFriends = db.collection('users').doc(currentUid).collection('friends').onSnapshot(qs => {
       friendsList = qs.docs.map(d => ({ uid: d.id, ...d.data() }));
       renderFriendsList();
+      renderSocialMeta();
+      renderSelfProfile2();
+      syncPublicProfile();
     }, ()=>{});
 
     if(unsubFriendReqs) unsubFriendReqs();
     unsubFriendReqs = db.collection('friendRequests').where('toUid', '==', currentUid).onSnapshot(qs => {
       friendRequests = qs.docs.map(d => ({ id: d.id, ...d.data() })).filter(r => r.status === 'pending');
       renderFriendRequests();
+      renderSocialMeta();
       renderTabBar();
       renderBottomSocialNav();
     }, ()=>{});
+  }
+
+  function renderSocialMeta(){
+    const count = document.getElementById('socialFriendsCount');
+    if(count) count.textContent = String(friendsList.length);
+    const badge = document.getElementById('socialFriendReqBadge');
+    if(badge){
+      badge.textContent = String(friendRequests.length);
+      badge.style.display = friendRequests.length ? 'inline-flex' : 'none';
+    }
   }
 
   function renderDmFriendsPicker(){
@@ -6226,7 +6456,7 @@
     renderDmFriendsPicker();
     if(!wrap) return;
     if(friendsList.length === 0){
-      wrap.innerHTML = emptyStateHtml('Henüz hiç arkadaşın yok. Yukarıdan kullanıcı adıyla arayabilirsin.');
+      wrap.innerHTML = emptyStateHtml('Henüz hiç arkadaşın yok. Yukarıdan bir kullanıcı bulup profiline gidebilirsin.');
       return;
     }
     wrap.innerHTML = friendsList.map(f => {
@@ -6241,7 +6471,7 @@
           </div>
         </div>
         <div style="display:flex; gap:6px;">
-          <button type="button" class="add-btn" style="padding:6px 12px; font-size:12px;" onclick="openDirectMessageByUid('${f.uid}')">✉️ DM</button>
+          <button type="button" class="glass-icon-btn" style="padding:6px 12px; font-size:12px;" onclick="inspectUserProfile('${f.uid}')">👤 Profil</button>
         </div>
       </div>`;
     }).join('');
@@ -6280,8 +6510,8 @@
     wrap.innerHTML = results.map(r => {
       const isFriend = friendsList.some(f => f.uid === r.id);
       const incoming = friendRequests.find(fr => fr.fromUid === r.id);
-      let action = `<button type="button" class="add-btn" style="padding:6px 10px;font-size:11.5px;" onclick="sendFriendRequestDirect('${r.id}')">+ Ekle</button>`;
-      if(isFriend) action = `<button type="button" class="add-btn" style="padding:6px 10px;font-size:11.5px;" onclick="openDirectMessageByUid('${r.id}')">✉️ DM</button>`;
+      let action = `<button type="button" class="glass-icon-btn" style="padding:6px 10px;font-size:11.5px;" onclick="inspectUserProfile('${r.id}')">Profili Gör</button>`;
+      if(isFriend) action = `<button type="button" class="glass-icon-btn" style="padding:6px 10px;font-size:11.5px;" onclick="inspectUserProfile('${r.id}')">Profili Gör</button>`;
       if(incoming) action = `<button type="button" class="add-btn" style="padding:6px 10px;font-size:11.5px;" onclick="acceptFriendRequest('${incoming.id}','${r.id}')">Kabul Et</button>`;
       const rankName = publicRankForUid(r.id, r.rank);
       return `<div class="friend-search-result">
@@ -6415,8 +6645,10 @@
 
   window.openDirectMessageWith = function(friendUid, friendName, friendAvatar, friendPhoto, friendRank){
     activeDmFriend = { uid: friendUid, name: friendName, avatar: friendAvatar, photo: friendPhoto, rank: friendRank || publicRankForUid(friendUid) };
-    activeTab = 'dm';
-    renderTabBar();
+    socialView = 'messages';
+    activeTab = 'sosyal';
+    syncTopTabBarState();
+    renderBottomSocialNav();
     renderDmFriendsPicker();
     showActiveTab();
 
