@@ -2102,6 +2102,227 @@
     .tab-glider,.seg-glider,.tab-btn,.seg-btn{transition-duration:.01ms!important;animation-duration:.01ms!important}
   }
 
+
+
+  /* =========================================================
+     ÇALIŞMA 2.0 · Liquid Glass + Odak Modu + Pomodoro
+     ========================================================= */
+  .study-workspace-nav{
+    --study-index:0;
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    width:min(100%,360px);
+    margin:0 auto 16px;
+    padding:4px;
+    border-radius:18px;
+    background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.035));
+    border:1px solid rgba(255,255,255,.10);
+    backdrop-filter:blur(22px) saturate(165%);
+    -webkit-backdrop-filter:blur(22px) saturate(165%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 12px 28px rgba(0,0,0,.13);
+  }
+  .study-workspace-glider{
+    position:absolute;
+    top:4px; bottom:4px; left:4px;
+    width:calc((100% - 8px)/2);
+    border-radius:14px;
+    background:linear-gradient(180deg,rgba(255,255,255,.27),rgba(255,255,255,.10));
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 22px rgba(0,0,0,.14);
+    transform:translate3d(calc(var(--study-index) * 100%),0,0);
+    transition:transform .42s cubic-bezier(.22,1,.36,1);
+    pointer-events:none;
+  }
+  .study-workspace-btn{
+    position:relative; z-index:1;
+    border:0; background:transparent; color:var(--muted);
+    padding:10px 14px; border-radius:14px;
+    font:inherit; font-size:13px; font-weight:800; cursor:pointer;
+    transition:color .2s ease,transform .18s ease;
+  }
+  .study-workspace-btn.active{color:var(--text)}
+  .study-workspace-btn:active{transform:scale(.985)}
+
+  .study-live-panel{display:grid;gap:16px}
+  .study-history-panel{display:none}
+  .study-history-panel.active{display:block}
+  .study-live-panel.hidden{display:none}
+
+  #stopwatchCard{
+    position:relative;
+    overflow:hidden;
+    border-radius:26px;
+    padding:20px;
+    background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045));
+    border:1px solid rgba(255,255,255,.11);
+    backdrop-filter:blur(26px) saturate(170%);
+    -webkit-backdrop-filter:blur(26px) saturate(170%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 20px 50px rgba(0,0,0,.17);
+  }
+  #stopwatchCard::before{
+    content:"";
+    position:absolute;
+    width:280px;height:280px;border-radius:50%;
+    left:-90px;top:-140px;
+    background:radial-gradient(circle,rgba(76,141,255,.20),rgba(76,141,255,.025) 67%,transparent 73%);
+    pointer-events:none;
+  }
+  #stopwatchCard.is-pomodoro::before{
+    background:radial-gradient(circle,rgba(242,193,78,.20),rgba(242,193,78,.025) 67%,transparent 73%);
+  }
+  .stopwatch-card-head{
+    position:relative;z-index:1;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+    margin-bottom:14px;
+  }
+  .stopwatch-card-head h2{margin:0 0 4px}
+  .stopwatch-card-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .glass-icon-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    border:1px solid rgba(255,255,255,.10);
+    background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.055));
+    color:var(--text);border-radius:14px;padding:9px 11px;
+    font:inherit;font-size:12px;font-weight:800;cursor:pointer;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+    transition:transform .18s ease,background .2s ease,border-color .2s ease;
+  }
+  .glass-icon-btn:hover{background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.07))}
+  .glass-icon-btn:active{transform:scale(.975)}
+
+  #stopwatchCard .stopwatch-box{
+    position:relative;z-index:1;
+    padding:18px 0 8px;
+    gap:12px;
+  }
+  #stopwatchCard .stopwatch-time{
+    font-size:clamp(50px,9vw,78px);
+    letter-spacing:-.035em;
+    line-height:1;
+    text-shadow:0 8px 26px rgba(0,0,0,.16);
+  }
+  #stopwatchCard .stopwatch-status{
+    padding:6px 13px;
+    background:rgba(255,255,255,.055);
+    border-color:rgba(255,255,255,.09);
+    font-size:12px;font-weight:800;
+  }
+  .stopwatch-context-line{
+    min-height:18px;
+    color:var(--muted);
+    font-size:12px;
+    font-weight:700;
+    text-align:center;
+  }
+  .stopwatch-btns{gap:9px;margin-top:8px}
+  #stopwatchCard .stopwatch-btns .add-btn{
+    min-width:112px;
+    padding:11px 16px;
+    border-radius:15px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 10px 22px rgba(0,0,0,.12);
+  }
+
+  .pomodoro-builder{
+    position:relative;z-index:1;
+    display:none;
+    margin-top:16px;
+    padding:15px;
+    border-radius:20px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.075);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .pomodoro-builder.open{display:block}
+  .pomodoro-builder h3{margin:0 0 5px;font-size:15px}
+  .pomodoro-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+  .pomodoro-field label{display:block;color:var(--muted);font-size:10.5px;font-weight:800;margin-bottom:6px}
+  .pomodoro-field input{
+    width:100%;box-sizing:border-box;
+    border-radius:13px;padding:10px 11px;
+    background:rgba(0,0,0,.13);color:var(--text);
+    border:1px solid rgba(255,255,255,.09);
+    font:inherit;font-size:13px;font-weight:700;outline:none;
+  }
+  .pomodoro-field input:focus{border-color:rgba(76,141,255,.55);box-shadow:0 0 0 3px rgba(76,141,255,.10)}
+  .pomodoro-summary{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;
+    margin-top:12px;
+  }
+  .pomodoro-summary-item{
+    padding:10px 11px;border-radius:15px;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.065);
+  }
+  .pomodoro-summary-item .k{color:var(--muted);font-size:10.5px;margin-bottom:4px}
+  .pomodoro-summary-item .v{font-family:Georgia,serif;font-size:17px;font-weight:700}
+  .pomodoro-note{margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.45}
+  .pomodoro-start-row{display:flex;justify-content:flex-end;margin-top:12px}
+  .pomodoro-running-meta{
+    display:none;
+    align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+    color:var(--muted);font-size:12px;font-weight:800;
+  }
+  .pomodoro-running-meta.visible{display:flex}
+  .pomodoro-chip{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:5px 9px;border-radius:999px;
+    background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.075);
+  }
+
+  .live-study-card{
+    border-radius:22px;
+    background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));
+    border:1px solid rgba(255,255,255,.085);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 32px rgba(0,0,0,.12);
+  }
+  #studyLivePanel .live-row{
+    margin:8px 0;padding:10px 11px;border:1px solid rgba(255,255,255,.065)!important;
+    border-radius:15px;background:rgba(255,255,255,.035);
+  }
+  #studyLivePanel .live-row:last-child{border-bottom:1px solid rgba(255,255,255,.065)!important}
+
+  body.focus-stopwatch{overflow:hidden;background:#050A0F}
+  body.focus-stopwatch #mainApp > header.top,
+  body.focus-stopwatch #mainApp > .tab-bar,
+  body.focus-stopwatch .bottom-social-nav,
+  body.focus-stopwatch #tab-calisma > .study-workspace-nav,
+  body.focus-stopwatch #studyLivePanel > .live-study-card,
+  body.focus-stopwatch #studyHistoryPanel,
+  body.focus-stopwatch #stopwatchCard .stopwatch-card-head .stopwatch-card-title-copy,
+  body.focus-stopwatch #stopwatchCard .pomodoro-builder{
+    display:none!important;
+  }
+  body.focus-stopwatch #mainApp{padding:0!important;max-width:none!important;width:100%!important}
+  body.focus-stopwatch #tab-calisma{display:block!important;position:fixed;inset:0;z-index:5000;background:radial-gradient(circle at 50% 20%,rgba(76,141,255,.09),transparent 42%),#050A0F;padding:0!important;overflow:hidden}
+  body.focus-stopwatch #studyLivePanel{display:block!important}
+  body.focus-stopwatch #stopwatchCard{
+    position:absolute;inset:0;margin:0!important;border:0;border-radius:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  body.focus-stopwatch #stopwatchCard::before{width:70vw;height:70vw;max-width:760px;max-height:760px;left:50%;top:50%;transform:translate(-50%,-50%);opacity:.45}
+  body.focus-stopwatch #stopwatchCard .stopwatch-card-head{position:absolute;top:max(18px,env(safe-area-inset-top));right:max(18px,env(safe-area-inset-right));margin:0}
+  body.focus-stopwatch #stopwatchCard .stopwatch-card-actions > :not(#focusModeBtn){display:none!important}
+  body.focus-stopwatch #stopwatchCard .stopwatch-box{z-index:2;padding:0;gap:18px}
+  body.focus-stopwatch #stopwatchCard .stopwatch-time{font-size:clamp(72px,16vw,180px);letter-spacing:-.045em}
+  body.focus-stopwatch #stopwatchCard .stopwatch-status{font-size:14px;padding:7px 14px}
+  body.focus-stopwatch #stopwatchCard .stopwatch-context-line{font-size:13px}
+  body.focus-stopwatch #stopwatchCard .stopwatch-btns .add-btn{min-width:120px}
+  body.focus-stopwatch #stopwatchCard .pomodoro-running-meta{font-size:13px}
+
+  @media(max-width:700px){
+    #stopwatchCard{padding:16px;border-radius:22px}
+    .stopwatch-card-head{flex-direction:column}
+    .stopwatch-card-actions{width:100%;justify-content:flex-start}
+    .pomodoro-grid,.pomodoro-summary{grid-template-columns:1fr 1fr 1fr}
+    #stopwatchCard .stopwatch-btns .add-btn{min-width:0;flex:1 1 42%}
+  }
+  @media(max-width:480px){
+    .pomodoro-grid,.pomodoro-summary{grid-template-columns:1fr}
+    .glass-icon-btn{padding:8px 10px}
+    body.focus-stopwatch #stopwatchCard .stopwatch-btns{width:min(92vw,420px)}
+  }
+
 </style>
 </head>
 <body>
@@ -2160,53 +2381,100 @@
   </div>
 
   <div class="tab-panel" id="tab-calisma" style="display:none">
-  <section class="card">
-    <h2>Kronometre</h2>
-    <p class="sub">Başlat'a bastığında durumun herkese "Çalışıyor" olarak görünür. Mola verdiğinde "Molada" olursun. Bitirdiğinde oturum kapanır ve çalıştığın süre otomatik olarak bugünün kaydına eklenir.</p>
-    <div class="stopwatch-box">
-      <div class="stopwatch-status" id="stopwatchStatusLabel">Hazır</div>
-      <div class="stopwatch-time" id="stopwatchTimeDisplay">00:00:00</div>
-      <div class="stopwatch-pause-time" id="stopwatchPauseDuration">☕ Mola: 00:00:00</div>
-      <div class="stopwatch-btns">
-        <button type="button" class="add-btn" id="stopwatchStartBtn">Başlat</button>
-        <button type="button" class="add-btn stopwatch-btn-secondary" id="stopwatchPauseBtn" style="display:none">Mola Ver</button>
-        <button type="button" class="add-btn stopwatch-btn-secondary" id="stopwatchResumeBtn" style="display:none">Devam Et</button>
-        <button type="button" class="add-btn stopwatch-btn-danger" id="stopwatchFinishBtn" style="display:none">Bitir</button>
-      </div>
+    <div class="study-workspace-nav" id="studyWorkspaceNav">
+      <div class="study-workspace-glider" aria-hidden="true"></div>
+      <button type="button" class="study-workspace-btn active" data-study-view="live">Canlı</button>
+      <button type="button" class="study-workspace-btn" data-study-view="history">Geçmiş</button>
     </div>
-  </section>
 
-  <section class="card">
-    <h2>Şu An Çalışanlar</h2>
-    <p class="sub">Kronometresi açık olan tüm kullanıcılar burada görünür.</p>
-    <div id="liveSessionsWrap"></div>
-  </section>
+    <div class="study-live-panel" id="studyLivePanel">
+      <section class="card" id="stopwatchCard">
+        <div class="stopwatch-card-head">
+          <div class="stopwatch-card-title-copy">
+            <h2>Kronometre</h2>
+            <p class="sub" style="margin:0;">Serbest çalışma veya kendi Pomodoro düzeninle odaklan. Oturum bittiğinde çalışma süren bugüne otomatik eklenir.</p>
+          </div>
+          <div class="stopwatch-card-actions">
+            <button type="button" class="glass-icon-btn" id="pomodoroToggleBtn">🍅 Pomodoro</button>
+            <button type="button" class="glass-icon-btn" id="focusModeBtn">⛶ Odak Modu</button>
+          </div>
+        </div>
 
-  <section class="card">
-    <h2>Çalışma Saatleri</h2>
-    <p class="sub">Bir tarihe ait çalışma saatini tekrar girersen, o günün değeri güncellenir. İleri bir tarihe kayıt eklenemez.</p>
+        <div class="stopwatch-box">
+          <div class="stopwatch-status" id="stopwatchStatusLabel">Hazır</div>
+          <div class="pomodoro-running-meta" id="pomodoroRunningMeta"></div>
+          <div class="stopwatch-time" id="stopwatchTimeDisplay">00:00:00</div>
+          <div class="stopwatch-context-line" id="stopwatchContextLine">Serbest kronometre veya Pomodoro başlatabilirsin.</div>
+          <div class="stopwatch-pause-time" id="stopwatchPauseDuration">☕ Mola: 00:00:00</div>
+          <div class="stopwatch-btns">
+            <button type="button" class="add-btn" id="stopwatchStartBtn">Başlat</button>
+            <button type="button" class="add-btn stopwatch-btn-secondary" id="stopwatchPauseBtn" style="display:none">Mola Ver</button>
+            <button type="button" class="add-btn stopwatch-btn-secondary" id="stopwatchResumeBtn" style="display:none">Devam Et</button>
+            <button type="button" class="add-btn stopwatch-btn-danger" id="stopwatchFinishBtn" style="display:none">Bitir</button>
+          </div>
+        </div>
 
-    <form class="entry-form" id="studyForm">
-      <div class="field">
-        <label for="studyDate">Tarih</label>
-        <input type="date" id="studyDate" required>
-      </div>
-      <div class="field">
-        <label for="studyHoursPart">Saat</label>
-        <input type="number" id="studyHoursPart" min="0" max="24" step="1" placeholder="5">
-      </div>
-      <div class="field">
-        <label for="studyMinutesPart">Dakika</label>
-        <input type="number" id="studyMinutesPart" min="0" max="59" step="1" placeholder="55">
-      </div>
-      <button type="submit" class="add-btn">Ekle</button>
-    </form>
+        <div class="pomodoro-builder" id="pomodoroBuilder">
+          <h3>Pomodoro Oluştur</h3>
+          <p class="sub" style="margin:0;">Çalışma ve mola süresini, ardından kaç tur tekrar edeceğini seç.</p>
+          <div class="pomodoro-grid">
+            <div class="pomodoro-field">
+              <label for="pomodoroWorkMinutes">Ders · dakika</label>
+              <input id="pomodoroWorkMinutes" type="number" min="1" max="240" step="1" value="50">
+            </div>
+            <div class="pomodoro-field">
+              <label for="pomodoroBreakMinutes">Mola · dakika</label>
+              <input id="pomodoroBreakMinutes" type="number" min="1" max="120" step="1" value="10">
+            </div>
+            <div class="pomodoro-field">
+              <label for="pomodoroRounds">Tur sayısı</label>
+              <input id="pomodoroRounds" type="number" min="1" max="20" step="1" value="4">
+            </div>
+          </div>
+          <div class="pomodoro-summary">
+            <div class="pomodoro-summary-item"><div class="k">Toplam ders</div><div class="v" id="pomodoroTotalWork">—</div></div>
+            <div class="pomodoro-summary-item"><div class="k">Toplam mola</div><div class="v" id="pomodoroTotalBreak">—</div></div>
+            <div class="pomodoro-summary-item"><div class="k">Seans süresi</div><div class="v" id="pomodoroTotalSession">—</div></div>
+          </div>
+          <p class="pomodoro-note" id="pomodoroPlanNote">Son turun ardından ekstra mola yoktur.</p>
+          <div class="pomodoro-start-row"><button type="button" class="add-btn" id="pomodoroStartBtn">Pomodoroyu Başlat</button></div>
+        </div>
+      </section>
 
-    <div id="studySegWrap"></div>
-    <p class="filter-note">Grafik seçili döneme göre, tablo tüm kayıtları gösterir. Bir noktaya dokunarak tam değeri görebilirsin.</p>
-    <div id="studyChartWrap"></div>
-    <div id="studyTableWrap"></div>
-  </section>
+      <section class="card live-study-card">
+        <h2>Şu An Çalışanlar</h2>
+        <p class="sub">Kronometresi açık kullanıcıları, çalışma/mola durumlarını ve rütbelerini burada görebilirsin.</p>
+        <div id="liveSessionsWrap"></div>
+      </section>
+    </div>
+
+    <div class="study-history-panel" id="studyHistoryPanel">
+      <section class="card">
+        <h2>Çalışma Geçmişi</h2>
+        <p class="sub">Grafiklerini incele veya manuel çalışma süresi ekle. Bir tarihe tekrar kayıt girersen o günün değeri güncellenir.</p>
+
+        <form class="entry-form" id="studyForm">
+          <div class="field">
+            <label for="studyDate">Tarih</label>
+            <input type="date" id="studyDate" required>
+          </div>
+          <div class="field">
+            <label for="studyHoursPart">Saat</label>
+            <input type="number" id="studyHoursPart" min="0" max="24" step="1" placeholder="5">
+          </div>
+          <div class="field">
+            <label for="studyMinutesPart">Dakika</label>
+            <input type="number" id="studyMinutesPart" min="0" max="59" step="1" placeholder="55">
+          </div>
+          <button type="submit" class="add-btn">Ekle</button>
+        </form>
+
+        <div id="studySegWrap"></div>
+        <p class="filter-note">Grafik seçili döneme göre, tablo tüm kayıtları gösterir. Bir noktaya dokunarak tam değeri görebilirsin.</p>
+        <div id="studyChartWrap"></div>
+        <div id="studyTableWrap"></div>
+      </section>
+    </div>
   </div>
 
   <div class="tab-panel" id="tab-netler" style="display:none">
@@ -2705,6 +2973,10 @@
   let stopwatchAccumulatedMs = 0;  // önceki çalışma bloklarından biriken toplam çalışma süresi (mola hariç)
   let stopwatchTickHandle = null;
   let stopwatchRestored = false;   // login sonrası kendi oturumumuzu Firestore'dan bir kez geri yükledik mi
+  let stopwatchMode = 'free';      // free | pomodoro
+  let pomodoroState = null;        // {workMs, breakMs, rounds, round, phase, phaseStartMs, phaseEndMs}
+  let studyWorkspaceView = 'live';
+  let focusStopwatchActive = false;
 
   // ---------- Storage keys (theme stays device-local; everything else lives in Firestore) ----------
   const KEY_THEME   = 'yks-theme';
@@ -3546,6 +3818,8 @@
       status: stopwatchStatus,
       segmentStartMs: stopwatchSegmentStartMs,
       accumulatedMs: stopwatchAccumulatedMs,
+      mode: stopwatchMode,
+      pomodoro: pomodoroState ? { ...pomodoroState } : null,
       roomId: currentRoomId || null,
       roomName: currentRoomData ? currentRoomData.name : null,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
@@ -3561,39 +3835,226 @@
         stopwatch: {
           status: stopwatchStatus,
           segmentStartMs: stopwatchSegmentStartMs,
-          accumulatedMs: stopwatchAccumulatedMs
+          accumulatedMs: stopwatchAccumulatedMs,
+          mode: stopwatchMode,
+          pomodoro: pomodoroState ? { ...pomodoroState } : null
         }
       }, { merge: true }).catch(()=>{});
     }
   }
 
+  function formatDurationCompact(ms){
+    const totalMin = Math.max(0, Math.round(ms / 60000));
+    const h = Math.floor(totalMin / 60);
+    const m = totalMin % 60;
+    if(h && m) return `${h} sa ${m} dk`;
+    if(h) return `${h} sa`;
+    return `${m} dk`;
+  }
+
   function currentStopwatchElapsedMs(){
     if(!stopwatchStatus) return 0;
+    if(stopwatchMode === 'pomodoro' && pomodoroState){
+      const base = Math.max(0, Number(stopwatchAccumulatedMs) || 0);
+      if(pomodoroState.phase !== 'work') return base;
+      const phaseElapsed = Math.max(0, Date.now() - Number(pomodoroState.phaseStartMs || Date.now()));
+      return base + Math.min(Number(pomodoroState.workMs) || 0, phaseElapsed);
+    }
     return stopwatchAccumulatedMs + (stopwatchStatus === 'running' ? (Date.now() - stopwatchSegmentStartMs) : 0);
   }
 
+  function pomodoroRemainingMs(){
+    if(!pomodoroState) return 0;
+    return Math.max(0, Number(pomodoroState.phaseEndMs || 0) - Date.now());
+  }
+
+  function pomodoroTotalPlannedWorkMs(){
+    if(!pomodoroState) return 0;
+    return (Number(pomodoroState.workMs) || 0) * (Number(pomodoroState.rounds) || 0);
+  }
+
+  function updatePomodoroPlanSummary(){
+    const workInput = document.getElementById('pomodoroWorkMinutes');
+    const breakInput = document.getElementById('pomodoroBreakMinutes');
+    const roundsInput = document.getElementById('pomodoroRounds');
+    if(!workInput || !breakInput || !roundsInput) return;
+    const workMin = Math.max(1, Math.min(240, Number(workInput.value) || 0));
+    const breakMin = Math.max(1, Math.min(120, Number(breakInput.value) || 0));
+    const rounds = Math.max(1, Math.min(20, Math.round(Number(roundsInput.value) || 1)));
+    const totalWork = workMin * rounds;
+    const breakCount = Math.max(0, rounds - 1);
+    const totalBreak = breakMin * breakCount;
+    const total = totalWork + totalBreak;
+    const workEl = document.getElementById('pomodoroTotalWork');
+    const breakEl = document.getElementById('pomodoroTotalBreak');
+    const sessionEl = document.getElementById('pomodoroTotalSession');
+    const noteEl = document.getElementById('pomodoroPlanNote');
+    if(workEl) workEl.textContent = formatDurationCompact(totalWork * 60000);
+    if(breakEl) breakEl.textContent = formatDurationCompact(totalBreak * 60000);
+    if(sessionEl) sessionEl.textContent = formatDurationCompact(total * 60000);
+    if(noteEl){
+      noteEl.textContent = `${rounds} çalışma turu · ${breakCount} mola. Son turun ardından ekstra mola yoktur.`;
+    }
+  }
+
+  function setStudyWorkspace(view){
+    studyWorkspaceView = view === 'history' ? 'history' : 'live';
+    const nav = document.getElementById('studyWorkspaceNav');
+    const live = document.getElementById('studyLivePanel');
+    const history = document.getElementById('studyHistoryPanel');
+    if(nav){
+      nav.style.setProperty('--study-index', studyWorkspaceView === 'history' ? 1 : 0);
+      nav.querySelectorAll('[data-study-view]').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-study-view') === studyWorkspaceView));
+    }
+    if(live) live.classList.toggle('hidden', studyWorkspaceView !== 'live');
+    if(history) history.classList.toggle('active', studyWorkspaceView === 'history');
+    if(studyWorkspaceView === 'history') renderStudy();
+  }
+
+  function setFocusStopwatch(enabled){
+    focusStopwatchActive = !!enabled;
+    document.body.classList.toggle('focus-stopwatch', focusStopwatchActive);
+    const btn = document.getElementById('focusModeBtn');
+    if(btn) btn.textContent = focusStopwatchActive ? '✕ Odak Modundan Çık' : '⛶ Odak Modu';
+  }
+
+  function togglePomodoroBuilder(){
+    const builder = document.getElementById('pomodoroBuilder');
+    if(!builder) return;
+    const willOpen = !builder.classList.contains('open');
+    builder.classList.toggle('open', willOpen);
+    if(willOpen) updatePomodoroPlanSummary();
+  }
+
+  function startPomodoro(){
+    if(!currentUid || stopwatchStatus) return;
+    const workMin = Math.max(1, Math.min(240, Number(document.getElementById('pomodoroWorkMinutes').value) || 0));
+    const breakMin = Math.max(1, Math.min(120, Number(document.getElementById('pomodoroBreakMinutes').value) || 0));
+    const rounds = Math.max(1, Math.min(20, Math.round(Number(document.getElementById('pomodoroRounds').value) || 1)));
+    const now = Date.now();
+    stopwatchMode = 'pomodoro';
+    pomodoroState = {
+      workMs: workMin * 60000,
+      breakMs: breakMin * 60000,
+      rounds,
+      round: 1,
+      phase: 'work',
+      phaseStartMs: now,
+      phaseEndMs: now + workMin * 60000
+    };
+    stopwatchStatus = 'running';
+    stopwatchSegmentStartMs = now;
+    stopwatchAccumulatedMs = 0;
+    const builder = document.getElementById('pomodoroBuilder');
+    if(builder) builder.classList.remove('open');
+    writeStopwatchDoc();
+    writePresence();
+    updateStopwatchUI();
+  }
+
+  function finishPomodoroSession(autoCompleted = false){
+    if(stopwatchMode !== 'pomodoro' || !pomodoroState) return;
+    const workedMs = autoCompleted ? pomodoroTotalPlannedWorkMs() : currentStopwatchElapsedMs();
+    const completedRounds = pomodoroState.rounds;
+    stopwatchStatus = null;
+    stopwatchSegmentStartMs = 0;
+    stopwatchAccumulatedMs = 0;
+    stopwatchMode = 'free';
+    pomodoroState = null;
+    updateStopwatchUI();
+    if(currentUid) stopwatchDoc().delete().catch(()=>{});
+    writePresence();
+    addWorkedTimeToToday(workedMs);
+    setStatus(autoCompleted ? `Pomodoro tamamlandı · ${completedRounds} tur çalışma kaydedildi.` : 'Pomodoro bitirildi · tamamlanan çalışma süresi kaydedildi.');
+  }
+
+  function advancePomodoroIfNeeded(){
+    if(stopwatchMode !== 'pomodoro' || !pomodoroState || !stopwatchStatus) return;
+    let changed = false;
+    let guard = 0;
+    while(Date.now() >= Number(pomodoroState.phaseEndMs || 0) && guard < 50){
+      guard++;
+      if(pomodoroState.phase === 'work'){
+        stopwatchAccumulatedMs += Number(pomodoroState.workMs) || 0;
+        if(Number(pomodoroState.round) >= Number(pomodoroState.rounds)){
+          finishPomodoroSession(true);
+          return;
+        }
+        const nextStart = Number(pomodoroState.phaseEndMs);
+        pomodoroState.phase = 'break';
+        pomodoroState.phaseStartMs = nextStart;
+        pomodoroState.phaseEndMs = nextStart + Number(pomodoroState.breakMs || 0);
+        stopwatchStatus = 'paused';
+        stopwatchSegmentStartMs = nextStart;
+        changed = true;
+      } else {
+        const nextStart = Number(pomodoroState.phaseEndMs);
+        pomodoroState.round = Number(pomodoroState.round) + 1;
+        pomodoroState.phase = 'work';
+        pomodoroState.phaseStartMs = nextStart;
+        pomodoroState.phaseEndMs = nextStart + Number(pomodoroState.workMs || 0);
+        stopwatchStatus = 'running';
+        stopwatchSegmentStartMs = nextStart;
+        changed = true;
+      }
+    }
+    if(changed){
+      writeStopwatchDoc();
+      writePresence();
+    }
+  }
+
   function updateStopwatchUI(){
+    advancePomodoroIfNeeded();
     const statusLabel = document.getElementById('stopwatchStatusLabel');
     const timeDisplay = document.getElementById('stopwatchTimeDisplay');
     const startBtn = document.getElementById('stopwatchStartBtn');
     const pauseBtn = document.getElementById('stopwatchPauseBtn');
     const resumeBtn = document.getElementById('stopwatchResumeBtn');
     const finishBtn = document.getElementById('stopwatchFinishBtn');
-    if(!statusLabel) return;
+    const pauseDisplay = document.getElementById('stopwatchPauseDuration');
+    const contextLine = document.getElementById('stopwatchContextLine');
+    const pomoMeta = document.getElementById('pomodoroRunningMeta');
+    const card = document.getElementById('stopwatchCard');
+    if(!statusLabel || !timeDisplay) return;
 
     statusLabel.classList.remove('is-running', 'is-paused');
+    if(card) card.classList.toggle('is-pomodoro', stopwatchMode === 'pomodoro' && !!pomodoroState);
+
+    if(stopwatchMode === 'pomodoro' && pomodoroState){
+      const isWork = pomodoroState.phase === 'work';
+      statusLabel.textContent = isWork ? 'Çalışma' : 'Mola';
+      statusLabel.classList.add(isWork ? 'is-running' : 'is-paused');
+      timeDisplay.textContent = fmtHMS(pomodoroRemainingMs());
+      if(contextLine) contextLine.textContent = isWork ? 'Bu çalışma bloğunun bitmesine kalan süre' : 'Sonraki çalışma turuna kalan mola süresi';
+      if(pomoMeta){
+        pomoMeta.classList.add('visible');
+        pomoMeta.innerHTML = `<span class="pomodoro-chip">🍅 ${pomodoroState.round}. tur / ${pomodoroState.rounds}</span><span class="pomodoro-chip">${isWork ? '📚 Ders' : '☕ Mola'}</span><span class="pomodoro-chip">Toplam çalışma ${fmtHMS(currentStopwatchElapsedMs())}</span>`;
+      }
+      if(pauseDisplay) pauseDisplay.style.display = 'none';
+      if(startBtn) startBtn.style.display = 'none';
+      if(pauseBtn) pauseBtn.style.display = 'none';
+      if(resumeBtn) resumeBtn.style.display = 'none';
+      if(finishBtn){ finishBtn.style.display = ''; finishBtn.textContent = 'Pomodoroyu Bitir'; }
+      return;
+    }
+
+    if(pomoMeta){ pomoMeta.classList.remove('visible'); pomoMeta.innerHTML = ''; }
+    if(finishBtn) finishBtn.textContent = 'Bitir';
     if(stopwatchStatus === 'running'){
       statusLabel.textContent = 'Çalışıyor';
       statusLabel.classList.add('is-running');
+      if(contextLine) contextLine.textContent = 'Serbest çalışma oturumu';
     } else if(stopwatchStatus === 'paused'){
       statusLabel.textContent = 'Molada';
       statusLabel.classList.add('is-paused');
+      if(contextLine) contextLine.textContent = 'Çalışma süren durdu; mola süren ayrı takip ediliyor.';
     } else {
       statusLabel.textContent = 'Hazır';
+      if(contextLine) contextLine.textContent = 'Serbest kronometre veya Pomodoro başlatabilirsin.';
     }
 
     timeDisplay.textContent = fmtHMS(currentStopwatchElapsedMs());
-    const pauseDisplay = document.getElementById('stopwatchPauseDuration');
     if(pauseDisplay){
       if(stopwatchStatus === 'paused'){
         const pauseMs = Math.max(0, Date.now() - (Number(stopwatchSegmentStartMs) || Date.now()));
@@ -3604,17 +4065,20 @@
       }
     }
 
-    startBtn.style.display = stopwatchStatus ? 'none' : '';
-    pauseBtn.style.display = stopwatchStatus === 'running' ? '' : 'none';
-    resumeBtn.style.display = stopwatchStatus === 'paused' ? '' : 'none';
-    finishBtn.style.display = stopwatchStatus ? '' : 'none';
+    if(startBtn) startBtn.style.display = stopwatchStatus ? 'none' : '';
+    if(pauseBtn) pauseBtn.style.display = stopwatchStatus === 'running' ? '' : 'none';
+    if(resumeBtn) resumeBtn.style.display = stopwatchStatus === 'paused' ? '' : 'none';
+    if(finishBtn) finishBtn.style.display = stopwatchStatus ? '' : 'none';
   }
 
   function ensureStopwatchTick(){
     if(stopwatchTickHandle) return;
     let ozetRefreshTick = 0;
     stopwatchTickHandle = setInterval(() => {
-      if(stopwatchStatus === 'running'){
+      if(stopwatchMode === 'pomodoro' && pomodoroState){
+        advancePomodoroIfNeeded();
+        updateStopwatchUI();
+      } else if(stopwatchStatus === 'running'){
         const timeDisplay = document.getElementById('stopwatchTimeDisplay');
         if(timeDisplay) timeDisplay.textContent = fmtHMS(currentStopwatchElapsedMs());
       } else if(stopwatchStatus === 'paused'){
@@ -3633,7 +4097,7 @@
   }
 
   function addWorkedTimeToToday(ms){
-    if(ms < 1000) return; // 1 saniyeden kısa oturumları göz ardı et
+    if(ms < 1000) return;
     const date = todayStr();
     const existing = studyEntries.find(e => e.date === date);
     const newHours = round2((existing ? Number(existing.hours) : 0) + ms / 3600000);
@@ -3642,6 +4106,8 @@
 
   function startStopwatch(){
     if(!currentUid || stopwatchStatus) return;
+    stopwatchMode = 'free';
+    pomodoroState = null;
     stopwatchStatus = 'running';
     stopwatchSegmentStartMs = Date.now();
     stopwatchAccumulatedMs = 0;
@@ -3651,6 +4117,7 @@
   }
 
   function pauseStopwatch(){
+    if(stopwatchMode === 'pomodoro') return;
     if(stopwatchStatus !== 'running') return;
     stopwatchAccumulatedMs += Date.now() - stopwatchSegmentStartMs;
     stopwatchStatus = 'paused';
@@ -3661,6 +4128,7 @@
   }
 
   function resumeStopwatch(){
+    if(stopwatchMode === 'pomodoro') return;
     if(stopwatchStatus !== 'paused') return;
     stopwatchStatus = 'running';
     stopwatchSegmentStartMs = Date.now();
@@ -3671,10 +4139,16 @@
 
   function finishStopwatch(){
     if(!stopwatchStatus) return;
+    if(stopwatchMode === 'pomodoro' && pomodoroState){
+      finishPomodoroSession(false);
+      return;
+    }
     const totalWorkedMs = currentStopwatchElapsedMs();
     stopwatchStatus = null;
     stopwatchSegmentStartMs = 0;
     stopwatchAccumulatedMs = 0;
+    stopwatchMode = 'free';
+    pomodoroState = null;
     updateStopwatchUI();
     if(currentUid){ stopwatchDoc().delete().catch(()=>{}); }
     writePresence();
@@ -3687,10 +4161,20 @@
       stopwatchStatus = mine.status;
       stopwatchSegmentStartMs = mine.segmentStartMs || Date.now();
       stopwatchAccumulatedMs = mine.accumulatedMs || 0;
+      if(mine.mode === 'pomodoro' && mine.pomodoro){
+        stopwatchMode = 'pomodoro';
+        pomodoroState = { ...mine.pomodoro };
+        advancePomodoroIfNeeded();
+      } else {
+        stopwatchMode = 'free';
+        pomodoroState = null;
+      }
     } else {
       stopwatchStatus = null;
       stopwatchSegmentStartMs = 0;
       stopwatchAccumulatedMs = 0;
+      stopwatchMode = 'free';
+      pomodoroState = null;
     }
     updateStopwatchUI();
   }
@@ -3714,12 +4198,13 @@
       const elapsedMs = baseMs + activeSegmentMs;
       const pauseMs = !isRunning ? Math.max(0, Date.now() - segmentStart) : 0;
       const roomBadge = ses.roomName ? `<span style="background:rgba(76,141,255,0.18); color:var(--blue); font-size:10.5px; padding:1px 6px; border-radius:10px; margin-left:6px;">📍 ${escapeHtml(ses.roomName)}</span>` : '';
+      const pomodoroBadge = ses.mode === 'pomodoro' && ses.pomodoro ? `<span style="background:rgba(242,193,78,.13); color:#F2C14E; font-size:10.5px; padding:1px 6px; border-radius:10px; margin-left:6px;">🍅 ${Number(ses.pomodoro.round)||1}/${Number(ses.pomodoro.rounds)||1}</span>` : '';
       const rankName = publicRankForUid(ses.id, ses.rank);
       return `
         <div class="live-row ${ses.id === currentUid ? 'me' : ''}">
           <div class="live-avatar rank-avatar-frame user-click" style="${rankFrameVar(rankName)}" onclick="inspectUserProfile('${ses.id}')">${avatarInnerHtml(ses.photo, ses.avatar || '🙂')}</div>
           <div class="live-info">
-            <div class="live-name user-click" onclick="inspectUserProfile('${ses.id}')">${escapeHtml(ses.name || 'Kullanıcı')}${ses.id === currentUid ? ' (sen)' : ''}${miniRankBadge(rankName)}${roomBadge}</div>
+            <div class="live-name user-click" onclick="inspectUserProfile('${ses.id}')">${escapeHtml(ses.name || 'Kullanıcı')}${ses.id === currentUid ? ' (sen)' : ''}${miniRankBadge(rankName)}${roomBadge}${pomodoroBadge}</div>
             <div class="live-status ${isRunning ? 'is-running' : 'is-paused'}">${isRunning ? '🟢 Çalışıyor' : '🟡 Molada · ' + fmtHMS(pauseMs)}</div>
           </div>
           <div class="live-duration" title="Toplam çalışma süresi">${fmtHMS(elapsedMs)}</div>
@@ -5800,6 +6285,21 @@
   document.getElementById('stopwatchPauseBtn').addEventListener('click', pauseStopwatch);
   document.getElementById('stopwatchResumeBtn').addEventListener('click', resumeStopwatch);
   document.getElementById('stopwatchFinishBtn').addEventListener('click', finishStopwatch);
+  document.getElementById('pomodoroToggleBtn').addEventListener('click', togglePomodoroBuilder);
+  document.getElementById('focusModeBtn').addEventListener('click', () => setFocusStopwatch(!focusStopwatchActive));
+  document.getElementById('pomodoroStartBtn').addEventListener('click', startPomodoro);
+  ['pomodoroWorkMinutes','pomodoroBreakMinutes','pomodoroRounds'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', updatePomodoroPlanSummary);
+  });
+  document.querySelectorAll('[data-study-view]').forEach(btn => {
+    btn.addEventListener('click', () => setStudyWorkspace(btn.getAttribute('data-study-view')));
+  });
+  document.addEventListener('keydown', (ev) => {
+    if(ev.key === 'Escape' && focusStopwatchActive) setFocusStopwatch(false);
+  });
+  updatePomodoroPlanSummary();
+  setStudyWorkspace('live');
   ensureStopwatchTick();
 
   // ---------- App init (runs once per login, after data is loaded) ----------
@@ -5903,6 +6403,9 @@
       stopwatchSegmentStartMs = 0;
       stopwatchAccumulatedMs = 0;
       stopwatchRestored = false;
+      stopwatchMode = 'free';
+      pomodoroState = null;
+      if(focusStopwatchActive) setFocusStopwatch(false);
       profile = null;
       appInitialized = false;
       mainApp.style.display = 'none';
