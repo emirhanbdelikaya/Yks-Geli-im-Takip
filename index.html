@@ -2323,6 +2323,142 @@
     body.focus-stopwatch #stopwatchCard .stopwatch-btns{width:min(92vw,420px)}
   }
 
+
+
+  /* ===== Netler 2.0 ===== */
+  .net2-shell{ display:grid; gap:16px; }
+  .net2-hero-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .net2-score-card{
+    position:relative; overflow:hidden; min-height:182px; padding:18px;
+    border-radius:24px;
+    background:linear-gradient(150deg, rgba(255,255,255,.12), rgba(255,255,255,.035));
+    border:1px solid rgba(255,255,255,.11);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.13), 0 18px 42px rgba(0,0,0,.15);
+    backdrop-filter:blur(24px) saturate(165%);
+    -webkit-backdrop-filter:blur(24px) saturate(165%);
+  }
+  .net2-score-card::before{
+    content:""; position:absolute; width:190px; height:190px; border-radius:50%;
+    right:-58px; top:-74px; pointer-events:none; opacity:.9;
+  }
+  .net2-score-card.tyt::before{ background:radial-gradient(circle, rgba(242,169,59,.24), rgba(242,169,59,.025) 67%, transparent 73%); }
+  .net2-score-card.ayt::before{ background:radial-gradient(circle, rgba(76,141,255,.25), rgba(76,141,255,.025) 67%, transparent 73%); }
+  .net2-score-top{ position:relative; z-index:1; display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+  .net2-type-badge{
+    display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border-radius:999px;
+    font-size:11px; font-weight:900; letter-spacing:.07em;
+    background:rgba(255,255,255,.075); border:1px solid rgba(255,255,255,.09);
+  }
+  .net2-score-main{ position:relative; z-index:1; display:flex; align-items:flex-end; gap:10px; margin-top:18px; }
+  .net2-score-value{ font-family:Georgia,serif; font-size:clamp(38px,6vw,52px); line-height:.95; letter-spacing:-.035em; }
+  .net2-score-unit{ color:var(--muted); font-size:12px; padding-bottom:5px; }
+  .net2-delta{
+    display:inline-flex; align-items:center; gap:5px; padding:6px 9px; border-radius:999px;
+    font-size:11.5px; font-weight:900; white-space:nowrap;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.08);
+  }
+  .net2-delta.up{ color:#83E3A4; background:rgba(90,211,136,.10); border-color:rgba(90,211,136,.18); }
+  .net2-delta.down{ color:#FF9A9A; background:rgba(255,110,110,.10); border-color:rgba(255,110,110,.18); }
+  .net2-delta.flat{ color:var(--muted); }
+  .net2-score-meta{ position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:15px; }
+  .net2-mini-stat{ padding:10px 11px; border-radius:16px; background:rgba(255,255,255,.052); border:1px solid rgba(255,255,255,.065); }
+  .net2-mini-stat .k{ color:var(--muted); font-size:10.5px; margin-bottom:4px; }
+  .net2-mini-stat .v{ font-size:12.5px; font-weight:800; }
+
+  section.card.net2-card{
+    border-radius:24px; padding:18px;
+    background:linear-gradient(155deg, rgba(255,255,255,.095), rgba(255,255,255,.032));
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10), 0 16px 38px rgba(0,0,0,.13);
+    backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%);
+  }
+  .net2-section-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:14px; }
+  .net2-section-head h2{ margin:0 0 4px; }
+  .net2-section-head .sub{ margin:0 !important; }
+
+  .net2-form{
+    display:grid !important; grid-template-columns:1.1fr .7fr .9fr auto; gap:10px !important;
+    align-items:end !important; margin:0 !important;
+  }
+  .net2-form .field input,.net2-form .field select{
+    min-height:42px; border-radius:13px; background:rgba(255,255,255,.055); border-color:rgba(255,255,255,.09);
+  }
+  .net2-form .field input[type="number"]{ width:100%; }
+  .net2-form .field input[type="date"]{ min-width:0; width:100%; }
+  .net2-form .field select{ min-width:0; width:100%; }
+  .net2-form .add-btn{ height:42px; border-radius:13px; padding:0 18px; }
+  .net2-details-toggle{
+    grid-column:1/-1; width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;
+    border:1px solid rgba(255,255,255,.085); background:rgba(255,255,255,.045); color:var(--text);
+    border-radius:15px; padding:10px 12px; font:inherit; font-size:12.5px; font-weight:800; cursor:pointer;
+  }
+  .net2-details-toggle .chev{ transition:transform .24s ease; }
+  .net2-details-toggle.open .chev{ transform:rotate(180deg); }
+  .net2-details-panel{ grid-column:1/-1; display:none; padding:12px; border-radius:18px; background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.065); }
+  .net2-details-panel.open{ display:block; }
+  .net2-details-panel .subject-grid{ margin-bottom:10px; grid-template-columns:repeat(auto-fit,minmax(125px,1fr)); }
+  .net2-details-panel .field input{ width:100%; min-height:40px; border-radius:12px; }
+  .net2-details-panel .total-display{ margin:0; padding:9px 10px; border-radius:12px; background:rgba(255,255,255,.05); }
+
+  .net2-chart-switch{
+    --chart-index:0; position:relative; display:grid; grid-template-columns:repeat(3,1fr); width:min(100%,310px);
+    padding:3px; border-radius:15px; background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.08); overflow:hidden;
+  }
+  .net2-chart-glider{
+    position:absolute; top:3px; bottom:3px; left:calc(3px + (100% - 6px) * var(--chart-index) / 3);
+    width:calc((100% - 6px)/3); border-radius:12px;
+    background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,.11));
+    border:1px solid rgba(255,255,255,.12); box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 8px 18px rgba(0,0,0,.12);
+    transition:left .38s cubic-bezier(.22,1,.36,1), transform .32s ease; pointer-events:none;
+  }
+  .net2-chart-switch.moving .net2-chart-glider{ transform:scale(1.035,.97); }
+  .net2-chart-btn{ position:relative; z-index:1; border:0; background:transparent; color:var(--muted); padding:8px 9px; border-radius:11px; font:inherit; font-size:11.5px; font-weight:850; cursor:pointer; }
+  .net2-chart-btn.active{ color:var(--text); }
+  .net2-chart-toolbar{ display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  .net2-chart-surface{ padding:12px 12px 2px; border-radius:19px; background:rgba(4,10,20,.22); border:1px solid rgba(255,255,255,.06); overflow:hidden; }
+  .net2-chart-surface .legend{ margin:2px 0 6px; }
+  .net2-chart-surface svg.chart{ min-width:560px; }
+  .net2-chart-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .net2-chart-scroll::-webkit-scrollbar{ display:none; }
+
+  .net2-history-list{ display:grid; gap:9px; }
+  .net2-history-item{
+    border-radius:18px; background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.07); overflow:hidden;
+  }
+  .net2-history-main{ display:grid; grid-template-columns:auto minmax(0,1fr) auto auto; gap:12px; align-items:center; padding:12px 13px; }
+  .net2-history-date{ color:var(--muted); font-size:11.5px; }
+  .net2-history-net{ font-family:Georgia,serif; font-size:21px; font-weight:700; white-space:nowrap; }
+  .net2-history-actions{ display:flex; gap:4px; align-items:center; }
+  .net2-icon-btn{ width:32px; height:32px; border-radius:11px; border:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.045); color:var(--muted); cursor:pointer; }
+  .net2-icon-btn:hover{ color:var(--text); }
+  .net2-history-breakdown{ display:none; padding:0 13px 13px; color:var(--muted); font-size:11.5px; line-height:1.65; }
+  .net2-history-item.expanded .net2-history-breakdown{ display:block; }
+  .net2-history-item.expanded [data-exam-expand]{ transform:rotate(180deg); }
+  .net2-history-empty{ padding:24px; }
+  .net2-record-note{ color:var(--muted); font-size:11px; margin-top:7px; }
+
+  #derslerSection.net2-subject-card{ border-radius:24px; }
+  #derslerSection.net2-subject-card #subjectChartWrap{ padding:12px 12px 2px; border-radius:19px; background:rgba(4,10,20,.22); border:1px solid rgba(255,255,255,.06); overflow-x:auto; }
+  #derslerSection.net2-subject-card #subjectChartWrap svg.chart{ min-width:560px; }
+
+  @media(max-width:760px){
+    .net2-hero-grid{ grid-template-columns:1fr; }
+    .net2-form{ grid-template-columns:1fr 1fr !important; }
+    .net2-form .field:nth-child(3){ grid-column:1/2; }
+    .net2-form .add-btn{ grid-column:2/3; width:100%; }
+    .net2-history-main{ grid-template-columns:auto minmax(0,1fr) auto; }
+    .net2-history-main .net2-delta{ grid-column:2/3; width:max-content; }
+    .net2-history-actions{ grid-column:3/4; grid-row:1/3; }
+  }
+  @media(max-width:480px){
+    .net2-form{ grid-template-columns:1fr !important; }
+    .net2-form .field:nth-child(3), .net2-form .add-btn{ grid-column:1 !important; }
+    .net2-score-card{ padding:15px; min-height:170px; }
+    .net2-score-meta{ grid-template-columns:1fr; }
+    .net2-section-head{ flex-direction:column; }
+    .net2-chart-switch{ width:100%; }
+  }
+
 </style>
 </head>
 <body>
@@ -2478,50 +2614,92 @@
   </div>
 
   <div class="tab-panel" id="tab-netler" style="display:none">
-  <section class="card">
-    <h2>Deneme Netleri</h2>
-    <p class="sub">TYT ve AYT denemelerini ders ders girip toplam netini otomatik hesaplat.</p>
+    <div class="net2-shell">
+      <div class="net2-hero-grid" id="examOverviewWrap"></div>
 
-    <form class="entry-form" id="examForm" style="flex-direction:column; align-items:stretch;">
-      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:flex-end;">
-        <div class="field">
-          <label for="examDate">Tarih</label>
-          <input type="date" id="examDate" required>
+      <section class="card net2-card">
+        <div class="net2-section-head">
+          <div>
+            <h2>Deneme Ekle</h2>
+            <p class="sub">Hızlıca toplam netini gir veya ders detaylarını açıp dağılımı kaydet.</p>
+          </div>
         </div>
-        <div class="field">
-          <label for="examType">Tür</label>
-          <select id="examType">
-            <option value="TYT">TYT</option>
-            <option value="AYT">AYT</option>
-          </select>
+
+        <form class="entry-form net2-form" id="examForm">
+          <div class="field">
+            <label for="examDate">Tarih</label>
+            <input type="date" id="examDate" required>
+          </div>
+          <div class="field">
+            <label for="examType">Tür</label>
+            <select id="examType">
+              <option value="TYT">TYT</option>
+              <option value="AYT">AYT</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="examQuickNet">Toplam net</label>
+            <input type="number" id="examQuickNet" step="0.25" placeholder="Örn. 78,25">
+          </div>
+          <button type="submit" class="add-btn">Kaydet</button>
+
+          <button type="button" class="net2-details-toggle" id="examDetailsToggle" aria-expanded="false">
+            <span>＋ Ders detaylarını ekle</span><span class="chev">⌄</span>
+          </button>
+          <div class="net2-details-panel" id="examDetailsPanel">
+            <div id="subjectFieldsWrap" class="subject-grid"></div>
+            <div class="total-display">Ders toplamı: <b id="examTotalDisplay">0.0</b></div>
+          </div>
+        </form>
+      </section>
+
+      <section class="card net2-card">
+        <div class="net2-section-head">
+          <div>
+            <h2>Net Gelişimi</h2>
+            <p class="sub">Dönemi ve grafikte görmek istediğin sınav türünü seç.</p>
+          </div>
         </div>
-      </div>
+        <div class="net2-chart-toolbar">
+          <div class="net2-chart-switch" id="examChartSwitch" style="--chart-index:0">
+            <div class="net2-chart-glider" aria-hidden="true"></div>
+            <button type="button" class="net2-chart-btn active" data-exam-chart="all">Tümü</button>
+            <button type="button" class="net2-chart-btn" data-exam-chart="TYT">TYT</button>
+            <button type="button" class="net2-chart-btn" data-exam-chart="AYT">AYT</button>
+          </div>
+          <div id="examSegWrap"></div>
+        </div>
+        <div class="net2-chart-surface">
+          <div class="net2-chart-scroll" id="examChartWrap"></div>
+        </div>
+      </section>
 
-      <div id="subjectFieldsWrap" class="subject-grid"></div>
-      <div class="total-display">Toplam net: <b id="examTotalDisplay">0.0</b></div>
+      <section class="card net2-card">
+        <div class="net2-section-head">
+          <div>
+            <h2>Deneme Geçmişi</h2>
+            <p class="sub">En yeni deneme üstte. Ok simgesinden ders detaylarını açabilirsin.</p>
+          </div>
+        </div>
+        <div id="examTableWrap"></div>
+      </section>
 
-      <button type="submit" class="add-btn" style="width:fit-content;">Ekle</button>
-    </form>
-
-    <div id="examSegWrap"></div>
-    <p class="filter-note">Grafik seçili döneme göre, tablo tüm kayıtları gösterir. Bir noktaya dokunarak tam değeri görebilirsin.</p>
-    <div id="examChartWrap"></div>
-    <div id="examTableWrap"></div>
-  </section>
-
-  <div class="net-subsection-label">Ders Bazında Analiz</div>
-  <section class="card" id="derslerSection">
-    <h2>Ders Bazında Net Takibi</h2>
-    <p class="sub">Tek bir dersteki gelişimini ayrı grafikte izle.</p>
-
-    <div class="field" style="margin-bottom:12px;">
-      <label for="subjectSelect">Ders</label>
-      <select id="subjectSelect" style="min-width:220px;"></select>
+      <div class="net-subsection-label">Ders Bazında Analiz</div>
+      <section class="card net2-card net2-subject-card" id="derslerSection">
+        <div class="net2-section-head">
+          <div>
+            <h2>Ders Bazında Net Takibi</h2>
+            <p class="sub">Tek bir dersteki gelişimini ayrı grafikte izle.</p>
+          </div>
+          <div class="field">
+            <label for="subjectSelect">Ders</label>
+            <select id="subjectSelect" style="min-width:220px;"></select>
+          </div>
+        </div>
+        <div id="subjectSegWrap"></div>
+        <div id="subjectChartWrap"></div>
+      </section>
     </div>
-
-    <div id="subjectSegWrap"></div>
-    <div id="subjectChartWrap"></div>
-  </section>
   </div>
 
   <div class="tab-panel" id="tab-hedef" style="display:none">
@@ -3295,6 +3473,7 @@
 
   let studyPeriod = 'month';
   let examPeriod = 'month';
+  let examChartMode = 'all';
   let subjectPeriod = 'month';
   let selectedSubjectKey = null; // "TYT::Türkçe" or "AYT::Matematik"
 
@@ -3857,14 +4036,20 @@
     if(stopwatchMode === 'pomodoro' && pomodoroState){
       const base = Math.max(0, Number(stopwatchAccumulatedMs) || 0);
       if(pomodoroState.phase !== 'work') return base;
-      const phaseElapsed = Math.max(0, Date.now() - Number(pomodoroState.phaseStartMs || Date.now()));
-      return base + Math.min(Number(pomodoroState.workMs) || 0, phaseElapsed);
+      const alreadyWorkedInPhase = Math.max(0, Number(pomodoroState.phaseWorkedMs) || 0);
+      if(pomodoroState.userPaused) return base + alreadyWorkedInPhase;
+      const activeSegmentElapsed = Math.max(0, Date.now() - Number(pomodoroState.phaseStartMs || Date.now()));
+      const phaseTotal = Math.min(Number(pomodoroState.workMs) || 0, alreadyWorkedInPhase + activeSegmentElapsed);
+      return base + phaseTotal;
     }
     return stopwatchAccumulatedMs + (stopwatchStatus === 'running' ? (Date.now() - stopwatchSegmentStartMs) : 0);
   }
 
   function pomodoroRemainingMs(){
     if(!pomodoroState) return 0;
+    if(pomodoroState.userPaused){
+      return Math.max(0, Number(pomodoroState.pausedRemainingMs) || 0);
+    }
     return Math.max(0, Number(pomodoroState.phaseEndMs || 0) - Date.now());
   }
 
@@ -3940,7 +4125,10 @@
       round: 1,
       phase: 'work',
       phaseStartMs: now,
-      phaseEndMs: now + workMin * 60000
+      phaseEndMs: now + workMin * 60000,
+      phaseWorkedMs: 0,
+      userPaused: false,
+      pausedRemainingMs: 0
     };
     stopwatchStatus = 'running';
     stopwatchSegmentStartMs = now;
@@ -3970,12 +4158,14 @@
 
   function advancePomodoroIfNeeded(){
     if(stopwatchMode !== 'pomodoro' || !pomodoroState || !stopwatchStatus) return;
+    if(pomodoroState.userPaused) return;
     let changed = false;
     let guard = 0;
     while(Date.now() >= Number(pomodoroState.phaseEndMs || 0) && guard < 50){
       guard++;
       if(pomodoroState.phase === 'work'){
         stopwatchAccumulatedMs += Number(pomodoroState.workMs) || 0;
+        pomodoroState.phaseWorkedMs = 0;
         if(Number(pomodoroState.round) >= Number(pomodoroState.rounds)){
           finishPomodoroSession(true);
           return;
@@ -3984,6 +4174,9 @@
         pomodoroState.phase = 'break';
         pomodoroState.phaseStartMs = nextStart;
         pomodoroState.phaseEndMs = nextStart + Number(pomodoroState.breakMs || 0);
+        pomodoroState.phaseWorkedMs = 0;
+        pomodoroState.userPaused = false;
+        pomodoroState.pausedRemainingMs = 0;
         stopwatchStatus = 'paused';
         stopwatchSegmentStartMs = nextStart;
         changed = true;
@@ -3993,6 +4186,9 @@
         pomodoroState.phase = 'work';
         pomodoroState.phaseStartMs = nextStart;
         pomodoroState.phaseEndMs = nextStart + Number(pomodoroState.workMs || 0);
+        pomodoroState.phaseWorkedMs = 0;
+        pomodoroState.userPaused = false;
+        pomodoroState.pausedRemainingMs = 0;
         stopwatchStatus = 'running';
         stopwatchSegmentStartMs = nextStart;
         changed = true;
@@ -4023,23 +4219,36 @@
 
     if(stopwatchMode === 'pomodoro' && pomodoroState){
       const isWork = pomodoroState.phase === 'work';
-      statusLabel.textContent = isWork ? 'Çalışma' : 'Mola';
-      statusLabel.classList.add(isWork ? 'is-running' : 'is-paused');
+      const isUserPaused = !!pomodoroState.userPaused;
+      statusLabel.textContent = isUserPaused ? 'Duraklatıldı' : (isWork ? 'Çalışma' : 'Mola');
+      statusLabel.classList.add(isUserPaused ? 'is-paused' : (isWork ? 'is-running' : 'is-paused'));
       timeDisplay.textContent = fmtHMS(pomodoroRemainingMs());
-      if(contextLine) contextLine.textContent = isWork ? 'Bu çalışma bloğunun bitmesine kalan süre' : 'Sonraki çalışma turuna kalan mola süresi';
+      if(contextLine){
+        contextLine.textContent = isUserPaused
+          ? 'Pomodoro duraklatıldı · kalan süre sabit.'
+          : (isWork ? 'Bu çalışma bloğunun bitmesine kalan süre' : 'Sonraki çalışma turuna kalan mola süresi');
+      }
       if(pomoMeta){
         pomoMeta.classList.add('visible');
-        pomoMeta.innerHTML = `<span class="pomodoro-chip">🍅 ${pomodoroState.round}. tur / ${pomodoroState.rounds}</span><span class="pomodoro-chip">${isWork ? '📚 Ders' : '☕ Mola'}</span><span class="pomodoro-chip">Toplam çalışma ${fmtHMS(currentStopwatchElapsedMs())}</span>`;
+        pomoMeta.innerHTML = `<span class="pomodoro-chip">🍅 ${pomodoroState.round}. tur / ${pomodoroState.rounds}</span><span class="pomodoro-chip">${isWork ? '📚 Ders' : '☕ Mola'}</span>${isUserPaused ? '<span class="pomodoro-chip">⏸ Duraklatıldı</span>' : ''}<span class="pomodoro-chip">Toplam çalışma ${fmtHMS(currentStopwatchElapsedMs())}</span>`;
       }
       if(pauseDisplay) pauseDisplay.style.display = 'none';
       if(startBtn) startBtn.style.display = 'none';
-      if(pauseBtn) pauseBtn.style.display = 'none';
-      if(resumeBtn) resumeBtn.style.display = 'none';
+      if(pauseBtn){
+        pauseBtn.style.display = isUserPaused ? 'none' : '';
+        pauseBtn.textContent = 'Duraklat';
+      }
+      if(resumeBtn){
+        resumeBtn.style.display = isUserPaused ? '' : 'none';
+        resumeBtn.textContent = 'Devam Et';
+      }
       if(finishBtn){ finishBtn.style.display = ''; finishBtn.textContent = 'Pomodoroyu Bitir'; }
       return;
     }
 
     if(pomoMeta){ pomoMeta.classList.remove('visible'); pomoMeta.innerHTML = ''; }
+    if(pauseBtn) pauseBtn.textContent = 'Mola Ver';
+    if(resumeBtn) resumeBtn.textContent = 'Devam Et';
     if(finishBtn) finishBtn.textContent = 'Bitir';
     if(stopwatchStatus === 'running'){
       statusLabel.textContent = 'Çalışıyor';
@@ -4117,7 +4326,23 @@
   }
 
   function pauseStopwatch(){
-    if(stopwatchMode === 'pomodoro') return;
+    if(stopwatchMode === 'pomodoro' && pomodoroState){
+      if(pomodoroState.userPaused) return;
+      const now = Date.now();
+      pomodoroState.pausedRemainingMs = Math.max(0, Number(pomodoroState.phaseEndMs || now) - now);
+      if(pomodoroState.phase === 'work'){
+        const activeSegmentElapsed = Math.max(0, now - Number(pomodoroState.phaseStartMs || now));
+        const alreadyWorked = Math.max(0, Number(pomodoroState.phaseWorkedMs) || 0);
+        pomodoroState.phaseWorkedMs = Math.min(Number(pomodoroState.workMs) || 0, alreadyWorked + activeSegmentElapsed);
+      }
+      pomodoroState.userPaused = true;
+      stopwatchStatus = 'paused';
+      stopwatchSegmentStartMs = now;
+      writeStopwatchDoc();
+      writePresence();
+      updateStopwatchUI();
+      return;
+    }
     if(stopwatchStatus !== 'running') return;
     stopwatchAccumulatedMs += Date.now() - stopwatchSegmentStartMs;
     stopwatchStatus = 'paused';
@@ -4128,7 +4353,21 @@
   }
 
   function resumeStopwatch(){
-    if(stopwatchMode === 'pomodoro') return;
+    if(stopwatchMode === 'pomodoro' && pomodoroState){
+      if(!pomodoroState.userPaused) return;
+      const now = Date.now();
+      const remaining = Math.max(0, Number(pomodoroState.pausedRemainingMs) || 0);
+      pomodoroState.userPaused = false;
+      pomodoroState.phaseStartMs = now;
+      pomodoroState.phaseEndMs = now + remaining;
+      pomodoroState.pausedRemainingMs = 0;
+      stopwatchStatus = pomodoroState.phase === 'work' ? 'running' : 'paused';
+      stopwatchSegmentStartMs = now;
+      writeStopwatchDoc();
+      writePresence();
+      updateStopwatchUI();
+      return;
+    }
     if(stopwatchStatus !== 'paused') return;
     stopwatchStatus = 'running';
     stopwatchSegmentStartMs = Date.now();
@@ -4164,6 +4403,9 @@
       if(mine.mode === 'pomodoro' && mine.pomodoro){
         stopwatchMode = 'pomodoro';
         pomodoroState = { ...mine.pomodoro };
+        if(pomodoroState.phaseWorkedMs == null) pomodoroState.phaseWorkedMs = 0;
+        if(pomodoroState.userPaused == null) pomodoroState.userPaused = false;
+        if(pomodoroState.pausedRemainingMs == null) pomodoroState.pausedRemainingMs = 0;
         advancePomodoroIfNeeded();
       } else {
         stopwatchMode = 'free';
@@ -4191,21 +4433,50 @@
       return a.status === 'running' ? -1 : 1;
     });
     wrap.innerHTML = sorted.map(ses => {
-      const isRunning = ses.status === 'running';
+      const isPomodoro = ses.mode === 'pomodoro' && !!ses.pomodoro;
+      const pomo = isPomodoro ? ses.pomodoro : null;
+      const userPaused = !!(pomo && pomo.userPaused);
+      const isWorkPhase = !!(pomo && pomo.phase === 'work');
+      const isRunning = ses.status === 'running' && !userPaused;
       const baseMs = Math.max(0, Number(ses.accumulatedMs) || 0);
       const segmentStart = Number(ses.segmentStartMs) || Date.now();
-      const activeSegmentMs = isRunning ? Math.max(0, Date.now() - segmentStart) : 0;
-      const elapsedMs = baseMs + activeSegmentMs;
-      const pauseMs = !isRunning ? Math.max(0, Date.now() - segmentStart) : 0;
+
+      let elapsedMs = baseMs;
+      if(isPomodoro){
+        const phaseWorked = Math.max(0, Number(pomo.phaseWorkedMs) || 0);
+        if(isWorkPhase){
+          const activeWork = userPaused ? 0 : Math.max(0, Date.now() - Number(pomo.phaseStartMs || Date.now()));
+          elapsedMs += Math.min(Number(pomo.workMs) || 0, phaseWorked + activeWork);
+        }
+      } else if(isRunning){
+        elapsedMs += Math.max(0, Date.now() - segmentStart);
+      }
+
+      const pauseMs = !isRunning && !userPaused ? Math.max(0, Date.now() - segmentStart) : 0;
       const roomBadge = ses.roomName ? `<span style="background:rgba(76,141,255,0.18); color:var(--blue); font-size:10.5px; padding:1px 6px; border-radius:10px; margin-left:6px;">📍 ${escapeHtml(ses.roomName)}</span>` : '';
-      const pomodoroBadge = ses.mode === 'pomodoro' && ses.pomodoro ? `<span style="background:rgba(242,193,78,.13); color:#F2C14E; font-size:10.5px; padding:1px 6px; border-radius:10px; margin-left:6px;">🍅 ${Number(ses.pomodoro.round)||1}/${Number(ses.pomodoro.rounds)||1}</span>` : '';
+      const pomodoroBadge = isPomodoro ? `<span style="background:rgba(242,193,78,.13); color:#F2C14E; font-size:10.5px; padding:1px 6px; border-radius:10px; margin-left:6px;">🍅 ${Number(pomo.round)||1}/${Number(pomo.rounds)||1}</span>` : '';
       const rankName = publicRankForUid(ses.id, ses.rank);
+      let statusHtml;
+      let statusClass;
+      if(userPaused){
+        statusHtml = '⏸ Pomodoro duraklatıldı';
+        statusClass = 'is-paused';
+      } else if(isPomodoro && !isWorkPhase){
+        statusHtml = '☕ Pomodoro molası';
+        statusClass = 'is-paused';
+      } else if(isRunning){
+        statusHtml = '🟢 Çalışıyor';
+        statusClass = 'is-running';
+      } else {
+        statusHtml = '🟡 Molada · ' + fmtHMS(pauseMs);
+        statusClass = 'is-paused';
+      }
       return `
         <div class="live-row ${ses.id === currentUid ? 'me' : ''}">
           <div class="live-avatar rank-avatar-frame user-click" style="${rankFrameVar(rankName)}" onclick="inspectUserProfile('${ses.id}')">${avatarInnerHtml(ses.photo, ses.avatar || '🙂')}</div>
           <div class="live-info">
             <div class="live-name user-click" onclick="inspectUserProfile('${ses.id}')">${escapeHtml(ses.name || 'Kullanıcı')}${ses.id === currentUid ? ' (sen)' : ''}${miniRankBadge(rankName)}${roomBadge}${pomodoroBadge}</div>
-            <div class="live-status ${isRunning ? 'is-running' : 'is-paused'}">${isRunning ? '🟢 Çalışıyor' : '🟡 Molada · ' + fmtHMS(pauseMs)}</div>
+            <div class="live-status ${statusClass}">${statusHtml}</div>
           </div>
           <div class="live-duration" title="Toplam çalışma süresi">${fmtHMS(elapsedMs)}</div>
         </div>
@@ -4606,14 +4877,32 @@
     return AYT_SUBJECTS[track] || AYT_SUBJECTS.say;
   }
 
+  function fmtNetValue(value){
+    const n = Number(value);
+    if(!Number.isFinite(n)) return '—';
+    return n.toLocaleString('tr-TR', { minimumFractionDigits:0, maximumFractionDigits:2 });
+  }
+
+  function setExamDetailsOpen(open){
+    const panel = document.getElementById('examDetailsPanel');
+    const btn = document.getElementById('examDetailsToggle');
+    if(!panel || !btn) return;
+    panel.classList.toggle('open', !!open);
+    btn.classList.toggle('open', !!open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const text = btn.querySelector('span:first-child');
+    if(text) text.textContent = open ? '− Ders detaylarını kapat' : '＋ Ders detaylarını ekle';
+  }
+
   function renderSubjectFields(){
     const type = document.getElementById('examType').value;
     const subjects = type === 'TYT' ? TYT_SUBJECTS : currentAytSubjects();
     const wrap = document.getElementById('subjectFieldsWrap');
+    if(!wrap) return;
     wrap.innerHTML = subjects.map(subj => `
       <div class="field">
-        <label>${subj}</label>
-        <input type="number" class="subject-input" data-subject="${subj}" min="0" step="0.25" placeholder="0.0">
+        <label>${escapeHtml(subj)}</label>
+        <input type="number" class="subject-input" data-subject="${escapeHtml(subj)}" step="0.25" placeholder="0">
       </div>
     `).join('');
     wrap.querySelectorAll('.subject-input').forEach(inp => {
@@ -4623,80 +4912,181 @@
   }
 
   function updateExamTotal(){
-    const inputs = document.querySelectorAll('#subjectFieldsWrap .subject-input');
+    const inputs = Array.from(document.querySelectorAll('#subjectFieldsWrap .subject-input'));
     let total = 0;
-    inputs.forEach(inp => { total += num(inp.value); });
-    document.getElementById('examTotalDisplay').textContent = round1(total).toFixed(2).replace(/\.?0+$/,'') || '0';
+    let hasValue = false;
+    inputs.forEach(inp => {
+      if(String(inp.value).trim() !== '') hasValue = true;
+      total += num(inp.value);
+    });
+    const totalEl = document.getElementById('examTotalDisplay');
+    if(totalEl) totalEl.textContent = fmtNetValue(round2(total));
+    const panel = document.getElementById('examDetailsPanel');
+    const quick = document.getElementById('examQuickNet');
+    if(quick && panel && panel.classList.contains('open') && hasValue){
+      quick.value = round2(total);
+    }
+  }
+
+  function getExamTypeStats(type){
+    const entries = examEntries.filter(e => e.type === type).slice().sort((a,b) => a.date.localeCompare(b.date));
+    if(entries.length === 0){
+      return { entries, last:null, prev:null, diff:null, best:null, bestDate:null, recentDiff:null };
+    }
+    const lastEntry = entries[entries.length-1];
+    const prevEntry = entries.length > 1 ? entries[entries.length-2] : null;
+    const bestEntry = entries.reduce((best,e) => Number(e.net) > Number(best.net) ? e : best, entries[0]);
+    const recent = entries.slice(-5);
+    return {
+      entries,
+      last:lastEntry,
+      prev:prevEntry,
+      diff:prevEntry ? round2(Number(lastEntry.net) - Number(prevEntry.net)) : null,
+      best:Number(bestEntry.net),
+      bestDate:bestEntry.date,
+      recentDiff:recent.length > 1 ? round2(Number(recent[recent.length-1].net) - Number(recent[0].net)) : null
+    };
+  }
+
+  function examDeltaHtml(diff, firstLabel='İlk kayıt'){
+    if(diff === null || diff === undefined) return `<span class="net2-delta flat">${firstLabel}</span>`;
+    if(diff > 0) return `<span class="net2-delta up">↑ +${fmtNetValue(diff)}</span>`;
+    if(diff < 0) return `<span class="net2-delta down">↓ ${fmtNetValue(diff)}</span>`;
+    return '<span class="net2-delta flat">→ Değişim yok</span>';
+  }
+
+  function renderExamOverview(){
+    const wrap = document.getElementById('examOverviewWrap');
+    if(!wrap) return;
+    const makeCard = (type) => {
+      const st = getExamTypeStats(type);
+      const lower = type.toLowerCase();
+      if(!st.last){
+        return `<div class="net2-score-card ${lower}">
+          <div class="net2-score-top"><span class="net2-type-badge">${type === 'TYT' ? '🟠' : '🔵'} ${type}</span>${examDeltaHtml(null)}</div>
+          <div class="net2-score-main"><div class="net2-score-value">—</div><div class="net2-score-unit">net</div></div>
+          <div class="net2-score-meta"><div class="net2-mini-stat"><div class="k">Durum</div><div class="v">İlk denemeni ekle</div></div><div class="net2-mini-stat"><div class="k">Kişisel rekor</div><div class="v">—</div></div></div>
+        </div>`;
+      }
+      const gap = round2(st.best - Number(st.last.net));
+      const recordText = gap <= 0 ? '🏆 Rekor seviyen' : `Rekora ${fmtNetValue(gap)} net`;
+      const recentText = st.recentDiff === null ? 'Veri birikiyor' : (st.recentDiff > 0 ? `Son 5: +${fmtNetValue(st.recentDiff)}` : st.recentDiff < 0 ? `Son 5: ${fmtNetValue(st.recentDiff)}` : 'Son 5: sabit');
+      return `<div class="net2-score-card ${lower}">
+        <div class="net2-score-top">
+          <span class="net2-type-badge">${type === 'TYT' ? '🟠' : '🔵'} ${type}</span>
+          ${examDeltaHtml(st.diff)}
+        </div>
+        <div class="net2-score-main"><div class="net2-score-value">${fmtNetValue(st.last.net)}</div><div class="net2-score-unit">net · ${fmtDate(st.last.date)}</div></div>
+        <div class="net2-score-meta">
+          <div class="net2-mini-stat"><div class="k">Kişisel rekor</div><div class="v">${fmtNetValue(st.best)} · ${fmtDate(st.bestDate)}</div></div>
+          <div class="net2-mini-stat"><div class="k">Gidişat</div><div class="v">${recentText}</div><div class="net2-record-note">${recordText}</div></div>
+        </div>
+      </div>`;
+    };
+    wrap.innerHTML = makeCard('TYT') + makeCard('AYT');
+  }
+
+  function syncExamChartSwitch(){
+    const control = document.getElementById('examChartSwitch');
+    if(!control) return;
+    const modes = ['all','TYT','AYT'];
+    const idx = Math.max(0, modes.indexOf(examChartMode));
+    control.style.setProperty('--chart-index', idx);
+    control.querySelectorAll('[data-exam-chart]').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-exam-chart') === examChartMode));
+  }
+
+  function wireExamChartSwitch(){
+    const control = document.getElementById('examChartSwitch');
+    if(!control || control.dataset.wired === '1') return;
+    control.dataset.wired = '1';
+    control.querySelectorAll('[data-exam-chart]').forEach((btn,index) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-exam-chart');
+        if(mode === examChartMode) return;
+        examChartMode = mode;
+        control.classList.add('moving');
+        control.style.setProperty('--chart-index', index);
+        control.querySelectorAll('[data-exam-chart]').forEach(b => b.classList.toggle('active', b === btn));
+        clearTimeout(control._net2Timer);
+        control._net2Timer = setTimeout(() => { control.classList.remove('moving'); renderExam(); }, 160);
+      });
+    });
   }
 
   // ---------- Exam section render ----------
 
   function renderExam(){
+    renderExamOverview();
+    wireExamChartSwitch();
+    syncExamChartSwitch();
+
     const segWrap = document.getElementById('examSegWrap');
-    segWrap.innerHTML = segControlHtml(examPeriod);
-    wireSegControl(segWrap, () => examPeriod, (val) => {
-      examPeriod = val;
-      renderExam();
-    });
+    if(segWrap){
+      segWrap.innerHTML = segControlHtml(examPeriod);
+      wireSegControl(segWrap, () => examPeriod, (val) => {
+        examPeriod = val;
+        renderExam();
+      });
+    }
 
     const chartWrap = document.getElementById('examChartWrap');
     const tableWrap = document.getElementById('examTableWrap');
+    if(!chartWrap || !tableWrap) return;
 
     if(examEntries.length === 0){
-      chartWrap.innerHTML = '';
-      tableWrap.innerHTML = emptyStateHtml('Henüz kayıt yok. İlk deneme netini ekleyerek başla.');
+      chartWrap.innerHTML = emptyStateHtml('Grafik için henüz deneme kaydın yok.');
+      tableWrap.innerHTML = '<div class="net2-history-empty">' + emptyStateHtml('Henüz kayıt yok. İlk deneme netini ekleyerek başla.') + '</div>';
       return;
     }
 
-    const filtered = filterByPeriod(examEntries, examPeriod);
+    let filtered = filterByPeriod(examEntries, examPeriod);
+    if(examChartMode !== 'all') filtered = filtered.filter(e => e.type === examChartMode);
     const dates = [...new Set(filtered.map(e => e.date))].sort();
     const categories = dates.map(fmtDate);
+    const tytPoints = filtered.filter(e => e.type === 'TYT').map(e => ({ catIndex: dates.indexOf(e.date), value:Number(e.net) }));
+    const aytPoints = filtered.filter(e => e.type === 'AYT').map(e => ({ catIndex: dates.indexOf(e.date), value:Number(e.net) }));
+    const series = [];
+    if(examChartMode === 'all' || examChartMode === 'TYT') series.push({ color:'#F2A93B', points:tytPoints });
+    if(examChartMode === 'all' || examChartMode === 'AYT') series.push({ color:'#4C8DFF', points:aytPoints });
+    const legend = examChartMode === 'all'
+      ? '<div class="legend"><span><span class="dot" style="background:#F2A93B"></span>TYT</span><span><span class="dot" style="background:#4C8DFF"></span>AYT</span></div>'
+      : `<div class="legend"><span><span class="dot" style="background:${examChartMode === 'TYT' ? '#F2A93B' : '#4C8DFF'}"></span>${examChartMode}</span></div>`;
+    chartWrap.innerHTML = legend + buildChart({ categories, series, yUnit:'' });
 
-    const tytPoints = filtered
-      .filter(e => e.type === 'TYT')
-      .map(e => ({ catIndex: dates.indexOf(e.date), value: Number(e.net) }));
-    const aytPoints = filtered
-      .filter(e => e.type === 'AYT')
-      .map(e => ({ catIndex: dates.indexOf(e.date), value: Number(e.net) }));
+    const prevById = {};
+    ['TYT','AYT'].forEach(type => {
+      const arr = examEntries.filter(e => e.type === type).slice().sort((a,b) => a.date.localeCompare(b.date));
+      arr.forEach((e,i) => { prevById[e.id] = i > 0 ? Number(arr[i-1].net) : null; });
+    });
 
-    chartWrap.innerHTML =
-      '<div class="legend">' +
-        '<span><span class="dot" style="background:#F2A93B"></span>TYT</span>' +
-        '<span><span class="dot" style="background:#4C8DFF"></span>AYT</span>' +
-      '</div>' +
-      buildChart({
-        categories,
-        series: [
-          { color: '#F2A93B', points: tytPoints },
-          { color: '#4C8DFF', points: aytPoints }
-        ],
-        yUnit: ''
-      });
-
-    const rows = examEntries.slice().reverse().map(e => {
-      let breakdown = '';
-      if(e.subjects){
-        const parts = Object.keys(e.subjects).map(k => k + ' ' + e.subjects[k]);
-        breakdown = `<tr class="breakdown-row"><td colspan="4">${parts.join(' · ')}</td></tr>`;
-      }
-      return `
-        <tr>
-          <td>${fmtDate(e.date)}</td>
-          <td><span class="tag ${e.type.toLowerCase()}">${e.type}</span></td>
-          <td>${Number(e.net)}</td>
-          <td style="text-align:right"><button class="del-btn" data-del-exam="${e.id}">✕</button></td>
-        </tr>
-        ${breakdown}
-      `;
+    const rows = examEntries.slice().sort((a,b) => b.date.localeCompare(a.date)).map(e => {
+      const prev = prevById[e.id];
+      const diff = prev === null ? null : round2(Number(e.net) - prev);
+      const hasDetails = e.subjects && Object.keys(e.subjects).length > 0;
+      const detailText = hasDetails
+        ? Object.entries(e.subjects).map(([k,v]) => `<span><b>${escapeHtml(k)}:</b> ${fmtNetValue(v)}</span>`).join(' · ')
+        : 'Bu kayıt hızlı toplam net olarak eklendi; ders detayı yok.';
+      return `<div class="net2-history-item" data-exam-row="${e.id}">
+        <div class="net2-history-main">
+          <span class="tag ${e.type.toLowerCase()}">${e.type}</span>
+          <div><div class="net2-history-net">${fmtNetValue(e.net)} net</div><div class="net2-history-date">${fmtDate(e.date)}</div></div>
+          ${examDeltaHtml(diff)}
+          <div class="net2-history-actions">
+            <button type="button" class="net2-icon-btn" data-exam-expand="${e.id}" title="Detayları aç">⌄</button>
+            <button type="button" class="net2-icon-btn" data-del-exam="${e.id}" title="Sil">✕</button>
+          </div>
+        </div>
+        <div class="net2-history-breakdown">${detailText}</div>
+      </div>`;
     }).join('');
+    tableWrap.innerHTML = `<div class="net2-history-list">${rows}</div>`;
 
-    tableWrap.innerHTML = `
-      <table class="entries">
-        <thead><tr><th>Tarih</th><th>Tür</th><th>Net</th><th></th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    `;
-
+    tableWrap.querySelectorAll('[data-exam-expand]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const row = tableWrap.querySelector(`[data-exam-row="${btn.getAttribute('data-exam-expand')}"]`);
+        if(row) row.classList.toggle('expanded');
+      });
+    });
     tableWrap.querySelectorAll('[data-del-exam]').forEach(btn => {
       btn.addEventListener('click', () => deleteExamEntry(btn.getAttribute('data-del-exam')));
     });
@@ -4825,7 +5215,16 @@
     document.getElementById('studyMinutesPart').value = '';
   });
 
-  document.getElementById('examType').addEventListener('change', renderSubjectFields);
+  document.getElementById('examType').addEventListener('change', () => {
+    renderSubjectFields();
+    const quick = document.getElementById('examQuickNet');
+    if(quick && !document.getElementById('examDetailsPanel').classList.contains('open')) quick.value = '';
+  });
+
+  document.getElementById('examDetailsToggle').addEventListener('click', () => {
+    const panel = document.getElementById('examDetailsPanel');
+    setExamDetailsOpen(!(panel && panel.classList.contains('open')));
+  });
 
   document.getElementById('examForm').addEventListener('submit', (ev) => {
     ev.preventDefault();
@@ -4834,17 +5233,32 @@
     if(!date) return;
     if(date > todayStr()){ setStatus('İleri bir tarihe kayıt ekleyemezsin.', true); return; }
 
-    const subjects = {};
-    let total = 0;
-    document.querySelectorAll('#subjectFieldsWrap .subject-input').forEach(inp => {
-      const v = num(inp.value);
-      subjects[inp.getAttribute('data-subject')] = v;
-      total += v;
-    });
+    const detailInputs = Array.from(document.querySelectorAll('#subjectFieldsWrap .subject-input'));
+    const hasSubjectDetail = detailInputs.some(inp => String(inp.value).trim() !== '');
+    let subjects = null;
+    let total;
 
-    addExamEntry(date, type, round1(total), subjects);
-    document.querySelectorAll('#subjectFieldsWrap .subject-input').forEach(inp => inp.value = '');
+    if(hasSubjectDetail){
+      subjects = {};
+      total = 0;
+      detailInputs.forEach(inp => {
+        if(String(inp.value).trim() === '') return;
+        const v = num(inp.value);
+        subjects[inp.getAttribute('data-subject')] = round2(v);
+        total += v;
+      });
+      total = round2(total);
+    } else {
+      const raw = document.getElementById('examQuickNet').value;
+      if(String(raw).trim() === ''){ setStatus('Toplam net gir veya ders detaylarını doldur.', true); return; }
+      total = round2(num(raw));
+    }
+
+    addExamEntry(date, type, total, subjects);
+    document.getElementById('examQuickNet').value = '';
+    detailInputs.forEach(inp => inp.value = '');
     updateExamTotal();
+    setExamDetailsOpen(false);
   });
 
   document.getElementById('subjectSelect').addEventListener('change', (ev) => {
