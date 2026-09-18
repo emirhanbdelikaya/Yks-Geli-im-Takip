@@ -2504,6 +2504,31 @@
   @media(max-width:480px){.profile2-cover{padding:17px;border-radius:23px}.profile2-self-avatar{width:74px;height:74px}.profile2-self-copy h1{font-size:25px}.profile2-count-row{grid-template-columns:repeat(2,1fr)}.profile2-self-actions .glass-icon-btn{flex:1}.profile2-public-modal{padding:15px!important;border-radius:23px!important}.profile2-public-avatar{width:64px;height:64px}.profile2-public-identity h3{font-size:20px}.profile2-public-counts{grid-template-columns:repeat(3,1fr)}.profile2-public-stats{grid-template-columns:repeat(2,1fr)}.social2-dm-container{min-height:430px}.social2-search-row{flex-direction:column}}
   @media(prefers-reduced-motion:reduce){.social-view-glider,.social2-panel{transition:none!important;animation:none!important}}
 
+  /* =========================================================
+     TOPLULUK AKIŞI + KOMPAKT SOSYAL PROFİL
+     ========================================================= */
+  .community-shell{max-width:760px;margin:0 auto;display:grid;gap:12px;padding-bottom:86px}
+  .community-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;border-radius:0 0 20px 20px;background:color-mix(in srgb,var(--bg) 86%,transparent);border:1px solid rgba(255,255,255,.08);border-top:0;backdrop-filter:blur(24px) saturate(170%);-webkit-backdrop-filter:blur(24px) saturate(170%)}
+  .community-header h2{margin:0;font-size:22px;letter-spacing:-.025em}.community-header p{margin:2px 0 0;color:var(--muted);font-size:10.5px}
+  .community-room-btn{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.055);color:var(--text);border-radius:999px;padding:8px 11px;font:inherit;font-size:10.5px;font-weight:800;cursor:pointer;white-space:nowrap}
+  .community-feed-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line);background:rgba(255,255,255,.018)}
+  .community-feed-tab{position:relative;border:0;background:transparent;color:var(--muted);font:inherit;font-size:12px;font-weight:800;padding:13px 8px;cursor:pointer}.community-feed-tab.active{color:var(--text)}.community-feed-tab.active::after{content:"";position:absolute;left:34%;right:34%;bottom:-1px;height:3px;border-radius:99px;background:var(--blue)}
+  .community-feed{display:grid;gap:1px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--line)}
+  .community-empty{padding:54px 22px;text-align:center;background:var(--panel);color:var(--muted);font-size:12px}.community-empty b{display:block;color:var(--text);font-size:15px;margin-bottom:6px}
+  .community-post{background:color-mix(in srgb,var(--panel) 96%,var(--bg));padding:15px;display:grid;grid-template-columns:43px minmax(0,1fr);gap:11px;transition:background .18s ease}.community-post:hover{background:color-mix(in srgb,var(--panel) 91%,var(--blue) 9%)}
+  .community-post-avatar{width:43px;height:43px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--panel-2);font-size:20px;cursor:pointer}
+  .community-post-main{min-width:0}.community-post-meta{display:flex;align-items:center;gap:6px;min-width:0}.community-post-name{font-size:12.5px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.community-post-time{color:var(--muted);font-size:10px;white-space:nowrap}.community-post-text{margin-top:5px;font-size:13.5px;line-height:1.52;white-space:pre-wrap;overflow-wrap:anywhere}.community-post-image{display:block;width:100%;max-height:520px;object-fit:cover;margin-top:11px;border-radius:17px;border:1px solid rgba(255,255,255,.09);background:rgba(0,0,0,.18)}
+  .community-post-actions{display:flex;align-items:center;justify-content:space-between;max-width:310px;margin-top:10px}.community-action{display:inline-flex;align-items:center;gap:5px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:10.5px;font-weight:800;padding:5px 7px;border-radius:999px;cursor:pointer}.community-action:hover{background:rgba(255,255,255,.055);color:var(--text)}.community-action.liked{color:#ff5b7f;background:rgba(255,91,127,.09)}
+  .community-comments{display:grid;gap:7px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.055)}.community-comment{display:grid;grid-template-columns:26px minmax(0,1fr);gap:7px}.community-comment-avatar{width:26px;height:26px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--panel-2);font-size:12px}.community-comment-bubble{padding:7px 9px;border-radius:12px;background:rgba(255,255,255,.04);font-size:10.5px;line-height:1.45}.community-comment-bubble b{display:block;font-size:10px;margin-bottom:2px}.community-comment-form{display:flex;gap:7px;margin-top:7px}.community-comment-form input{flex:1;min-width:0;border:1px solid rgba(255,255,255,.075);background:rgba(0,0,0,.12);color:var(--text);border-radius:999px;padding:8px 11px;font:inherit;font-size:10.5px;outline:none}.community-comment-form button{border:0;background:var(--blue);color:#fff;border-radius:999px;padding:7px 10px;font:inherit;font-size:10px;font-weight:900;cursor:pointer}
+  .community-fab{position:fixed;right:max(18px,calc((100vw - 1040px)/2 + 18px));bottom:86px;z-index:70;width:54px;height:54px;border:0;border-radius:50%;background:linear-gradient(145deg,var(--blue),color-mix(in srgb,var(--blue) 70%,#fff));color:#fff;font-size:31px;line-height:1;box-shadow:0 14px 36px color-mix(in srgb,var(--blue) 42%,transparent),inset 0 1px 0 rgba(255,255,255,.35);cursor:pointer}.community-fab:hover{transform:translateY(-2px) scale(1.03)}
+  .community-composer-modal{max-width:560px!important;padding:0!important;overflow:hidden}.community-composer-head{display:flex;align-items:center;justify-content:space-between;padding:14px 15px;border-bottom:1px solid var(--line)}.community-composer-head h3{margin:0;font-size:16px}.community-composer-close{border:0;background:transparent;color:var(--text);font-size:19px;cursor:pointer}.community-compose-profile{display:flex;align-items:center;gap:9px;padding:14px 15px 7px}.community-compose-avatar{width:38px;height:38px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--panel-2)}.community-compose-profile b{font-size:12px}.community-compose-profile span{display:block;color:var(--muted);font-size:9.5px;margin-top:2px}.community-composer-modal textarea{display:block;width:100%;min-height:130px;resize:vertical;box-sizing:border-box;border:0;background:transparent;color:var(--text);padding:10px 15px;font:inherit;font-size:16px;line-height:1.5;outline:none}.community-image-preview{position:relative;margin:0 15px 10px}.community-image-preview img{display:block;width:100%;max-height:380px;object-fit:cover;border-radius:17px;border:1px solid var(--line)}.community-image-remove{position:absolute;right:8px;top:8px;width:30px;height:30px;border:0;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;cursor:pointer}.community-composer-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 15px;border-top:1px solid var(--line)}.community-photo-label{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-size:11px;font-weight:900;cursor:pointer}.community-photo-label input{display:none}.community-char-count{margin-left:auto;color:var(--muted);font-size:9.5px}
+  .profile2-reference-head{position:relative;z-index:1}.profile2-reference-top{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:20px}.profile2-social-counts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.profile2-social-counts>button,.profile2-social-counts>div{border:0;background:transparent;color:var(--text);font:inherit;text-align:center;padding:8px 4px;border-radius:12px}.profile2-social-counts>button{cursor:pointer}.profile2-social-counts>button:hover{background:rgba(255,255,255,.045)}.profile2-social-counts b{display:block;font-family:Georgia,serif;font-size:22px}.profile2-social-counts span{display:block;color:var(--muted);font-size:10px;margin-top:3px}.profile2-reference-copy{display:flex;align-items:flex-end;justify-content:space-between;gap:13px;margin-top:15px}.profile2-reference-name h1{margin:0 0 5px;font-size:clamp(24px,5vw,34px);letter-spacing:-.035em}.profile2-reference-name p{margin:7px 0 0;color:var(--muted);font-size:12px}.profile2-compact-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}.profile2-compact-actions button{padding:7px 9px!important;font-size:10px!important}.profile2-action-badge{display:inline-flex;min-width:16px;height:16px;align-items:center;justify-content:center;border-radius:99px;background:var(--danger);color:#fff;font-size:8px;margin-left:3px}
+  .profile-social-tools{max-width:980px;margin:14px auto 0;padding:14px;border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.08)}.profile-social-tools>.social2-shell>.social2-head,.profile-social-tools .social-view-nav{display:none}.profile-social-tools .social2-grid{margin-top:10px}.profile-social-tools .social2-card{padding:12px;border-radius:16px}.profile-social-tools .social2-section-head{margin-bottom:9px}.profile-social-tools .social2-messages-card{padding:12px}.profile-social-tools .social2-dm-container{min-height:390px}.profile-social-pane{display:none;margin-top:14px;padding:14px;border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.08)}.profile-social-pane.active{display:block;animation:social2In .2s ease both}.profile-social-pane-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}.profile-social-pane-head h3{margin:0;font-size:14px}.profile-social-pane-close{border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer}.profile-network-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.profile-network-box{padding:12px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.055)}.profile-network-box h4{margin:0 0 9px;font-size:11px}.profile-posts-section{grid-column:1/-1}.profile-posts-feed{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:10px}.profile-posts-empty{padding:24px;text-align:center;color:var(--muted);font-size:11px;background:var(--panel)}
+  .profile2-public-social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}.profile2-public-social>div{text-align:center;padding:7px}.profile2-public-social b{display:block;font-family:Georgia,serif;font-size:18px}.profile2-public-social span{display:block;color:var(--muted);font-size:9px;margin-top:3px}.profile2-public-posts{margin-top:13px}.profile2-public-posts h3{font-size:13px;margin:0 0 9px}
+  .room-back-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.room-back-row button{border:0;background:transparent;color:var(--blue);font:inherit;font-size:11px;font-weight:850;cursor:pointer}
+  @media(max-width:640px){.community-shell{margin:0 -2px}.community-header{border-radius:0 0 17px 17px}.community-post{padding:13px 11px;grid-template-columns:38px minmax(0,1fr);gap:9px}.community-post-avatar{width:38px;height:38px}.community-fab{right:17px;bottom:82px;width:52px;height:52px}.profile2-reference-top{gap:12px}.profile2-self-avatar{width:78px;height:78px}.profile2-social-counts{gap:1px}.profile2-social-counts b{font-size:18px}.profile2-social-counts span{font-size:8.8px}.profile2-reference-copy{align-items:flex-start;flex-direction:column}.profile2-compact-actions{justify-content:flex-start}.profile-network-grid{grid-template-columns:1fr}.community-post-text{font-size:13px}}
+  @media(max-width:390px){.profile2-social-counts b{font-size:16px}.profile2-social-counts span{font-size:8px}.profile2-reference-top{grid-template-columns:70px minmax(0,1fr)}.profile2-self-avatar{width:70px;height:70px}.community-room-btn{padding:7px 8px}.community-header h2{font-size:20px}}
+
 </style>
 </head>
 <body>
@@ -2809,9 +2834,13 @@
 
   <div class="tab-panel" id="tab-sohbet" style="display:none">
   <section class="card">
+    <div class="room-back-row">
+      <button type="button" onclick="switchTab('sosyal')">← Topluluğa dön</button>
+      <span class="social2-soft-chip">Sohbet yapısı korundu</span>
+    </div>
     <div class="rooms-header">
       <div>
-        <h2 style="margin:0 0 2px;">Sohbet / Çalışma Odaları</h2>
+        <h2 style="margin:0 0 2px;">Çalışma Odaları</h2>
         <p class="sub" style="margin:0;">Birlikte çalışabileceğin, sesli ve yazılı çalışma odaları.</p>
       </div>
       <button type="button" class="add-btn" id="openCreateRoomBtn">+ Oda Kur</button>
@@ -2890,6 +2919,28 @@
   </div>
 
   <div class="tab-panel" id="tab-sosyal" style="display:none">
+    <div class="community-shell">
+      <header class="community-header">
+        <div>
+          <h2>Topluluk</h2>
+          <p>YKS yolculuğunu paylaş, birlikte ilerle.</p>
+        </div>
+        <button type="button" class="community-room-btn" onclick="switchTab('sohbet')">◉ Çalışma Odaları</button>
+      </header>
+      <div class="community-feed-tabs" role="tablist" aria-label="Topluluk akışı">
+        <button type="button" class="community-feed-tab active" data-community-filter="all" onclick="setCommunityFilter('all')">Senin için</button>
+        <button type="button" class="community-feed-tab" data-community-filter="following" onclick="setCommunityFilter('following')">Takip ettiklerin</button>
+      </div>
+      <div id="communityFeed" class="community-feed"></div>
+    </div>
+    <button type="button" id="openCommunityComposerBtn" class="community-fab" aria-label="Gönderi oluştur" title="Gönderi oluştur">+</button>
+  </div>
+
+  <div id="profileSocialTools" class="profile-social-tools" style="display:none">
+    <div class="profile-social-pane-head">
+      <h3>Arkadaşlar ve mesajlar</h3>
+      <button type="button" class="profile-social-pane-close" onclick="closeProfileSocialTools()" aria-label="Kapat">✕</button>
+    </div>
     <div class="social2-shell">
       <div class="social2-head">
         <div>
@@ -2976,6 +3027,29 @@
   <nav class="bottom-social-nav" id="bottomSocialNav" aria-label="Sosyal menü"></nav>
 </div>
 
+<div id="communityComposerModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box community-composer-modal">
+    <div class="community-composer-head">
+      <h3>Yeni gönderi</h3>
+      <button type="button" id="closeCommunityComposerBtn" class="community-composer-close" aria-label="Kapat">✕</button>
+    </div>
+    <div class="community-compose-profile">
+      <div id="communityComposerAvatar" class="community-compose-avatar">🙂</div>
+      <div><b id="communityComposerName">Kullanıcı</b><span>Herkese açık gönderi</span></div>
+    </div>
+    <textarea id="communityPostText" maxlength="500" placeholder="Neler düşünüyorsun?"></textarea>
+    <div id="communityImagePreview" class="community-image-preview" style="display:none;">
+      <img id="communityImagePreviewImg" alt="Gönderi görseli önizlemesi">
+      <button type="button" id="removeCommunityImageBtn" class="community-image-remove" aria-label="Görseli kaldır">✕</button>
+    </div>
+    <div class="community-composer-footer">
+      <label class="community-photo-label">▧ Fotoğraf ekle<input type="file" id="communityImageInput" accept="image/*"></label>
+      <span id="communityCharCount" class="community-char-count">0/500</span>
+      <button type="button" id="publishCommunityPostBtn" class="add-btn">Paylaş</button>
+    </div>
+  </div>
+</div>
+
 <div id="userProfileModal" class="modal-overlay profile2-public-overlay" style="display:none;">
   <div class="modal-box profile2-public-modal">
     <div class="profile2-public-top">
@@ -2985,22 +3059,22 @@
         <h3 id="uprofName">Kullanıcı</h3>
         <span id="uprofRankBadge" class="rank-badge"></span>
         <p id="uprofBio" class="profile2-bio">YKS yolculuğu devam ediyor.</p>
+        <div class="profile2-public-social">
+          <div><b id="uprofPostCount">—</b><span>Gönderi</span></div>
+          <div><b id="uprofFollowersCount">—</b><span>Takipçi</span></div>
+          <div><b id="uprofFollowingCount">—</b><span>Takip Edilen</span></div>
+        </div>
       </div>
       <button type="button" id="closeUserProfileBtn" class="profile2-close" aria-label="Kapat">✕</button>
     </div>
 
     <div id="uprofLegacyNote" class="profile2-legacy-note" style="display:none;"></div>
 
-    <div class="profile2-public-counts">
-      <div><b id="uprofPoints">—</b><span>XP</span></div>
-      <div><b id="uprofFriendsCount">—</b><span>Arkadaş</span></div>
-      <div><b id="uprofStreak">—</b><span>Seri 🔥</span></div>
-    </div>
-
     <div class="profile2-public-stats">
       <div class="profile2-stat"><span>Bugün</span><b id="uprofTodayHours">—</b></div>
       <div class="profile2-stat"><span>Bu hafta</span><b id="uprofWeekHours">—</b></div>
       <div class="profile2-stat"><span>Toplam</span><b id="uprofTotalHours">—</b></div>
+      <div class="profile2-stat"><span>Seri 🔥</span><b id="uprofStreak">—</b></div>
       <div class="profile2-stat accent-amber"><span>Son TYT</span><b id="uprofTytNet">—</b></div>
       <div class="profile2-stat accent-blue"><span>Son AYT</span><b id="uprofAytNet">—</b></div>
     </div>
@@ -3008,6 +3082,11 @@
     <div class="profile2-public-detail">
       <div class="social2-section-head"><div><span class="social2-section-kicker">SON DENEME</span><h3>Ders dağılımı</h3></div></div>
       <div id="uprofSubjectBreakdown">—</div>
+    </div>
+
+    <div class="profile2-public-posts">
+      <h3>Gönderiler</h3>
+      <div id="uprofPosts" class="profile-posts-feed"></div>
     </div>
 
     <div class="profile2-public-actions">
@@ -3200,7 +3279,7 @@
   let currentUid = null;
   let unsubStudy = null, unsubExam = null, unsubLeaderboard = null, unsubChat = null, unsubLiveSessions = null;
   let unsubRooms = null, unsubActiveRoom = null, unsubActiveRoomChat = null;
-  let unsubFriends = null, unsubFriendReqs = null, unsubDmChat = null;
+  let unsubFriends = null, unsubFriendReqs = null, unsubDmChat = null, unsubCommunity = null;
   let unsubPresence = null;
 
   let currentRoomId = null;
@@ -3213,6 +3292,9 @@
   let friendsList = [];
   let friendRequests = [];
   let activeDmFriend = null;
+  let communityPosts = [];
+  let communityFilter = 'all';
+  let selectedCommunityImage = null;
   let allRooms = [];
   let activeRoomMembers = [];
   let pendingJoinRoom = null;
@@ -3614,11 +3696,11 @@
     ['hedef', 'Hedef'],
     ['sihirbaz', 'Sihirbaz'],
     ['siralama', 'Liderlik'],
-    ['sohbet', 'Sohbet/Odalar'],
-    ['sosyal', 'Sosyal'],
+    ['sohbet', 'Çalışma Odaları'],
+    ['sosyal', 'Topluluk'],
     ['profil', 'Profil']
   ];
-  const TOP_TAB_IDS = new Set(['ozet','calisma','netler','hedef','sihirbaz','siralama','sohbet']);
+  const TOP_TAB_IDS = new Set(['ozet','calisma','netler','hedef','sihirbaz','siralama']);
   let activeTab = 'ozet';
   let socialView = 'friends';
 
@@ -3641,13 +3723,13 @@
     const wrap = document.getElementById('bottomSocialNav');
     if(!wrap) return;
     const reqBadge = friendRequests.length ? `<span class="bottom-social-badge">${friendRequests.length}</span>` : '';
-    const socialActive = activeTab === 'sosyal' || activeTab === 'profil';
+    const socialActive = activeTab === 'sosyal' || activeTab === 'sohbet' || activeTab === 'profil';
     wrap.classList.toggle('has-active', socialActive);
     wrap.style.setProperty('--bottom-index', activeTab === 'profil' ? 1 : 0);
     wrap.innerHTML = `
       <div class="bottom-social-glider" aria-hidden="true"></div>
-      <button type="button" class="bottom-social-btn ${activeTab==='sosyal'?'active':''}" data-bottom-tab="sosyal">
-        <span class="nav-icon">👥</span><span>Sosyal</span>${reqBadge}
+      <button type="button" class="bottom-social-btn ${activeTab==='sosyal'||activeTab==='sohbet'?'active':''}" data-bottom-tab="sosyal">
+        <span class="nav-icon">◉</span><span>Topluluk</span>
       </button>
       <button type="button" class="bottom-social-btn ${activeTab==='profil'?'active':''}" data-bottom-tab="profil">
         <span class="nav-icon">👤</span><span>Profil</span>
@@ -3658,7 +3740,7 @@
     });
   }
 
-  function updateTopTabGlider(useMotion = true, alsoScrollIntoView = true){
+  function updateTopTabGlider(useMotion = true){
     const wrap = document.getElementById('tabBar');
     if(!wrap) return;
     const glider = wrap.querySelector('.tab-glider');
@@ -3687,12 +3769,7 @@
     glider.style.transform = `translate3d(${nextX}px,0,0)`;
     glider.dataset.x = String(nextX);
     glider.dataset.w = String(nextW);
-    // Not: sadece sekme gerçekten değiştiğinde yatay olarak görünüme kaydır.
-    // resize event'inde (mobilde adres çubuğu gizlenip/gösterilince tetiklenir)
-    // bunu çağırmak sayfayı dikey olarak yukarı fırlatıyordu.
-    if(alsoScrollIntoView){
-      try{ active.scrollIntoView({inline:'center',block:'nearest',behavior:reduced?'auto':'smooth'}); }catch(_){ }
-    }
+    try{ active.scrollIntoView({inline:'center',block:'nearest',behavior:reduced?'auto':'smooth'}); }catch(_){ }
   }
 
   function syncTopTabBarState(){
@@ -3727,15 +3804,35 @@
       const wrap = document.getElementById('chatMessages');
       if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 30);
     }
-    if(activeTab === 'sosyal'){
-      setSocialView(socialView, false);
-      if(socialView === 'messages'){
-        const wrap = document.getElementById('dmChatMessages');
-        if(wrap) setTimeout(() => { wrap.scrollTop = wrap.scrollHeight; }, 30);
-      }
-    }
+    if(activeTab === 'sosyal') renderCommunityFeed();
     if(activeTab === 'profil') renderSelfProfile2();
   }
+
+  window.setCommunityFilter = function(filter){
+    communityFilter = filter === 'following' ? 'following' : 'all';
+    document.querySelectorAll('[data-community-filter]').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-community-filter') === communityFilter));
+    renderCommunityFeed();
+  };
+
+  window.openProfileSocialTools = function(view, target){
+    switchTab('profil');
+    const tools = document.getElementById('profileSocialTools');
+    if(!tools) return;
+    const nextView = view === 'messages' ? 'messages' : 'friends';
+    const alreadyOpen = tools.style.display !== 'none' && socialView === nextView;
+    tools.style.display = alreadyOpen && !target ? 'none' : 'block';
+    if(tools.style.display === 'none') return;
+    setSocialView(nextView, false);
+    setTimeout(() => {
+      const anchor = target ? document.getElementById(target) : tools;
+      if(anchor) anchor.scrollIntoView({ behavior:'smooth', block:'center' });
+    }, 60);
+  };
+
+  window.closeProfileSocialTools = function(){
+    const tools = document.getElementById('profileSocialTools');
+    if(tools) tools.style.display = 'none';
+  };
 
   window.setSocialView = function(view, animate = true){
     socialView = view === 'messages' ? 'messages' : 'friends';
@@ -3785,30 +3882,37 @@
     const friendAvatars = friendsList.slice(0,6).map(f => `<button type="button" class="profile2-friend-face rank-avatar-frame" style="${rankFrameVar(publicRankForUid(f.uid,f.rank))}" onclick="inspectUserProfile('${f.uid}')" title="${escapeHtml(f.name||'Arkadaş')}">${avatarInnerHtml(f.photo,f.avatar||'🙂')}</button>`).join('');
     const bio = (profile.bio||'').trim() || 'YKS yolculuğu devam ediyor.';
     const nextText = next ? `${next.min-points} XP sonra ${next.emoji} ${next.name}` : 'Maksimum rütbedesin';
+    const ownPosts = communityPosts.filter(p => p.uid === currentUid);
+    const ownPostsHtml = ownPosts.length ? ownPosts.map(p => communityPostCardHtml(p, true)).join('') : '<div class="profile-posts-empty">Henüz gönderin yok. Toplulukta ilk paylaşımını yapabilirsin.</div>';
 
     wrap.innerHTML = `
       <div class="profile2-self-shell">
         <section class="profile2-cover">
           <div class="profile2-cover-orb one"></div><div class="profile2-cover-orb two"></div>
-          <div class="profile2-self-main">
-            <div class="profile2-self-avatar rank-avatar-frame" style="${rankFrameVar(current.name)}">${avatarInnerHtml(profile.photo,profile.avatar||'🙂')}</div>
-            <div class="profile2-self-copy">
-              <div class="profile2-live-pill">${profile2Presence(currentUid)}</div>
-              <h1>${escapeHtml(profile.name||'Kullanıcı')}</h1>
-              <button type="button" class="rank-badge rank-badge-clickable" onclick="openRankJourneyModal()" style="border:0;color:${current.color||rankColor(current.name)}">${current.emoji} ${current.name}</button>
-              <p>${escapeHtml(bio)}</p>
+          <div class="profile2-reference-head">
+            <div class="profile2-reference-top">
+              <div class="profile2-self-avatar rank-avatar-frame" style="${rankFrameVar(current.name)}">${avatarInnerHtml(profile.photo,profile.avatar||'🙂')}</div>
+              <div class="profile2-social-counts">
+                <div><b>${ownPosts.length}</b><span>Gönderi</span></div>
+                <button type="button" onclick="openProfileSocialTools('friends')"><b>${friendsList.length}</b><span>Takipçi</span></button>
+                <button type="button" onclick="openProfileSocialTools('friends')"><b>${friendsList.length}</b><span>Takip Edilen</span></button>
+              </div>
             </div>
-            <div class="profile2-self-actions">
-              <button type="button" class="glass-icon-btn" onclick="openProfileModal(false)">✏️ Profili Düzenle</button>
-              <button type="button" class="glass-icon-btn" onclick="openPrivacySettingsFromProfile()">🔒 Gizlilik</button>
+            <div class="profile2-reference-copy">
+              <div class="profile2-reference-name">
+                <div class="profile2-live-pill">${profile2Presence(currentUid)}</div>
+                <h1>${escapeHtml(profile.name||'Kullanıcı')}</h1>
+                <button type="button" class="rank-badge rank-badge-clickable" onclick="openRankJourneyModal()" style="border:0;color:${current.color||rankColor(current.name)}">${current.emoji} ${current.name}</button>
+                <p>${escapeHtml(bio)}</p>
+              </div>
+              <div class="profile2-compact-actions">
+                <button type="button" class="glass-icon-btn" onclick="openProfileModal(false)">✏️ Profili Düzenle</button>
+                <button type="button" class="glass-icon-btn" onclick="openProfileSocialTools('friends','friendSearchInput')">＋ Arkadaş Ekle</button>
+                <button type="button" class="glass-icon-btn" onclick="openProfileSocialTools('friends','incomingFriendRequests')">👥 İstekler${friendRequests.length?` <span class="profile2-action-badge">${friendRequests.length}</span>`:''}</button>
+                <button type="button" class="glass-icon-btn" onclick="openProfileSocialTools('messages')">✉️ Mesajlar</button>
+                <button type="button" class="glass-icon-btn" onclick="openPrivacySettingsFromProfile()" title="Gizlilik">⚙️</button>
+              </div>
             </div>
-          </div>
-          <div class="profile2-count-row">
-            <button type="button" onclick="switchTab('sosyal');setSocialView('friends')"><b>${friendsList.length}</b><span>Arkadaş</span></button>
-            <button type="button" onclick="openRankJourneyModal()"><b>${points}</b><span>XP</span></button>
-            <div><b>${streak.current}</b><span>Aktif seri 🔥</span></div>
-            <div><b>${profile2NetValue(lastTyt&&lastTyt.net)}</b><span>Son TYT</span></div>
-            <div><b>${profile2NetValue(lastAyt&&lastAyt.net)}</b><span>Son AYT</span></div>
           </div>
         </section>
 
@@ -3837,9 +3941,9 @@
             </div>
           </section>
 
-          <section class="profile2-glass-card profile2-friends-card">
-            <div class="social2-section-head"><div><span class="social2-section-kicker">SOSYAL</span><h3>Arkadaşların</h3></div><button type="button" class="profile2-link-btn" onclick="switchTab('sosyal');setSocialView('friends')">Tümünü gör →</button></div>
-            <div class="profile2-friend-faces">${friendAvatars || '<span class="profile2-empty-inline">Henüz arkadaşın yok.</span>'}</div>
+          <section class="profile2-glass-card profile-posts-section">
+            <div class="social2-section-head"><div><span class="social2-section-kicker">HERKESE AÇIK</span><h3>Gönderilerim</h3></div><button type="button" class="profile2-link-btn" onclick="switchTab('sosyal')">Topluluğa git →</button></div>
+            <div id="selfProfilePosts" class="profile-posts-feed">${ownPostsHtml}</div>
           </section>
         </div>
       </div>`;
@@ -3852,7 +3956,7 @@
     settingsModal.style.display = 'flex';
   };
 
-  window.addEventListener('resize', () => requestAnimationFrame(() => updateTopTabGlider(false, false)), { passive:true });
+  window.addEventListener('resize', () => requestAnimationFrame(updateTopTabGlider), { passive:true });
   setInterval(() => {
     if(activeTab === 'ozet'){
       renderProfileCard();
@@ -3932,6 +4036,7 @@
   function examCol(){ return userDoc().collection('exam'); }
   function leaderboardCol(){ return db.collection('leaderboard'); }
   function chatCol(){ return db.collection('chat'); }
+  function communityPostsCol(){ return db.collection('communityPosts'); }
   function presenceCol(){ return db.collection('presence'); }
   function presenceDoc(){ return presenceCol().doc(currentUid); }
 
@@ -4103,6 +4208,7 @@
       if(unsubExam) unsubExam();
       if(unsubLeaderboard) unsubLeaderboard();
       if(unsubChat) unsubChat();
+      if(unsubCommunity) unsubCommunity();
       if(unsubLiveSessions) unsubLiveSessions();
       if(unsubPresence) unsubPresence();
 
@@ -5811,6 +5917,241 @@
     }).catch(()=> setStatus('Mesaj gönderilemedi, internet bağlantını kontrol et.', true));
   });
 
+  // ---------- Topluluk gönderileri ----------
+
+  function fmtCommunityTime(ts){
+    const ms = timestampMs(ts) || Number(ts && ts.createdAtMs) || Date.now();
+    const diff = Math.max(0, Date.now() - ms);
+    if(diff < 60000) return 'şimdi';
+    if(diff < 3600000) return Math.floor(diff / 60000) + ' dk';
+    if(diff < 86400000) return Math.floor(diff / 3600000) + ' sa';
+    if(diff < 604800000) return Math.floor(diff / 86400000) + ' gün';
+    return new Date(ms).toLocaleDateString('tr-TR', { day:'numeric', month:'short' });
+  }
+
+  function communityCommentsHtml(post){
+    const comments = Array.isArray(post.comments) ? post.comments.slice(-20) : [];
+    if(!comments.length) return '';
+    return comments.map(c => {
+      return "<div class='community-comment'>" +
+        "<div class='community-comment-avatar user-click' onclick=\"inspectUserProfile('" + c.uid + "')\">" + avatarInnerHtml(c.photo, c.avatar || '🙂') + "</div>" +
+        "<div class='community-comment-bubble'><b class='user-click' onclick=\"inspectUserProfile('" + c.uid + "')\">" + escapeHtml(c.name || 'Kullanıcı') + "</b>" + escapeHtml(c.text || '') + "</div>" +
+      "</div>";
+    }).join('');
+  }
+
+  function communityPostCardHtml(post, compact){
+    const likes = Array.isArray(post.likedBy) ? post.likedBy : [];
+    const comments = Array.isArray(post.comments) ? post.comments : [];
+    const liked = !!currentUid && likes.includes(currentUid);
+    const rankName = publicRankForUid(post.uid, post.rank);
+    const textHtml = post.text ? "<div class='community-post-text'>" + escapeHtml(post.text) + "</div>" : '';
+    const imageHtml = post.image ? "<img class='community-post-image' src='" + post.image + "' alt='Gönderi fotoğrafı' loading='lazy'>" : '';
+    const commentsHtml = communityCommentsHtml(post);
+    return "<article class='community-post" + (compact ? " compact" : "") + "' data-post-id='" + post.id + "'>" +
+      "<div class='community-post-avatar rank-avatar-frame user-click' style='" + rankFrameVar(rankName) + "' onclick=\"inspectUserProfile('" + post.uid + "')\">" + avatarInnerHtml(post.photo, post.avatar || '🙂') + "</div>" +
+      "<div class='community-post-main'>" +
+        "<div class='community-post-meta'><span class='community-post-name' onclick=\"inspectUserProfile('" + post.uid + "')\">" + escapeHtml(post.name || 'Kullanıcı') + miniRankBadge(rankName) + "</span><span class='community-post-time'>· " + fmtCommunityTime(post.createdAt || {createdAtMs:post.createdAtMs}) + "</span></div>" +
+        textHtml + imageHtml +
+        "<div class='community-post-actions'>" +
+          "<button type='button' class='community-action " + (liked ? "liked" : "") + "' onclick=\"toggleCommunityLike('" + post.id + "')\">" + (liked ? "♥" : "♡") + " <span>" + likes.length + "</span></button>" +
+          "<button type='button' class='community-action' onclick=\"focusCommunityComment('" + post.id + "')\">◯ <span>" + comments.length + "</span></button>" +
+          "<button type='button' class='community-action' onclick=\"shareCommunityPost('" + post.id + "')\">↗ Paylaş</button>" +
+        "</div>" +
+        "<div class='community-comments'>" + commentsHtml +
+          "<form class='community-comment-form' onsubmit=\"submitCommunityComment(event,'" + post.id + "')\"><input id='community-comment-" + post.id + "' maxlength='220' placeholder='Yanıtını yaz…' autocomplete='off'><button type='submit'>Gönder</button></form>" +
+        "</div>" +
+      "</div>" +
+    "</article>";
+  }
+
+  function visibleCommunityPosts(){
+    if(communityFilter !== 'following') return communityPosts;
+    const allowed = new Set(friendsList.map(f => f.uid));
+    allowed.add(currentUid);
+    return communityPosts.filter(p => allowed.has(p.uid));
+  }
+
+  function renderCommunityFeed(){
+    const wrap = document.getElementById('communityFeed');
+    if(!wrap) return;
+    const posts = visibleCommunityPosts();
+    if(!posts.length){
+      wrap.innerHTML = "<div class='community-empty'><b>Akış şimdilik sessiz</b>Sağ alttaki + düğmesine basıp ilk gönderiyi paylaşabilirsin.</div>";
+      return;
+    }
+    wrap.innerHTML = posts.map(p => communityPostCardHtml(p, false)).join('');
+  }
+
+  function renderPublicProfilePosts(uid){
+    const wrap = document.getElementById('uprofPosts');
+    if(!wrap) return;
+    const posts = communityPosts.filter(p => p.uid === uid);
+    wrap.innerHTML = posts.length ? posts.map(p => communityPostCardHtml(p, true)).join('') : "<div class='profile-posts-empty'>Bu kullanıcının henüz gönderisi yok.</div>";
+  }
+
+  function startCommunityListener(){
+    if(unsubCommunity) unsubCommunity();
+    unsubCommunity = communityPostsCol().orderBy('createdAt','desc').limit(150).onSnapshot(qs => {
+      communityPosts = qs.docs.map(d => ({ id:d.id, ...d.data() }));
+      renderCommunityFeed();
+      if(activeTab === 'profil') renderSelfProfile2();
+      syncPublicProfile();
+    }, () => {
+      communityPosts = [];
+      renderCommunityFeed();
+    });
+  }
+
+  window.toggleCommunityLike = async function(postId){
+    if(!currentUid) return;
+    const post = communityPosts.find(p => p.id === postId);
+    if(!post) return;
+    const liked = Array.isArray(post.likedBy) && post.likedBy.includes(currentUid);
+    const value = liked ? firebase.firestore.FieldValue.arrayRemove(currentUid) : firebase.firestore.FieldValue.arrayUnion(currentUid);
+    try{
+      await communityPostsCol().doc(postId).update({ likedBy:value });
+    }catch(_){
+      setStatus('Beğeni güncellenemedi.', true);
+    }
+  };
+
+  window.focusCommunityComment = function(postId){
+    const input = document.getElementById('community-comment-' + postId);
+    if(input){ input.focus(); input.scrollIntoView({ behavior:'smooth', block:'center' }); }
+  };
+
+  window.submitCommunityComment = async function(ev, postId){
+    ev.preventDefault();
+    const input = document.getElementById('community-comment-' + postId);
+    const text = input ? input.value.trim() : '';
+    if(!text || !currentUid) return;
+    if(input) input.disabled = true;
+    const comment = {
+      id: currentUid + '-' + Date.now(),
+      uid: currentUid,
+      name: (profile && profile.name) || 'Kullanıcı',
+      avatar: (profile && profile.avatar) || '🙂',
+      photo: (profile && profile.photo) || null,
+      rank: (profile && profile.rank) || getRankInfo(computePoints()).current.name,
+      text,
+      createdAtMs: Date.now()
+    };
+    try{
+      await communityPostsCol().doc(postId).update({ comments:firebase.firestore.FieldValue.arrayUnion(comment) });
+      if(input) input.value = '';
+    }catch(_){
+      setStatus('Yorum gönderilemedi.', true);
+    }finally{
+      if(input) input.disabled = false;
+    }
+  };
+
+  window.shareCommunityPost = async function(postId){
+    const link = location.href.split('#')[0] + '#post-' + postId;
+    try{
+      if(navigator.share) await navigator.share({ title:'YKS Topluluk gönderisi', url:link });
+      else if(navigator.clipboard){ await navigator.clipboard.writeText(link); setStatus('Gönderi bağlantısı kopyalandı.'); }
+    }catch(_){}
+  };
+
+  function resetCommunityComposer(){
+    selectedCommunityImage = null;
+    document.getElementById('communityPostText').value = '';
+    document.getElementById('communityCharCount').textContent = '0/500';
+    document.getElementById('communityImagePreview').style.display = 'none';
+    document.getElementById('communityImagePreviewImg').removeAttribute('src');
+    document.getElementById('communityImageInput').value = '';
+  }
+
+  function openCommunityComposer(){
+    if(!profile) return;
+    document.getElementById('communityComposerAvatar').innerHTML = avatarInnerHtml(profile.photo, profile.avatar || '🙂');
+    document.getElementById('communityComposerName').textContent = profile.name || 'Kullanıcı';
+    document.getElementById('communityComposerModal').style.display = 'flex';
+    setTimeout(() => document.getElementById('communityPostText').focus(), 40);
+  }
+
+  function closeCommunityComposer(){
+    document.getElementById('communityComposerModal').style.display = 'none';
+  }
+
+  function readCommunityImage(file, cb){
+    if(!file || !file.type.startsWith('image/')){ setStatus('Lütfen bir fotoğraf seç.', true); return; }
+    if(file.size > 10 * 1024 * 1024){ setStatus('Fotoğraf en fazla 10 MB olabilir.', true); return; }
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        const maxEdge = 1100;
+        const scale = Math.min(1, maxEdge / Math.max(img.width, img.height));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.max(1, Math.round(img.width * scale));
+        canvas.height = Math.max(1, Math.round(img.height * scale));
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        let dataUrl = canvas.toDataURL('image/jpeg', .72);
+        if(dataUrl.length > 700000) dataUrl = canvas.toDataURL('image/jpeg', .52);
+        if(dataUrl.length > 900000){ setStatus('Fotoğraf sıkıştırılamadı; daha küçük bir fotoğraf seç.', true); return; }
+        cb(dataUrl);
+      };
+      img.onerror = () => setStatus('Fotoğraf okunamadı.', true);
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  document.getElementById('openCommunityComposerBtn').addEventListener('click', openCommunityComposer);
+  document.getElementById('closeCommunityComposerBtn').addEventListener('click', closeCommunityComposer);
+  document.getElementById('communityComposerModal').addEventListener('click', e => { if(e.target.id === 'communityComposerModal') closeCommunityComposer(); });
+  document.getElementById('communityPostText').addEventListener('input', e => {
+    document.getElementById('communityCharCount').textContent = e.target.value.length + '/500';
+  });
+  document.getElementById('communityImageInput').addEventListener('change', e => {
+    const file = e.target.files && e.target.files[0];
+    if(!file) return;
+    readCommunityImage(file, dataUrl => {
+      selectedCommunityImage = dataUrl;
+      document.getElementById('communityImagePreviewImg').src = dataUrl;
+      document.getElementById('communityImagePreview').style.display = 'block';
+    });
+  });
+  document.getElementById('removeCommunityImageBtn').addEventListener('click', () => {
+    selectedCommunityImage = null;
+    document.getElementById('communityImagePreview').style.display = 'none';
+    document.getElementById('communityImageInput').value = '';
+  });
+  document.getElementById('publishCommunityPostBtn').addEventListener('click', async e => {
+    const text = document.getElementById('communityPostText').value.trim();
+    if(!text && !selectedCommunityImage){ setStatus('Bir şey yaz veya fotoğraf ekle.', true); return; }
+    const btn = e.currentTarget;
+    btn.disabled = true;
+    btn.textContent = 'Paylaşılıyor…';
+    try{
+      await communityPostsCol().add({
+        uid:currentUid,
+        name:(profile && profile.name) || 'Kullanıcı',
+        avatar:(profile && profile.avatar) || '🙂',
+        photo:(profile && profile.photo) || null,
+        rank:(profile && profile.rank) || getRankInfo(computePoints()).current.name,
+        text,
+        image:selectedCommunityImage || null,
+        likedBy:[],
+        comments:[],
+        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+        createdAtMs:Date.now()
+      });
+      resetCommunityComposer();
+      closeCommunityComposer();
+      switchTab('sosyal');
+      setStatus('Gönderin paylaşıldı.');
+    }catch(_){
+      setStatus('Gönderi paylaşılamadı.', true);
+    }finally{
+      btn.disabled = false;
+      btn.textContent = 'Paylaş';
+    }
+  });
+
   // ---------- Herkese açık profil (oda/arkadaş/liderlik incelemesi için) ----------
 
   const DEFAULT_PRIVACY = {
@@ -5850,6 +6191,9 @@
       rank: currentRank,
       bio: profile.bio || '',
       friendsCount: friendsList.length,
+      followersCount: friendsList.length,
+      followingCount: friendsList.length,
+      postsCount: communityPosts.filter(p => p.uid === currentUid).length,
       privacy,
       streak: privacy.showStreak ? streakObj.current : null,
       todayHours: privacy.showTodayHours ? round1(todayHrs) : null,
@@ -5874,8 +6218,9 @@
     document.getElementById('uprofAvatar').classList.remove('rank-avatar-frame');
     ['uprofTodayHours','uprofWeekHours','uprofTotalHours','uprofStreak','uprofTytNet','uprofAytNet'].forEach(id => document.getElementById(id).classList.remove('privacy-hidden'));
     document.getElementById('uprofRankBadge').textContent = '—';
-    document.getElementById('uprofPoints').textContent = '—';
-    document.getElementById('uprofFriendsCount').textContent = '—';
+    document.getElementById('uprofPostCount').textContent = '—';
+    document.getElementById('uprofFollowersCount').textContent = '—';
+    document.getElementById('uprofFollowingCount').textContent = '—';
     document.getElementById('uprofBio').textContent = 'YKS yolculuğu devam ediyor.';
     document.getElementById('uprofLiveStatus').textContent = profile2Presence(targetUid);
     document.getElementById('uprofTodayHours').textContent = '—';
@@ -5885,6 +6230,7 @@
     document.getElementById('uprofTytNet').textContent = '—';
     document.getElementById('uprofAytNet').textContent = '—';
     document.getElementById('uprofSubjectBreakdown').innerHTML = '';
+    document.getElementById('uprofPosts').innerHTML = "<div class='profile-posts-empty'>Gönderiler yükleniyor…</div>";
 
     const legacyNote = document.getElementById('uprofLegacyNote');
     legacyNote.style.display = 'none';
@@ -5933,8 +6279,10 @@
       } else {
         document.getElementById('uprofName').textContent = data.name || 'Kullanıcı';
         document.getElementById('uprofBio').textContent = (data.bio || '').trim() || 'YKS yolculuğu devam ediyor.';
-        document.getElementById('uprofPoints').textContent = Number.isFinite(Number(data.points)) ? String(Math.round(Number(data.points))) : '—';
-        document.getElementById('uprofFriendsCount').textContent = data.friendsCount !== undefined && data.friendsCount !== null ? String(data.friendsCount) : '—';
+        const publicPostsCount = communityPosts.filter(p => p.uid === targetUid).length;
+        document.getElementById('uprofPostCount').textContent = data.postsCount !== undefined ? String(data.postsCount) : String(publicPostsCount);
+        document.getElementById('uprofFollowersCount').textContent = data.followersCount !== undefined ? String(data.followersCount) : (data.friendsCount !== undefined ? String(data.friendsCount) : '—');
+        document.getElementById('uprofFollowingCount').textContent = data.followingCount !== undefined ? String(data.followingCount) : (data.friendsCount !== undefined ? String(data.friendsCount) : '—');
         document.getElementById('uprofLiveStatus').textContent = profile2Presence(targetUid);
         document.getElementById('uprofAvatar').innerHTML = avatarInnerHtml(data.photo, data.avatar || '🙂');
         const rankMeta = rankMetaByName(data.rank);
@@ -5982,6 +6330,8 @@
         }
       }
 
+      renderPublicProfilePosts(targetUid);
+
       // Arkadaş/DM aksiyonları publicProfiles olmasa da UID üzerinden çalışabilsin.
       if(targetUid !== currentUid){
         const isFriend = friendsList.some(f => f.uid === targetUid);
@@ -5999,21 +6349,8 @@
           };
         } else {
           addBtn.style.display = '';
-          addBtn.disabled = false;
-          addBtn.textContent = '+ Arkadaş Ekle';
-          addBtn.onclick = async () => {
-            addBtn.disabled = true;
-            addBtn.textContent = 'Gönderiliyor…';
-            const result = await sendFriendRequestDirect(targetUid);
-            if(result && result.ok){
-              addBtn.textContent = '✓ İstek Gönderildi';
-            } else {
-              addBtn.textContent = (result && result.msg) || 'Gönderilemedi';
-              setTimeout(() => {
-                addBtn.disabled = false;
-                addBtn.textContent = '+ Arkadaş Ekle';
-              }, 2200);
-            }
+          addBtn.onclick = () => {
+            sendFriendRequestDirect(targetUid);
           };
         }
       }
@@ -6437,6 +6774,7 @@
       friendRequests = qs.docs.map(d => ({ id: d.id, ...d.data() })).filter(r => r.status === 'pending');
       renderFriendRequests();
       renderSocialMeta();
+      if(activeTab === 'profil') renderSelfProfile2();
       renderTabBar();
       renderBottomSocialNav();
     }, ()=>{});
@@ -6578,15 +6916,15 @@
   });
 
   window.sendFriendRequestDirect = async function(targetUid){
-    if(!targetUid || targetUid === currentUid) return { ok:false, msg:'' };
+    if(!targetUid || targetUid === currentUid) return;
     if(friendsList.some(f => f.uid === targetUid)){
       setStatus('Bu kullanıcı zaten arkadaşın.');
-      return { ok:false, msg:'Bu kullanıcı zaten arkadaşın.' };
+      return;
     }
     const incoming = friendRequests.find(r => r.fromUid === targetUid);
     if(incoming){
       setStatus('Bu kullanıcı sana zaten istek göndermiş. İsteklerden kabul edebilirsin.');
-      return { ok:false, msg:'Zaten sana istek göndermiş, İsteklerden kabul et.' };
+      return;
     }
     try {
       const outgoingSnap = await db.collection('friendRequests').where('fromUid','==',currentUid).get();
@@ -6596,7 +6934,7 @@
       });
       if(alreadyPending){
         setStatus('Bu kullanıcıya zaten istek gönderdin.');
-        return { ok:false, msg:'Zaten istek gönderdin.' };
+        return;
       }
       await db.collection('friendRequests').add({
         fromUid: currentUid,
@@ -6609,10 +6947,8 @@
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
       setStatus('Arkadaşlık isteği gönderildi!');
-      return { ok:true, msg:'İstek gönderildi!' };
     } catch(e){
       setStatus('İstek gönderilemedi.', true);
-      return { ok:false, msg:'Gönderilemedi, tekrar dene.' };
     }
   };
 
@@ -6666,11 +7002,14 @@
   window.openDirectMessageWith = function(friendUid, friendName, friendAvatar, friendPhoto, friendRank){
     activeDmFriend = { uid: friendUid, name: friendName, avatar: friendAvatar, photo: friendPhoto, rank: friendRank || publicRankForUid(friendUid) };
     socialView = 'messages';
-    activeTab = 'sosyal';
+    activeTab = 'profil';
     syncTopTabBarState();
     renderBottomSocialNav();
-    renderDmFriendsPicker();
     showActiveTab();
+    const profileTools = document.getElementById('profileSocialTools');
+    if(profileTools) profileTools.style.display = 'block';
+    setSocialView('messages', false);
+    renderDmFriendsPicker();
 
     document.getElementById('activeDmName').innerHTML = escapeHtml(friendName) + miniRankBadge(activeDmFriend.rank);
     const dmAvatar = document.getElementById('activeDmAvatar');
@@ -7000,6 +7339,7 @@
     initWizardDefaults();
     renderLeaderboard();
     renderChat();
+    renderCommunityFeed();
     renderLiveSessions();
     renderBottomSocialNav();
     renderDmFriendsPicker();
@@ -7012,6 +7352,10 @@
 
     startRoomsListener();
     startFriendsListener();
+    startCommunityListener();
+    const profileTools = document.getElementById('profileSocialTools');
+    const profilePanel = document.getElementById('tab-profil');
+    if(profileTools && profilePanel && profileTools.parentElement !== profilePanel) profilePanel.appendChild(profileTools);
     const codeDisplay = document.getElementById('myUserCodeDisplay');
     if(codeDisplay) codeDisplay.textContent = currentUid;
 
@@ -7053,6 +7397,7 @@
       if(unsubFriends){ unsubFriends(); unsubFriends = null; }
       if(unsubFriendReqs){ unsubFriendReqs(); unsubFriendReqs = null; }
       if(unsubDmChat){ unsubDmChat(); unsubDmChat = null; }
+      if(unsubCommunity){ unsubCommunity(); unsubCommunity = null; }
       studyEntries = [];
       examEntries = [];
       leaderboardEntries = [];
@@ -7060,6 +7405,7 @@
       liveSessions = [];
       friendsList = [];
       friendRequests = [];
+      communityPosts = [];
       currentRoomId = null;
       currentRoomData = null;
       isRoomOwner = false;
