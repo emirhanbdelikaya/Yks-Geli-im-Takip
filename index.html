@@ -5038,38 +5038,285 @@ body.focus-stopwatch .ic-pagehead{display:none!important}body.focus-stopwatch #s
 
   // Short, sourced excerpts. Translated text is explicitly labelled in the UI.
   const DAILY_QUOTES = [
-    {id:'milei-change',author:'Javier Milei',text:'Hep aynı şeyi yapmaya devam edip farklı sonuçlar bekleyemeyiz.',translated:true,context:'Ekonomi politikası üzerine ulusa seslenişten kısa alıntı.',source:'Casa Rosada · Ulusa sesleniş',url:'https://www.casarosada.gob.ar/informacion/discursos/51044-cadena-nacional-del-presidente-de-la-nacion-javier-milei-medidas-para-amurallar-el-deficit-cero-y-la-politica-monetaria-del-gobierno'},
-    {id:'ozal-work',author:'Turgut Özal',text:'Milliyetçilik anlayışımız, bu memleketi ileriye götürmek isteyen, diğer milletlerle rekabet ettiren ve daha önde olmamız için çalışmanın elzem olduğunu anlatan bir anlayıştır.',translated:false,context:'21 Şubat 1988, İzmir İl Kongresi konuşması; kaynakta Özal (1988a:131) olarak aktarılıyor.',source:'Liberte · Özal’ın Milliyetçilik Politikası',url:'https://www.liberte.com.tr/ozal-in-milliyetcilik-politikasi'},
-    {id:'hoppe-persevere',author:'Hans-Hermann Hoppe',text:'Gücüm yettiğince bunun için mücadele etmeyi hâlâ görevim sayıyorum.',translated:true,context:'Hakikati savunmak üzerine 28 Nisan 2008 tarihli söyleşiden kısa alıntı.',source:'HansHoppe.com · Sukasah Syahdan söyleşisi',url:'https://hanshoppe.com/2026/01/interview-hoppe-anti-intellectual-intellectual-syahdan-2008/'},
-    {id:'rothbard-longrun',author:'Murray Rothbard',text:'… gözünü uzun vadeli zafere dikmek ve ona ulaşma yoluna koyulmak …',translated:true,context:'Left and Right: The Prospects for Liberty metninde uzun vadeli iyimserlik üzerine kısa alıntı.',source:'Mises Institute · Left and Right: The Prospects for Liberty',url:'https://mises.org/mises-daily/left-and-right-prospects-liberty'},
-    {id:'thatcher-work',author:'Margaret Thatcher',text:'Yükselmenin tek bir yolu vardır; o da çalışmaktır.',translated:true,context:'20 Haziran 1980, Finchley Ticaret Odası konuşmasından kısa alıntı.',source:'Margaret Thatcher Foundation · Finchley konuşması',url:'https://www.margaretthatcher.org/document/104384'},
-    {id:'menderes-overcome',author:'Adnan Menderes',text:'… bu büyük millet elbet bütün müşkülleri yenmeğe muktedir olacak …',translated:false,context:'8 Kasım 1955 Amasya konuşmasından kısa alıntı; Turgut İleri’nin araştırmasında BCA.30-1-00/2-4-7:9–10 kaydıyla aktarılıyor.',source:'Turgut İleri · Amasya gezisi araştırması, s. 103',url:'https://doi.org/10.29228/JASSS.76170'},
-    {id:'trump-future',author:'Donald Trump',text:'Her birinizden sınırsız geleceğinize sahip çıkmanızı istiyorum.',translated:true,context:'20 Şubat 2020, Hope for Prisoners mezuniyet konuşmasından kısa alıntı.',source:'Beyaz Saray Arşivi · Hope for Prisoners konuşması',url:'https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-commencement-address-hope-prisoners-graduation-ceremony-las-vegas-nv/'},
-    {"id": "milei-action", "author": "Javier Milei", "text": "Az şey yapmakla hiçbir şey yapmamak arasındaki fark, başlı başına sonsuzdur.", "translated": true},
-    {"id": "milei-patience", "author": "Javier Milei", "text": "Sabırlı olmak gerek, azimli olmak gerek.", "translated": true},
-    {"id": "milei-courage", "author": "Javier Milei", "text": "Değişimden korkanların bizi yıldırmasına izin veremeyiz.", "translated": true},
-    {"id": "erdogan-goals", "author": "Recep Tayyip Erdoğan", "text": "Hedeflerimizle aramıza hiçbir engelin girmesine izin vermedik.", "translated": false},
-    {"id": "erdogan-persist", "author": "Recep Tayyip Erdoğan", "text": "Karşılaştığınız zorluklara aldırmadan sabırla, inançla hedeflerinize doğru yürümekten asla vazgeçmeyin.", "translated": false},
-    {"id": "erdogan-effort", "author": "Recep Tayyip Erdoğan", "text": "Neyi başardıysak, bileğimizin gücüyle başardık. Alnımızın teriyle başardık.", "translated": false},
-    {"id": "rand-roark", "author": "Ayn Rand", "text": "Mesele şu: Beni kim durduracak?", "translated": true},
-    {"id": "rand-value", "author": "Ayn Rand", "text": "Kendine değer vermeyi öğren; bu, mutluluğun için mücadele etmek demektir.", "translated": true},
-    {"id": "rand-work", "author": "Ayn Rand", "text": "Üretken çalışma, insanın sınırsız başarısına giden yoldur.", "translated": true},
-    {"id": "rand-happiness", "author": "Ayn Rand", "text": "Mutluluk, kişinin değerlerini gerçekleştirmesinden doğan bilinç hâlidir.", "translated": true},
-    {"id": "rand-love-work", "author": "Ayn Rand", "text": "Bir işi başarmak için, onun ikincil sonuçlarını değil, işi yapmayı sevmek gerekir.", "translated": true},
-    {"id": "reagan-imagination", "author": "Ronald Reagan", "text": "… insanın zekâ, hayal gücü ve hayret etme kapasitesinin sınırı yoktur.", "translated": true},
-    {"id": "reagan-fly", "author": "Ronald Reagan", "text": "Kendi becerinizin, yeteneğinizin, gücünüzün ve kararlılığınızın sizi taşıyabileceği kadar yükseğe ve uzağa uçun.", "translated": true},
-    {"id": "reagan-barriers", "author": "Ronald Reagan", "text": "İnsan zihninin sınırları, insan ruhunun etrafında duvarlar, ilerlememizin önünde kendi diktiğimizden başka engeller yoktur.", "translated": true},
-    {"id": "mises-responsibility", "author": "Ludwig von Mises", "text": "Herkes toplumun bir parçasını omuzlarında taşır; başkaları kimseyi kendi sorumluluk payından kurtaramaz.", "translated": true},
-    {"id": "tibuk-lessons", "author": "Besim Tibuk", "text": "İnsan en büyük dersleri başarısızlıklarından alıyor.", "translated": false},
-    {"id": "coolidge-progress", "author": "Calvin Coolidge", "text": "Başarısızlıklarımın […] cesaretimi kırmasına izin verseydim, nasıl ilerleyebileceğimi göremiyorum.", "translated": true}
-  ];
+  {
+    "id": "milei-change",
+    "author": "Javier Milei",
+    "text": "Hep aynı şeyi yapmaya devam edip farklı sonuçlar bekleyemeyiz.",
+    "translated": true,
+    "context": "Ekonomi politikası üzerine ulusa seslenişten kısa alıntı.",
+    "source": "Casa Rosada · Ulusa sesleniş",
+    "url": "https://www.casarosada.gob.ar/informacion/discursos/51044-cadena-nacional-del-presidente-de-la-nacion-javier-milei-medidas-para-amurallar-el-deficit-cero-y-la-politica-monetaria-del-gobierno"
+  },
+  {
+    "id": "ozal-work",
+    "author": "Turgut Özal",
+    "text": "Milliyetçilik anlayışımız, bu memleketi ileriye götürmek isteyen, diğer milletlerle rekabet ettiren ve daha önde olmamız için çalışmanın elzem olduğunu anlatan bir anlayıştır.",
+    "translated": false,
+    "context": "21 Şubat 1988, İzmir İl Kongresi konuşması; kaynakta Özal (1988a:131) olarak aktarılıyor.",
+    "source": "Liberte · Özal’ın Milliyetçilik Politikası",
+    "url": "https://www.liberte.com.tr/ozal-in-milliyetcilik-politikasi"
+  },
+  {
+    "id": "hoppe-persevere",
+    "author": "Hans-Hermann Hoppe",
+    "text": "Gücüm yettiğince bunun için mücadele etmeyi hâlâ görevim sayıyorum.",
+    "translated": true,
+    "context": "Hakikati savunmak üzerine 28 Nisan 2008 tarihli söyleşiden kısa alıntı.",
+    "source": "HansHoppe.com · Sukasah Syahdan söyleşisi",
+    "url": "https://hanshoppe.com/2026/01/interview-hoppe-anti-intellectual-intellectual-syahdan-2008/"
+  },
+  {
+    "id": "rothbard-longrun",
+    "author": "Murray Rothbard",
+    "text": "… gözünü uzun vadeli zafere dikmek ve ona ulaşma yoluna koyulmak …",
+    "translated": true,
+    "context": "Left and Right: The Prospects for Liberty metninde uzun vadeli iyimserlik üzerine kısa alıntı.",
+    "source": "Mises Institute · Left and Right: The Prospects for Liberty",
+    "url": "https://mises.org/mises-daily/left-and-right-prospects-liberty"
+  },
+  {
+    "id": "thatcher-work",
+    "author": "Margaret Thatcher",
+    "text": "Yükselmenin tek bir yolu vardır; o da çalışmaktır.",
+    "translated": true,
+    "context": "20 Haziran 1980, Finchley Ticaret Odası konuşmasından kısa alıntı.",
+    "source": "Margaret Thatcher Foundation · Finchley konuşması",
+    "url": "https://www.margaretthatcher.org/document/104384"
+  },
+  {
+    "id": "menderes-overcome",
+    "author": "Adnan Menderes",
+    "text": "… bu büyük millet elbet bütün müşkülleri yenmeğe muktedir olacak …",
+    "translated": false,
+    "context": "8 Kasım 1955 Amasya konuşmasından kısa alıntı; Turgut İleri’nin araştırmasında BCA.30-1-00/2-4-7:9–10 kaydıyla aktarılıyor.",
+    "source": "Turgut İleri · Amasya gezisi araştırması, s. 103",
+    "url": "https://doi.org/10.29228/JASSS.76170"
+  },
+  {
+    "id": "trump-future",
+    "author": "Donald Trump",
+    "text": "Her birinizden sınırsız geleceğinize sahip çıkmanızı istiyorum.",
+    "translated": true,
+    "context": "20 Şubat 2020, Hope for Prisoners mezuniyet konuşmasından kısa alıntı.",
+    "source": "Beyaz Saray Arşivi · Hope for Prisoners konuşması",
+    "url": "https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-commencement-address-hope-prisoners-graduation-ceremony-las-vegas-nv/"
+  },
+  {
+    "id": "milei-action",
+    "author": "Javier Milei",
+    "text": "Az şey yapmakla hiçbir şey yapmamak arasındaki fark, başlı başına sonsuzdur.",
+    "translated": true
+  },
+  {
+    "id": "milei-patience",
+    "author": "Javier Milei",
+    "text": "Sabırlı olmak gerek, azimli olmak gerek.",
+    "translated": true
+  },
+  {
+    "id": "milei-courage",
+    "author": "Javier Milei",
+    "text": "Değişimden korkanların bizi yıldırmasına izin veremeyiz.",
+    "translated": true
+  },
+  {
+    "id": "erdogan-goals",
+    "author": "Recep Tayyip Erdoğan",
+    "text": "Hedeflerimizle aramıza hiçbir engelin girmesine izin vermedik.",
+    "translated": false
+  },
+  {
+    "id": "erdogan-persist",
+    "author": "Recep Tayyip Erdoğan",
+    "text": "Karşılaştığınız zorluklara aldırmadan sabırla, inançla hedeflerinize doğru yürümekten asla vazgeçmeyin.",
+    "translated": false
+  },
+  {
+    "id": "erdogan-effort",
+    "author": "Recep Tayyip Erdoğan",
+    "text": "Neyi başardıysak, bileğimizin gücüyle başardık. Alnımızın teriyle başardık.",
+    "translated": false
+  },
+  {
+    "id": "rand-roark",
+    "author": "Ayn Rand",
+    "text": "Mesele şu: Beni kim durduracak?",
+    "translated": true
+  },
+  {
+    "id": "rand-value",
+    "author": "Ayn Rand",
+    "text": "Kendine değer vermeyi öğren; bu, mutluluğun için mücadele etmek demektir.",
+    "translated": true
+  },
+  {
+    "id": "rand-world",
+    "author": "Ayn Rand",
+    "text": "Arzuladığın dünya kazanılabilir. O var, gerçek, mümkün ve senin.",
+    "translated": true,
+    "context": "Atlas Shrugged, John Galt'ın konuşmasından; Rand'ın The Sanction of the Victims konuşmasında da aktardığı kısa alıntı.",
+    "source": "Ayn Rand Institute · The Sanction of the Victims",
+    "url": "https://courses.aynrand.org/work-type/article/"
+  },
+  {
+    "id": "rand-happiness",
+    "author": "Ayn Rand",
+    "text": "Mutluluk, kişinin değerlerini gerçekleştirmesinden doğan bilinç hâlidir.",
+    "translated": true
+  },
+  {
+    "id": "rand-love-work",
+    "author": "Ayn Rand",
+    "text": "Bir işi başarmak için, onun ikincil sonuçlarını değil, işi yapmayı sevmek gerekir.",
+    "translated": true
+  },
+  {
+    "id": "reagan-brave",
+    "author": "Ronald Reagan",
+    "text": "Gelecek, yüreği kolayca korkuya kapılanların değil, cesurlarındır.",
+    "translated": true,
+    "context": "28 Ocak 1986, Challenger faciasının ardından ulusa seslenişten kısa alıntı.",
+    "source": "Ronald Reagan Presidential Foundation · Challenger konuşması",
+    "url": "https://www.reaganfoundation.org/ronald-reagan/quotes/the-future-doesnt-belong-to-the-fainthearted-it"
+  },
+  {
+    "id": "reagan-fly",
+    "author": "Ronald Reagan",
+    "text": "Kendi becerinizin, yeteneğinizin, gücünüzün ve kararlılığınızın sizi taşıyabileceği kadar yükseğe ve uzağa uçun.",
+    "translated": true
+  },
+  {
+    "id": "reagan-barriers",
+    "author": "Ronald Reagan",
+    "text": "İnsan zihninin sınırları, insan ruhunun etrafında duvarlar, ilerlememizin önünde kendi diktiğimizden başka engeller yoktur.",
+    "translated": true
+  },
+  {
+    "id": "mises-responsibility",
+    "author": "Ludwig von Mises",
+    "text": "Herkes toplumun bir parçasını omuzlarında taşır; başkaları kimseyi kendi sorumluluk payından kurtaramaz.",
+    "translated": true
+  },
+  {
+    "id": "tibuk-lessons",
+    "author": "Besim Tibuk",
+    "text": "İnsan en büyük dersleri başarısızlıklarından alıyor.",
+    "translated": false
+  },
+  {
+    "id": "coolidge-progress",
+    "author": "Calvin Coolidge",
+    "text": "Başarısızlıklarımın […] cesaretimi kırmasına izin verseydim, nasıl ilerleyebileceğimi göremiyorum.",
+    "translated": true
+  },
+  {
+    "id": "rand-create",
+    "author": "Ayn Rand",
+    "text": "Yaratıcı insanı harekete geçiren, başkalarını yenme arzusu değil, başarma arzusudur.",
+    "translated": true,
+    "context": "The Moratorium on Brains, The Ayn Rand Letter, I, 2, 4.",
+    "source": "Ayn Rand Institute · Competition",
+    "url": "https://courses.aynrand.org/lexicon/Competition/"
+  },
+  {
+    "id": "reagan-act-today",
+    "author": "Ronald Reagan",
+    "text": "Yarını korumak için bugün harekete geçmeliyiz.",
+    "translated": true,
+    "context": "20 Ocak 1981, göreve başlama konuşmasından kısa alıntı.",
+    "source": "Ronald Reagan Presidential Library · Inaugural Address 1981",
+    "url": "https://www.reaganlibrary.gov/archives/speech/inaugural-address-1981"
+  },
+  {
+    "id": "thatcher-hurdles",
+    "author": "Margaret Thatcher",
+    "text": "Hayat aslında bir dizi engelden ibarettir ve onları aşmak zorundasınız.",
+    "translated": true,
+    "context": "15 Kasım 1990, Charles Moore ile Sunday Telegraph söyleşisi.",
+    "source": "Margaret Thatcher Foundation · Sunday Telegraph söyleşisi",
+    "url": "https://www.margaretthatcher.org/document/107983"
+  },
+  {
+    "id": "sowell-work-secret",
+    "author": "Thomas Sowell",
+    "text": "En büyük sır, hiçbir sır olmamasıdır; tabii çalışmayı bir sır saymıyorsanız.",
+    "translated": true,
+    "context": "The Education of Minority Children, s. 88; başarılı okulların ortak özellikleri üzerine.",
+    "source": "Hoover Institution · The Education of Minority Children",
+    "url": "https://www.hoover.org/sites/default/files/uploads/documents/0817928928_79.pdf"
+  },
+  {
+    "id": "sowell-knowledge",
+    "author": "Thomas Sowell",
+    "text": "İnsanın kendi bilgisizliğinin boyutunu fark etmesi bile hatırı sayılır bilgi gerektirir.",
+    "translated": true,
+    "context": "17 Ağustos 1998 tarihli köşe yazısı.",
+    "source": "Jewish World Review · Thomas Sowell, 17 Ağustos 1998",
+    "url": "https://www.jewishworldreview.com/cols/sowell081798.html"
+  },
+  {
+    "id": "franklin-time",
+    "author": "Benjamin Franklin",
+    "text": "Hayatı seviyor musun? Öyleyse zamanı boşa harcama; çünkü hayatın yapıldığı malzeme zamandır.",
+    "translated": true,
+    "context": "The Way to Wealth / Poor Richard Improved; zaman üzerine özdeyiş.",
+    "source": "Project Gutenberg · The Way to Wealth",
+    "url": "https://www.gutenberg.org/cache/epub/43855/pg43855-images.html"
+  },
+  {
+    "id": "coolidge-effort",
+    "author": "Calvin Coolidge",
+    "text": "Çaba olmadan ne bedensel ne de zihinsel gelişim olur; çaba ise çalışmak demektir.",
+    "translated": true,
+    "context": "4 Şubat 1916, Amherst College Alumni Association konuşmasından kısa alıntı.",
+    "source": "Calvin Coolidge Presidential Foundation · Amherst konuşması",
+    "url": "https://coolidgefoundation.org/resources/speech-to-the-amherst-college-alumni-association/"
+  },
+  {
+    "id": "coolidge-small-things",
+    "author": "Calvin Coolidge",
+    "text": "Bugünün küçük işlerini iyi yaparsak, gelecekte büyük işler için bize ihtiyaç duyulmayacağından korkmamıza gerek yoktur.",
+    "translated": true,
+    "context": "21 Aralık 1925, izcilere ve 4-H kulüplerine Noel mesajından kısa alıntı.",
+    "source": "Calvin Coolidge Presidential Foundation · Quotations – G",
+    "url": "https://coolidgefoundation.org/quote/quotations-g/"
+  },
+  {
+    "id": "milei-effort-perseverance",
+    "author": "Javier Milei",
+    "text": "Ancak hepimizin çabası ve bu yolun zorlukları karşısındaki kararlılığıyla geçmişi bir daha dönmemek üzere geride bırakabiliriz.",
+    "translated": true,
+    "context": "Mendoza'da ekonomik reformlar üzerine konuşmadan kısa alıntı; yolun doğru olduğu yönündeki ara açıklama kısaltıldı.",
+    "source": "Argentina.gob.ar · Milei'nin Mendoza konuşması",
+    "url": "https://www.argentina.gob.ar/noticias/el-presidente-milei-llamo-profundizar-las-reformas-pro-mercado-que-la-argentina-necesita"
+  },
+  {
+    "id": "milei-building",
+    "author": "Javier Milei",
+    "text": "Bir şey inşa etmek büyük çaba, çok çalışma ve zaman gerektirir.",
+    "translated": true,
+    "context": "Fundación Faro, Voceros de la Libertad konuşmasından kısa alıntı.",
+    "source": "Casa Rosada · Voceros de la Libertad konuşması",
+    "url": "https://www.casarosada.gob.ar/informacion/discursos/51041-palabras-del-presidente-javier-milei-en-la-presentacion-de-los-voceros-de-la-libertad-de-la-fundacion-faro"
+  },
+  {
+    "id": "milei-achievement",
+    "author": "Javier Milei",
+    "text": "Başaracağınız her şey, büyük emeğinizin ürünü olacak.",
+    "translated": true,
+    "context": "5 Temmuz 2024, Paris Olimpiyatları ve Paralimpik Oyunları sporcularına hitap.",
+    "source": "Argentina.gob.ar · Olimpiyat sporcularına hitap",
+    "url": "https://www.argentina.gob.ar/noticias/javier-milei-todo-lo-que-logren-sera-fruto-de-su-gran-trabajo"
+  }
+];
+
   function quoteHash(value){
     let hash=2166136261;
     for(let i=0;i<value.length;i++){hash^=value.charCodeAt(i);hash=Math.imul(hash,16777619);}
     return hash>>>0;
   }
   function quoteOrder(cycle,account=''){
-    let seed=quoteHash('daily-quotes-v1:'+account+':'+cycle);
+    let seed=quoteHash('three-hour-quotes-v1:'+account+':'+cycle);
     const order=DAILY_QUOTES.map((_,i)=>i);
     for(let i=order.length-1;i>0;i--){
       seed=(Math.imul(seed,1664525)+1013904223)>>>0;
@@ -5078,31 +5325,31 @@ body.focus-stopwatch .ic-pagehead{display:none!important}body.focus-stopwatch #s
     }
     return order;
   }
-  function dailyQuoteForDate(iso,account=''){
-    const [year,month,day]=iso.split('-').map(Number);
-    const ordinal=Math.floor(Date.UTC(year,month-1,day)/86400000);
+  const QUOTE_INTERVAL_MS=3*60*60*1000;
+  function quoteForTime(time=Date.now(),account=''){
+    const ordinal=Math.floor(Number(time)/QUOTE_INTERVAL_MS);
     const n=DAILY_QUOTES.length,cycle=Math.floor(ordinal/n),offset=((ordinal%n)+n)%n;
     const order=quoteOrder(cycle,account);
-    // Swapping only the first two leaves the preceding cycle's last item unchanged.
+    // Keep adjacent time slots different, including across shuffled cycles.
     if(n>2&&order[0]===quoteOrder(cycle-1,account)[n-1]) [order[0],order[1]]=[order[1],order[0]];
     return DAILY_QUOTES[order[offset]];
   }
   function renderDailyQuote(){
     const wrap=document.getElementById('dailyQuoteWrap');
     if(!wrap) return;
-    const date=todayStr(),quote=dailyQuoteForDate(date,currentUid||'');
-    const key=date+':'+(currentUid||'')+':'+quote.id;
+    const now=Date.now(),date=todayStr(),slot=Math.floor(now/QUOTE_INTERVAL_MS),quote=quoteForTime(now,currentUid||'');
+    const key=slot+':'+(currentUid||'')+':'+quote.id;
     if(wrap.dataset.quoteKey===key) return;
     wrap.dataset.quoteKey=key;
-    wrap.innerHTML=`<section class="daily-quote" aria-labelledby="dailyQuoteTitle"><div class="daily-quote-mark" aria-hidden="true">“</div><div class="daily-quote-content"><div class="daily-quote-heading"><span id="dailyQuoteTitle">Günün sözü</span><time datetime="${date}">${fmtDate(date)}</time></div><blockquote>${escapeHtml(quote.text)}</blockquote><div class="daily-quote-footer"><cite>${escapeHtml(quote.author)}</cite><span>${quote.translated?'Türkçe çeviri':''}</span></div></div></section>`;
+    wrap.innerHTML=`<section class="daily-quote" aria-labelledby="dailyQuoteTitle"><div class="daily-quote-mark" aria-hidden="true">“</div><div class="daily-quote-content"><div class="daily-quote-heading"><span id="dailyQuoteTitle">Motivasyon sözü</span><time datetime="${date}">3 saatte bir yenilenir</time></div><blockquote>${escapeHtml(quote.text)}</blockquote><div class="daily-quote-footer"><cite>${escapeHtml(quote.author)}</cite><span>${quote.translated?'Türkçe çeviri':''}</span></div></div></section>`;
   }
   let dailyQuoteTimer=null;
   function scheduleDailyQuote(){
     clearTimeout(dailyQuoteTimer);
     renderDailyQuote();
-    const now=new Date();
-    const tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
-    dailyQuoteTimer=setTimeout(scheduleDailyQuote,Math.max(1000,tomorrow-now+100));
+    const now=Date.now();
+    const nextSlot=(Math.floor(now/QUOTE_INTERVAL_MS)+1)*QUOTE_INTERVAL_MS;
+    dailyQuoteTimer=setTimeout(scheduleDailyQuote,Math.max(100,nextSlot-now+100));
   }
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleDailyQuote();});
   window.addEventListener('focus',scheduleDailyQuote);
