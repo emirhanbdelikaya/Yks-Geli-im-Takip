@@ -2504,6 +2504,37 @@
   @media(max-width:480px){.profile2-cover{padding:17px;border-radius:23px}.profile2-self-avatar{width:74px;height:74px}.profile2-self-copy h1{font-size:25px}.profile2-count-row{grid-template-columns:repeat(2,1fr)}.profile2-self-actions .glass-icon-btn{flex:1}.profile2-public-modal{padding:15px!important;border-radius:23px!important}.profile2-public-avatar{width:64px;height:64px}.profile2-public-identity h3{font-size:20px}.profile2-public-counts{grid-template-columns:repeat(3,1fr)}.profile2-public-stats{grid-template-columns:repeat(2,1fr)}.social2-dm-container{min-height:430px}.social2-search-row{flex-direction:column}}
   @media(prefers-reduced-motion:reduce){.social-view-glider,.social2-panel{transition:none!important;animation:none!important}}
 
+
+  .week-insight { grid-column:1/-1; }
+  .week-insight-head a {color:var(--text);text-decoration:none}
+  .week-chart-labels {display:grid;grid-template-columns:repeat(7,minmax(0,1fr));text-align:center;font-size:11px;color:var(--muted);gap:2px}
+  .week-chart-labels small {display:block;font-size:10px}
+  .week-insight-head {display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:start}
+  .week-legend {display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:18px 0 8px}
+  .week-legend span::before {content:'';display:inline-block;width:14px;height:4px;background:var(--blue,#4c8dff);vertical-align:middle;margin-right:6px;border-radius:3px}
+  .week-legend .average::before {background:#f5ae66}
+  .week-legend .target::before {background:#85cdbf}
+  .week-chart {width:100%;height:180px;display:block;overflow:visible}
+  .week-table-scroll {overflow-x:auto;margin-top:12px}
+  .week-table {width:100%;min-width:490px;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+  .week-table th,.week-table td {padding:10px 6px;text-align:center;border-bottom:1px solid var(--line,rgba(255,255,255,.1));white-space:nowrap}
+  .week-table th:first-child,.week-table td:first-child {text-align:left;color:var(--muted)}
+  .week-table .is-today {background:rgba(76,141,255,.12)}
+  .week-table .is-off {color:var(--muted)}
+  .week-comparison {padding:14px;border-radius:14px;background:rgba(255,255,255,.05);margin-top:16px;font-size:14px;line-height:1.6}
+  .week-comparison small {display:block;color:var(--muted);font-size:12px}
+  .week-plan {margin-top:18px;border-top:1px solid var(--line,rgba(255,255,255,.1));padding-top:14px}
+  .week-plan summary {cursor:pointer;font-size:14px;font-weight:700}
+  .week-plan form {margin-top:14px;display:grid;gap:12px}
+  .week-plan input[type=number] {max-width:180px;display:block;margin-top:6px}
+  .week-offdays {display:flex;flex-wrap:wrap;gap:8px;border:0;padding:0;margin:0}
+  .week-offdays legend {font-size:12px;color:var(--muted);margin-bottom:8px}
+  .week-offdays label {display:flex;align-items:center;gap:6px;padding:8px 10px;background:rgba(255,255,255,.06);border-radius:10px;cursor:pointer}
+  .week-offdays input {width:auto;margin:0;accent-color:var(--blue,#4c8dff)}
+  .week-plan-note {font-size:12px;line-height:1.6;color:var(--muted);margin:10px 0 0}
+  .week-form-status {font-size:12px;min-height:18px}
+  @media(max-width:600px){.week-chart{height:145px}.week-insight{padding:14px}.week-legend{gap:10px;font-size:11px}}
+
 </style>
 </head>
 <body>
@@ -3106,7 +3137,7 @@
       </div>
       <div class="field">
         <label for="profStudyGoal">Haftalık çalışma hedefin (saat)</label>
-        <input type="number" id="profStudyGoal" min="0" max="140" step="1" placeholder="örn. 35">
+        <input type="number" id="profStudyGoal" min="0" max="168" step="0.1" placeholder="örn. 35">
       </div>
       <div class="field">
         <label for="profTytGoal">TYT net hedefin</label>
@@ -4787,6 +4818,126 @@
     return Number(matches[matches.length-1].subjects[subjectName]);
   }
 
+
+  // Weekly planning uses local calendar dates, never UTC date truncation.
+  const WEEK_LABELS = ['Pzt','Sal','Çar','Per','Cum','Cts','Paz'];
+  const WEEK_NAMES = ['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
+  function shiftWeekDate(iso, days){
+    const d = new Date(iso + 'T12:00:00');
+    d.setDate(d.getDate() + days);
+    return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate());
+  }
+  function weeklyModel(entries, settings, today){
+    const start = mondayOf(today);
+    const dates = WEEK_LABELS.map((_,i)=>shiftWeekDate(start,i));
+    const valid = entries.filter(e => /^\d{4}-\d{2}-\d{2}$/.test(e.date) && e.date <= today && Number.isFinite(Number(e.hours)) && Number(e.hours)>=0);
+    const totals = new Map();
+    valid.forEach(e=>totals.set(e.date,(totals.get(e.date)||0)+Number(e.hours)));
+    const rawOff = (settings.studyOffDaysByWeek || {})[start] || settings.studyOffDays || [];
+    const off = [...new Set(Array.isArray(rawOff)?rawOff:[])].filter(i=>Number.isInteger(i)&&i>=0&&i<7).slice(0,2);
+    const goal = Math.max(0,Number(settings.studyGoal)||0);
+    const hours = dates.map(d=>totals.get(d)||0);
+    const todayIndex = dates.indexOf(today);
+    // A recorded day is considered submitted; additional sessions still recompute the plan.
+    const cutoff = totals.has(today) ? todayIndex : todayIndex-1;
+    const remainingDays = dates.filter((d,i)=>i>cutoff&&!off.includes(i)).length;
+    const total = hours.reduce((a,b)=>a+b,0);
+    const remaining = Math.max(0,goal-total);
+    const daily = remainingDays ? remaining/remainingDays : 0;
+    let accumulated = 0;
+    const targets = dates.map((d,i)=>{
+      const count = dates.filter((_,j)=>j>=i&&!off.includes(j)).length;
+      const target = off.includes(i)?0:(i<=cutoff ? Math.max(0,goal-accumulated)/Math.max(1,count) : daily);
+      accumulated+=hours[i];
+      return target;
+    });
+    const first = valid.map(e=>e.date).sort()[0];
+    let firstFull = first ? mondayOf(first) : start;
+    if(first && firstFull < first) firstFull=shiftWeekDate(firstFull,7);
+    let weeks=0;
+    const averages=Array(7).fill(0);
+    for(let week=firstFull;week<start;week=shiftWeekDate(week,7)){
+      weeks++;
+      averages.forEach((_,i)=>averages[i]+=totals.get(shiftWeekDate(week,i))||0);
+    }
+    if(weeks) averages.forEach((v,i)=>averages[i]=v/weeks);
+    // Compare elapsed days through today, or through yesterday if today has no entry yet.
+    const comparisonIndex=cutoff;
+    const actual=hours.slice(0,comparisonIndex+1).reduce((a,b)=>a+b,0);
+    const baseline=averages.slice(0,comparisonIndex+1).reduce((a,b)=>a+b,0);
+    const percent=baseline>0?(actual-baseline)/baseline*100:null;
+    return {start,dates,off,goal,hours,total,remaining,remainingDays,daily,targets,weeks,averages,todayIndex,cutoff,comparisonIndex,actual,baseline,percent};
+  }
+  function renderWeeklyInsight(){
+    const m=weeklyModel(studyEntries,profile||{},todayStr());
+    const number=v=>v.toLocaleString('tr-TR',{maximumFractionDigits:1});
+    const short=v=>number(v)+' sa';
+    const max=Math.max(1,...m.hours,...m.averages,...m.targets);
+    const x=i=>50+i*100;
+    const y=v=>150-v/max*130;
+    const bars=m.hours.map((v,i)=>`<rect x="${x(i)-26}" y="${y(v)}" width="52" height="${v/max*130}" rx="7" fill="url(#weeklyBarGradient)" opacity="${m.off.includes(i)?'.55':'1'}"><title>${WEEK_NAMES[i]}: ${fmtHours(v)}</title></rect>`).join('');
+    const average=m.weeks?`<polyline points="${m.averages.map((v,i)=>x(i)+','+y(v)).join(' ')}" fill="none" stroke="#f5ae66" stroke-width="3" stroke-linejoin="round"/>`+m.averages.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="#f5ae66"><title>${WEEK_NAMES[i]} geçmiş ortalama: ${fmtHours(v)}</title></circle>`).join(''):'';
+    const targets=m.goal?m.targets.map((v,i)=>`<line x1="${x(i)-32}" x2="${x(i)+32}" y1="${y(v)}" y2="${y(v)}" stroke="#85cdbf" stroke-width="2" stroke-dasharray="5 4"><title>${WEEK_NAMES[i]} hedef: ${fmtHours(v)}</title></line>`).join(''):'';
+    let comparison='Karşılaştırma için henüz tamamlanmış geçmiş hafta yok.';
+    if(m.weeks && m.comparisonIndex<0) comparison='Bu haftanın ilk kaydını eklediğinde geçmiş haftalarla karşılaştırman burada görünecek.';
+    else if(m.weeks){
+      if(m.percent===null) comparison='Geçmişte aynı gün aralığının ortalaması 0 saat; yüzdelik karşılaştırma hesaplanamıyor.';
+      else if(Math.abs(m.percent)<.05) comparison='Geçmiş haftaların ortalamasıyla aynı seviyedesin.';
+      else comparison=`Geçmiş haftaların ortalamasının %${number(Math.abs(m.percent))} ${m.percent>0?'üstünde':'altında'} performans sergiledin.`;
+      comparison+=`<small>${m.comparisonIndex===0?'Pazartesi':'Pazartesi – '+WEEK_NAMES[m.comparisonIndex]}: bu hafta ${fmtHours(m.actual)} · geçmiş ortalama ${fmtHours(m.baseline)}.</small>`;
+    }
+    let plan='Haftalık hedefini ve offday günlerini aşağıdan belirle.';
+    if(m.goal){
+      plan=m.remaining===0?'Haftalık hedefini tamamladın!':m.remainingDays?`Hedefe ${fmtHours(m.remaining)} kaldı. Kalan ${m.remainingDays} çalışma gününde günlük ${fmtHours(m.daily)} (${short(m.daily)}) gerekiyor.`:'Planlanan çalışma günlerin bitti. Hedefe '+fmtHours(m.remaining)+' kaldı; hedefini veya offday günlerini düzenleyebilirsin.';
+      if(m.daily>24) plan+=' Kalan günlerde gereken süre 24 saati aşıyor; planını yeniden düzenle.';
+    }
+    const cell=(value,i)=>`<td class="${i===m.todayIndex?'is-today ':''}${m.off.includes(i)?'is-off':''}">${value}</td>`;
+    return `<div class="overview-card week-insight">
+      <div class="week-insight-head"><div><div class="overview-label">Bu Hafta</div><div class="overview-value">${fmtHours(m.total)}</div><p class="overview-sub">${fmtDate(m.start)} – ${fmtDate(m.dates[6])} · Pazartesi–Pazar${m.goal?` · ${short(m.goal)} hedefinin %${number(m.total/m.goal*100)}'i`:''}</p></div><a href="#weeklyPlanEditor" class="overview-micro-pill" onclick="document.getElementById('weeklyPlanEditor').open=true">Haftayı planla ↗</a></div>
+      <div class="week-legend"><span>Çalışma süren</span><span class="average">Geçmiş haftaların ortalaması</span><span class="target">Günlük hedef</span></div>
+      <svg class="week-chart" viewBox="0 0 700 157" preserveAspectRatio="none" role="img" aria-label="Bu haftanın çalışma süreleri, geçmiş günlük ortalamalar ve günlük hedefler. Kesin değerler aşağıdaki tabloda."><defs><linearGradient id="weeklyBarGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4c8dff"/><stop offset="100%" stop-color="#4c8dff" stop-opacity=".35"/></linearGradient></defs><line x1="0" x2="700" y1="150" y2="150" stroke="currentColor" opacity=".12"/>${bars}${targets}${average}</svg><div class="week-chart-labels">${WEEK_LABELS.map((d,i)=>`<span>${d}${m.off.includes(i)?'<small>Offday</small>':''}</span>`).join('')}</div>
+      <div class="week-table-scroll" tabindex="0" role="region" aria-label="Günlük çalışma tablosu, küçük ekranda yatay kaydırılabilir"><table class="week-table"><thead><tr><th scope="col">Günlük detay</th>${WEEK_LABELS.map((d,i)=>`<th scope="col" class="${i===m.todayIndex?'is-today':''}">${d}${i===m.todayIndex?' · bugün':''}${m.off.includes(i)?'<br>Offday':''}</th>`).join('')}</tr></thead><tbody>
+      <tr><th scope="row">Çalışılan</th>${m.hours.map((v,i)=>cell(i>m.todayIndex?'—':fmtHours(v),i)).join('')}</tr>
+      <tr><th scope="row">Geçmiş ortalama</th>${m.averages.map((v,i)=>cell(m.weeks?fmtHours(v):'—',i)).join('')}</tr>
+      <tr><th scope="row">Günlük hedef</th>${m.targets.map((v,i)=>cell(m.off.includes(i)?'Offday':m.goal?fmtHours(v):'—',i)).join('')}</tr></tbody></table></div>
+      <div class="week-comparison" aria-live="polite">${comparison}</div>
+      <p class="week-plan-note">${m.weeks?`${m.weeks} tam geçmiş haftanın ortalaması. İlk kaydın haftası pazartesiden başlamıyorsa dışarıda tutulur; sonraki kayıtsız günler 0 saat sayılır.`:'Geçmiş ortalamalar, ilk kaydından itibaren tamamlanan tam haftalarla oluşur.'} Karşılaştırma, bugün kayıt varsa bugüne; yoksa düne kadar yapılır.</p>
+      <div class="week-comparison" aria-live="polite">${plan}</div>
+      <p class="week-plan-note">Başlangıç hedefi: ${m.goal?fmtHours(m.goal/(7-m.off.length)):'—'} / çalışma günü. Bugüne kayıt eklediğinde bugün tamamlanmış kabul edilir; kalan süre sonraki çalışma günlerine eşit bölünür. Yeni kayıt, düzenleme ve silmeler planı yeniden hesaplar. Offday'de çalışırsan bu süre de hedefe sayılır.</p>
+      <details class="week-plan" id="weeklyPlanEditor"><summary>Haftalık hedef ve offday ayarları</summary><form id="weeklyPlanForm">
+      <label for="weeklyPlanGoal">Haftalık çalışma hedefi (saat)<input id="weeklyPlanGoal" type="number" min="0" max="168" step="0.1" required value="${m.goal}" placeholder="48"></label>
+      <fieldset class="week-offdays"><legend>Offday günlerin · En fazla 2 gün seçebilirsin</legend>${WEEK_LABELS.map((d,i)=>`<label><input type="checkbox" name="offday" value="${i}" aria-label="${WEEK_NAMES[i]} offday" ${m.off.includes(i)?'checked':''}>${d}</label>`).join('')}</fieldset>
+      <p class="week-plan-note">Seçimin bu hafta için kaydedilir ve sonraki haftalara varsayılan olarak taşınır. Her hafta değiştirebilirsin. Bu planlama ayarı, mevcut seri / off-day hakkını değiştirmez. Hedefi 0 yaparak kapatabilirsin.</p>
+      <button type="submit" class="overview-action-btn">Planı kaydet</button><div id="weeklyPlanStatus" class="week-form-status" role="status"></div></form></details></div>`;
+  }
+  function wireWeeklyPlan(){
+    const form=document.getElementById('weeklyPlanForm');
+    if(!form) return;
+    form.addEventListener('change',event=>{
+      if(event.target.name==='offday' && form.querySelectorAll('[name=offday]:checked').length>2){
+        event.target.checked=false;
+        document.getElementById('weeklyPlanStatus').textContent='En fazla 2 offday seçebilirsin.';
+      }else document.getElementById('weeklyPlanStatus').textContent='';
+    });
+    form.addEventListener('submit',async event=>{
+      event.preventDefault();
+      const status=document.getElementById('weeklyPlanStatus');
+      if(!currentUid || !profile){status.textContent='Planı kaydetmek için önce profilini oluştur.';return;}
+      const goal=Number(document.getElementById('weeklyPlanGoal').value);
+      const off=[...form.querySelectorAll('[name=offday]:checked')].map(el=>Number(el.value));
+      if(!Number.isFinite(goal)||goal<0||goal>168||off.length>2){status.textContent='Geçerli bir hedef ve en fazla 2 offday seç.';return;}
+      const update={studyGoal:goal,studyOffDays:off,studyOffDaysByWeek:{...(profile.studyOffDaysByWeek||{}),[mondayOf(todayStr())]:off}};
+      const button=form.querySelector('button[type=submit]');
+      button.disabled=true;status.textContent='Kaydediliyor…';
+      try{
+        await userDoc().set(update,{merge:true});
+        Object.assign(profile,update);
+        renderStats();renderProfileCard();renderSelfProfile2();syncPublicProfile();
+        setStatus('Haftalık hedef ve offday planın kaydedildi.');
+      }catch(error){status.textContent='Plan kaydedilemedi. Bağlantını kontrol edip tekrar dene.';button.disabled=false;}
+    });
+  }
+
   // ---------- Stats bar ----------
 
   function renderStats(){
@@ -4818,13 +4969,6 @@
       if(diff < 0) return `<div class="overview-trend down">↓ -${Math.abs(diff)}</div>`;
       return '<div class="overview-trend flat">→ Değişim yok</div>';
     }
-
-    const bars = getLast7StudyBars();
-    const maxHours = Math.max(1,...bars.map(d=>d.hours));
-    const barsHtml = bars.map(d => {
-      const h = Math.max(8,Math.round((d.hours/maxHours)*82));
-      return `<div class="mini-bar-item"><div class="mini-bar-track"><div class="mini-bar" style="height:${h}px"></div></div><div class="mini-bar-value">${d.hours>0?round1(d.hours)+'s':'0'}</div><div class="mini-bar-label">${d.label}</div></div>`;
-    }).join('');
 
     wrap.innerHTML = `
       <div class="overview-card feature">
@@ -4877,13 +5021,10 @@
         <p class="overview-sub" style="margin-top:12px">Netlerini detaylı görmek veya yeni kayıt eklemek için Netler ekranına geçebilirsin.</p>
       </div>
 
-      <div class="overview-card">
-        <div class="overview-label">Bu Hafta</div>
-        <div class="overview-value">${fmtHours(weekHours)}</div>
-        <p class="overview-sub">Son 7 günün çalışma ritmi. ${weeklyGoal>0?`Haftalık hedefinin %${weeklyGoalPct}'indesin.`:'Henüz haftalık hedef belirlemedin.'}</p>
-        <div class="mini-bars">${barsHtml}</div>
-      </div>`;
+      ${renderWeeklyInsight()}`;
+    wireWeeklyPlan();
   }
+
 
   // ---------- Segmented period control ----------
 
