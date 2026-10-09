@@ -2505,35 +2505,65 @@
   @media(prefers-reduced-motion:reduce){.social-view-glider,.social2-panel{transition:none!important;animation:none!important}}
 
 
-  .week-insight { grid-column:1/-1; }
-  .week-insight-head a {color:var(--text);text-decoration:none}
-  .week-chart-labels {display:grid;grid-template-columns:repeat(7,minmax(0,1fr));text-align:center;font-size:11px;color:var(--muted);gap:2px}
-  .week-chart-labels small {display:block;font-size:10px}
-  .week-insight-head {display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:start}
-  .week-legend {display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:18px 0 8px}
-  .week-legend span::before {content:'';display:inline-block;width:14px;height:4px;background:var(--blue,#4c8dff);vertical-align:middle;margin-right:6px;border-radius:3px}
-  .week-legend .average::before {background:#f5ae66}
-  .week-legend .target::before {background:#85cdbf}
-  .week-chart {width:100%;height:180px;display:block;overflow:visible}
-  .week-table-scroll {overflow-x:auto;margin-top:12px}
-  .week-table {width:100%;min-width:490px;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
-  .week-table th,.week-table td {padding:10px 6px;text-align:center;border-bottom:1px solid var(--line,rgba(255,255,255,.1));white-space:nowrap}
-  .week-table th:first-child,.week-table td:first-child {text-align:left;color:var(--muted)}
-  .week-table .is-today {background:rgba(76,141,255,.12)}
-  .week-table .is-off {color:var(--muted)}
-  .week-comparison {padding:14px;border-radius:14px;background:rgba(255,255,255,.05);margin-top:16px;font-size:14px;line-height:1.6}
-  .week-comparison small {display:block;color:var(--muted);font-size:12px}
-  .week-plan {margin-top:18px;border-top:1px solid var(--line,rgba(255,255,255,.1));padding-top:14px}
-  .week-plan summary {cursor:pointer;font-size:14px;font-weight:700}
-  .week-plan form {margin-top:14px;display:grid;gap:12px}
-  .week-plan input[type=number] {max-width:180px;display:block;margin-top:6px}
-  .week-offdays {display:flex;flex-wrap:wrap;gap:8px;border:0;padding:0;margin:0}
-  .week-offdays legend {font-size:12px;color:var(--muted);margin-bottom:8px}
-  .week-offdays label {display:flex;align-items:center;gap:6px;padding:8px 10px;background:rgba(255,255,255,.06);border-radius:10px;cursor:pointer}
-  .week-offdays input {width:auto;margin:0;accent-color:var(--blue,#4c8dff)}
-  .week-plan-note {font-size:12px;line-height:1.6;color:var(--muted);margin:10px 0 0}
-  .week-form-status {font-size:12px;min-height:18px}
-  @media(max-width:600px){.week-chart{height:145px}.week-insight{padding:14px}.week-legend{gap:10px;font-size:11px}}
+  .week-insight {min-width:0;align-self:start;padding:22px;cursor:default;overflow:clip}
+  .week-insight::after{right:0;bottom:0}
+  .week-insight .overview-label{margin-bottom:5px}
+  .week-insight [hidden]{display:none!important}
+  .week-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .week-total{font-family:inherit;font-size:28px;font-weight:550;line-height:1.2;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+  .week-total small{font-size:15px;font-weight:400;color:var(--muted);white-space:nowrap;letter-spacing:0}
+  .week-range{font-size:11px;color:var(--muted);margin-top:6px}
+  .week-plan-toggle{flex-shrink:0;padding:8px 11px;min-height:34px;border-radius:12px;border:1px solid var(--line);background:var(--panel-2);color:var(--text);font:inherit;font-size:11px;cursor:pointer}
+  .week-legend{display:flex;gap:13px;flex-wrap:wrap;margin:19px 0 12px;color:var(--muted);font-size:11px}
+  .week-legend span{display:flex;align-items:center;gap:5px}
+  .week-key{width:8px;height:8px;border-radius:2px;background:var(--blue);display:inline-block}
+  .week-key.average{background:var(--muted);opacity:.5}
+  .week-key.target{height:5px;width:5px;border-radius:1px;background:var(--text);transform:rotate(45deg);margin-right:2px}
+  .week-shadow-chart{height:100px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px;position:relative;border-bottom:1px solid var(--line);margin:19px 0 29px}
+  .week-day-col{position:relative;height:100%;min-width:0}
+  .week-mark{position:absolute;bottom:0;padding:0;border:0;cursor:pointer;min-height:3px}
+  .week-average-bar{left:6%;width:79%;border-radius:9px 9px 3px 3px;background:var(--muted);opacity:.24}
+  .week-actual-bar{left:20%;width:49%;border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,var(--blue),color-mix(in srgb,var(--blue) 40%,transparent));z-index:2}
+  .week-actual-bar.future{background:var(--line);opacity:.65}
+  .week-target-mark{right:-5px;width:24px;height:24px;background:none;z-index:3;display:flex;align-items:center;justify-content:center}
+  .week-target-mark::after{content:'';width:5px;height:5px;transform:rotate(45deg);border-radius:1px;background:var(--text);opacity:.8}
+  .week-day-button{position:absolute;top:100%;left:0;width:100%;min-height:28px;border:0;background:none;color:var(--muted);padding:6px 0 0;font-size:11px;cursor:pointer}
+  .week-day-button.today{color:var(--text);font-weight:700}
+  .week-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:27px;border-top:1px solid var(--line);padding-top:12px}
+  .week-summary-button{padding:0;text-align:left;cursor:pointer;background:none;border:0;color:var(--text);font-family:inherit;font-size:11px;line-height:1.5}
+  .week-summary-button.secondary{color:var(--muted);font-size:11px}
+  .week-summary-button strong{font-weight:700}
+  .week-popover{position:absolute;z-index:30;max-width:calc(100% - 20px);width:224px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--panel-2);color:var(--text);box-shadow:0 8px 26px rgba(0,0,0,.23);box-sizing:border-box;transform:translateX(-50%);pointer-events:none;font-size:11px;line-height:1.5}
+  .week-pop-title{color:var(--muted);font-size:11px;margin-bottom:8px}
+  .week-pop-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:5px}
+  .week-pop-row b{font-weight:600;white-space:nowrap}
+  .week-pop-row.selected{background:var(--panel);margin-left:-6px;margin-right:-6px;padding:4px 6px;border-radius:7px}
+  .week-pop-note{font-size:11px;color:var(--muted);margin-top:8px}
+  .week-plan{border-top:1px solid var(--line);margin-top:16px;padding-top:15px}
+  .week-plan h3{font-size:14px;margin:0 0 12px;color:var(--text)}
+  .week-plan form{display:grid;gap:12px}
+  .week-plan input[type=number]{max-width:180px;display:block;margin-top:6px}
+  .week-offdays{display:flex;flex-wrap:wrap;gap:7px;border:0;padding:0;margin:0}
+  .week-offdays legend{font-size:12px;color:var(--muted);margin-bottom:8px}
+  .week-offdays label{display:flex;align-items:center;gap:5px;padding:8px;background:var(--panel-2);border-radius:9px;cursor:pointer;font-size:12px}
+  .week-offdays input{width:auto;margin:0;accent-color:var(--blue)}
+  .week-plan-note{font-size:11px;line-height:1.6;color:var(--muted);margin:0}
+  .week-form-status{font-size:12px;min-height:16px}
+  .week-method summary{cursor:pointer;font-size:12px;color:var(--muted)}
+  .week-method p{margin-top:8px}
+  .week-mark:focus-visible,.week-day-button:focus-visible,.week-summary-button:focus-visible,.week-plan-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+  @media(max-width:600px){.week-insight{padding:18px}.week-shadow-chart{gap:7px;height:100px}.week-total{font-size:28px}}
+
+  .daily-quote{display:flex;gap:12px;align-items:flex-start;padding:14px 18px;margin:0 0 14px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(110deg,var(--panel-2),var(--panel));color:var(--text)}
+  .daily-quote-mark{font-family:Georgia,serif;font-size:40px;color:var(--blue);line-height:1;opacity:.7;flex-shrink:0;margin-top:13px}
+  .daily-quote-content{min-width:0;flex:1}
+  .daily-quote-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-size:10px;letter-spacing:.07em}
+  .daily-quote-heading>span{text-transform:uppercase;font-weight:700}
+  .daily-quote-heading time{letter-spacing:0;white-space:nowrap}
+  .daily-quote blockquote{font-size:14px;line-height:1.6;margin:7px 0 8px;font-weight:450}
+  .daily-quote-footer{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+  .daily-quote cite{font-style:normal;color:var(--text);font-weight:600}
+  @media(max-width:600px){.daily-quote{padding:12px 14px;gap:9px}.daily-quote blockquote{font-size:13px}.daily-quote-footer{gap:7px}}
 
 </style>
 </head>
@@ -2588,6 +2618,7 @@
 
   <div class="tab-panel" id="tab-ozet">
     <div id="profileCardWrap"></div>
+    <div id="dailyQuoteWrap"></div>
     <div class="stats" id="statsBar"></div>
     <div id="streakCardWrap"></div>
   </div>
@@ -4868,79 +4899,183 @@
     const percent=baseline>0?(actual-baseline)/baseline*100:null;
     return {start,dates,off,goal,hours,total,remaining,remainingDays,daily,targets,weeks,averages,todayIndex,cutoff,comparisonIndex,actual,baseline,percent};
   }
+  let weeklyDismissController = null;
+  function weeklyComparisonText(m){
+    if(!m.weeks) return 'Geçmiş hafta verisi bekleniyor';
+    if(m.comparisonIndex<0) return 'İlk kaydınla karşılaştırma başlar';
+    if(m.percent===null) return 'Geçmiş ortalama 0 saat';
+    if(Math.abs(m.percent)<.05) return 'Ortalamayla aynı seviyede';
+    return `${m.percent>0?'↗':'↘'} %${Math.abs(m.percent).toLocaleString('tr-TR',{maximumFractionDigits:1})} ortalamanın ${m.percent>0?'üstünde':'altında'}`;
+  }
+  function weeklyRemainingText(m){
+    if(!m.goal) return 'Haftalık hedef belirle';
+    if(!m.remaining) return 'Haftalık hedef tamamlandı';
+    if(!m.remainingDays) return fmtHours(m.remaining)+' eksik · Planı düzenle';
+    return `Kalan ${m.remainingDays} gün · ${fmtHours(m.daily)}/gün`;
+  }
   function renderWeeklyInsight(){
     const m=weeklyModel(studyEntries,profile||{},todayStr());
-    const number=v=>v.toLocaleString('tr-TR',{maximumFractionDigits:1});
-    const short=v=>number(v)+' sa';
     const max=Math.max(1,...m.hours,...m.averages,...m.targets);
-    const x=i=>50+i*100;
-    const y=v=>150-v/max*130;
-    const bars=m.hours.map((v,i)=>`<rect x="${x(i)-26}" y="${y(v)}" width="52" height="${v/max*130}" rx="7" fill="url(#weeklyBarGradient)" opacity="${m.off.includes(i)?'.55':'1'}"><title>${WEEK_NAMES[i]}: ${fmtHours(v)}</title></rect>`).join('');
-    const average=m.weeks?`<polyline points="${m.averages.map((v,i)=>x(i)+','+y(v)).join(' ')}" fill="none" stroke="#f5ae66" stroke-width="3" stroke-linejoin="round"/>`+m.averages.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="#f5ae66"><title>${WEEK_NAMES[i]} geçmiş ortalama: ${fmtHours(v)}</title></circle>`).join(''):'';
-    const targets=m.goal?m.targets.map((v,i)=>`<line x1="${x(i)-32}" x2="${x(i)+32}" y1="${y(v)}" y2="${y(v)}" stroke="#85cdbf" stroke-width="2" stroke-dasharray="5 4"><title>${WEEK_NAMES[i]} hedef: ${fmtHours(v)}</title></line>`).join(''):'';
-    let comparison='Karşılaştırma için henüz tamamlanmış geçmiş hafta yok.';
-    if(m.weeks && m.comparisonIndex<0) comparison='Bu haftanın ilk kaydını eklediğinde geçmiş haftalarla karşılaştırman burada görünecek.';
-    else if(m.weeks){
-      if(m.percent===null) comparison='Geçmişte aynı gün aralığının ortalaması 0 saat; yüzdelik karşılaştırma hesaplanamıyor.';
-      else if(Math.abs(m.percent)<.05) comparison='Geçmiş haftaların ortalamasıyla aynı seviyedesin.';
-      else comparison=`Geçmiş haftaların ortalamasının %${number(Math.abs(m.percent))} ${m.percent>0?'üstünde':'altında'} performans sergiledin.`;
-      comparison+=`<small>${m.comparisonIndex===0?'Pazartesi':'Pazartesi – '+WEEK_NAMES[m.comparisonIndex]}: bu hafta ${fmtHours(m.actual)} · geçmiş ortalama ${fmtHours(m.baseline)}.</small>`;
-    }
-    let plan='Haftalık hedefini ve offday günlerini aşağıdan belirle.';
-    if(m.goal){
-      plan=m.remaining===0?'Haftalık hedefini tamamladın!':m.remainingDays?`Hedefe ${fmtHours(m.remaining)} kaldı. Kalan ${m.remainingDays} çalışma gününde günlük ${fmtHours(m.daily)} (${short(m.daily)}) gerekiyor.`:'Planlanan çalışma günlerin bitti. Hedefe '+fmtHours(m.remaining)+' kaldı; hedefini veya offday günlerini düzenleyebilirsin.';
-      if(m.daily>24) plan+=' Kalan günlerde gereken süre 24 saati aşıyor; planını yeniden düzenle.';
-    }
-    const cell=(value,i)=>`<td class="${i===m.todayIndex?'is-today ':''}${m.off.includes(i)?'is-off':''}">${value}</td>`;
-    return `<div class="overview-card week-insight">
-      <div class="week-insight-head"><div><div class="overview-label">Bu Hafta</div><div class="overview-value">${fmtHours(m.total)}</div><p class="overview-sub">${fmtDate(m.start)} – ${fmtDate(m.dates[6])} · Pazartesi–Pazar${m.goal?` · ${short(m.goal)} hedefinin %${number(m.total/m.goal*100)}'i`:''}</p></div><a href="#weeklyPlanEditor" class="overview-micro-pill" onclick="document.getElementById('weeklyPlanEditor').open=true">Haftayı planla ↗</a></div>
-      <div class="week-legend"><span>Çalışma süren</span><span class="average">Geçmiş haftaların ortalaması</span><span class="target">Günlük hedef</span></div>
-      <svg class="week-chart" viewBox="0 0 700 157" preserveAspectRatio="none" role="img" aria-label="Bu haftanın çalışma süreleri, geçmiş günlük ortalamalar ve günlük hedefler. Kesin değerler aşağıdaki tabloda."><defs><linearGradient id="weeklyBarGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4c8dff"/><stop offset="100%" stop-color="#4c8dff" stop-opacity=".35"/></linearGradient></defs><line x1="0" x2="700" y1="150" y2="150" stroke="currentColor" opacity=".12"/>${bars}${targets}${average}</svg><div class="week-chart-labels">${WEEK_LABELS.map((d,i)=>`<span>${d}${m.off.includes(i)?'<small>Offday</small>':''}</span>`).join('')}</div>
-      <div class="week-table-scroll" tabindex="0" role="region" aria-label="Günlük çalışma tablosu, küçük ekranda yatay kaydırılabilir"><table class="week-table"><thead><tr><th scope="col">Günlük detay</th>${WEEK_LABELS.map((d,i)=>`<th scope="col" class="${i===m.todayIndex?'is-today':''}">${d}${i===m.todayIndex?' · bugün':''}${m.off.includes(i)?'<br>Offday':''}</th>`).join('')}</tr></thead><tbody>
-      <tr><th scope="row">Çalışılan</th>${m.hours.map((v,i)=>cell(i>m.todayIndex?'—':fmtHours(v),i)).join('')}</tr>
-      <tr><th scope="row">Geçmiş ortalama</th>${m.averages.map((v,i)=>cell(m.weeks?fmtHours(v):'—',i)).join('')}</tr>
-      <tr><th scope="row">Günlük hedef</th>${m.targets.map((v,i)=>cell(m.off.includes(i)?'Offday':m.goal?fmtHours(v):'—',i)).join('')}</tr></tbody></table></div>
-      <div class="week-comparison" aria-live="polite">${comparison}</div>
-      <p class="week-plan-note">${m.weeks?`${m.weeks} tam geçmiş haftanın ortalaması. İlk kaydın haftası pazartesiden başlamıyorsa dışarıda tutulur; sonraki kayıtsız günler 0 saat sayılır.`:'Geçmiş ortalamalar, ilk kaydından itibaren tamamlanan tam haftalarla oluşur.'} Karşılaştırma, bugün kayıt varsa bugüne; yoksa düne kadar yapılır.</p>
-      <div class="week-comparison" aria-live="polite">${plan}</div>
-      <p class="week-plan-note">Başlangıç hedefi: ${m.goal?fmtHours(m.goal/(7-m.off.length)):'—'} / çalışma günü. Bugüne kayıt eklediğinde bugün tamamlanmış kabul edilir; kalan süre sonraki çalışma günlerine eşit bölünür. Yeni kayıt, düzenleme ve silmeler planı yeniden hesaplar. Offday'de çalışırsan bu süre de hedefe sayılır.</p>
-      <details class="week-plan" id="weeklyPlanEditor"><summary>Haftalık hedef ve offday ayarları</summary><form id="weeklyPlanForm">
+    const pct=v=>(v/max*85).toFixed(3);
+    const mark=(i,metric,cls,value,label)=>`<button type="button" class="week-mark ${cls}" data-week-day="${i}" data-week-metric="${metric}" style="${metric==='target'?'bottom:calc('+pct(value)+'% - 12px)':'height:'+pct(value)+'%'}" aria-label="${WEEK_NAMES[i]} · ${label}" aria-expanded="false" aria-controls="weeklyPopover"></button>`;
+    return `<div class="overview-card week-insight" id="weeklyInsight">
+      <div class="week-head"><div><div class="overview-label">Bu hafta</div><div class="week-total">${fmtHours(m.total)}${m.goal?` <small>/ ${fmtHours(m.goal)}</small>`:''}</div><div class="week-range">${fmtDate(m.start)} – ${fmtDate(m.dates[6])}</div></div><button type="button" class="week-plan-toggle" id="weeklyPlanToggle" aria-expanded="false" aria-controls="weeklyPlanEditor">Plan</button></div>
+      <div class="week-legend"><span><i class="week-key" aria-hidden="true"></i>Çalışma</span><span><i class="week-key average" aria-hidden="true"></i>Ortalama</span><span><i class="week-key target" aria-hidden="true"></i>Hedef</span></div>
+      <div class="week-shadow-chart" role="group" aria-label="Bu haftanın günlük çalışmaları; ayrıntıları görmek için bir sütuna, hedef işaretine veya gün adına dokun.">
+      ${WEEK_LABELS.map((d,i)=>`<div class="week-day-col">
+      ${m.weeks?mark(i,'average','week-average-bar',m.averages[i],'geçmiş ortalama '+fmtHours(m.averages[i])):''}
+      ${mark(i,'hours','week-actual-bar'+(i>m.todayIndex?' future':''),m.hours[i],i>m.todayIndex?'henüz kayıt yok':'çalışma '+fmtHours(m.hours[i]))}
+      ${m.goal&&!m.off.includes(i)?mark(i,'target','week-target-mark',m.targets[i],'günlük hedef '+fmtHours(m.targets[i])):''}
+      <button type="button" class="week-day-button ${i===m.todayIndex?'today':''}" data-week-day="${i}" data-week-metric="day" aria-label="${WEEK_NAMES[i]}${m.off.includes(i)?' · Offday':''} · Tüm günlük detayları göster" aria-expanded="false" aria-controls="weeklyPopover">${m.off.includes(i)?'Off':d}</button></div>`).join('')}</div>
+      <div class="week-bottom"><button type="button" class="week-summary-button" data-week-info="comparison" aria-expanded="false" aria-controls="weeklyPopover">${weeklyComparisonText(m)}</button><button type="button" class="week-summary-button secondary" data-week-info="remaining" aria-expanded="false" aria-controls="weeklyPopover">${weeklyRemainingText(m)}</button></div>
+      <div class="week-popover" id="weeklyPopover" role="status" aria-live="polite" hidden></div>
+      <section class="week-plan" id="weeklyPlanEditor" aria-labelledby="weeklyPlanHeading" hidden><h3 id="weeklyPlanHeading">Haftanı planla</h3><form id="weeklyPlanForm">
       <label for="weeklyPlanGoal">Haftalık çalışma hedefi (saat)<input id="weeklyPlanGoal" type="number" min="0" max="168" step="0.1" required value="${m.goal}" placeholder="48"></label>
-      <fieldset class="week-offdays"><legend>Offday günlerin · En fazla 2 gün seçebilirsin</legend>${WEEK_LABELS.map((d,i)=>`<label><input type="checkbox" name="offday" value="${i}" aria-label="${WEEK_NAMES[i]} offday" ${m.off.includes(i)?'checked':''}>${d}</label>`).join('')}</fieldset>
-      <p class="week-plan-note">Seçimin bu hafta için kaydedilir ve sonraki haftalara varsayılan olarak taşınır. Her hafta değiştirebilirsin. Bu planlama ayarı, mevcut seri / off-day hakkını değiştirmez. Hedefi 0 yaparak kapatabilirsin.</p>
-      <button type="submit" class="overview-action-btn">Planı kaydet</button><div id="weeklyPlanStatus" class="week-form-status" role="status"></div></form></details></div>`;
+      <fieldset class="week-offdays"><legend>Offday günleri · En fazla 2 gün</legend>${WEEK_LABELS.map((d,i)=>`<label><input type="checkbox" name="offday" value="${i}" aria-label="${WEEK_NAMES[i]} offday" ${m.off.includes(i)?'checked':''}>${d}</label>`).join('')}</fieldset>
+      <p class="week-plan-note">Offday seçimin bu haftaya kaydedilir ve sonraki haftalara varsayılan olarak taşınır. Haftalık hedefi 0 yaparak kapatabilirsin.</p>
+      <details class="week-method"><summary>Hedefler ve ortalamalar nasıl hesaplanır?</summary><p class="week-plan-note">Başlangıç hedefi çalışma günlerine eşit bölünür. Bugüne kayıt eklediğinde bugün tamamlanmış kabul edilir; kalan hedef sonraki çalışma günlerine dağıtılır. Eklediğin, düzenlediğin veya sildiğin her kayıt hesabı yeniler. Offday'deki çalışmalar da toplama eklenir; bu ayar mevcut seri / off-day hakkını değiştirmez.</p><p class="week-plan-note">Geçmiş ortalama ilk kaydından itibaren tamamlanan tam haftalara dayanır. İlk kayıt pazartesi değilse o hafta dahil edilmez; sonraki kayıtsız günler 0 sayılır. Karşılaştırma bugün kayıt varsa bugüne, yoksa düne kadar yapılır.</p></details>
+      <button type="submit" class="overview-action-btn">Planı kaydet</button><div id="weeklyPlanStatus" class="week-form-status" role="status"></div></form></section></div>`;
   }
   function wireWeeklyPlan(){
-    const form=document.getElementById('weeklyPlanForm');
-    if(!form) return;
+    if(weeklyDismissController) weeklyDismissController.abort();
+    weeklyDismissController=new AbortController();
+    const signal=weeklyDismissController.signal;
+    const card=document.getElementById('weeklyInsight');
+    if(!card) return;
+    const form=card.querySelector('#weeklyPlanForm'),pop=card.querySelector('#weeklyPopover');
+    const editor=card.querySelector('#weeklyPlanEditor'),toggle=card.querySelector('#weeklyPlanToggle');
+    const m=weeklyModel(studyEntries,profile||{},todayStr());
+    let selected=null;
+    function closeDetail(){
+      pop.hidden=true;
+      if(selected) selected.setAttribute('aria-expanded','false');
+      selected=null;
+    }
+    function showDetail(button){
+      if(selected===button&&!pop.hidden){closeDetail();return;}
+      closeDetail();selected=button;button.setAttribute('aria-expanded','true');
+      if(button.dataset.weekInfo==='comparison'){
+        const range=m.comparisonIndex===0?'Pazartesi':'Pazartesi – '+WEEK_NAMES[m.comparisonIndex];
+        pop.innerHTML=`<div class="week-pop-title">Geçmiş haftalara göre</div><strong>${weeklyComparisonText(m)}</strong>${m.weeks&&m.comparisonIndex>=0?`<div class="week-pop-note">${range}<br>Bu hafta: ${fmtHours(m.actual)}<br>Geçmiş ortalama: ${fmtHours(m.baseline)}</div>`:''}<div class="week-pop-note">${m.weeks?m.weeks+' tam geçmiş hafta. Kayıtsız günler 0 saat sayılır.':'Karşılaştırma için tamamlanmış bir geçmiş hafta gerekiyor.'}${m.percent===null&&m.weeks&&m.comparisonIndex>=0?' Ortalama 0 olduğundan yüzde hesaplanamaz.':''}</div>`;
+      }else if(button.dataset.weekInfo==='remaining'){
+        pop.innerHTML=`<div class="week-pop-title">Haftalık plan</div><strong>${weeklyRemainingText(m)}</strong><div class="week-pop-note">${m.goal?'Hedefe '+fmtHours(m.remaining)+' kaldı.':'Hedefini ve offday günlerini Plan düğmesinden belirle.'}${m.goal&&m.remainingDays&&m.remaining?' Kalan süre çalışma günlerine eşit bölünür.':''}${m.daily>24?' Gereken günlük süre 24 saati aşıyor; planını düzenle.':''}</div>`;
+      }else{
+        const i=Number(button.dataset.weekDay),metric=button.dataset.weekMetric;
+        const values=[['hours','Çalışma',i>m.todayIndex?'Henüz kayıt yok':fmtHours(m.hours[i])],['average','Geçmiş ortalama',m.weeks?fmtHours(m.averages[i]):'Henüz veri yok'],['target','Günlük hedef',m.off.includes(i)?'Offday':m.goal?fmtHours(m.targets[i]):'Belirlenmedi']];
+        pop.innerHTML=`<div class="week-pop-title">${WEEK_NAMES[i]} · ${fmtDate(m.dates[i])}${i===m.todayIndex?' · Bugün':''}</div>${values.map(([key,label,value])=>`<div class="week-pop-row ${metric===key?'selected':''}"><span>${label}</span><b>${value}</b></div>`).join('')}${metric==='average'&&m.weeks?`<div class="week-pop-note">${m.weeks} tam geçmiş haftanın ortalaması.</div>`:''}`;
+      }
+      pop.hidden=false;
+      const box=card.getBoundingClientRect(),anchor=button.getBoundingClientRect(),half=pop.offsetWidth/2;
+      pop.style.left=Math.max(half+9,Math.min(box.width-half-9,anchor.left-box.left+anchor.width/2))+'px';
+      pop.style.top=Math.max(8,anchor.top-box.top-pop.offsetHeight-9)+'px';
+    }
+    card.querySelectorAll('[data-week-metric],[data-week-info]').forEach(button=>button.addEventListener('click',()=>showDetail(button)));
+    toggle.addEventListener('click',()=>{
+      closeDetail();editor.hidden=!editor.hidden;toggle.setAttribute('aria-expanded',String(!editor.hidden));
+    });
+    document.addEventListener('pointerdown',event=>{if(!card.contains(event.target)||!event.target.closest('[data-week-metric],[data-week-info],#weeklyPopover'))closeDetail();},{signal});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeDetail();if(!editor.hidden){editor.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus();}}},{signal});
+    window.addEventListener('resize',closeDetail,{signal});
     form.addEventListener('change',event=>{
-      if(event.target.name==='offday' && form.querySelectorAll('[name=offday]:checked').length>2){
-        event.target.checked=false;
-        document.getElementById('weeklyPlanStatus').textContent='En fazla 2 offday seçebilirsin.';
-      }else document.getElementById('weeklyPlanStatus').textContent='';
+      if(event.target.name==='offday'&&form.querySelectorAll('[name=offday]:checked').length>2){event.target.checked=false;card.querySelector('#weeklyPlanStatus').textContent='En fazla 2 offday seçebilirsin.';}
+      else card.querySelector('#weeklyPlanStatus').textContent='';
     });
     form.addEventListener('submit',async event=>{
       event.preventDefault();
-      const status=document.getElementById('weeklyPlanStatus');
-      if(!currentUid || !profile){status.textContent='Planı kaydetmek için önce profilini oluştur.';return;}
-      const goal=Number(document.getElementById('weeklyPlanGoal').value);
+      const status=card.querySelector('#weeklyPlanStatus');
+      if(!currentUid||!profile){status.textContent='Planı kaydetmek için önce profilini oluştur.';return;}
+      const goal=Number(card.querySelector('#weeklyPlanGoal').value);
       const off=[...form.querySelectorAll('[name=offday]:checked')].map(el=>Number(el.value));
       if(!Number.isFinite(goal)||goal<0||goal>168||off.length>2){status.textContent='Geçerli bir hedef ve en fazla 2 offday seç.';return;}
       const update={studyGoal:goal,studyOffDays:off,studyOffDaysByWeek:{...(profile.studyOffDaysByWeek||{}),[mondayOf(todayStr())]:off}};
-      const button=form.querySelector('button[type=submit]');
-      button.disabled=true;status.textContent='Kaydediliyor…';
+      const button=form.querySelector('button[type=submit]');button.disabled=true;status.textContent='Kaydediliyor…';
       try{
-        await userDoc().set(update,{merge:true});
-        Object.assign(profile,update);
+        await userDoc().set(update,{merge:true});Object.assign(profile,update);
         renderStats();renderProfileCard();renderSelfProfile2();syncPublicProfile();
+        const savedToggle=document.getElementById('weeklyPlanToggle');if(savedToggle)savedToggle.focus();
         setStatus('Haftalık hedef ve offday planın kaydedildi.');
       }catch(error){status.textContent='Plan kaydedilemedi. Bağlantını kontrol edip tekrar dene.';button.disabled=false;}
     });
   }
 
+  // Short, sourced excerpts. Translated text is explicitly labelled in the UI.
+  const DAILY_QUOTES = [
+    {id:'milei-change',author:'Javier Milei',text:'Hep aynı şeyi yapmaya devam edip farklı sonuçlar bekleyemeyiz.',translated:true,context:'Ekonomi politikası üzerine ulusa seslenişten kısa alıntı.',source:'Casa Rosada · Ulusa sesleniş',url:'https://www.casarosada.gob.ar/informacion/discursos/51044-cadena-nacional-del-presidente-de-la-nacion-javier-milei-medidas-para-amurallar-el-deficit-cero-y-la-politica-monetaria-del-gobierno'},
+    {id:'ozal-work',author:'Turgut Özal',text:'Milliyetçilik anlayışımız, bu memleketi ileriye götürmek isteyen, diğer milletlerle rekabet ettiren ve daha önde olmamız için çalışmanın elzem olduğunu anlatan bir anlayıştır.',translated:false,context:'21 Şubat 1988, İzmir İl Kongresi konuşması; kaynakta Özal (1988a:131) olarak aktarılıyor.',source:'Liberte · Özal’ın Milliyetçilik Politikası',url:'https://www.liberte.com.tr/ozal-in-milliyetcilik-politikasi'},
+    {id:'hoppe-persevere',author:'Hans-Hermann Hoppe',text:'Gücüm yettiğince bunun için mücadele etmeyi hâlâ görevim sayıyorum.',translated:true,context:'Hakikati savunmak üzerine 28 Nisan 2008 tarihli söyleşiden kısa alıntı.',source:'HansHoppe.com · Sukasah Syahdan söyleşisi',url:'https://hanshoppe.com/2026/01/interview-hoppe-anti-intellectual-intellectual-syahdan-2008/'},
+    {id:'rothbard-longrun',author:'Murray Rothbard',text:'… gözünü uzun vadeli zafere dikmek ve ona ulaşma yoluna koyulmak …',translated:true,context:'Left and Right: The Prospects for Liberty metninde uzun vadeli iyimserlik üzerine kısa alıntı.',source:'Mises Institute · Left and Right: The Prospects for Liberty',url:'https://mises.org/mises-daily/left-and-right-prospects-liberty'},
+    {id:'thatcher-work',author:'Margaret Thatcher',text:'Yükselmenin tek bir yolu vardır; o da çalışmaktır.',translated:true,context:'20 Haziran 1980, Finchley Ticaret Odası konuşmasından kısa alıntı.',source:'Margaret Thatcher Foundation · Finchley konuşması',url:'https://www.margaretthatcher.org/document/104384'},
+    {id:'menderes-overcome',author:'Adnan Menderes',text:'… bu büyük millet elbet bütün müşkülleri yenmeğe muktedir olacak …',translated:false,context:'8 Kasım 1955 Amasya konuşmasından kısa alıntı; Turgut İleri’nin araştırmasında BCA.30-1-00/2-4-7:9–10 kaydıyla aktarılıyor.',source:'Turgut İleri · Amasya gezisi araştırması, s. 103',url:'https://doi.org/10.29228/JASSS.76170'},
+    {id:'trump-future',author:'Donald Trump',text:'Her birinizden sınırsız geleceğinize sahip çıkmanızı istiyorum.',translated:true,context:'20 Şubat 2020, Hope for Prisoners mezuniyet konuşmasından kısa alıntı.',source:'Beyaz Saray Arşivi · Hope for Prisoners konuşması',url:'https://trumpwhitehouse.archives.gov/briefings-statements/remarks-president-trump-commencement-address-hope-prisoners-graduation-ceremony-las-vegas-nv/'},
+    {"id": "milei-action", "author": "Javier Milei", "text": "Az şey yapmakla hiçbir şey yapmamak arasındaki fark, başlı başına sonsuzdur.", "translated": true},
+    {"id": "milei-patience", "author": "Javier Milei", "text": "Sabırlı olmak gerek, azimli olmak gerek.", "translated": true},
+    {"id": "milei-courage", "author": "Javier Milei", "text": "Değişimden korkanların bizi yıldırmasına izin veremeyiz.", "translated": true},
+    {"id": "erdogan-goals", "author": "Recep Tayyip Erdoğan", "text": "Hedeflerimizle aramıza hiçbir engelin girmesine izin vermedik.", "translated": false},
+    {"id": "erdogan-persist", "author": "Recep Tayyip Erdoğan", "text": "Karşılaştığınız zorluklara aldırmadan sabırla, inançla hedeflerinize doğru yürümekten asla vazgeçmeyin.", "translated": false},
+    {"id": "erdogan-effort", "author": "Recep Tayyip Erdoğan", "text": "Neyi başardıysak, bileğimizin gücüyle başardık. Alnımızın teriyle başardık.", "translated": false},
+    {"id": "rand-roark", "author": "Ayn Rand", "text": "Mesele şu: Beni kim durduracak?", "translated": true},
+    {"id": "rand-value", "author": "Ayn Rand", "text": "Kendine değer vermeyi öğren; bu, mutluluğun için mücadele etmek demektir.", "translated": true},
+    {"id": "rand-work", "author": "Ayn Rand", "text": "Üretken çalışma, insanın sınırsız başarısına giden yoldur.", "translated": true},
+    {"id": "rand-happiness", "author": "Ayn Rand", "text": "Mutluluk, kişinin değerlerini gerçekleştirmesinden doğan bilinç hâlidir.", "translated": true},
+    {"id": "rand-love-work", "author": "Ayn Rand", "text": "Bir işi başarmak için, onun ikincil sonuçlarını değil, işi yapmayı sevmek gerekir.", "translated": true},
+    {"id": "reagan-imagination", "author": "Ronald Reagan", "text": "… insanın zekâ, hayal gücü ve hayret etme kapasitesinin sınırı yoktur.", "translated": true},
+    {"id": "reagan-fly", "author": "Ronald Reagan", "text": "Kendi becerinizin, yeteneğinizin, gücünüzün ve kararlılığınızın sizi taşıyabileceği kadar yükseğe ve uzağa uçun.", "translated": true},
+    {"id": "reagan-barriers", "author": "Ronald Reagan", "text": "İnsan zihninin sınırları, insan ruhunun etrafında duvarlar, ilerlememizin önünde kendi diktiğimizden başka engeller yoktur.", "translated": true},
+    {"id": "mises-responsibility", "author": "Ludwig von Mises", "text": "Herkes toplumun bir parçasını omuzlarında taşır; başkaları kimseyi kendi sorumluluk payından kurtaramaz.", "translated": true},
+    {"id": "tibuk-lessons", "author": "Besim Tibuk", "text": "İnsan en büyük dersleri başarısızlıklarından alıyor.", "translated": false},
+    {"id": "coolidge-progress", "author": "Calvin Coolidge", "text": "Başarısızlıklarımın […] cesaretimi kırmasına izin verseydim, nasıl ilerleyebileceğimi göremiyorum.", "translated": true}
+  ];
+  function quoteHash(value){
+    let hash=2166136261;
+    for(let i=0;i<value.length;i++){hash^=value.charCodeAt(i);hash=Math.imul(hash,16777619);}
+    return hash>>>0;
+  }
+  function quoteOrder(cycle,account=''){
+    let seed=quoteHash('daily-quotes-v1:'+account+':'+cycle);
+    const order=DAILY_QUOTES.map((_,i)=>i);
+    for(let i=order.length-1;i>0;i--){
+      seed=(Math.imul(seed,1664525)+1013904223)>>>0;
+      const j=Math.floor((seed/4294967296)*(i+1));
+      [order[i],order[j]]=[order[j],order[i]];
+    }
+    return order;
+  }
+  function dailyQuoteForDate(iso,account=''){
+    const [year,month,day]=iso.split('-').map(Number);
+    const ordinal=Math.floor(Date.UTC(year,month-1,day)/86400000);
+    const n=DAILY_QUOTES.length,cycle=Math.floor(ordinal/n),offset=((ordinal%n)+n)%n;
+    const order=quoteOrder(cycle,account);
+    // Swapping only the first two leaves the preceding cycle's last item unchanged.
+    if(n>2&&order[0]===quoteOrder(cycle-1,account)[n-1]) [order[0],order[1]]=[order[1],order[0]];
+    return DAILY_QUOTES[order[offset]];
+  }
+  function renderDailyQuote(){
+    const wrap=document.getElementById('dailyQuoteWrap');
+    if(!wrap) return;
+    const date=todayStr(),quote=dailyQuoteForDate(date,currentUid||'');
+    const key=date+':'+(currentUid||'')+':'+quote.id;
+    if(wrap.dataset.quoteKey===key) return;
+    wrap.dataset.quoteKey=key;
+    wrap.innerHTML=`<section class="daily-quote" aria-labelledby="dailyQuoteTitle"><div class="daily-quote-mark" aria-hidden="true">“</div><div class="daily-quote-content"><div class="daily-quote-heading"><span id="dailyQuoteTitle">Günün sözü</span><time datetime="${date}">${fmtDate(date)}</time></div><blockquote>${escapeHtml(quote.text)}</blockquote><div class="daily-quote-footer"><cite>${escapeHtml(quote.author)}</cite><span>${quote.translated?'Türkçe çeviri':''}</span></div></div></section>`;
+  }
+  let dailyQuoteTimer=null;
+  function scheduleDailyQuote(){
+    clearTimeout(dailyQuoteTimer);
+    renderDailyQuote();
+    const now=new Date();
+    const tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
+    dailyQuoteTimer=setTimeout(scheduleDailyQuote,Math.max(1000,tomorrow-now+100));
+  }
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleDailyQuote();});
+  window.addEventListener('focus',scheduleDailyQuote);
+  scheduleDailyQuote();
+  // Also handles a device clock/time-zone change while the page stays in the foreground.
+  setInterval(renderDailyQuote,60000);
+
   // ---------- Stats bar ----------
 
   function renderStats(){
+    renderDailyQuote();
     const wrap = document.getElementById('statsBar');
     if(!wrap) return;
     wrap.className = 'overview-grid';
